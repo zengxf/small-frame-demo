@@ -1,0 +1,46 @@
+buildscript {
+	repositories {
+	    maven {
+	    	url "https://plugins.gradle.org/m2/"
+	    }
+	}
+	dependencies {
+    	classpath "gradle.plugin.com.github.opengl-8080:assertjGen-gradle-plugin:2.0.0"
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'com.github.opengl-BOBO.assertjGen2'
+
+assertjGen {
+	packages = ["cn.zxf.assertj"]
+	// targetDir = "${buildDir}/assertj-src"
+	// targetDir = "${projectDir}/assertj-gen"
+	targetDir = "src/test/assertj-gen"
+}
+sourceSets {
+	test {
+	    java {
+	   		srcDirs assertjGen.targetDir
+	    }
+	}
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+	maven {
+	    url "http://maven.aliyun.com/nexus/content/groups/public/"
+	}
+	mavenCentral()
+	mavenLocal()
+}
+
+dependencies {
+	
+	// AssertJ
+	testCompile group: 'org.assertj', name: 'assertj-core', version: '3.8.0'
+	
+}

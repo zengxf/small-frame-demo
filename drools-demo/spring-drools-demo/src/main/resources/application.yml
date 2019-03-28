@@ -1,0 +1,5 @@
+server:
+  port: 8088
+
+# 测试
+# http://localhost:8088/test/address?num=23

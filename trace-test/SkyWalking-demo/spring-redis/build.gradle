@@ -1,0 +1,41 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+apply plugin: 'org.springframework.boot'
+
+repositories {
+    maven {
+        url "http://maven.aliyun.com/nexus/content/groups/public/"
+    }
+    mavenCentral()
+}
+
+dependencies { 
+
+// spring 
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-cache'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-mongodb'
+	
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.9.6'
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.9.6'
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.6'
+
+// lombok
+	compile group: 'org.projectlombok', name: 'lombok', version: '1.16.12'
+
+// test
+	testCompile("org.springframework.boot:spring-boot-starter-test")
+
+}

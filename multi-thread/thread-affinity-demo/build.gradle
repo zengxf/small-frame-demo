@@ -1,0 +1,18 @@
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+	compile group: 'net.openhft', name: 'affinity', version: '3.0.6'
+
+	// lombok
+	compile group: 'org.projectlombok', name: 'lombok', version: '1.16.12'
+	compile group: 'org.slf4j', name: 'slf4j-jdk14', version: '1.7.24'
+	
+    testCompile 'junit:junit:4.12'
+}

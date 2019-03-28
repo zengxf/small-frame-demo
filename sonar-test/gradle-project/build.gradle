@@ -1,0 +1,37 @@
+group = 'cn.zxf'
+version = '1.0.4'
+
+buildscript {
+    repositories {
+        maven {
+            url "http://maven.aliyun.com/nexus/content/groups/public/"
+        }
+    }
+    dependencies {
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.6.2"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: "org.sonarqube"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    maven {
+        url "http://maven.aliyun.com/nexus/content/groups/public/"
+    }
+    mavenCentral()
+    mavenLocal()
+}
+
+sonarqube{
+    properties{
+        property "sonar.host.url", "http://localhost:9000"
+    }
+}
+
+dependencies {
+}

@@ -1,0 +1,25 @@
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+     maven {
+        url "http://maven.aliyun.com/nexus/content/groups/public/"
+    }
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+	compile group: 'com.alibaba', name: 'transmittable-thread-local', version: '2.2.0'
+
+	// lombok
+	compile group: 'org.projectlombok', name: 'lombok', version: '1.16.12'
+	compile group: 'org.slf4j', name: 'slf4j-jdk14', version: '1.7.24'
+	
+    testCompile 'junit:junit:4.12'
+}
