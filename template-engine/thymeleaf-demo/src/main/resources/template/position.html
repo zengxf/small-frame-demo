@@ -1,0 +1,28 @@
+<div>
+	<h1 th:text="|共${size}个职位|"></h1>
+	<p>
+		系统将在
+		<strong th:text="${date}"></strong>
+		自动关闭
+	</p>
+	<table>
+		<thead>
+			<th>ID</th>
+			<th>名称</th>
+			<th>URL</th>
+			<th>公司名称</th>
+			<th>操作时间</th>
+		</thead>
+		<tbody>
+			<tr th:each="item:${list}">
+				<td th:text="${item.id}">aa</td>
+				<td th:text="${item.name}">bb</td>
+				<td>
+					<a th:text="${item.name}" th:href="|${website}/#/test/${item.id}|">cc</a>
+				</td>
+				<td th:text="${item.companyName}">dd</td>
+				<td th:text="${item.date}">ee<td>
+			</tr>
+		</tbody>
+	</table>
+</div>
