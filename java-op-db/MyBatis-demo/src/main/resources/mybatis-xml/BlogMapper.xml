@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.zxf.mybatis.BlogMapper">
+	<select id="selectBlog" resultType="cn.zxf.mybatis.test.Blog">
+		select * from blog where id = #{id}
+	</select>
+	<select id="selectAllBlog" resultType="cn.zxf.mybatis.test.Blog">
+		select * from blog 
+	</select>
+</mapper>

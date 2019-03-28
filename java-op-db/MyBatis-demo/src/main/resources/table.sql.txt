@@ -1,0 +1,8 @@
+CREATE TABLE `blog` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+INSERT INTO `blog` VALUES (NULL, 'aa中bb');
+INSERT INTO `blog` VALUES (NULL, 'bb要cc');
