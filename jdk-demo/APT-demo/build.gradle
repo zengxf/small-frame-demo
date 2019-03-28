@@ -1,0 +1,52 @@
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+  dependencies {
+    classpath "net.ltgt.gradle:gradle-apt-plugin:0.19"
+  }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: "net.ltgt.apt"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    maven {
+        url "http://maven.aliyun.com/nexus/content/groups/public/"
+    }
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+	
+	apt files('lib/APT-demo.jar')
+ 
+	// JavaPoet
+	compile group: 'com.squareup', name: 'javapoet', version: '1.11.1'
+	
+}
+
+jar {
+  from {
+    configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+  }
+}
+
+compileJava.options.encoding = 'UTF-8'
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+task copyJar(type:Copy) {
+    //delete 'lib/APT-demo.jar'
+    from('build/libs')
+    into('lib')
+    include('APT-demo.jar')
+}

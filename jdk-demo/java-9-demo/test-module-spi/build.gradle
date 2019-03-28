@@ -1,0 +1,17 @@
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+    apply plugin: 'idea'
+
+	sourceCompatibility = 9
+	targetCompatibility = 9
+
+    repositories {
+       mavenCentral()
+    }
+
+    dependencies {
+    }
+
+    version = '1.0'
+}
