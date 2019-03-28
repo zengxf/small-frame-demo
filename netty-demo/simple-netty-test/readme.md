@@ -171,6 +171,16 @@
 - 组合解码器和编码器，即：输入和输出
 - 提高便利性
 
+#### 基于长度的解码
+- `FixedLengthFrameDecoder` 提取固定长度
+- `LengthFieldBasedFrameDecoder` 读取头部长度并提取帧的长度
+
+#### 序列化
+- ProtoBuf: ProtobufDecoder ProtobufEncoder
+- JBoss Marshalling: CompatibleMarshallingDecoder CompatibleMarshallingEncoder
+- JDK: CompatibleObjectDecoder CompatibleObjectEncoder
+- Netty: ObjectDecoder ObjectEncoder
+
 ----
 ---
 ### HttpServer
@@ -229,3 +239,15 @@
 - `IdleStateHandler` 连接闲置时间过长，触发 `IdleStateEvent` 事件
 - `ReadTimeoutHandler` 在指定的时间内没收到入站数据则抛出 `ReadTimeoutException` 并关闭 Channel
 - `WriteTimeoutHandler`
+
+### 零拷贝
+- `FileRegion` 的默认实现是 `FileInputStream`
+- 其底层还是 `FileChannel.transferTo()`
+
+#### ChunkedInput
+- 防止大文件，OOM
+- 相关实现类：
+  - `ChunkedFile` 当你使用平台不支持 zero-copy 或者你需要转换数据，从文件中一块一块的获取数据
+  - `ChunkedNioFile` 与 ChunkedFile 类似，处理使用了NIOFileChannel
+  - `ChunkedStream` 从 InputStream 中一块一块的转移内容
+  - `ChunkedNioStream` 从 ReadableByteChannel 中一块一块的转移内容
