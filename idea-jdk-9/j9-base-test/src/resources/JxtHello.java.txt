@@ -1,0 +1,12 @@
+package resources;
+
+/**
+ * Created by zengxf on 2017/11/23.
+ */
+public class JxtHello {
+
+    public static void test() {
+        System.out.println("test");
+    }
+
+}
