@@ -123,6 +123,13 @@
 - 一个 `EventLoopGroup` 可以有多个 EventLoop 
   - 并提供迭代用于检索
 
+#### EventLoop 调度任务
+- 内部实现基于时间轮，只保证一个近似执行，可能不是 100% 准确
+  - 实践中，这被证明是一个可容忍的限制
+- 更准确执行，可以使用 ScheduledExecutorService
+- `future = channel.eventLoop().scheduleAtFixedRate();` // 调度任务
+- `future.cancel(false);` // 取消任务，阻止它再次运行
+
 ### 两种写消息方式
 - 直接写消息给 Channel 
   - 消息从 ChannelPipeline 的尾部开始
