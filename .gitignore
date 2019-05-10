@@ -10,9 +10,15 @@ gradlew.bat
 settings.gradle
 .gradle
 
+out
+
 target
 
+*.class
+
 *.iml
+*.ipr
+*.iws
 .idea
 
 *.md5

@@ -7,6 +7,7 @@
 - `gradlew run` 
   - 需要 **gradlew** 运行
   - 和 `gradle/wrapper/gradle-wrapper.jar` 配合
+- 也可直接 `gradle run` 运行，不需要上面两步
 - 直接用 Eclipse 运行会报错：`错误: 缺少 JavaFX 运行时组件, 需要使用该组件来运行此应用程序`
 
 ## 引用 jar 包
@@ -24,6 +25,13 @@ javafx {
 ## 问题
 ### 运行创建的镜像出错
 - 将当前模块开放给 JavaFX
+
+### idea 运行 main 找不到资源
+- 配置 `gradle [:run]` 运行
+
+### idea 运行
+- 点击 Gradle 图标，配置输入 `:run`
+- 即可运行和调试
 
 ## 参考
 - 直接看官网和易百教程
