@@ -36,3 +36,9 @@ javafx {
 ## 参考
 - 直接看官网和易百教程
 
+## 源码说明
+### MyController.java
+- 可以不用注入属性 `showDateButton`
+- 可以不用实现接口 `Initializable`
+- `Initializable` 的 URL 是引用的 `fxml` 文件路径
+
