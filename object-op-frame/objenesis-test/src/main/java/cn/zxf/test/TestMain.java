@@ -38,7 +38,7 @@ public class TestMain {
         dto = instantiator.newInstance();
         dto.setName( "new-test" );
         log.info( "objenesis-dto: {} \n", dto );
-        dto = objenesis.newInstance( TestInnerDto.class ); // 直接获取实例
+        dto = objenesis.newInstance( TestInnerDto.class ); // 直接获取实例，内部会缓存
         dto.setName( "new-test-1" );
         log.info( "objenesis-dto-1: {} \n", dto );
 
