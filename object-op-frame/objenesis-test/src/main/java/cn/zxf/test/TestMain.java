@@ -20,7 +20,7 @@ public class TestMain {
         private String            name;
         private Integer           age;
 
-        TestInnerDto( String name, Integer age ) {
+        TestInnerDto( String name, int age ) {
             this.name = name;
             this.age = age;
             log.info( "TestInnerDto 构造器被调用" );
@@ -43,7 +43,7 @@ public class TestMain {
         log.info( "objenesis-dto-1: {} \n", dto );
 
         Constructor<TestInnerDto> constructor;
-        constructor = TestInnerDto.class.getDeclaredConstructor( String.class, Integer.class );
+        constructor = TestInnerDto.class.getDeclaredConstructor( String.class, int.class );
         dto = constructor.newInstance( "test", 55 );
         log.info( "constructor-dto: {} \n", dto );
 
@@ -65,7 +65,7 @@ public class TestMain {
         // 获取第一个控制器，然后再反射创建
         constructor = (Constructor<TestInnerDto>) TestInnerDto.class.getDeclaredConstructors()[0];
         constructor.setAccessible( true );
-        Object[] cArgs = new Object[constructor.getParameterCount()];
+        Object[] cArgs = new Object[constructor.getParameterCount()]; // 对于原始类型就不行
         dto = constructor.newInstance( cArgs );
         log.info( "constructor-dto-args: {} \n", dto );
     }
