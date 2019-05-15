@@ -20,7 +20,7 @@ public class TestMain {
         private String            name;
         private Integer           age;
 
-        TestInnerDto( String name, int age ) {
+        TestInnerDto( String name, Integer age ) {
             this.name = name;
             this.age = age;
             log.info( "TestInnerDto 构造器被调用" );
@@ -43,7 +43,7 @@ public class TestMain {
         log.info( "objenesis-dto-1: {} \n", dto );
 
         Constructor<TestInnerDto> constructor;
-        constructor = TestInnerDto.class.getDeclaredConstructor( String.class, int.class );
+        constructor = TestInnerDto.class.getDeclaredConstructor( String.class, Integer.class );
         dto = constructor.newInstance( "test", 55 );
         log.info( "constructor-dto: {} \n", dto );
 
