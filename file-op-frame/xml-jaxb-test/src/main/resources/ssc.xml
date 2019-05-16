@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<xml>
+	<row expect="20170328049" opencode="1,1,9,7,4" specail="" opentime="2017-03-28 14:11:00"/>
+	<row expect="20170328048" opencode="7,0,7,4,6" specail="" opentime="2017-03-28 14:01:00"/>
+	<row expect="20170328047" opencode="2,5,6,1,7" specail="" opentime="2017-03-28 13:51:00"/>
+	<row expect="20170328046" opencode="1,5,9,5,5" specail="" opentime="2017-03-28 13:41:00"/>
+	<row expect="20170328045" opencode="9,4,5,3,9" specail="" opentime="2017-03-28 13:31:00"/>
+	<row expect="20170328044" opencode="0,4,7,0,7" specail="" opentime="2017-03-28 13:21:00"/>
+	<row expect="20170328043" opencode="6,6,7,3,5" specail="" opentime="2017-03-28 13:11:00"/>
+	<row expect="20170328042" opencode="6,1,0,8,9" specail="" opentime="2017-03-28 13:01:00"/>
+	<row expect="20170328041" opencode="8,4,6,4,3" specail="" opentime="2017-03-28 12:51:00"/>
+	<row expect="20170328040" opencode="5,9,5,0,3" specail="" opentime="2017-03-28 12:41:00"/>
+</xml>

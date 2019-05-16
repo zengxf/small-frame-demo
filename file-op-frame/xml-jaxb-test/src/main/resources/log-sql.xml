@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Log Remark="记录表" pri="16" tablename="bd_dbaudit_log">
+	<LogID Remark="记录ID">123456789</LogID>
+	<Subject Remark="主题">
+		<Node Remark="节点">172.16.1.190</Node>
+		<Node Remark="节点ID">WD-WMC6N0J00CDK</Node>
+		<ComputerName Remark="Computer-Name">zj-pc</ComputerName>
+		<UserName Remark="User-Name">zj</UserName>
+		<Department Remark="Department">鐮斿彂涓績</Department>
+		<Program Remark="Program">plsql.exe</Program>
+		<Facility Remark="Facility"></Facility>
+	</Subject>
+	<Object Remark="对象">
+		<ObjectName Remark="查询对象">select * from test</ObjectName>
+	</Object>
+	<Details Remark="Details">1	2	3	4	select * from test	172.16.1.190	172.16.1.245</Details>
+	<Result Remark="res">aa</Result>
+	<EntryStamp Remark="date">2017-10-24 10:00:00</EntryStamp>
+	<Level Remark="级别">4</Level>
+	<Type Remark="type">a</Type>
+	<ProductType Remark="ProductType">d</ProductType>
+	<BehaviourType Remark="BehaviourType">涓�鑸涓�</BehaviourType>
+	<Reservation Remark="Reservation"></Reservation>
+</Log>
