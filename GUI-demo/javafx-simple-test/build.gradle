@@ -28,3 +28,9 @@ repositories {
     mavenCentral()
     mavenLocal()
 }
+
+idea {
+    module {
+        inheritOutputDirs = true
+    }
+}
