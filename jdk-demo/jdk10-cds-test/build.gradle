@@ -1,0 +1,13 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+sourceCompatibility = 11
+compileJava.options.encoding = 'UTF-8'
+
+jar {
+  manifest {
+    attributes (
+      'Main-Class': 'cn.zxf.test.TestMain'
+    )
+  }
+}
