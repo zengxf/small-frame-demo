@@ -7,6 +7,11 @@ import java.nio.file.Paths;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * 其他 Demo 帮助类
+ * <p>
+ * Created by zengxf on 2019-07-18
+ */
 public class BTraceCommand {
 
     public static void print() {
@@ -37,8 +42,12 @@ public class BTraceCommand {
     static String curPath() {
         try {
             String cp = getMainPath();
-            Path p = Paths.get( BTraceCommand.class.getResource( "/" ).toURI() );
-            String path = p.resolve( "../src/main/java/" + cp ).normalize().toAbsolutePath().toString();
+            Path p = Paths.get( BTraceCommand.class.getResource( "/" )
+                    .toURI() );
+            String path = p.resolve( "../src/main/java/" + cp )
+                    .normalize()
+                    .toAbsolutePath()
+                    .toString();
             return path;
         } catch ( URISyntaxException e ) {
             e.printStackTrace();
@@ -47,7 +56,8 @@ public class BTraceCommand {
     }
 
     static String getPid() {
-        String s = ManagementFactory.getRuntimeMXBean().getName();
+        String s = ManagementFactory.getRuntimeMXBean()
+                .getName();
         return s.split( "@" )[0];
     }
 
@@ -60,7 +70,9 @@ public class BTraceCommand {
     static String getMainPath() {
         String name = getMainClass();
         String[] arr = name.split( "\\." );
-        return Stream.of( arr ).limit( arr.length - 1 ).collect( Collectors.joining( "/" ) );
+        return Stream.of( arr )
+                .limit( arr.length - 1 )
+                .collect( Collectors.joining( "/" ) );
     }
 
     static String getMainClass() {

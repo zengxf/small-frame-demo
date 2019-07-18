@@ -9,9 +9,7 @@ public class ProbeDemo {
     public static void main( String[] args ) {
         Runnable r = () -> {
             while ( true ) {
-
                 test();
-
                 try {
                     Thread.sleep( 1000L );
                 } catch ( InterruptedException e ) {

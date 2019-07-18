@@ -9,11 +9,9 @@ public class JStackDemo {
     public static void main( String[] args ) {
         Runnable r = () -> {
             while ( true ) {
-
                 Test.test();
                 test();
                 new ArrayList<>();
-
                 Sleep.sleep( 1000L );
             }
         };

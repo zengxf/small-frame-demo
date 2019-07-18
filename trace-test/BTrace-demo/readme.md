@@ -5,6 +5,11 @@
 
 ## 脚本注意事项: 
 - 1. 只能调用：`BTraceUtils.*` 的方法
+- 2. 还不支持 Java9+
+
+### 要调用其他类的方法
+- 需显示设置 `@BTrace( unsafe = true )`
+- 其他可能需要改 `btrace.bat` 里面的 `-Dcom.sun.btrace.unsafe` 为 `true`
 
 ## 执行
 ```
