@@ -3,6 +3,7 @@ bin
 .classpath
 .project
 
+lib
 gradlew
 build
 gradle
