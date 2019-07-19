@@ -20,6 +20,7 @@
 - `trace cn.zxf.arthas.test.TestWhileLoop$Counter value #cost>0.004` 按照耗时过滤
 - `stack cn.zxf.arthas.test.TestWhileLoop$Counter value` 输出方法被调用的调用路径
 - `stack cn.zxf.arthas.test.TestWhileLoop$Counter value #cost>0.004` 按照耗时过滤
+- `thread -n 10` 将最忙碌的 10 个线程快照打印出来
 - `tt -t -n 3 *TestWhileLoop$Counter value` 方法执行数据的时空隧道，记录方法的次调用情况
 - `tt -l` 列出历史记录
 - `tt -i 1001` 查看某一条记录
