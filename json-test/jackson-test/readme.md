@@ -12,3 +12,6 @@
 
 ### 设置字段名
 - 实体配上 `@JsonProperty( "user-name" )` 注解
+
+### 忽略不存在的字段，而不报错
+- `new ObjectMapper().configure( DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false )`

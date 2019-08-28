@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cn.zxf.test.test_table.TestTableController">
+   <children>
+      <TableView fx:id="myTable" layoutX="14.0" layoutY="109.0" prefHeight="200.0" prefWidth="249.0">
+        <columns>
+          <TableColumn fx:id="nameColumn" prefWidth="113.0" text="姓名" />
+          <TableColumn fx:id="ageColumn" prefWidth="134.0" text="年" />
+        </columns>
+      </TableView>
+      <Button layoutX="14.0" layoutY="48.0" mnemonicParsing="false" onAction="#onInitialize" text="初始化-数据" />
+      <Button layoutX="112.0" layoutY="48.0" mnemonicParsing="false" onAction="#onAdd" text="添加" />
+   </children>
+</Pane>

@@ -28,10 +28,12 @@ javafx {
 
 ### idea 运行 main 找不到资源
 - 配置 `gradle [:run]` 运行
+- 后面用 `idea` 插件解决了，可直接运行 `Main`
 
 ### idea 运行
 - 点击 Gradle 图标，配置输入 `:run`
-- 即可运行和调试
+  - 即可运行和调试
+- 也可直接：`Tasks` → `application` → `run` 运行
 
 ## 参考
 - 直接看官网和易百教程

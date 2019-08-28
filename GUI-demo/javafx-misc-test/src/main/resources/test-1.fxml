@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cn.zxf.test.test1.Test1Controller">
+    <tabs>
+        <Tab text="Test-1">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <children>
+                        <Button fx:id="btnOk" layoutX="119.0" layoutY="196.0" mnemonicParsing="false" onAction="#onOk" text="OK" />
+                        <CheckBox fx:id="myCheck" layoutX="119.0" layoutY="82.0" mnemonicParsing="false" text="测试" />
+                        <Button layoutX="181.0" layoutY="196.0" mnemonicParsing="false" onAction="#onCancel" text="Cancel" />
+                    </children>
+                </AnchorPane>
+            </content>
+        </Tab>
+        <Tab text="Test-2">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <children>
+                        <TextField editable="false" layoutX="85.0" layoutY="68.0" text="没有什么东西" />
+                    </children>
+                </AnchorPane>
+            </content>
+        </Tab>
+    </tabs>
+</TabPane>
