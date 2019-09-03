@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cn.zxf.test.test_login.TestLoginSuccessController">
+    <children>
+        <Button layoutX="184.0" layoutY="104.0" mnemonicParsing="false" onAction="#onGetInfo" text="获取用户信息" />
+      <Button layoutX="323.0" layoutY="104.0" mnemonicParsing="false" onAction="#onExit" text="退  出" />
+      <TextField fx:id="nick" layoutX="250.0" layoutY="46.0" />
+      <Label layoutX="176.0" layoutY="50.0" text="昵 称" />
+    </children>
+</Pane>

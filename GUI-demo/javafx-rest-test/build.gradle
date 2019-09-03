@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+//    id 'idea'
+    id 'application'
+    id "io.freefair.lombok" version "3.1.0"
+    id 'org.openjfx.javafxplugin' version '0.0.7'
+    id 'org.beryx.jlink' version '2.10.2'
+}
+javafx {
+    version = "11.0.2"
+    modules = ['javafx.controls', 'javafx.fxml']
+}
+jlink { launcher { name = 'fx-rest-test' } }
+
+mainClassName = 'cn.zxf.test.Main'
+sourceCompatibility = 11
+compileJava.options.encoding = 'UTF-8'
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+repositories {
+    mavenLocal()
+    maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+}
+dependencies {
+    // retrofit2
+    compile group: 'com.squareup.retrofit2', name: 'retrofit', version: '2.6.1'
+    compile group: 'com.squareup.retrofit2', name: 'converter-gson', version: '2.6.1'
+    compile group: 'com.squareup.retrofit2', name: 'converter-scalars', version: '2.6.1'
+    compile group: 'com.squareup.okhttp3', name: 'logging-interceptor', version: '3.12.0'
+    // log
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.26'
+    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.26'
+    // lombok
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.8'
+    testCompile group: 'org.projectlombok', name: 'lombok', version: '1.18.8'
+}
+
+//idea { module { inheritOutputDirs = true } }
