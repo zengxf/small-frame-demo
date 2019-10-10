@@ -21,6 +21,7 @@ public class Test1 {
                 .toURI() ) );
         // log.info( content );
         Document root = Jsoup.parse( content );
+        // Document root = Jsoup.connect( "https://xx/xx.html" ).get();
         Element tableall = root.getElementById( "tableall" );
         Element rside = tableall.getElementById( "rside" );
         Elements arr = rside.select( "table tbody tr" );
