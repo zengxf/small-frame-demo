@@ -1,6 +1,7 @@
 package cn.zxf;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -9,10 +10,11 @@ import lombok.experimental.Accessors;
 @Accessors( chain = true )
 public class User {
 
-    private String   id;
-    private Integer  age;
-    private Integer  status;
-    private LoginLog latestLog;
+    private String       id;
+    private Integer      age;
+    private Integer      status;
+    private LoginLog     latestLog;
+    private List<String> codes;
 
     @Data
     @Accessors( chain = true )
@@ -27,6 +29,7 @@ public class User {
         return new User().setId( "zxf-01" )
                 .setAge( 10 )
                 .setStatus( 2 )
+                .setCodes( List.of( "123", "234", "23" ) )
                 .setLatestLog( log );
     }
 
