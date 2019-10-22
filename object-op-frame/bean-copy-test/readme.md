@@ -6,6 +6,7 @@
 - CGLib `BeanCopier` 的原理是生成 set 字节码
 
 ## Dozer 复制
+- 原文参考：https://www.jianshu.com/p/7ef49f54b59b
 - 会自动进行属性的类型转换，集合的泛型转换
 - 遇见 `String` 转 `Integer` 时，格式不对则会报错
 - 可以对 `Object` 和 `Map` 进行相互转换
