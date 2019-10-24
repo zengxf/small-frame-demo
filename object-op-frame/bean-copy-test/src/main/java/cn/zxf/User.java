@@ -11,6 +11,7 @@ import lombok.experimental.Accessors;
 public class User {
 
     private String       id;
+    private String       sign;
     private Integer      age;
     private Integer      status;
     private LoginLog     latestLog;
@@ -27,6 +28,7 @@ public class User {
         LoginLog log = new LoginLog().setLoginDate( new Date() )
                 .setIp( "127.0.0.1" );
         return new User().setId( "zxf-01" )
+                .setSign( "test" )
                 .setAge( 10 )
                 .setStatus( 2 )
                 .setCodes( List.of( "123", "234", "23" ) )
