@@ -1,0 +1,23 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+sourceCompatibility = 11
+
+repositories {
+    maven {
+        url "http://maven.aliyun.com/nexus/content/groups/public/"
+    }
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+	// lombok
+	compile group: 'org.projectlombok', name: 'lombok', version: '1.18.8'
+	compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+	compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
+	
+	// junit
+	testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.2'
+	testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: '5.5.2'
+}
