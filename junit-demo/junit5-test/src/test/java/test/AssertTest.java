@@ -1,3 +1,5 @@
+package test;
+
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 
