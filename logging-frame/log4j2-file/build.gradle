@@ -1,0 +1,22 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    maven {
+        url "http://maven.aliyun.com/nexus/content/groups/public/"
+    }
+    mavenCentral()
+}
+
+dependencies { 
+
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.0'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.0'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.11.0'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-jcl', version: '2.11.0'
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+
+}
