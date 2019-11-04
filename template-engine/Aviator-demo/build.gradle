@@ -1,0 +1,22 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+sourceCompatibility = 11
+
+repositories {
+    maven {
+        url "http://maven.aliyun.com/nexus/content/groups/public/"
+    }
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+	// lombok
+	compile group: 'org.projectlombok', name: 'lombok', version: '1.16.12'
+	compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+	compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
+	
+	// aviator
+	compile group: 'com.googlecode.aviator', name: 'aviator', version: '4.2.5'
+}
