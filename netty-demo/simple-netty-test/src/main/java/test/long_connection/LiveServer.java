@@ -1,4 +1,4 @@
-package cn.zxf.netty_test.long_connection;
+package test.long_connection;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

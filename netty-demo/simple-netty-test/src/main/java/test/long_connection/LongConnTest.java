@@ -1,4 +1,4 @@
-package cn.zxf.netty_test.long_connection;
+package test.long_connection;
 
 import java.net.InetSocketAddress;
 import java.net.Socket;

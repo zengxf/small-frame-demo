@@ -1,4 +1,4 @@
-package cn.zxf.netty_test.long_connection;
+package test.long_connection;
 
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
