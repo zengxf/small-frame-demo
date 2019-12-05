@@ -29,6 +29,8 @@ public class UserAnnotationTest {
 
         xstream = new XStream( new JettisonMappedXmlDriver() );
         xstream.setMode( XStream.NO_REFERENCES );
+        xstream.processAnnotations( UserAnnotation.class ); // 应用类的注解
+        xstream.autodetectAnnotations( true ); // 自动检测注解
 
         String json = xstream.toXML( UserAnnotation ); // JSON 序列化
         System.out.println( json );
