@@ -1,18 +1,34 @@
-## akka-demo
+## AI-demo
+- tensorflow-demo
+- `neuroph-demo` 神经网络框架
+- `librec-demo` 推荐系统框架
 
-## file-op-frame
+
+## op-frame
+- `redis-op-frame`
+- `zk-op-frame`
+
+### file-op-frame
 - poi-demo
 - json-path-demo
 
-## byte-code-op
+### byte-code-op
 - asm-demo
 - byte-buddy-demo
 
+### object-op-frame
+- objenesis-test
+- jol-demo
+  - 计算 java 对象大小
+
+### java-op-db
+- connection-pool-test
+  - 连接池测试，包含高性能`HikariCP`，提供强大的监控和扩展功能`druid`
+- `MyBatis-demo` MyBatis 测试
+
+
 ## cobertura-demo
 测试覆盖率
-
-## disruptor-demo
-高性能队列，实现 生产者-消费者 模式
 
 ## drools-demo
 规则引擎 demo
@@ -28,38 +44,22 @@ java 9 demo
 - `java-9-demo` Java 9
 - `spi-demo`
 
-## jsqlparser-demo
+## parse-test
+- `jsqlparser-demo`
+- `jsoup-parse-html`
 
 ## junit-demo
 - 其中包含微基准测试
 
-## librec-demo
-- 推荐系统框架
-
-## neuroph-demo
-- 神经网络框架
-
-## object-op-frame
-- objenesis-test
-- jol-demo
-  - 计算 java 对象大小
-
-## tensorflow-demo
 
 ## web-server-test
-### tomcat-embed-demo
-- 嵌入式 tomcat 测试
-
-## reactive-test
-- rxjava-demo
-  - RxJava 异步编程。但 java8 基本够用了
-- reactor-demo
+- `tomcat-embed-demo` 嵌入式 tomcat 测试
 
 ## guess-encoding
 - 用来确定文件编码。但并不成功
 
-## test-greys
-- 阿里性能诊断工具 greys 测试
+## trace-test
+- `test-Greys` 阿里性能诊断工具 greys 测试
 
 
 ## micro-services 微服务框架测试
@@ -79,13 +79,6 @@ Java 序列化测试，包括：kryo
 ## jexl3-demo
 字符串表达式解析和执行
 
-## java-op-db
-### connection-pool-test
-- 连接池测试，包含高性能`HikariCP`，提供强大的监控和扩展功能`druid`
-
-### MyBatis-demo
-- MyBatis 测试
-
 
 ## test-log-frame
 - 测试日志框架
@@ -97,11 +90,22 @@ Java 序列化测试，包括：kryo
 - `test-Arthas`
 - `test-Greys`
 
+
 ## multi-thread
 - 多线程相关
+- `akka-demo`
 - `thread-affinity-demo` 线程绑定 cpu
 - `quasar-demo` Java 协程
 - `transmittable-thread-local-demo` 解决线程池中 ThreadLocal 数据的传递问题
+
+### reactive-test
+- rxjava-demo
+  - RxJava 异步编程。但 java8 基本够用了
+- reactor-demo
+
+### disruptor-demo
+高性能队列，实现 生产者-消费者 模式
+
 
 ## template-engine
 - 模板引擎
