@@ -30,6 +30,7 @@
 ## http-client-demo
 - `retrofit-test`
 - `resume-parse` Apache httpclient 测试
+- `selenium-webdriver-test`
 
 ## cobertura-demo
 测试覆盖率
