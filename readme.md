@@ -27,14 +27,15 @@
 - `MyBatis-demo` MyBatis 测试
 
 
+## http-client-demo
+- `retrofit-test`
+- `resume-parse` Apache httpclient 测试
+
 ## cobertura-demo
 测试覆盖率
 
 ## drools-demo
 规则引擎 demo
-
-## idea-jdk-9
-java 9 demo
 
 ## javaee7-demo
 
@@ -43,6 +44,7 @@ java 9 demo
 - `instrument-demo` Java Agent 测试 
 - `java-9-demo` Java 9
 - `spi-demo`
+- `idea-jdk-9` java 9 demo
 
 ## parse-test
 - `jsqlparser-demo`
