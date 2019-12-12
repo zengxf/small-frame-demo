@@ -9,8 +9,12 @@
 - `zk-op-frame`
 
 ### file-op-frame
+- apache-poi-demo
 - poi-demo
 - json-path-demo
+- xml-jaxb-test
+- xml-xstream-test
+- xml-fasterxml-test
 
 ### byte-code-op
 - asm-demo
