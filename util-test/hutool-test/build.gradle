@@ -1,0 +1,23 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+sourceCompatibility = 11
+
+repositories {
+    maven {
+        url "http://maven.aliyun.com/nexus/content/groups/public/"
+    }
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+	// hutool
+	compile group: 'cn.hutool', name: 'hutool-all', version: '5.3.6'
+	compile group: 'org.bouncycastle', name: 'bcprov-jdk15on', version: '1.65'
+
+	// lombok
+	compile group: 'org.projectlombok', name: 'lombok', version: '1.18.8'
+	compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.29'
+	compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.29'
+}
