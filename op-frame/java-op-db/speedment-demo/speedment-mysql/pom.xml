@@ -19,7 +19,7 @@
 
 		<db.groupId>mysql</db.groupId>
 		<db.artifactId>mysql-connector-java</db.artifactId>
-		<db.version>5.1.45</db.version>
+		<db.version>8.0.16</db.version>
 	</properties>
 
 
