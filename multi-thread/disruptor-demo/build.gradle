@@ -1,9 +1,11 @@
+plugins {
+    id 'java'
+//    id 'idea'
+    id "io.freefair.lombok" version "5.3.2"
+}
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 11
+targetCompatibility = 11
 
 repositories {
     maven {
@@ -16,7 +18,7 @@ repositories {
 dependencies {
 	
 	// lombok
-	compile group: 'org.projectlombok', name: 'lombok', version: '1.16.12'
+	compile group: 'org.projectlombok', name: 'lombok', version: '1.18.8'
 	compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
 	compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
 	compile group: 'ch.qos.logback', name: 'logback-core', version: '1.2.3'
