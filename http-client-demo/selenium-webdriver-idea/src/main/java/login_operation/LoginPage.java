@@ -1,16 +1,20 @@
 package login_operation;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Scanner;
 
 /**
  * Created by ZXFeng on 2021/6/18.
  */
+@Slf4j
 public class LoginPage extends AbstractPage {
 
     @FindBy(how = How.XPATH, using = "//*[@id=\"app\"]/div/form/div[1]/div/div/input")
@@ -27,17 +31,21 @@ public class LoginPage extends AbstractPage {
         PageFactory.initElements(driver, this);
     }
 
-    public DataPage login(String nameV, String pwdV) {
+    public HomePage login(String nameV, String pwdV) {
         username.sendKeys(nameV);
         password.sendKeys(pwdV);
         this.inputCode();
         button.click();
-        try {
-            driver.wait(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return new DataPage(super.driver);
+        this.waitHome();
+        return new HomePage(super.driver);
+    }
+
+    private void waitHome() {
+        long start = System.currentTimeMillis();
+        WebDriverWait wait = new WebDriverWait(driver, 15); // Max 15s
+        wait.until(ExpectedConditions.urlContains("index"));
+        long end = System.currentTimeMillis();
+        log.info("等待首页耗时：[{}] ms", end - start);
     }
 
     private void inputCode() {

@@ -5,5 +5,4 @@
 
 ## 教程
 - 参考：https://www.yiibai.com/selenium/selenium-webdriver-first-test-case.html
-- 参考：https://www.cnblogs.com/tester-ggf/p/12602211.html
-- Ajax 参考：https://www.zhihu.com/question/305169803
+- 详细教程参考：https://www.cnblogs.com/tester-ggf/p/12602211.html
