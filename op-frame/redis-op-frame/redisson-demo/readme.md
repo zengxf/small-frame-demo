@@ -16,6 +16,19 @@
 - 三是间断阅读（如隔个一、两天）
 - 四、像 netty 不熟，则发送命令的具体实现可以忽略
 
+### 锁
+- 加锁：`RedissonLock#tryLockInnerAsync()`
+  - 会判断是否存在，不存在或是当前线程已有的，则成功
+  - Lua 脚本并没有使用 `SET xx NX PX yy` 那套机制
+  - 默认 `30S`
+- 续期：`#renewExpirationAsync()`
+  - 默认 `10S` 执行一次，参考：`scheduleExpirationRenewal()`
+- 释放锁：`#unlockInnerAsync()`
+  - 释放时，会发布消息
+- 解释可参考：https://zhuanlan.zhihu.com/p/135864820
+
+----
+---
 ## 功能
 ### 锁
 - Lock、RedLock
