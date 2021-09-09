@@ -83,10 +83,6 @@
 ## serialize-test
 Java 序列化测试，包括：kryo
 
-## jexl3-demo
-字符串表达式解析和执行
-
-
 ## test-log-frame
 - 测试日志框架
 
@@ -120,6 +116,7 @@ Java 序列化测试，包括：kryo
 - `jxls-demo` **Excel** 引擎
 - `thymeleaf-demo` **HTML** 引擎
 - `JavaPoet-demo` 流式方法调用生成 **Java** 文件
+- `string-expression-demo` 字符串表达式解析和执行
 
 ## cache-test
 - 缓存测试
