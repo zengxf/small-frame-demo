@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+}
+
+sourceCompatibility = 11
+
+repositories {
+    maven {
+        url "http://maven.aliyun.com/nexus/content/groups/public/"
+    }
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    // lombok
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.18'
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.18'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.32'
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.32'
+
+    // jexl3
+    implementation group: 'org.apache.commons', name: 'commons-jexl3', version: '3.2.1'
+    // mvel2
+    implementation group: 'org.mvel', name: 'mvel2', version: '2.4.12.Final'
+    // aviator
+    implementation group: 'com.googlecode.aviator', name: 'aviator', version: '5.2.7'
+}
