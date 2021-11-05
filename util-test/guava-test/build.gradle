@@ -1,0 +1,25 @@
+plugins {
+    id "io.freefair.lombok" version "5.3.2"
+}
+apply plugin: 'java'
+// apply plugin: 'idea'
+
+sourceCompatibility = 11
+
+repositories {
+    maven {
+        url "http://maven.aliyun.com/nexus/content/groups/public/"
+    }
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    // guava
+    implementation group: 'com.google.guava', name: 'guava', version: '31.0.1-jre'
+
+    // lombok
+    compile group: 'org.projectlombok', name: 'lombok', version: '1.18.20'
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.29'
+    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.29'
+}
