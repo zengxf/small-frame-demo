@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cn.zxf.test.test_embed.TestEmbedController">
+  <tabs>
+    <Tab text="Test1">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Button layoutX="20.0" layoutY="223.0" mnemonicParsing="false" onAction="#onTest1" text="Test1 Button" />
+                   <fx:include fx:id="inner1" source="test-embed-inner-1.fxml" />
+               </children></AnchorPane>
+      </content>
+    </Tab>
+    <Tab text="Test2">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Button layoutX="14.0" layoutY="216.0" mnemonicParsing="false" onAction="#onTest2" text="Test2 - Button" />
+                   <fx:include fx:id="inner2" source="test-embed-inner-2.fxml" />
+               </children></AnchorPane>
+      </content>
+    </Tab>
+  </tabs>
+</TabPane>

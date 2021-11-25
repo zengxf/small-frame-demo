@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+    id 'org.openjfx.javafxplugin' version '0.0.10'
+    id 'org.beryx.jlink' version '2.24.4'
+}
+javafx {
+    version = "17.0.1"
+    modules = ['javafx.controls', 'javafx.fxml']
+}
+jlink { launcher { name = 'simple-test-fx17' } }
+
+version = '1.0.0'
+sourceCompatibility = 17
+compileJava.options.encoding = 'UTF-8'
+mainClassName = 'cn.zxf.test.Main'
+
+repositories {
+    mavenLocal()
+    maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+    mavenCentral()
+}

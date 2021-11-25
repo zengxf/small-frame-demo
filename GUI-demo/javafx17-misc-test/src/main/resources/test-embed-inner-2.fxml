@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="186.0" prefWidth="447.0" style="-fx-background-color: b8b8f8;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cn.zxf.test.test_embed.Test2Controller">
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <children>
+      <Button layoutX="14.0" layoutY="23.0" mnemonicParsing="false" onAction="#onInnerTest2" text="Test Inner 2" />
+      <TextField fx:id="myText" layoutX="14.0" layoutY="59.0" text="嵌套 2" />
+   </children>
+</Pane>

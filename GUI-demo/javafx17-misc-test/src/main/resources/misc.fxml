@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="382.0"
+            prefWidth="533.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="cn.zxf.test.misc.MiscController">
+    <children>
+        <Button fx:id="showDateButton" layoutX="36.0" layoutY="330.0" mnemonicParsing="false" onAction="#showDateTime"
+                text="显示当前时间"/>
+        <TextField fx:id="dateText" layoutX="136.0" layoutY="330.0" text="无"/>
+        <Button layoutX="36.0" layoutY="33.0" mnemonicParsing="false" onAction="#onShowTest1" text="显示 Test-1(简单弹窗测试)"/>
+        <Button layoutX="36.0" layoutY="72.0" mnemonicParsing="false" onAction="#onShowTable" text="显示 表格"/>
+        <Button layoutX="36.0" layoutY="113.0" mnemonicParsing="false" onAction="#onShowChart" text="显示 图表"/>
+        <Button layoutX="36.0" layoutY="153.0" mnemonicParsing="false" onAction="#onShowEmbed" text="显示 嵌套"/>
+    </children>
+</AnchorPane>
