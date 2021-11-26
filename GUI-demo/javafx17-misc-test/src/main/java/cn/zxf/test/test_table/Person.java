@@ -13,15 +13,19 @@ import lombok.RequiredArgsConstructor;
 @Data
 public class Person {
 
+    final BooleanProperty selected = new SimpleBooleanProperty(false);
     Integer id;
     String name;
     Integer age;
-    private final BooleanProperty selected = new SimpleBooleanProperty(false);
+    String ex1;
+    String ex2;
 
     public Person(Integer id, String name, Integer age) {
         this.id = id;
         this.name = name;
         this.age = age;
+        this.ex1 = "扩展1: " + id;
+        this.ex2 = "扩展2-XX: " + id;
     }
 
 

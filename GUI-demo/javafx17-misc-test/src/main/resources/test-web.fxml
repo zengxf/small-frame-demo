@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.web.WebView?>
+
+<TabPane fx:id="myPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="569.0" prefWidth="778.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cn.zxf.test.test_web.TestWebController">
+    <tabs>
+        <Tab text="静态 Web">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <children>
+                        <WebView fx:id="staticWeb" layoutX="14.0" layoutY="14.0" prefHeight="516.0" prefWidth="751.0" />
+                    </children>
+                </AnchorPane>
+            </content>
+        </Tab>
+        <Tab text="动态 Web">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <children>
+                        <WebView fx:id="dynamicWeb" layoutX="14.0" layoutY="14.0" prefHeight="519.0" prefWidth="756.0" />
+                    </children>
+                </AnchorPane>
+            </content>
+        </Tab>
+    </tabs>
+</TabPane>

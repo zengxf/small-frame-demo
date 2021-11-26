@@ -27,10 +27,26 @@ test1.setValue(true);
 - 用 `<fx:include />` 嵌入
 - 代码里面的命名格式：`$id + Controller`
 
-## 备份代码
+### 其他
+1. 泛型编译不过，要单独写出来
+2. 设置编辑，首先 `Table` 要启用编辑，编辑完要按 `Entry` 键才会提交
+3. 要使表格里面的复选框有效，也要启用表格编辑
+
+## 代码备份
 - Gradle
 ```Groovy
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
+}
+```
+
+### Java
+```Java
+// 这种方式写常量，不推荐
+nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+// 启动。可省略，继承 Application 类就可以了
+public static void main(String[] args) {
+    launch(args);
 }
 ```

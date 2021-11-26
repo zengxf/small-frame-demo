@@ -6,7 +6,7 @@ plugins {
 }
 javafx {
     version = "17.0.1"
-    modules = ['javafx.controls', 'javafx.fxml']
+    modules = ['javafx.controls', 'javafx.fxml', 'javafx.web']
 }
 jlink { launcher { name = 'misc-test-fx17' } }
 
@@ -22,4 +22,6 @@ repositories {
 dependencies {
     // lombok
     compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.32'
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.32'
 }
