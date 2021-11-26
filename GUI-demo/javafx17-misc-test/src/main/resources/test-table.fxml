@@ -8,24 +8,28 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane fx:id="myPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="545.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cn.zxf.test.test_table.TestTableController">
+<Pane fx:id="myPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      prefHeight="545.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="cn.zxf.test.test_table.TestTableController">
     <children>
         <TableView fx:id="myTable" editable="true" layoutX="14.0" layoutY="110.0" minHeight="200.0" minWidth="500.0">
             <columns>
-                <TableColumn fx:id="checkColumn" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" sortable="false" text="选择" />
-                <TableColumn fx:id="idColumn" maxWidth="500.0" minWidth="50.0" prefWidth="-1.0" text="ID" />
-                <TableColumn fx:id="nameColumn" maxWidth="500.0" minWidth="100.0" prefWidth="-1.0" text="姓名" />
-                <TableColumn fx:id="ex1Column" maxWidth="500.0" minWidth="100.0" prefWidth="-1.0" text="扩展 1" />
-                <TableColumn fx:id="ageColumn" maxWidth="500.0" minWidth="50.0" prefWidth="-1.0" text="年龄" />
-                <TableColumn fx:id="ex2Column" maxWidth="500.0" minWidth="100.0" prefWidth="-1.0" text="扩展 2" />
+                <TableColumn fx:id="checkColumn" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" sortable="false"
+                             text="选择"/>
+                <TableColumn fx:id="idColumn" maxWidth="500.0" minWidth="50.0" prefWidth="-1.0" text="ID"/>
+                <TableColumn fx:id="nameColumn" maxWidth="500.0" minWidth="100.0" prefWidth="-1.0" text="姓名"/>
+                <TableColumn fx:id="ex1Column" maxWidth="500.0" minWidth="100.0" prefWidth="-1.0" text="扩展 1"/>
+                <TableColumn fx:id="ageColumn" maxWidth="500.0" minWidth="50.0" prefWidth="-1.0" text="年龄"/>
+                <TableColumn fx:id="ex2Column" maxWidth="500.0" minWidth="100.0" prefWidth="-1.0" text="扩展 2"/>
             </columns>
         </TableView>
-        <Button layoutX="14.0" layoutY="25.0" mnemonicParsing="false" onAction="#onInitialize" text="初始化-数据" />
-        <Button layoutX="112.0" layoutY="25.0" mnemonicParsing="false" onAction="#onAdd" text="添加" />
-        <Button layoutX="182.0" layoutY="25.0" mnemonicParsing="false" onAction="#onPrint" text="遍历数据" />
-        <CheckBox layoutX="14.0" layoutY="71.0" mnemonicParsing="false" onAction="#onSelected" text="全选" />
-        <CheckBox layoutX="112.0" layoutY="71.0" mnemonicParsing="false" onAction="#onDisplay" text="显示/隐藏" />
-        <TextField layoutX="264.0" layoutY="68.0" text="xx" />
-        <TextArea layoutX="450.0" layoutY="10.0" prefHeight="90.0" prefWidth="270.0" text="xxxx" />
+        <Button layoutX="14.0" layoutY="25.0" mnemonicParsing="false" onAction="#onInitialize" text="初始化-数据"/>
+        <Button layoutX="112.0" layoutY="25.0" mnemonicParsing="false" onAction="#onAdd" text="添加"/>
+        <Button layoutX="168.0" layoutY="25.0" mnemonicParsing="false" onAction="#onPrint" text="遍历数据"/>
+        <Button layoutX="246.0" layoutY="25.0" mnemonicParsing="false" onAction="#onChangeStyle" text="改样式"/>
+        <CheckBox layoutX="14.0" layoutY="71.0" mnemonicParsing="false" onAction="#onSelected" text="全选"/>
+        <CheckBox layoutX="112.0" layoutY="71.0" mnemonicParsing="false" onAction="#onDisplay" text="显示/隐藏"/>
+        <TextField layoutX="264.0" layoutY="68.0" text="xx"/>
+        <TextArea layoutX="450.0" layoutY="10.0" prefHeight="90.0" prefWidth="270.0" text="xxxx"/>
     </children>
 </Pane>

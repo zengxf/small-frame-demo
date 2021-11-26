@@ -1,5 +1,6 @@
 package cn.zxf.test.test_table;
 
+import cn.zxf.test.AbstractMain;
 import javafx.beans.Observable;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -111,6 +112,11 @@ public class TestTableController {
         Person person = new Person(++index, "王五-" + index, 22 + index);
         System.out.println("add: " + person);
         list.add(person);
+    }
+
+    public void onChangeStyle(ActionEvent event) {
+        log.info("改样式！");
+        AbstractMain.changeStyle();
     }
 
     public void onSelected(ActionEvent event) {
