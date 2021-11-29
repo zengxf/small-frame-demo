@@ -10,9 +10,11 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import lombok.extern.slf4j.Slf4j;
 
 import java.net.URL;
 
+@Slf4j
 public class MiscController {
 
     @FXML
@@ -72,6 +74,9 @@ public class MiscController {
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.setScene(scene);
             dialogStage.show();
+            dialogStage.setOnCloseRequest(event -> {
+                log.info("[{}] 关闭！", title);
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }
