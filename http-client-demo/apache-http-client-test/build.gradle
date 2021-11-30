@@ -1,31 +1,33 @@
+plugins {
+    id "java"
+    id "io.freefair.lombok" version "6.3.0"
+}
+// apply plugin: 'java'
+// apply plugin: 'idea'
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 17
 
 repositories {
-    maven {
-        url "http://maven.aliyun.com/nexus/content/groups/public/"
-    }
-    mavenCentral()
     mavenLocal()
+    maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
+    mavenCentral()
 }
 
 dependencies {
-	
-	// lombok
-	compile group: 'org.projectlombok', name: 'lombok', version: '1.16.12'
-	compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
-	compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
-	compile group: 'ch.qos.logback', name: 'logback-core', version: '1.2.3'
-	
-	// http-client
-	compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.6'
-	// json
-	compile group: 'org.json', name: 'json', version: '20180813'
-	// commons-io
-	compile group: 'commons-io', name: 'commons-io', version: '2.6'
+    // http-client
+    implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
+    // jackson
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.0'
+    // commons
+    implementation group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
 
+    // Lombok
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
+    //annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
+    //testCompileOnly  group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
+    //testAnnotationProcessor  group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
+    // Slf4j
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.32'
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.32'
+    implementation group: 'org.slf4j', name: 'jcl-over-slf4j', version: '1.7.32' // HttpClient 日志输出
 }
