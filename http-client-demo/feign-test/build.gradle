@@ -1,17 +1,14 @@
 plugins {
-    id "io.freefair.lombok" version "5.3.2"
+    id 'java'
+    id "io.freefair.lombok" version "6.3.0"
 }
-apply plugin: 'java'
-// apply plugin: 'idea'
 
-sourceCompatibility = 11
+sourceCompatibility = 17
 
 repositories {
-    maven {
-        url "http://maven.aliyun.com/nexus/content/groups/public/"
-    }
-    mavenCentral()
     mavenLocal()
+    maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
+    mavenCentral()
 }
 
 dependencies {
@@ -22,7 +19,7 @@ dependencies {
     implementation group: 'io.github.openfeign', name: 'feign-slf4j', version: '11.7'
 
     // lombok
-    compile group: 'org.projectlombok', name: 'lombok', version: '1.18.20'
-    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.29'
-    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.29'
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.20'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.29'
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.29'
 }

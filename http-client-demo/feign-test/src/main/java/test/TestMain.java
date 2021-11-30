@@ -14,9 +14,9 @@ import java.util.Map;
 public class TestMain {
 
     public static void main(String[] args) {
-//        testGitHub();
+        testGitHub();
 //        testFindUsers();
-        testCreateUser();
+//        testCreateUser();
     }
 
     static void testCreateUser() {
