@@ -1,22 +1,24 @@
-apply plugin: 'java'
-apply plugin: 'eclipse'
+plugins {
+    id "java"
+    id "io.freefair.lombok" version "6.3.0"
+}
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 17
 
 repositories {
-    maven {
-        url "http://maven.aliyun.com/nexus/content/groups/public/"
-    }
+    mavenLocal()
+    maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
     mavenCentral()
 }
 
-dependencies { 
-
-    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.0'
-    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.0'
-    compile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.11.0'
-    compile group: 'org.apache.logging.log4j', name: 'log4j-jcl', version: '2.11.0'
-    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
-
+ext {
+//    vLog4j = '2.11.0'
+//    vLog4j = '2.16.0'
+}
+dependencies {
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.16.0'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.16.0'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.16.0'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-jcl', version: '2.16.0'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
 }

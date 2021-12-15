@@ -26,7 +26,8 @@ public class TestSwitchYield {
                 System.out.println("name: " + name);
                 yield "a programmer's best friend"; // 用于多行
             }
-            default -> name + " is a good language";
+            default:
+				yield name + " is a good language";
         };
         return value;
     }
