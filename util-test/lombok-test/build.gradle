@@ -1,0 +1,25 @@
+plugins {
+	id "java"
+    id "io.freefair.lombok" version "6.3.0"
+}
+
+sourceCompatibility = 17
+
+repositories {
+    mavenLocal()
+    maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
+    mavenCentral()
+}
+
+dependencies {
+    // xx
+
+    // Lombok
+//    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
+    //annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
+    //testCompileOnly  group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
+    //testAnnotationProcessor  group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
+	// Slf4j
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.32'
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.32'
+}
