@@ -1,0 +1,18 @@
+plugins {
+	id "java"
+    id "io.freefair.lombok" version "6.3.0"
+}
+
+sourceCompatibility = 11
+
+repositories {
+    mavenLocal()
+    maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
+    mavenCentral()
+}
+
+dependencies {
+	// Slf4j
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.32'
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.32'
+}
