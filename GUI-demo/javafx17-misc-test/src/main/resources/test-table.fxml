@@ -16,10 +16,12 @@
             <columns>
                 <TableColumn fx:id="checkColumn" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" sortable="false"
                              text="选择"/>
-                <TableColumn fx:id="idColumn" maxWidth="500.0" minWidth="50.0" prefWidth="-1.0" text="ID"/>
+                <TableColumn fx:id="idColumn" editable="false" maxWidth="500.0" minWidth="50.0" prefWidth="-1.0"
+                             text="ID"/>
                 <TableColumn fx:id="nameColumn" maxWidth="500.0" minWidth="100.0" prefWidth="-1.0" text="姓名"/>
                 <TableColumn fx:id="ex1Column" maxWidth="500.0" minWidth="100.0" prefWidth="-1.0" text="扩展 1"/>
-                <TableColumn fx:id="ageColumn" maxWidth="500.0" minWidth="50.0" prefWidth="-1.0" text="年龄"/>
+                <TableColumn fx:id="ageColumn" editable="false" maxWidth="500.0" minWidth="50.0" prefWidth="-1.0"
+                             text="年龄"/>
                 <TableColumn fx:id="ex2Column" maxWidth="500.0" minWidth="100.0" prefWidth="-1.0" text="扩展 2"/>
             </columns>
         </TableView>
