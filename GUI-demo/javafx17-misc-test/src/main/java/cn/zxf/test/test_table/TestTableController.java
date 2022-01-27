@@ -94,7 +94,7 @@ public class TestTableController {
         myTable.prefHeightProperty().bind(myPane.heightProperty().multiply(0.60));
     }
 
-    /*** 这种方式与 fxml 文件绑定使用 */
+    /*** 编辑提交事件 */
     public void editNameCommit(TableColumn.CellEditEvent<Person, String> event) {
         log.info("编辑后的值：[{}]", event.getNewValue());
         event.getTableView()
