@@ -29,8 +29,10 @@ public class TestJava11String {
 
         // 相当于是 U+1D4D1
         String u16 = "\uD835\uDCD1";    // https://www.compart.com/en/unicode/U+1D4D1
+        System.out.println(u16);
         System.out.println(u16.length());
-        System.out.println(u16.substring(0, 1));
+        System.out.println(u16.substring(0, 1) + "\t" + u16.charAt(0));
+        System.out.println(u16.substring(1, 2) + "\t" + u16.charAt(1));
 
         // Thread.sleep(1800_000L);
     }
