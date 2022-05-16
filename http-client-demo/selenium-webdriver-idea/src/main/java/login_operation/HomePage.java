@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 /**
@@ -22,7 +23,7 @@ public class HomePage extends AbstractPage {
     public HomePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        wait = new WebDriverWait(driver, 30);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     public void click() {

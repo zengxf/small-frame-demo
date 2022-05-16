@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.Scanner;
 
 /**
@@ -42,7 +43,7 @@ public class LoginPage extends AbstractPage {
 
     private void waitHome() {
         long start = System.currentTimeMillis();
-        WebDriverWait wait = new WebDriverWait(driver, 15); // Max 15s
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15)); // Max 15s
         wait.until(ExpectedConditions.urlContains("index"));
         long end = System.currentTimeMillis();
         log.info("等待首页耗时：[{}] ms", end - start);

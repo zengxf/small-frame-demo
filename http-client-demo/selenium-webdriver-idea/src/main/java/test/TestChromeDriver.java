@@ -16,7 +16,7 @@ public class TestChromeDriver {
 
     public static void main(String[] args) {
         // declaration and instantiation of objects/variables
-        System.setProperty("webdriver.chrome.driver", "K:/install/plugin/web/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:/Install/Others/web-driver/chromedriver-v100-win32.exe");
 
         WebDriver driver = new ChromeDriver();
 

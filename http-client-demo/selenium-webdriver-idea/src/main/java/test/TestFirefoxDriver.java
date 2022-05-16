@@ -15,7 +15,7 @@ public class TestFirefoxDriver {
 
     public static void main(String[] args) {
         // declaration and instantiation of objects/variables
-        System.setProperty("webdriver.gecko.driver", "K:/install/plugin/web/geckodriver.exe");
+        System.setProperty("webdriver.gecko.driver", "C:/Install/Others/web-driver/geckodriver-v0.31.0-win64.exe");
         System.setProperty("webdriver.firefox.bin", "C:/Program Files/Mozilla Firefox/firefox.exe");
 
         WebDriver driver = new FirefoxDriver();
