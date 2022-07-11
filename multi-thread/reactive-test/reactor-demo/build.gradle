@@ -1,28 +1,27 @@
+plugins {
+	id "java"
+	id "io.freefair.lombok" version "6.3.0"
+}
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 17
 
 repositories {
-    maven {
-        url "http://maven.aliyun.com/nexus/content/groups/public/"
-    }
-    mavenCentral()
-    mavenLocal()
+	mavenLocal()
+	maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
+	mavenCentral()
 }
 
 dependencies {
-	
-	// lombok
-	compile group: 'org.projectlombok', name: 'lombok', version: '1.16.12'
-	compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
-	compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
-	compile group: 'ch.qos.logback', name: 'logback-core', version: '1.2.3'
-	
-	// reactor
-	compile group: 'io.projectreactor', name: 'reactor-core', version: '3.2.6.RELEASE'
-	testCompile group: 'io.projectreactor', name: 'reactor-test', version: '3.2.6.RELEASE'
+
+	// Lombok
+	compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
+
+	// Reactor
+	implementation group: 'io.projectreactor', name: 'reactor-core', version: '3.4.19'
+	testImplementation group: 'io.projectreactor', name: 'reactor-test', version: '3.4.19'
+
+	// Slf4j
+	implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.32'
+	implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.32'
 
 }

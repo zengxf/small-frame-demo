@@ -22,8 +22,7 @@ public class TestBackpressureSimple {
                 .subscribeOn( Schedulers.parallel() ) // 上面的 sink -> next 用的线程
                 .publishOn( Schedulers.single() ) // 下面操作符用的线程
                 .subscribe( i -> {
-                    System.out.println( Thread.currentThread()
-                            .getName() + " == i: " + i );
+                    System.out.println( Thread.currentThread()                            .getName() + " == i: " + i );
                     sleep( 100 );
                 } );
 

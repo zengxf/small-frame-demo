@@ -1,6 +1,6 @@
 package cn.zxf.rxjava.demo1;
 
-import io.reactivex.Observable;
+import io.reactivex.rxjava3.core.Observable;
 
 public class TestDemo1 {
 
