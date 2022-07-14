@@ -19,6 +19,9 @@ public class TestBackPressure {
                     public void subscribe(FlowableEmitter<Integer> emitter) throws Exception {
                         for (int i = 0; i < 256; i++) {
                             emitter.onNext(i);
+                            if (i > 200) {
+                                log.info("----> {}", i);
+                            }
                         }
                     }
                 }, BackpressureStrategy.BUFFER)
