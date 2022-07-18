@@ -16,59 +16,47 @@ public class WriteReadTest {
 
     @Test
     public void testWriteRead() {
-        ByteBuf buffer = ByteBufAllocator.DEFAULT.buffer();
+        ByteBufAllocator.DEFAULT.heapBuffer();
+        ByteBufAllocator.DEFAULT.compositeBuffer();
+        ByteBuf buffer = ByteBufAllocator.DEFAULT.buffer(9, 100);
 
         print("动作：分配 ByteBuf(9, 100)", buffer);
-
         buffer.writeBytes(new byte[]{1, 2, 3, 4});
-
-        buffer.setBoolean(0, true);
-        buffer.setInt(4, 1000);
+        // buffer.setBoolean(0, true);
+        // buffer.setInt(4, 1000);
+        buffer.writeInt(0x12345678);
+        buffer.writeBytes(new byte[]{1, 2, 3, 4});
 /*
         buffer.writeBoolean(true); // writerIndex
-
         buffer.markWriterIndex(); // writerIndex => markedWriterIndex
         buffer.resetWriterIndex(); // writerIndex <= markedWriterIndex
-
-
         byte[] dst=  new byte[buffer.readableBytes()] ;
-
         buffer.readBytes(dst);
-
-
         buffer.writeInt();
         buffer.writeIntLE();
         buffer.readLongLE();
-
        */
-
-
         print("动作：写入4个字节 (1,2,3,4)", buffer);
 
         log.info("start==========:get==========");
-
         getByteBuf(buffer);
         print("动作：取数据 ByteBuf", buffer);
-
         log.info("start==========:read==========");
         readByteBuf(buffer);
         print("动作：读完 ByteBuf", buffer);
-
-
     }
 
     //读取一个字节，不改变指针
     private void getByteBuf(ByteBuf buffer) {
         for (int i = 0; i < buffer.readableBytes(); i++) {
-            log.info("读取一个字节:" + buffer.getByte(i));// 0,1,2,3
-
+            log.info("读取一个字节: " + buffer.getByte(i));// 0,1,2,3
         }
     }
 
     //读取一个字节
     private void readByteBuf(ByteBuf buffer) {
         while (buffer.isReadable()) {
-            log.info("读取一个字节:" + buffer.readByte());
+            log.info("读取一个字节: " + buffer.readByte());
         }
     }
 
@@ -82,21 +70,19 @@ public class WriteReadTest {
         buffer.writeBytes(new byte[]{1, 2, 3, 4});
         print("动作：写入4个字节 ", buffer);
 
-
         log.info("start==========:写入10个字节==========");
         buffer.writeBytes(new byte[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11});
         print("动作：写入10个字节 ", buffer);
 
         log.info("start==========:写入64个字节==========");
         for (int i = 0; i < 64; i++) {
-            buffer.writeByte(1);
+            buffer.writeByte(i);
         }
         print("动作：写入64个字节 ", buffer);
 
-
         log.info("start==========:写入128个字节==========");
         for (int i = 0; i < 128; i++) {
-            buffer.writeByte(1);
+            buffer.writeByte(i);
         }
         print("动作：写入128个字节 ", buffer);
 
