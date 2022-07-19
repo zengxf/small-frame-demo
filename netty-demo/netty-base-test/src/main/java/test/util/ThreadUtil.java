@@ -12,4 +12,8 @@ public class ThreadUtil {
         LockSupport.parkNanos(second * 1000L * 1000L * 1000L);
     }
 
+    public static void sleep5s() {
+        sleepSeconds(5);
+    }
+
 }
