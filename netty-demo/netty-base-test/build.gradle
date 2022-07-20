@@ -14,6 +14,10 @@ repositories {
 dependencies {
     // Netty
     implementation group: 'io.netty', name: 'netty-all', version: '4.1.79.Final'
+    // Jackson
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.3'
+    // HuTool
+    implementation group: 'cn.hutool', name: 'hutool-core', version: '5.7.14'
     // Lombok
     compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
 	// Slf4j

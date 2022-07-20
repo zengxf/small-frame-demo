@@ -12,7 +12,7 @@ import java.util.Iterator;
 
 import static test.base.bytebuf.PrintAttribute.print;
 import static test.util.ByteUtil.utf8;
-import static test.util.ByteUtil.utf8Code;
+import static test.util.ByteUtil.UTF8;
 
 /**
  * <br/>
@@ -89,7 +89,7 @@ public class CompositeBufferTest {
         // 将CompositeByteBuf中的数据复制到数组中
         b.getBytes(b.readerIndex(), array);
         // 处理一下数组中的数据
-        System.out.println(" content： " + new String(array, utf8Code));
+        System.out.println(" content： " + new String(array, UTF8));
     }
 
     private void iterateMsg(CompositeByteBuf cbuf) {
@@ -103,7 +103,7 @@ public class CompositeBufferTest {
             // 将 CompositeByteBuf 中的数据复制到数组中
             b.getBytes(b.readerIndex(), array);
             // 处理一下数组中的数据
-            System.out.print("buf-str --> " + new String(array, utf8Code) + ", ");
+            System.out.print("buf-str --> " + new String(array, UTF8) + ", ");
         }
 
         System.out.println();
@@ -115,7 +115,7 @@ public class CompositeBufferTest {
             // 将CompositeByteBuf中的数据复制到数组中
             b.getBytes(b.readerIndex(), array);
             // 处理一下数组中的数据
-            System.out.print("buf-str --> " + new String(array, utf8Code) + ", ");
+            System.out.print("buf-str --> " + new String(array, UTF8) + ", ");
         }
         System.out.println();
     }

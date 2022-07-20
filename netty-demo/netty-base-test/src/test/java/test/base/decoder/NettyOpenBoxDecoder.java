@@ -82,7 +82,7 @@ public class NettyOpenBoxDecoder {
         ChannelInitializer<EmbeddedChannel> i = new ChannelInitializer<>() {
             protected void initChannel(EmbeddedChannel ch) {
                 ch.pipeline().addLast(decoder);
-                ch.pipeline().addLast(new StringDecoder(ByteUtil.utf8Code));
+                ch.pipeline().addLast(new StringDecoder(ByteUtil.UTF8));
                 ch.pipeline().addLast(new StringProcessHandler());
             }
         };
@@ -108,7 +108,7 @@ public class NettyOpenBoxDecoder {
         ChannelInitializer<EmbeddedChannel> i = new ChannelInitializer<>() {
             protected void initChannel(EmbeddedChannel ch) {
                 ch.pipeline().addLast(decoder);
-                ch.pipeline().addLast(new StringDecoder(ByteUtil.utf8Code));
+                ch.pipeline().addLast(new StringDecoder(ByteUtil.UTF8));
                 ch.pipeline().addLast(new StringProcessHandler());
             }
         };

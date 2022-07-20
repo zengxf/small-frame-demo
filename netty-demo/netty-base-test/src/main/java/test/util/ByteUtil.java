@@ -15,10 +15,10 @@ public class ByteUtil {
             {'0', '1', '2', '3', '4', '5', '6',
                     '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
-    public static Charset utf8Code = Charset.forName("UTF-8");
+    public static Charset UTF8 = Charset.forName("UTF-8");
 
     public static byte[] utf8(String s) {
-        return s.getBytes(utf8Code);
+        return s.getBytes(UTF8);
     }
 
     /**
