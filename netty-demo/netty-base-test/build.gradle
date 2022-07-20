@@ -18,11 +18,15 @@ dependencies {
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.3'
     // HuTool
     implementation group: 'cn.hutool', name: 'hutool-core', version: '5.7.14'
+    // ProtoBuf
+    implementation group: 'com.google.protobuf', name: 'protobuf-java', version: '3.21.2'
+
     // Lombok
     compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
 	// Slf4j
     implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.32'
     implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.32'
+
     // JUnit4
     testImplementation group: 'junit', name: 'junit', version: '4.13.2'
 }
