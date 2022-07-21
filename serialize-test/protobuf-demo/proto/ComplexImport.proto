@@ -1,0 +1,19 @@
+// 生成 java 命令：[ protoc --java_out=./src/main/java/ ./proto/ComplexImport.proto ]
+
+syntax = "proto3";
+
+// 编码报错 IDEA 设置：https://www.cnblogs.com/wxw310415/p/13553727.html
+// 报错没关系，可以用命名直接生成
+import "proto/SimpleEnum.proto";
+
+package test.complex;
+
+option java_package = "test.complex";
+option java_outer_classname = "ComplexImport";
+
+message Complex {
+    uint32 id = 1;
+    string content = 2;
+    test.simple.Type type = 3;
+    test.simple.Msg msg = 4;
+}

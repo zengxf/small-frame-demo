@@ -1,0 +1,24 @@
+// 生成 java 命令：[ protoc --java_out=./src/main/java/ ./proto/SimpleMulti.proto ]
+
+syntax = "proto3";
+
+package test.simple.multi;
+
+option java_package = "test.simple.multi";
+option java_multiple_files = true;
+
+// option java_outer_classname = "SimpleMulti";
+
+enum Type {
+    ERROR = 0;
+    LOGIN_REQUEST = 1;  // 登陆请求
+    LOGIN_RESPONSE = 2; // 登录响应
+    LOGOUT_REQUEST = 3; // 退出请求
+    LOGOUT_RESPONSE = 4;
+}
+
+message Msg {
+    uint32 id = 1;
+    string content = 2;
+    Type type = 3;
+}
