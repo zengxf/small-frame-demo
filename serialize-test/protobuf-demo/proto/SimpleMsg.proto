@@ -1,0 +1,22 @@
+// 生成 java 命令：[ protoc --java_out=./src/main/java/ ./proto/SimpleMsg.proto ]
+
+// [开始声明]
+syntax = "proto3";
+package test.simple;  // 定义 protobuf 的包名称空间
+// [结束声明]
+
+
+// [开始 java 选项配置]
+option java_package = "test.simple";
+option java_outer_classname = "SimpleMsg";
+// [结束 java 选项配置]
+
+
+// [开始 消息定义]
+message Msg {
+    uint32 id = 1;
+    string content = 2;
+    string user_name = 3;
+    uint32 status = 4;
+}
+// [结束 消息定义]
