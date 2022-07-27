@@ -9,7 +9,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.protobuf.ProtobufEncoder;
 import io.netty.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
 import lombok.extern.slf4j.Slf4j;
-import test.util.NettyDemoConfig;
+import test.util.DemoConfig;
 
 /**
  * <br/>
@@ -87,8 +87,8 @@ public class ProtoBufSendClient {
     }
 
     public static void main(String[] args) {
-        int port = NettyDemoConfig.SOCKET_SERVER_PORT;
-        String ip = NettyDemoConfig.SOCKET_SERVER_IP;
+        int port = DemoConfig.SOCKET_SERVER_PORT;
+        String ip = DemoConfig.SOCKET_SERVER_IP;
         new ProtoBufSendClient(ip, port).runClient();
     }
 

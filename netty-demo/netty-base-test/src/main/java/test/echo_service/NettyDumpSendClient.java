@@ -7,11 +7,9 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.logging.LogLevel;
-import io.netty.handler.logging.LoggingHandler;
 import lombok.extern.slf4j.Slf4j;
 import test.util.ByteUtil;
-import test.util.NettyDemoConfig;
+import test.util.DemoConfig;
 
 /**
  * <br/>
@@ -82,8 +80,8 @@ public class NettyDumpSendClient {
     }
 
     public static void main(String[] args) {
-        int port = NettyDemoConfig.SOCKET_SERVER_PORT;
-        String ip = NettyDemoConfig.SOCKET_SERVER_IP;
+        int port = DemoConfig.SOCKET_SERVER_PORT;
+        String ip = DemoConfig.SOCKET_SERVER_IP;
         new NettyDumpSendClient(ip, port).runClient();
     }
 

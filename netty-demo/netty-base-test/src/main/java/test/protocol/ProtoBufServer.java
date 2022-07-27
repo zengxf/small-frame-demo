@@ -10,7 +10,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.protobuf.ProtobufDecoder;
 import io.netty.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
 import lombok.extern.slf4j.Slf4j;
-import test.util.NettyDemoConfig;
+import test.util.DemoConfig;
 
 /**
  * <br/>
@@ -81,7 +81,7 @@ public class ProtoBufServer {
     }
 
     public static void main(String[] args) {
-        int port = NettyDemoConfig.SOCKET_SERVER_PORT;
+        int port = DemoConfig.SOCKET_SERVER_PORT;
         new ProtoBufServer(port).runServer();
     }
 

@@ -8,6 +8,8 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
+import java.util.Map;
+
 /**
  * <br/>
  * Created by ZXFeng on 2022/7/20.
@@ -25,6 +27,15 @@ public class JsonUtil {
     public static <T> T jsonToPojo(String json, Class<T> tClass) {
         try {
             return JsonUtils.toObject(json, tClass);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static Map<String, Object> jsonToMap(String json) {
+        try {
+            return JsonUtils.toObject(json, new TypeReference<>() {
+            });
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }

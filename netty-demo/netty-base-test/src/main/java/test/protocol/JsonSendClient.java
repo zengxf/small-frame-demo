@@ -10,7 +10,7 @@ import io.netty.handler.codec.LengthFieldPrepender;
 import io.netty.handler.codec.string.StringEncoder;
 import io.netty.util.CharsetUtil;
 import lombok.extern.slf4j.Slf4j;
-import test.util.NettyDemoConfig;
+import test.util.DemoConfig;
 
 /**
  * <br/>
@@ -81,8 +81,8 @@ public class JsonSendClient {
     }
 
     public static void main(String[] args) {
-        int port = NettyDemoConfig.SOCKET_SERVER_PORT;
-        String ip = NettyDemoConfig.SOCKET_SERVER_IP;
+        int port = DemoConfig.SOCKET_SERVER_PORT;
+        String ip = DemoConfig.SOCKET_SERVER_IP;
         new JsonSendClient(ip, port).runClient();
     }
 

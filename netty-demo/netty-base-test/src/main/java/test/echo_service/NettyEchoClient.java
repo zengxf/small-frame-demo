@@ -9,10 +9,9 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
-import io.netty.util.concurrent.Future;
 import io.netty.util.concurrent.GenericFutureListener;
 import lombok.extern.slf4j.Slf4j;
-import test.util.NettyDemoConfig;
+import test.util.DemoConfig;
 
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -106,8 +105,8 @@ public class NettyEchoClient {
     }
 
     public static void main(String[] args) {
-        int port = NettyDemoConfig.SOCKET_SERVER_PORT;
-        String ip = NettyDemoConfig.SOCKET_SERVER_IP;
+        int port = DemoConfig.SOCKET_SERVER_PORT;
+        String ip = DemoConfig.SOCKET_SERVER_IP;
         new NettyEchoClient(ip, port).runClient();
     }
 

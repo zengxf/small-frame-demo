@@ -14,7 +14,7 @@ import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.util.CharsetUtil;
 import lombok.extern.slf4j.Slf4j;
-import test.util.NettyDemoConfig;
+import test.util.DemoConfig;
 
 /**
  * <br/>
@@ -78,7 +78,7 @@ public class JsonServer {
     }
 
     public static void main(String[] args) {
-        int port = NettyDemoConfig.SOCKET_SERVER_PORT;
+        int port = DemoConfig.SOCKET_SERVER_PORT;
         new JsonServer(port).runServer();
     }
 
