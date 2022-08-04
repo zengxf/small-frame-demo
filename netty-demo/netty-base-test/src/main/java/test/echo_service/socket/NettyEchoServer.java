@@ -1,4 +1,4 @@
-package test.echo_service;
+package test.echo_service.socket;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
