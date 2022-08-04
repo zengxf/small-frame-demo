@@ -89,4 +89,13 @@ public class HttpProtocolHelper {
         sendAndCleanupConnection(ctx, response);
     }
 
+    public static void sendWebPage(ChannelHandlerContext ctx, String content) {
+        HttpVersion version = getHttpVersion(ctx);
+        FullHttpResponse response = new DefaultFullHttpResponse(
+                version, OK, Unpooled.copiedBuffer(content, CharsetUtil.UTF_8)
+        );
+        response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/html; charset=UTF-8");
+        sendAndCleanupConnection(ctx, response);
+    }
+
 }

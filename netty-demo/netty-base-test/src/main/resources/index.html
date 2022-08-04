@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>WebSocket Echo Server!</title>
+        <style>
+            body {
+                width: 35em;
+                margin: 0 auto;
+                font-family: Tahoma, Verdana, Arial, sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>WS Echo Server!</h1>
+        <form onsubmit="return false;">
+            <input type="text" name="message" value="测试内容--ABC-123"/>
+            <input type="button" value="通过 WebSocket 发送" onclick="send(this.form.message.value)"/>
+            <h3>Output</h3>
+            <textarea id="responseText" style="width: 500px; height: 300px;"></textarea>
+        </form>
+        <p><em>...66...66...</em></p>
+    </body>
+    <script type="text/javascript">
+        var socket;
+        if (!window.WebSocket) {
+            window.WebSocket = window.MozWebSocket;
+        }
+        var domain = window.location.host;
+        if (window.WebSocket) {
+            // 建立 WebSocket 连接
+            socket = new WebSocket("ws://"+domain+"/ws", "echo");
+            socket.onmessage = function (event) {
+                var ta = document.getElementById('responseText');
+                ta.value = ta.value + '\n' + event.data
+           };
+           // 连接打开事件
+           socket.onopen = function (event) {
+                var target = document.getElementById('responseText');
+                target.value = "Web Socket 连接已经开启!";
+           };
+           // 连接关闭事件
+           socket.onclose = function (event) {
+               var target = document.getElementById('responseText');
+               target.value = ta.value + "Web Socket 连接已经断开";
+           };
+        } else {
+            alert("Your browser does not support Web Socket.");
+        }
+        // 发送 WebSocket 消息
+        function send(message) {
+            if (!window.WebSocket) {
+                return;
+            }
+            if (socket.readyState == WebSocket.OPEN) {
+                // 发送消息
+                socket.send(message);
+            } else {
+                alert("The socket is not open.");
+            }
+        }
+    </script>
+</html>
