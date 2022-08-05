@@ -69,7 +69,24 @@ public final class WebSocketEchoServer {
     }
 
     public static void main(String[] args) throws Exception {
-        WebSocketEchoServer.start("127.0.0.1");
+        /**
+         * 使用 WLAN ip
+         * C:/xx> ipconfig
+         * 无线局域网适配器 WLAN:
+         *    连接特定的 DNS 后缀 . . . . . . . : xx.com
+         *    本地链接 IPv6 地址. . . . . . . . : fe80::cc5b:70d9:4740:208d%7
+         *    IPv4 地址 . . . . . . . . . . . . : 10.10.48.186
+         *    子网掩码  . . . . . . . . . . . . : 255.255.255.0
+         *    默认网关. . . . . . . . . . . . . : 10.10.48.1
+         * -----------------------------
+         * 添加路由回环（mask 要使用 4 个 255）
+         *     route add 10.10.48.186 mask 255.255.255.255 10.10.48.1
+         * WireShark 抓包过滤命令
+         *     (ip.src == 10.10.48.186 and ip.dst == 10.10.48.186) and (http or websocket)
+         * 删除路由回环
+         *     route delete 10.10.48.186 mask 255.255.255.255 10.10.48.1
+         */
+        WebSocketEchoServer.start("10.10.48.186");
     }
 
 }
