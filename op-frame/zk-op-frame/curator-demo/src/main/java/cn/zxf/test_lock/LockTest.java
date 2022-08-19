@@ -1,4 +1,4 @@
-package cn.zxf.curator_test;
+package cn.zxf.test_lock;
 
 import java.time.LocalTime;
 import java.util.concurrent.TimeUnit;
@@ -14,7 +14,7 @@ import org.apache.curator.retry.ExponentialBackoffRetry;
  * <p>
  * Created by zengxf on 2018-12-14
  */
-public class TestLock {
+public class LockTest {
 
     public static void main( String[] args ) throws Exception {
         RetryPolicy retryPolicy = new ExponentialBackoffRetry( 1000, 2 );
