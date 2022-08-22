@@ -1,6 +1,7 @@
 package cn.zxf.node;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.zookeeper.CreateMode;
 import org.junit.Test;
 
 import java.util.List;
@@ -18,6 +19,11 @@ public class NodeOpTest {
         NodeOp.instance.createNode("/u-test/k-v1", "v1");
         NodeOp.instance.createNode("/u-test/k-v2", "v2");
         NodeOp.instance.createNode("/u-test/k-v3/k-3-1", "v3");
+    }
+
+    @Test
+    public void createNodeSeq() {
+        NodeOp.instance.createNode("/u-test/k-seq-", "seq-1", CreateMode.PERSISTENT_SEQUENTIAL);
     }
 
     @Test

@@ -1,6 +1,7 @@
 package cn.zxf.node;
 
 import cn.zxf.utils.ClientFactory;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.utils.CloseableUtils;
@@ -17,6 +18,7 @@ import java.util.List;
 @Slf4j
 public class NodeOp {
 
+    @Getter
     private CuratorFramework client;
 
     // Zk 集群地址
@@ -28,7 +30,7 @@ public class NodeOp {
         instance.init();
     }
 
-    public void init() {
+    private void init() {
         if (null != client)
             return;
         // 创建客户端
@@ -43,11 +45,16 @@ public class NodeOp {
 
     /*** 创建节点 */
     public void createNode(String zkPath, String data) {
+        createNode(zkPath, data, CreateMode.PERSISTENT);
+    }
+
+    /*** 创建节点 */
+    public void createNode(String zkPath, String data, CreateMode mode) {
         try {
             byte[] payload = data.getBytes("UTF-8");
             client.create()
                     .creatingParentsIfNeeded()
-                    .withMode(CreateMode.PERSISTENT)
+                    .withMode(mode)
                     .forPath(zkPath, payload);
         } catch (Exception e) {
             log.error("Create node error!", e);
