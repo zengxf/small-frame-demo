@@ -28,8 +28,8 @@ public class NodeOpTest {
 
     @Test
     public void createEphemeralSeqNode() {
-        NodeOp.instance.createEphemeralSeqNode("/u-e-test/k1-x-");
-        NodeOp.instance.createEphemeralSeqNode("/u-e-test/k2-x-");
+        NodeOp.instance.createEphemeralSeqNode("/temp-test/k1/vvx-");
+        NodeOp.instance.createEphemeralSeqNode("/temp-test/k1/vvx-");
         log.info("------------");
     }
 
