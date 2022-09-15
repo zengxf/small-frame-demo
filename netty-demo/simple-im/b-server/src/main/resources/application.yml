@@ -1,0 +1,6 @@
+server:
+  port: 15689
+
+logging:
+  level:
+    root: INFO

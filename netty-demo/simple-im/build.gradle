@@ -16,18 +16,21 @@ subprojects {
         mavenCentral()
     }
     ext {
+        vSpringBoot = "2.7.3"
+        vNetty = "4.1.82.Final"
+        vProtobuf = "3.21.5"
+
         vLog4j2 = "2.18.0"
         vSlf4j = "1.7.36"        // vSlf4j = "2.0.0" // Log4j2 还没适配
         vLombok = "1.18.24"
-        vNetty = "4.1.82.Final"
+
         vJunit5 = "5.9.0"
     }
     dependencies {
-        // Log4j2
-        implementation group: "org.apache.logging.log4j", name: "log4j-api", version: "${vLog4j2}"
-        implementation group: "org.apache.logging.log4j", name: "log4j-core", version: "${vLog4j2}"
-        implementation group: "org.apache.logging.log4j", name: "log4j-slf4j-impl", version: "${vLog4j2}"
-        implementation group: "org.slf4j", name: "slf4j-api", version: "${vSlf4j}"
+        // Netty
+        implementation group: "io.netty", name: "netty-all", version: "${vNetty}"
+        // ProtoBuf
+        implementation group: "com.google.protobuf", name: "protobuf-java", version: "${vProtobuf}"
         // Lombok
         compileOnly group: "org.projectlombok", name: "lombok", version: "${vLombok}"
         annotationProcessor group: "org.projectlombok", name: "lombok", version: "${vLombok}"
