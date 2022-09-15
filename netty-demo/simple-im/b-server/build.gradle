@@ -1,0 +1,7 @@
+// server
+sourceCompatibility = 17
+
+dependencies {
+    // 依赖 common 模块
+    implementation project(':a-common')
+}

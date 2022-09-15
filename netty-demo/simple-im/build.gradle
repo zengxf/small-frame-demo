@@ -1,0 +1,43 @@
+plugins {
+//    id "io.freefair.lombok" version "6.3.0" apply false
+}
+
+allprojects {
+    apply plugin: "java"
+}
+
+subprojects {
+    group = "cn.zxf"
+    version = "1.0.0"
+    sourceCompatibility = 17
+
+    repositories {
+        maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
+        mavenCentral()
+    }
+    ext {
+        vLog4j = "2.18.0"
+        vLombok = "1.18.24"
+    }
+    dependencies {
+        // netty
+
+        // Log4j2
+        implementation group: "org.apache.logging.log4j", name: "log4j-core", version: "${vLog4j}"
+        implementation group: "org.apache.logging.log4j", name: "log4j-api", version: "${vLog4j}"
+        implementation group: "org.apache.logging.log4j", name: "log4j-slf4j-impl", version: "${vLog4j}"
+        implementation group: "org.apache.logging.log4j", name: "log4j-jcl", version: "${vLog4j}"
+        implementation group: "org.slf4j", name: "slf4j-api", version: "2.0.0"
+        // Lombok
+        compileOnly group: "org.projectlombok", name: "lombok", version: "${vLombok}"
+        annotationProcessor group: "org.projectlombok", name: "lombok", version: "${vLombok}"
+        testCompileOnly group: "org.projectlombok", name: "lombok", version: "${vLombok}"
+        testAnnotationProcessor group: "org.projectlombok", name: "lombok", version: "${vLombok}"
+        // Test
+        testImplementation group: "org.junit.jupiter", name: "junit-jupiter-api", version: "5.9.0"
+        testImplementation group: "org.junit.vintage", name: "junit-vintage-engine" // 兼容 JUnit 4
+    }
+
+    // 启用 JUnit 5
+    test { useJUnitPlatform() }
+}
