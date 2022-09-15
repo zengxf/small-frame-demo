@@ -16,25 +16,26 @@ subprojects {
         mavenCentral()
     }
     ext {
-        vLog4j = "2.18.0"
+        vLog4j2 = "2.18.0"
+        vSlf4j = "1.7.36"        // vSlf4j = "2.0.0" // Log4j2 还没适配
         vLombok = "1.18.24"
+        vNetty = "4.1.82.Final"
+        vJunit5 = "5.9.0"
     }
     dependencies {
-        // netty
-
         // Log4j2
-        implementation group: "org.apache.logging.log4j", name: "log4j-core", version: "${vLog4j}"
-        implementation group: "org.apache.logging.log4j", name: "log4j-api", version: "${vLog4j}"
-        implementation group: "org.apache.logging.log4j", name: "log4j-slf4j-impl", version: "${vLog4j}"
-        implementation group: "org.apache.logging.log4j", name: "log4j-jcl", version: "${vLog4j}"
-        implementation group: "org.slf4j", name: "slf4j-api", version: "2.0.0"
+        implementation group: "org.apache.logging.log4j", name: "log4j-api", version: "${vLog4j2}"
+        implementation group: "org.apache.logging.log4j", name: "log4j-core", version: "${vLog4j2}"
+        implementation group: "org.apache.logging.log4j", name: "log4j-slf4j-impl", version: "${vLog4j2}"
+        implementation group: "org.slf4j", name: "slf4j-api", version: "${vSlf4j}"
         // Lombok
         compileOnly group: "org.projectlombok", name: "lombok", version: "${vLombok}"
         annotationProcessor group: "org.projectlombok", name: "lombok", version: "${vLombok}"
         testCompileOnly group: "org.projectlombok", name: "lombok", version: "${vLombok}"
         testAnnotationProcessor group: "org.projectlombok", name: "lombok", version: "${vLombok}"
         // Test
-        testImplementation group: "org.junit.jupiter", name: "junit-jupiter-api", version: "5.9.0"
+        testImplementation group: "org.junit.jupiter", name: "junit-jupiter-api", version: "${vJunit5}"
+        testImplementation group: "org.junit.jupiter", name: "junit-jupiter-engine"
         testImplementation group: "org.junit.vintage", name: "junit-vintage-engine" // 兼容 JUnit 4
     }
 
