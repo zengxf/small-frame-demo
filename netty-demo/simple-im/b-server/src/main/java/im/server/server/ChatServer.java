@@ -28,7 +28,7 @@ import java.net.InetSocketAddress;
 @Slf4j
 public class ChatServer {
 
-    @Value("${server.port}")
+    @Value("${im-server.port}")
     private int port;
     @Autowired
     private LoginRequestHandler loginRequestHandler;
