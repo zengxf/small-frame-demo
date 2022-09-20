@@ -31,20 +31,11 @@ public class SessionMap {
         log.info("用户登录: id = " + s.getUser().getUid() + ", 在线总数: " + map.size());
     }
 
-    /*** 获取session对象 */
-    public ServerSession getSession(String sessionId) {
-        if (map.containsKey(sessionId)) {
-            return map.get(sessionId);
-        } else {
-            return null;
-        }
-    }
-
     /*** 根据用户id，获取session对象 */
     public List<ServerSession> getSessionsBy(String userId) {
         List<ServerSession> list = map.values()
                 .stream()
-                .filter(s -> s.getUser().getUid().equals(userId))
+                .filter(session -> session.getUser().getUid().equals(userId))
                 .collect(Collectors.toList());
         return list;
     }

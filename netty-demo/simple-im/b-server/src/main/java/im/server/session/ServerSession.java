@@ -32,12 +32,6 @@ public class ServerSession {
         this.sessionId = buildNewSessionId();
     }
 
-    // 反向导航
-    public static ServerSession getSession(ChannelHandlerContext ctx) {
-        Channel channel = ctx.channel();
-        return channel.attr(ServerSession.SESSION_KEY).get();
-    }
-
     // 关闭连接
     public static void closeSession(ChannelHandlerContext ctx) {
         ServerSession session = ctx.channel().attr(ServerSession.SESSION_KEY).get();
@@ -50,17 +44,10 @@ public class ServerSession {
     // 反向绑定，最终和 channel 通道实现双向绑定
     // 顺便加入到会话集合中
     public ServerSession reverseBind() {
-        log.info(" ServerSession 绑定会话 " + channel.remoteAddress());
+        log.info("ServerSession 绑定会话 " + channel.remoteAddress());
         channel.attr(ServerSession.SESSION_KEY).set(this);
         SessionMap.inst().addSession(this);
         isLogin = true;
-        return this;
-    }
-
-    public ServerSession unbind() {
-        isLogin = false;
-        SessionMap.inst().removeSession(getSessionId());
-        this.close();
         return this;
     }
 
@@ -74,16 +61,16 @@ public class ServerSession {
     }
 
     public boolean isValid() {
-        return getUser() != null ? true : false;
+        return getUser() != null;
     }
 
     // 写Protobuf数据帧
     public synchronized void writeAndFlush(Object pkg) {
         // 当系统水位过高时，系统应不继续发送消息，防止发送队列积压
-        // 写Protobuf数据帧
+        // 写 Protobuf 数据帧
         if (channel.isWritable()) { //低水位
             channel.writeAndFlush(pkg);
-        } else {   //高水位时
+        } else {   // 高水位时
             log.debug("通道很忙，消息被暂存了");
             // 写入消息暂存的分布式存储
             // 等channel空闲之后，再写出去

@@ -2,6 +2,7 @@ package im.client.command;
 
 import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Service;
 
 import java.util.Iterator;
@@ -18,6 +19,7 @@ public class ClientCommandMenu implements BaseCommand {
 
     public static final String KEY = "0";
 
+    @Setter // for unit test
     private String allCommandsShow;
     @Getter
     private String commandInput;

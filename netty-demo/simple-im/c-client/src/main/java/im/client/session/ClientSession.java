@@ -4,7 +4,6 @@ import im.common.dto.User;
 import im.common.dto.msg.ProtoMsg;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.util.AttributeKey;
 import lombok.Data;
@@ -33,10 +32,10 @@ public class ClientSession {
 
     // 连接成功之后，绑定通道
     public ClientSession(Channel channel) {
-        //正向的绑定
+        // 正向的绑定
         this.channel = channel;
         this.sessionId = UUID.randomUUID().toString();
-        //反向的绑定
+        // 反向的绑定
         channel.attr(ClientSession.SESSION_KEY).set(this);
     }
 
@@ -56,31 +55,13 @@ public class ClientSession {
         return session;
     }
 
-    public String getRemoteAddress() {
-        return channel.remoteAddress().toString();
-    }
-
-    // 写 protobuf 数据帧
-    public ChannelFuture witeAndFlush(Object pkg) {
-        ChannelFuture f = channel.writeAndFlush(pkg);
-        return f;
-    }
-
-    public void writeAndClose(Object pkg) {
-        ChannelFuture future = channel.writeAndFlush(pkg);
-        future.addListener(ChannelFutureListener.CLOSE);
-    }
-
     // 关闭通道
     public void close() {
         isConnected = false;
-        ChannelFuture future = channel.close();
-        future.addListener(new ChannelFutureListener() {
-            @Override
-            public void operationComplete(ChannelFuture future) {
-                if (future.isSuccess()) {
-                    log.error("连接顺利断开");
-                }
+        ChannelFuture cf = channel.close();
+        cf.addListener(future -> {
+            if (future.isSuccess()) {
+                log.error("连接顺利断开");
             }
         });
     }

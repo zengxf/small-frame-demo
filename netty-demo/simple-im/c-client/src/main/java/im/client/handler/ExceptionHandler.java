@@ -28,8 +28,12 @@ public class ExceptionHandler extends ChannelInboundHandlerAdapter {
             log.error(cause.getMessage());
             ClientSession.getSession(ctx).close();
         } else {
-            log.error(cause.getMessage());
+            log.error("捕获到异常，异常消息：{}", cause.getMessage(), cause);
             ctx.close();
+            if (commandController == null) {
+                log.info("Unit test !!!");
+                return;
+            }
             // 开始重连
             commandController.setConnectFlag(false);
             commandController.startConnectServer();

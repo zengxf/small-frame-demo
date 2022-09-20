@@ -20,11 +20,11 @@ public class User {
     String uid = String.valueOf(NO.getAndIncrement());
     String devId = UUID.randomUUID().toString();
     String token = UUID.randomUUID().toString();
-    String nickName = "nickName";
+    String nickName = "Fa88";
     String sessionId;
-    PLATTYPE platform = PLATTYPE.WINDOWS;
+    PLAT_TYPE platform = PLAT_TYPE.WINDOWS;
 
-    public enum PLATTYPE {
+    public enum PLAT_TYPE {
         WINDOWS, MAC, ANDROID, IOS, WEB, OTHER;
     }
 
@@ -39,7 +39,7 @@ public class User {
     }
 
     public void setPlatform(int platform) {
-        PLATTYPE[] values = PLATTYPE.values();
+        PLAT_TYPE[] values = PLAT_TYPE.values();
         for (int i = 0; i < values.length; i++) {
             if (values[i].ordinal() == platform) {
                 this.platform = values[i];

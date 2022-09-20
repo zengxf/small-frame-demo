@@ -27,15 +27,6 @@ public class BaseSender {
         return session.isConnected();
     }
 
-    public boolean isLogin() {
-        if (null == session) {
-            log.info("session is null");
-            return false;
-        }
-
-        return session.isLogin();
-    }
-
     public void sendMsg(ProtoMsg.Message message) {
         if (null == getSession() || !isConnected()) {
             log.info("连接还没成功");

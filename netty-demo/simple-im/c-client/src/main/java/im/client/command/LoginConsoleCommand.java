@@ -22,13 +22,13 @@ public class LoginConsoleCommand implements BaseCommand {
 
     @Override
     public void exec(Scanner scanner) {
-        System.out.println("请输入用户信息(id@password)  ");
+        System.out.println("请输入用户信息(id@password)：");
         String[] info = null;
         while (true) {
             String input = scanner.next();
             info = input.split("@");
             if (info.length != 2) {
-                System.out.println("请按照格式输入(id@password):");
+                System.out.println("请按照格式输入(id@password)：");
             } else {
                 break;
             }

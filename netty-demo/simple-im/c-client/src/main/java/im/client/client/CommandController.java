@@ -160,7 +160,7 @@ public class CommandController {
         User user = new User();
         user.setUid(command.getUserName());
         user.setToken(command.getPassword());
-        user.setDevId("1111");
+        user.setDevId("88-66");
         this.user = user;
         session.setUser(user);
         loginSender.setUser(user);
