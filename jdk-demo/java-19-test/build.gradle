@@ -1,0 +1,9 @@
+apply plugin: 'java'
+
+sourceCompatibility = 19
+compileJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+    options.compilerArgs += "--enable-preview"
+    options.encoding = 'UTF-8'
+}
