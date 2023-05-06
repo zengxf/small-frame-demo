@@ -11,14 +11,15 @@ repositories {
     mavenCentral()
 }
 
-
 dependencies {
-    // hutool
+    // HuTool
     implementation group: "cn.hutool", name: "hutool-all", version: "5.7.18"
+    // bcprov
     implementation group: "org.bouncycastle", name: "bcprov-jdk15on", version: "1.65"
 
-    // lombok
+    // Lombok
     // compileOnly group: "org.projectlombok", name: "lombok", version: "1.18.8"
+
     // Slf4j
     implementation group: "org.slf4j", name: "slf4j-api", version: "1.7.32"
     implementation group: "org.slf4j", name: "slf4j-simple", version: "1.7.32"
