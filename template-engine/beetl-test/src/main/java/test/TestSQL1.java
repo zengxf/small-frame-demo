@@ -42,12 +42,12 @@ public class TestSQL1 {
                     <% if (isContain != 1) { %>\s
                         AND md.lv${levelNum + 1}_id != 0\s
                     <% } %>
-                <% if (!isEmpty(orderByClauses)) { println(' ORDER BY ' + orderByClauses + ''); } %>
-                <% if (isEmpty(orderByClauses)) { println(' ORDER BY evaluationDate DESC'); } %>
-                <% if (isNotEmpty(export) && export == "1") { %> -- 相当于 MyBatis if 标签
+                <% if (!isEmpty(orderByClauses)) { println('ORDER BY ' + orderByClauses); } %>
+                <% if (isEmpty(orderByClauses)) { println('ORDER BY evaluationDate DESC'); } %>
+                <% if (isNotEmpty(export) && export == "1") { %> <% // 相当于 MyBatis if 标签 %>
                 LIMIT ${(_page - 1) * _pageSize}, ${_pageSize}\s
                 <% } %>
-                
+                                
                 <%
                 // 注释写在内部
                 /*
@@ -63,6 +63,7 @@ public class TestSQL1 {
         t.binding("isContain", 2);
         t.binding("departmentId", 73);
         t.binding("export", "1");
+        t.binding("orderByClauses", "md.id");
         t.binding("_page", 1);
         t.binding("_pageSize", 200);
 
