@@ -1,0 +1,33 @@
+plugins {
+    id "java"
+    id "io.freefair.lombok" version "8.0.1"
+    id "com.github.johnrengelman.shadow" version "8.1.1" // 打 fat-jar 插件
+}
+
+sourceCompatibility = 17
+compileJava.options.encoding = 'UTF-8'
+
+repositories {
+    mavenLocal()
+    maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
+    mavenCentral()
+}
+
+dependencies {
+    // Bootique
+	implementation group: 'io.bootique', name: 'bootique', version: '2.0.1'
+	implementation group: 'io.bootique.jersey', name: 'bootique-jersey', version: '2.0.1'
+
+    // Slf4j
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.7'
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '2.0.7'
+
+    // JUnit 4
+    testImplementation group: 'junit', name: 'junit', version: '4.13.2'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'webtest.WebMain'
+    }
+}

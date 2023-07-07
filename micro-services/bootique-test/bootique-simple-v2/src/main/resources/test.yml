@@ -1,0 +1,4 @@
+jetty:
+  context: /test
+  connectors:
+    - port: 8866
