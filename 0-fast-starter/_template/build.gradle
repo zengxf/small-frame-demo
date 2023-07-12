@@ -27,6 +27,16 @@ dependencies {
     implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.7'
     implementation group: 'org.slf4j', name: 'slf4j-simple', version: '2.0.7'
 	
-    // JUnit 4
-    testImplementation group: 'junit', name: 'junit', version: '4.13.2'
+    // JUnit-4
+    // testImplementation group: 'junit', name: 'junit', version: '4.13.2'
+	// JUnit-5 (兼容 4)
+	testImplementation group: 'org.junit.vintage', name: 'junit-vintage-engine', version: '5.9.3'
+	// JUnit-5
+	testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.9.3'
+
+}
+
+// 启用 JUnit 5
+test {
+    useJUnitPlatform()
 }
