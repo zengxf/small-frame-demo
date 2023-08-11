@@ -2,7 +2,6 @@ package cn.zxf.easypoi.demo;
 
 import cn.afterturn.easypoi.excel.annotation.Excel;
 import cn.afterturn.easypoi.excel.annotation.ExcelEntity;
-import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -22,7 +21,10 @@ public class DynamicDTO {
     @Excel(name = "年龄", width = 12)
     private String age;
 
-    @ExcelEntity(name = "动态")
-    private Map<String, String> dynamic;
+    @ExcelEntity(name = "Map")
+    private Map<String, String> map;
+
+    @ExcelEntity(name = "用户")
+    private UserDto user;
 
 }
