@@ -49,20 +49,11 @@ public class DataUtils {
     }
 
     public static ExcelExportEntity buildExcelEntity(String name, Object key) {
-        return buildExcelEntity(name, key, -1);
-    }
-
-    public static ExcelExportEntity buildExcelEntity(String name, Object key, int orderNo) {
-        ExcelExportEntity excelEntity = new ExcelExportEntity(name, key);
-        if (orderNo >= 0)
-            excelEntity.setOrderNum(orderNo);
+        ExcelExportEntity excelEntity = buildExcelEntityByGroup(name, key, null, -1);
+        excelEntity.setWidth(20);
         return excelEntity;
     }
 
-
-    /**
-     * 在 group 列下添加子列
-     */
     public static ExcelExportEntity buildExcelEntityByGroup(String name, Object key, String group) {
         return buildExcelEntityByGroup(name, key, group, -1);
     }
@@ -72,7 +63,9 @@ public class DataUtils {
      */
     public static ExcelExportEntity buildExcelEntityByGroup(String name, Object key, String group, int orderNo) {
         ExcelExportEntity excelEntity = new ExcelExportEntity(name, key);
-        excelEntity.setGroupName(group);
+        excelEntity.setWidth(16);
+        if (group != null && !group.isBlank())
+            excelEntity.setGroupName(group);
         if (orderNo >= 0)
             excelEntity.setOrderNum(orderNo);
         return excelEntity;
