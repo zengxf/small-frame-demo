@@ -19,7 +19,8 @@ public class DynamicDTOMapTest extends DataUtils {
     public static void main(String[] args) throws IOException {
         String filePath = "D:\\Data\\test\\excel-test\\ExcelExportFor-DTO-Map.xlsx";
 
-        List<DynamicDTO> list = getData();
+        // List<DynamicDTO> list = getData();
+        List<Map<String, Object>> list = getDtoMapData();
         List<ExcelExportEntity> entity = dtoExportEntities(); // 设置头与数据绑定关系
 
         ExportParams params = new ExportParams("test-0000-8888", "测试");

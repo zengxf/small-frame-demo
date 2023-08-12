@@ -3,7 +3,7 @@ plugins {
     id "io.freefair.lombok" version "8.0.1"
 }
 
-sourceCompatibility = 1.8
+sourceCompatibility = 17
 
 repositories {
     mavenLocal()
