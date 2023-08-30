@@ -1,0 +1,26 @@
+plugins {
+    id "java"
+    id "io.freefair.lombok" version "6.3.0"
+}
+
+sourceCompatibility = 17
+targetCompatibility = 17
+
+repositories {
+    mavenLocal()
+    maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
+    mavenCentral()
+}
+
+dependencies {
+    // Lombok
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
+    // Slf4j
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.32'
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.32'
+}
+
+// 编译 JAVA 文件时采用 UTF-8
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
