@@ -36,8 +36,8 @@ public class MyNioClient {
                 SelectionKey key = keyIt.next();
                 keyIt.remove();
                 if (key.isConnectable()) {
-                    SocketChannel sc = (SocketChannel) key.channel(); // clientChannel
-                    if (sc.finishConnect()) {
+                    SocketChannel sc = (SocketChannel) key.channel();   // 就是 clientChannel 对象
+                    if (sc.finishConnect()) {                           // 等待连接完成
                         log.info("连接成功!");
                         byte[] msg = "中-Test 123...".getBytes(StandardCharsets.UTF_8);
                         log.info("send-msg-len: [{}]", msg.length);
