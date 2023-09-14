@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.net.ServerSocket;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
@@ -26,12 +25,13 @@ public class MyNioServer {
         ServerSocketChannel server = ServerSocketChannel.open();
         server.configureBlocking(false);                    // 设置非阻塞
         server.register(selector, SelectionKey.OP_ACCEPT);  // 注册
-        ServerSocket serverSocket = server.socket();
-        serverSocket.bind(new InetSocketAddress(PORT));     // 启动
+        server.bind(new InetSocketAddress(PORT));           // 启动（Java 7 及以上）
+        // ServerSocket serverSocket = server.socket();
+        // serverSocket.bind(new InetSocketAddress(PORT));  // 启动（Java 7 以下）
 
         log.info("开启监听...");
         while (true) {
-            if (selector.select(10_000) == 0) {
+            if (selector.select(60_000) == 0) {
                 log.info("..");
                 continue;
             }
@@ -61,9 +61,10 @@ public class MyNioServer {
         try {
             int readBytes = sc.read(readBuffer);
             log.info("read-bytes-len: [{}]", readBytes);
-            if (readBytes < 0)
-                sc.close();
-            else {
+            if (readBytes < 0) {
+                sc.close(); // 对方调用 sc.close() 时，接收到 Fin 消息
+                log.info("对方已关闭（调用了 close() 方法）");
+            } else {
                 readBuffer.flip();
                 byte[] bytes = new byte[readBuffer.remaining()];
                 readBuffer.get(bytes);
@@ -71,7 +72,7 @@ public class MyNioServer {
                 log.info("接收的消息为：[{}]", msg);
             }
         } catch (Exception e) {
-            log.info("读取出错（可能是 Fin 消息）", e); // 对方关闭时，会发送 Fin 消息（Connection reset）
+            log.info("读取出错", e); // 对方未调用 sc.close() 直接退出程序时，会报错：Connection reset
             try {
                 sc.close();
             } catch (IOException ex) {

@@ -45,7 +45,8 @@ public class MyNioClient {
                         write.put(msg);
                         write.flip();
                         sc.write(write);
-                        break out; // 退出
+                        sc.close(); // 关闭
+                        break out;  // 退出
                     } else {
                         log.info("还未完成连接...");
                     }
@@ -54,6 +55,7 @@ public class MyNioClient {
         }
 
         SleepUtils.second(2);
+        clientChannel.close();
         log.info("exit...");
     }
 
