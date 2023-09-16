@@ -24,8 +24,12 @@ public class MyNioServer {
         Selector selector = Selector.open();
         ServerSocketChannel server = ServerSocketChannel.open();
         server.configureBlocking(false);                    // 设置非阻塞
-        server.register(selector, SelectionKey.OP_ACCEPT);  // 注册
+        /**
+         * 注册与启动顺序虽然不重要，都能监听处理，
+         * 但建议是：先注册，再启动。
+         */
         server.bind(new InetSocketAddress(PORT));           // 启动（Java 7 及以上）
+        server.register(selector, SelectionKey.OP_ACCEPT);  // 注册
         // ServerSocket serverSocket = server.socket();
         // serverSocket.bind(new InetSocketAddress(PORT));  // 启动（Java 7 以下）
 
@@ -46,6 +50,7 @@ public class MyNioServer {
                     sc.configureBlocking(false);                    // 设置非阻塞
                     sc.register(selector, SelectionKey.OP_READ);    // 注册
                 } else if (key.isReadable()) {
+                    log.info("-----------");
                     log.info("有数据可读取!");
                     read(key);
                 } else if (key.isValid() && key.isWritable()) {
