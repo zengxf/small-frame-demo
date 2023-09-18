@@ -7,7 +7,7 @@ import java.io.File;
  * -Djava.security.policy=D:/Data/test/javatest/MyPolicy.txt.cfg
  * # -Djava.security.manager # 此参数可以不用加
  *
- * 文件同步 Netty codec 模块了
+ * 类文件同用了 Netty codec 模块
  * > 使用 cmd 命令运行：
  *   java "-Djava.security.policy=D:/Data/test/javatest/MyPolicy.txt.cfg" io.netty.handler.codec.mytest.DemoDoPrivilege
  * </pre>
