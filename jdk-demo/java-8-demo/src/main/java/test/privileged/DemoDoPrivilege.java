@@ -3,6 +3,7 @@ package test.privileged;
 import java.io.File;
 
 /**
+ * Java 安全模型-测试（JDK-17 测不了）
  * <pre>
  * -Djava.security.policy=D:/Data/test/javatest/MyPolicy.txt.cfg
  * # -Djava.security.manager # 此参数可以不用加
