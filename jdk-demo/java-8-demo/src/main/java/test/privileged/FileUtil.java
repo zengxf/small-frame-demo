@@ -1,4 +1,4 @@
-package test.jdkapi.io.file.privileged;
+package test.privileged;
 
 import java.io.File;
 import java.security.AccessController;

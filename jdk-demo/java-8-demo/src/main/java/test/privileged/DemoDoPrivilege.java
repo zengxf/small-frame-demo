@@ -1,4 +1,4 @@
-package test.jdkapi.io.file.privileged;
+package test.privileged;
 
 import java.io.File;
 
@@ -7,15 +7,14 @@ import java.io.File;
  * -Djava.security.policy=D:/Data/test/javatest/MyPolicy.txt.cfg
  * # -Djava.security.manager # 此参数可以不用加
  *
- * 类文件同用了 Netty codec 模块
  * > 使用 cmd 命令运行：
- *   java "-Djava.security.policy=D:/Data/test/javatest/MyPolicy.txt.cfg" io.netty.handler.codec.mytest.DemoDoPrivilege
+ *   cd build/classes/java/main
+ *   java "-Djava.security.policy=D:/Data/test/javatest/MyPolicy.txt.cfg" test.privileged.DemoDoPrivilege
  * </pre>
  * <p/>
- * ref: https://blog.csdn.net/u014470581/article/details/79262632
- * <br/>
- * ref: https://www.jianshu.com/p/81985bc2bfa3
- * <br/>
+ * ref: https://blog.csdn.net/u014470581/article/details/79262632 <br/>
+ * ref: https://www.jianshu.com/p/81985bc2bfa3 <br/>
+ * <p/>
  * Created by ZXFeng on 2023/9/18
  */
 public class DemoDoPrivilege {
