@@ -1,0 +1,52 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>echarts测试</title>
+<!--    <script type="text/javascript" src="echarts.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+</head>
+<body>
+<!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+<div id="main" style="width: 600px; height:800px;"></div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+
+    var option = {
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        title: {
+            text: '某站点用户访问来源',
+            subtext: '纯属虚构',
+            x:'center'
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left',
+            //这个为提示条，注意名称要和data里的name一一对应
+            data: ['视频广告','联盟广告', '邮件营销', '直接访问',"搜索引擎","黑客"]
+        },
+
+        series : [
+            {
+                name: '访问来源',
+                type: 'pie',
+                radius: '55%',
+                data:[
+                    {value:235, name:'视频广告'},
+                    {value:274, name:'联盟广告'},
+                    {value:310, name:'邮件营销'},
+                    {value:335, name:'直接访问'},
+                    {value:1400, name:'搜索引擎'},
+                    {value:230, name:'黑客'}
+                ]
+            }
+        ]
+    }
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+</body>
+</html>

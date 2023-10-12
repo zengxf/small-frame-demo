@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+    id 'org.openjfx.javafxplugin' version '0.1.0'
+    id 'org.beryx.jlink' version '3.0.0'
+    id "io.freefair.lombok" version "8.4"
+}
+javafx {
+    version = "21"
+    modules = ['javafx.controls', 'javafx.fxml', 'javafx.web']
+}
+jlink { launcher { name = 'fx21-misc-test' } }
+
+version = '1.0.0'
+// sourceCompatibility = 21
+compileJava.options.encoding = 'UTF-8'
+
+repositories {
+    mavenLocal()
+    maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+}
+dependencies {
+	// Slf4j
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.9'
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '2.0.9'
+}
