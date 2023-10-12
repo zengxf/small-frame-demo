@@ -25,16 +25,20 @@ public abstract class BaseEChartTest extends Application {
     public void start(Stage stage) {
         log.info("启动：[{}]", htmlPath);
         long start = System.currentTimeMillis();
-        
+
         stage.setTitle("Web View Sample");
+
         WebView webView = new WebView();
         WebEngine webEngine = webView.getEngine();
         webEngine.load(this.getClass().getResource(htmlPath).toExternalForm());
+
         Scene scene = new Scene(webView, 900, 600, Color.web("lightgray"));
         stage.setScene(scene);
+
         webEngine.getLoadWorker()
                 .stateProperty()
-                .addListener((ObservableValue<? extends State> ov, State oldState, State newState) -> {
+                // .addListener((ObservableValue<? extends State> ov, State oldState, State newState) -> {
+                .addListener((ov, oldState, newState) -> {
                     if (newState == State.SUCCEEDED) {
                         stage.show();
                         log.info("use-time-2: [{}]ms", System.currentTimeMillis() - start);
