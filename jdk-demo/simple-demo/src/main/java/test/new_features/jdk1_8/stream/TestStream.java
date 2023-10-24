@@ -30,6 +30,17 @@ public class TestStream {
         // test_collectingAndThen();
         // test_partitioningBy();
         // test_toArray();
+        // test_parallelStream();
+
+        List.of(1, 2, 3, 4, 5, 6)
+                .stream()
+                .map(iv -> "iv-" + iv)
+                .skip(1)
+                .limit(3)
+                .forEach(str -> log.info("str: [{}]", str));
+    }
+
+    private static void test_parallelStream() {
         List.of(1, 2, 3, 4, 5, 6)
                 .parallelStream()
                 .forEach(i -> log.info("i: [{}]", i));
