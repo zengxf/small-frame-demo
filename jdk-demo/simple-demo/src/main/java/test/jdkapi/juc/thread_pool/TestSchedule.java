@@ -28,11 +28,11 @@ public class TestSchedule {
         ScheduledExecutorService pool = newScheduledThreadPool(1);
         Runnable r = () -> {
             System.out.println("--------");
-            SleepUtils.second(2);
+            // SleepUtils.second(2);
             System.out.printf("--- ok --- %tT %n", System.currentTimeMillis());
         };
         System.out.printf("--- start --- %tT %n", System.currentTimeMillis());
-        pool.scheduleAtFixedRate(r, 1000, 1000, TimeUnit.MILLISECONDS);
+        pool.scheduleAtFixedRate(r, 1000, 3000, TimeUnit.MILLISECONDS);
     }
 
     static void testFixedDelay() {
