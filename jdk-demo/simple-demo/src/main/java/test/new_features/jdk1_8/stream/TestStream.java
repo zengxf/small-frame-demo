@@ -2,9 +2,10 @@ package test.new_features.jdk1_8.stream;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Spliterator;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.stream.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -32,12 +33,16 @@ public class TestStream {
         // test_toArray();
         // test_parallelStream();
 
-        List.of(1, 2, 3, 4, 5, 6)
-                .stream()
-                .map(iv -> "iv-" + iv)
-                .skip(1)
-                .limit(3)
-                .forEach(str -> log.info("str: [{}]", str));
+        List.of(1, 2, 3, 4, 5, 6, 7, 8)
+                .stream() /** {@link StreamSupport#stream(Spliterator, boolean)} */
+                .filter(i -> i > 2) /** {@link ReferencePipeline.StatelessOp} / {@link Sink.ChainedReference} */
+                .map(iv -> "iv-" + iv) /** {@link ReferencePipeline.StatelessOp} / {@link Sink.ChainedReference} */
+                .skip(1) /** {@link SliceOps#makeRef(AbstractPipeline, long, long)} / {@link ReferencePipeline.StatefulOp} / {@link Sink.ChainedReference} */
+                .peek(str -> log.info("str: [{}]", str)) /** {@link ReferencePipeline.StatelessOp} / {@link Sink.ChainedReference} */
+                .sorted() /** {@link SortedOps.OfRef} */
+                .limit(3) /** {@link ReferencePipeline.StatefulOp} / {@link Sink.ChainedReference} */
+                .forEach(log::info) /** {@link ReferencePipeline#forEach(Consumer)} / {@link ForEachOps.ForEachOp.OfRef} */
+        ;
     }
 
     private static void test_parallelStream() {
