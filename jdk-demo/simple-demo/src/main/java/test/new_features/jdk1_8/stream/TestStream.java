@@ -1,9 +1,12 @@
 package test.new_features.jdk1_8.stream;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Spliterator;
 import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.*;
 
@@ -33,19 +36,27 @@ public class TestStream {
         // test_toArray();
         // test_parallelStream();
 
+        test_base();
+    }
+
+    static void test_base() {
         List.of(1, 2, 3, 4, 5, 6, 7, 8)
-                .stream() /** {@link StreamSupport#stream(Spliterator, boolean)} */
-                .filter(i -> i > 2) /** {@link ReferencePipeline.StatelessOp} / {@link Sink.ChainedReference} */
-                .map(iv -> "iv-" + iv) /** {@link ReferencePipeline.StatelessOp} / {@link Sink.ChainedReference} */
-                .skip(1) /** {@link SliceOps#makeRef(AbstractPipeline, long, long)} / {@link ReferencePipeline.StatefulOp} / {@link Sink.ChainedReference} */
-                .peek(str -> log.info("str: [{}]", str)) /** {@link ReferencePipeline.StatelessOp} / {@link Sink.ChainedReference} */
-                .sorted() /** {@link SortedOps.OfRef} */
-                .limit(3) /** {@link ReferencePipeline.StatefulOp} / {@link Sink.ChainedReference} */
-                .forEach(log::info) /** {@link ReferencePipeline#forEach(Consumer)} / {@link ForEachOps.ForEachOp.OfRef} */
+                .stream() /** {@link Collection#stream()} / {@link StreamSupport#stream(Spliterator, boolean)} */
+                .filter(i -> i > 2) /** {@link ReferencePipeline#filter(Predicate)} / {@link ReferencePipeline.StatelessOp} / {@link Sink.ChainedReference} */
+                .map(iv -> "iv-" + iv) /** {@link ReferencePipeline#map(Function)} / {@link ReferencePipeline.StatelessOp} / {@link Sink.ChainedReference} */
+                .skip(1) /** {@link ReferencePipeline#skip(long)} / {@link SliceOps#makeRef(AbstractPipeline, long, long)} / {@link ReferencePipeline.StatefulOp} / {@link Sink.ChainedReference} */
+                .peek(TestStream::print0) /** {@link ReferencePipeline#peek(Consumer)} / {@link ReferencePipeline.StatelessOp} / {@link Sink.ChainedReference} */
+                .sorted() /** {@link ReferencePipeline#sorted()} / {@link SortedOps.OfRef} */
+                .limit(3) /** {@link ReferencePipeline#limit(long)} / {@link ReferencePipeline.StatefulOp} / {@link Sink.ChainedReference} */
+                .forEach(log::info) /** {@link ReferencePipeline#forEach(Consumer)} / {@link ReferencePipeline#forEach(Consumer)} / {@link ForEachOps.ForEachOp.OfRef} */
         ;
     }
 
-    private static void test_parallelStream() {
+    static void print0(String str) {
+        log.info("str: [{}]", str);
+    }
+
+    static void test_parallelStream() {
         List.of(1, 2, 3, 4, 5, 6)
                 .parallelStream()
                 .forEach(i -> log.info("i: [{}]", i));
