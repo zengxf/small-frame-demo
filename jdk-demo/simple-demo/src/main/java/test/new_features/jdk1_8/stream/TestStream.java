@@ -40,15 +40,16 @@ public class TestStream {
     }
 
     static void test_base() {
+        int IV1 = 1, IV3 = 3;
         List.of(1, 2, 3, 4, 5, 6, 7, 8)
-                .stream() /** {@link Collection#stream()} / {@link StreamSupport#stream(Spliterator, boolean)} */
-                .filter(i -> i > 2) /** {@link ReferencePipeline#filter(Predicate)} / {@link ReferencePipeline.StatelessOp} / {@link Sink.ChainedReference} */
-                .map(iv -> "iv-" + iv) /** {@link ReferencePipeline#map(Function)} / {@link ReferencePipeline.StatelessOp} / {@link Sink.ChainedReference} */
-                .skip(1) /** {@link ReferencePipeline#skip(long)} / {@link SliceOps#makeRef(AbstractPipeline, long, long)} / {@link ReferencePipeline.StatefulOp} / {@link Sink.ChainedReference} */
-                .peek(TestStream::print0) /** {@link ReferencePipeline#peek(Consumer)} / {@link ReferencePipeline.StatelessOp} / {@link Sink.ChainedReference} */
-                .sorted() /** {@link ReferencePipeline#sorted()} / {@link SortedOps.OfRef} */
-                .limit(3) /** {@link ReferencePipeline#limit(long)} / {@link ReferencePipeline.StatefulOp} / {@link Sink.ChainedReference} */
-                .forEach(log::info) /** {@link ReferencePipeline#forEach(Consumer)} / {@link ReferencePipeline#forEach(Consumer)} / {@link ForEachOps.ForEachOp.OfRef} */
+                .stream()                   /** {@link Collection#stream()} / {@link StreamSupport#stream(Spliterator, boolean)} / {@link ReferencePipeline.Head} */
+                .filter(i -> i > 2)         /** {@link ReferencePipeline#filter(Predicate)} / {@link ReferencePipeline.StatelessOp} / {@link Sink.ChainedReference} */
+                .map(iv -> "iv-" + iv)      /** {@link ReferencePipeline#map(Function)} / {@link ReferencePipeline.StatelessOp} / {@link Sink.ChainedReference} */
+                .skip(IV1)                  /** {@link ReferencePipeline#skip(long)} / {@link SliceOps#makeRef(AbstractPipeline, long, long)} / {@link ReferencePipeline.StatefulOp} / {@link Sink.ChainedReference} */
+                .peek(TestStream::print0)   /** {@link ReferencePipeline#peek(Consumer)} / {@link ReferencePipeline.StatelessOp} / {@link Sink.ChainedReference} */
+                .sorted()                   /** {@link ReferencePipeline#sorted()} / {@link SortedOps.OfRef} */
+                .limit(IV3)                 /** {@link ReferencePipeline#limit(long)} / {@link ReferencePipeline.StatefulOp} / {@link Sink.ChainedReference} */
+                .forEach(log::info)         /** {@link ReferencePipeline#forEach(Consumer)} / {@link ForEachOps.ForEachOp.OfRef} / {@link AbstractPipeline#wrapSink(Sink)} */
         ;
     }
 
