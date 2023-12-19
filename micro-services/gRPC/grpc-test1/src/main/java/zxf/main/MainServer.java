@@ -21,7 +21,7 @@ public class MainServer {
                 .addService(new RpcImpl())
                 .build()
                 .start();
-        log.info("GRpc服务端启动成功, 端口号: [{}]", port);
+        log.info("gRPC 服务端启动成功, 端口号: [{}]", port);
 
         server.awaitTermination();
     }
