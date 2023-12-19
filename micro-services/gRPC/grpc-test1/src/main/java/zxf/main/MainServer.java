@@ -16,12 +16,11 @@ public class MainServer {
 
     public static void main(String[] args) throws Exception {
         // 设置 service 接口.
-        Server server = ServerBuilder.
-                forPort(port)
+        Server server = ServerBuilder
+                .forPort(port)
                 .addService(new RpcImpl())
                 .build()
                 .start();
-
         log.info("GRpc服务端启动成功, 端口号: [{}]", port);
 
         server.awaitTermination();

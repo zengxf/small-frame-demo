@@ -19,23 +19,24 @@ public class MainClient {
 
     public static void main(String[] args) {
         // 1. 拿到一个通信的 channel
-        ManagedChannel managedChannel = ManagedChannelBuilder.forAddress(host, serverPort)
+        ManagedChannel server = ManagedChannelBuilder
+                .forAddress(host, serverPort)
                 .usePlaintext()
                 .build();
         try {
             // 2.拿到道理对象
-            RpcServiceGrpc.RpcServiceBlockingStub server = RpcServiceGrpc.newBlockingStub(managedChannel);
+            RpcServiceGrpc.RpcServiceBlockingStub api = RpcServiceGrpc.newBlockingStub(server);
             RpcRequest req = RpcRequest
                     .newBuilder()
                     .setUserName("test 11")
                     .build();
             // 3. 请求
-            RpcResponse res = server.getData(req);
+            RpcResponse res = api.getData(req);
             // 4. 输出结果
             log.info("res: [{}]", res.getRes());
         } finally {
             // 5. 关闭 channel, 释放资源.
-            managedChannel.shutdown();
+            server.shutdown();
         }
     }
 
