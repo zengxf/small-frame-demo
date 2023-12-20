@@ -38,6 +38,16 @@ sourceSets { // 可以省（默认就是用这些配置）
     }
 }
 */
+/*
+sourceSets { // 改不成功
+    main {
+        java {
+            srcDirs 'src/main/grpc'
+            srcDirs 'src/main/java'
+        }
+    }
+}
+*/
 
 dependencies {
     // gRPC
