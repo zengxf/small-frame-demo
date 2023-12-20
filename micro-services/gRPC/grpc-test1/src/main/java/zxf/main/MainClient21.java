@@ -9,6 +9,7 @@ import zxf.rpc.RpcResponse;
 import zxf.rpc.RpcServiceGrpc;
 
 /**
+ * 单请求多响应
  * <p/>
  * Created by ZXFeng on 2023/12/18
  */

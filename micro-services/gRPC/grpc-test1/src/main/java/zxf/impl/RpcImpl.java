@@ -26,20 +26,16 @@ public class RpcImpl extends RpcServiceGrpc.RpcServiceImplBase {
         resObs.onCompleted();
     }
 
-    @Override
-    @Deprecated // 只一次
+    @Override // 多次请求，只返回一次
     public StreamObserver<RpcRequest> getData2(StreamObserver<RpcResponse> resObs) {
         return new StreamObserver<>() {
+            StringBuffer sb = new StringBuffer();
+
             @Override
             public void onNext(RpcRequest req) {
+                // 处理每个请求
                 log.info("getData2 - req: {}", req.getUserName());
-                // 只能返回一个
-                String res = String.format("res: %s - %s - %s", req.getUserName(), LocalTime.now(), 20);
-                RpcResponse rpcRes = RpcResponse.newBuilder()
-                        .setRes(res)
-                        .build();
-                resObs.onNext(rpcRes);
-                resObs.onCompleted();   // 需要此操作（但客户端只能请求一次）
+                sb.append("::").append(req.getUserName());
             }
 
             @Override
@@ -49,7 +45,13 @@ public class RpcImpl extends RpcServiceGrpc.RpcServiceImplBase {
 
             @Override
             public void onCompleted() {
+                // 只返回一次
                 log.info("处理完成");
+                RpcResponse rpcRes = RpcResponse.newBuilder()
+                        .setRes("res -> " + sb)
+                        .build();
+                resObs.onNext(rpcRes);
+                resObs.onCompleted();   // 需要此操作
             }
         };
     }

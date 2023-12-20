@@ -9,11 +9,11 @@ import zxf.rpc.RpcResponse;
 import zxf.rpc.RpcServiceGrpc;
 
 /**
+ * 多请求单响应
  * <p/>
  * Created by ZXFeng on 2023/12/18
  */
 @Slf4j
-@Deprecated // 不是想要的
 public class MainClient12 extends MainClient {
 
     public static void main(String[] args) throws InterruptedException {
@@ -46,9 +46,10 @@ public class MainClient12 extends MainClient {
                 log.info("MainClient12 - req - " + (i * 20));
                 RpcRequest req = req("test-" + (i * 20));
                 reqObs.onNext(req);
-                Thread.sleep(500L);
+                Thread.sleep(100L);
             }
-            Thread.sleep(4000L);
+            reqObs.onCompleted();   // 需要此操作
+            Thread.sleep(1000L);
             log.info("exit -----");
         } finally {
             // 5. 关闭 channel, 释放资源.

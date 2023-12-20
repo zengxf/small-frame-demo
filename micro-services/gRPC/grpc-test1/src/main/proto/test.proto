@@ -8,12 +8,16 @@ option java_multiple_files = true;
 
 // 服务接口.定义请求参数和相应结果
 service RpcService {
+  // 11 单请求单响应
   rpc getData (RpcRequest) returns (RpcResponse) {
   }
+  // 12 多请求单响应
   rpc getData2 (stream RpcRequest) returns (RpcResponse) {
   }
+  // 21 单请求多响应
   rpc getDataList (RpcRequest) returns (stream RpcResponse) {
   }
+  // 22 多请求多响应
   rpc getDataList2 (stream RpcRequest) returns (stream RpcResponse) {
   }
 }

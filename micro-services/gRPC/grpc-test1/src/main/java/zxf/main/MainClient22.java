@@ -8,6 +8,7 @@ import zxf.rpc.RpcResponse;
 import zxf.rpc.RpcServiceGrpc;
 
 /**
+ * 多请求多响应
  * <p/>
  * Created by ZXFeng on 2023/12/18
  */
@@ -45,6 +46,7 @@ public class MainClient22 extends MainClient {
                 reqObs.onNext(req);
                 Thread.sleep(100L);
             }
+            reqObs.onCompleted();   // 需要此操作
             Thread.sleep(2000L);
             log.info("exit -----");
         } finally {
