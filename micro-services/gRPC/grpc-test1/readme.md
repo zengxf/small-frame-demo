@@ -1,6 +1,7 @@
 ## 参考
 
 - https://juejin.cn/post/6844904115248562189
+- https://www.baeldung.com/java-grpc-streaming
 
 ## 问题
 

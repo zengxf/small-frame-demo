@@ -10,6 +10,12 @@ option java_multiple_files = true;
 service RpcService {
   rpc getData (RpcRequest) returns (RpcResponse) {
   }
+  rpc getData2 (stream RpcRequest) returns (RpcResponse) {
+  }
+  rpc getDataList (RpcRequest) returns (stream RpcResponse) {
+  }
+  rpc getDataList2 (stream RpcRequest) returns (stream RpcResponse) {
+  }
 }
 
 // 定义请求体
