@@ -18,7 +18,7 @@ public class RpcImpl extends RpcServiceGrpc.RpcServiceImplBase {
     @Override
     public void getData(RpcRequest req, StreamObserver<RpcResponse> resObs) {
         log.info("req: {}", req.getUserName());
-        String res = "res: " + LocalTime.now();
+        String res = String.format("res: %s - %s", req.getUserName(), LocalTime.now());
         RpcResponse rpcRes = RpcResponse.newBuilder()
                 .setRes(res)
                 .build();

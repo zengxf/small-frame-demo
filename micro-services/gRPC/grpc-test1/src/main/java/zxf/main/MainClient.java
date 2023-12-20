@@ -26,18 +26,31 @@ public class MainClient {
         try {
             // 2.拿到道理对象
             RpcServiceGrpc.RpcServiceBlockingStub api = RpcServiceGrpc.newBlockingStub(server);
-            RpcRequest req = RpcRequest
-                    .newBuilder()
-                    .setUserName("test 11")
-                    .build();
+            RpcRequest req = req("test-11");
             // 3. 请求
             RpcResponse res = api.getData(req);
             // 4. 输出结果
+            log.info("res: [{}]", res.getRes());
+
+            // -----------
+            req = req("test-22");
+            res = api.getData(req);
+            log.info("res: [{}]", res.getRes());
+            // -----------
+            req = req("test-33");
+            res = api.getData(req);
             log.info("res: [{}]", res.getRes());
         } finally {
             // 5. 关闭 channel, 释放资源.
             server.shutdown();
         }
+    }
+
+    static RpcRequest req(String name) {
+        return RpcRequest
+                .newBuilder()
+                .setUserName(name)
+                .build();
     }
 
 }
