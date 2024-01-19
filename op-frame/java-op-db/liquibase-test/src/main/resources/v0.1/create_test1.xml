@@ -1,0 +1,36 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+	    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd"
+>
+    <changeSet id="V0.1-20240119-001" author="ZXFeng" labels="base">
+        <comment>创建表测试 v0.1</comment>
+        <sql>
+            CREATE TABLE `site_poster_apply` (
+                `id` BIGINT NOT NULL AUTO_INCREMENT COMMENT '主键 ID',
+
+                -- 申请人和时间
+                `applicant_id` BIGINT  NULL COMMENT '申请人 ID',
+                `applicant_name` VARCHAR(64)  NULL COMMENT '申请人名称',
+                `applicant_number` VARCHAR(64)  NULL COMMENT '申请人工号',
+                `apply_time` TIMESTAMP  NULL COMMENT '申请时间',
+
+                -- 确认结果、确认人和时间
+                `is_confirm_put` VARCHAR(5)  NULL COMMENT '是否确认投放',
+                `confirm_remark` VARCHAR(200)  NULL COMMENT '确认备注 (不投放时的原因)',
+                `confirm_time` TIMESTAMP  NULL COMMENT '确认时间',
+
+                -- 系统字段
+                `create_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+                `update_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '修改时间',
+
+                PRIMARY KEY (`id`) USING BTREE,
+                INDEX `idx_site_id` (`site_id`) USING BTREE
+            ) COMMENT='广告申请' ENGINE=InnoDB;
+        </sql>
+        <rollback>
+            <dropTable tableName="site_poster_apply"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>
