@@ -1,0 +1,14 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd"
+>
+    <changeSet id="V0.1-240119-002" author="ZXFeng" labels="init">
+        <comment>初始表数据</comment>
+        <sqlFile path="v0.1/init-table.sql"/>
+        <rollback>
+            <delete tableName="site_poster_apply"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

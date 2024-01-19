@@ -9,15 +9,10 @@ repositories {
 
 dependencies {
     liquibaseRuntime 'com.mysql:mysql-connector-j:8.3.0'
-    liquibaseRuntime 'org.liquibase:liquibase-core:4.21.1'
-    liquibaseRuntime 'info.picocli:picocli:4.6.1'
-    liquibaseRuntime "ch.qos.logback:logback-core:1.2.3"
-    liquibaseRuntime "ch.qos.logback:logback-classic:1.2.3"
-}
-
-
-test {
-    environment "table.prefix", "api"
+    liquibaseRuntime 'org.liquibase:liquibase-core:4.25.1'
+    liquibaseRuntime 'info.picocli:picocli:4.7.5'
+    liquibaseRuntime "ch.qos.logback:logback-core:1.4.14"
+    liquibaseRuntime "ch.qos.logback:logback-classic:1.4.14"
 }
 
 liquibase {
@@ -29,12 +24,11 @@ liquibase {
             password "abcd"
             changelogFile "src/main/resources/changelog.xml"
             logLevel "warning"
-//            changelogParameters(['table.prefix': "api_"])
-//            changelogParameters(['table.prefix': "${System.getenv("DATABASE_TABLE_PREFIX")}"])
+//            changelogParameters(['table.prefix': "my_"])
             classpath "src/main/resources/"
             databaseChangelogTableName "hst_db_changelog"
             databaseChangelogLockTableName "hst_db_changelog_lock"
-            outputFile "update.sql"
+            outputFile "update.md"
         }
     }
 }
