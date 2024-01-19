@@ -4,11 +4,11 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
     	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd"
 >
-    <changeSet id="V0.1-240119-002" author="ZXFeng" labels="init">
+    <changeSet id="V1.0-240119-012" author="ZXFeng" labels="init">
         <comment>初始表数据</comment>
-        <sqlFile path="v0.1/init_table.sql"/>
+        <sqlFile path="v1.0/init_table.sql"/>
         <rollback>
-            <delete tableName="site_poster_apply"/>
+            <delete tableName="site_poster_design"/>
         </rollback>
     </changeSet>
 </databaseChangeLog>

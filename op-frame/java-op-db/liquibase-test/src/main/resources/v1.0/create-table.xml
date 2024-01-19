@@ -2,13 +2,13 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-    	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd"
+	    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd"
 >
-    <changeSet id="V0.1-240119-002" author="ZXFeng" labels="init">
-        <comment>初始表数据</comment>
-        <sqlFile path="v0.1/init_table.sql"/>
+    <changeSet id="V1.0-240119-011" author="ZXFeng" labels="base">
+        <comment>创建表测试 v1.0</comment>
+        <sqlFile path="v1.0/create_table.sql"/>
         <rollback>
-            <delete tableName="site_poster_apply"/>
+            <dropTable tableName="site_poster_design"/>
         </rollback>
     </changeSet>
 </databaseChangeLog>

@@ -24,11 +24,12 @@ liquibase {
             password "abcd"
             changelogFile "src/main/resources/changelog.xml"
             logLevel "warning"
-//            changelogParameters(['table.prefix': "my_"])
+            // changelogParameters(['table.prefix': "my_"]) // 不支持
+            // 设置根目录
             classpath "src/main/resources/"
             databaseChangelogTableName "hst_db_changelog"
             databaseChangelogLockTableName "hst_db_changelog_lock"
-            outputFile "update.md"
+            outputFile "update.stats.txt"
         }
     }
 }
