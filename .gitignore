@@ -8,7 +8,9 @@ gradlew
 build
 gradle
 gradlew.bat
-settings.gradle
+
+# settings.gradle
+
 .gradle
 
 classes
