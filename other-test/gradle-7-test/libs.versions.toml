@@ -1,0 +1,36 @@
+# 要复制到 ./gradle 目录下
+
+# -----------------
+[versions] # 用于声明可以被依赖项引用的版本
+lombok = "8.0.1"
+slf4j = "2.0.7"
+hutool = "5.8.24"
+junit = "5.9.3"
+
+
+# -----------------
+[libraries] # 用于声明依赖的别名
+hutool-core = { module = "cn.hutool:hutool-core", version.ref = "hutool" }
+hutool-crypto = { module = "cn.hutool:hutool-crypto", version.ref = "hutool" }
+
+# implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.7'
+# implementation group: 'org.slf4j', name: 'slf4j-simple', version: '2.0.7'
+slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
+slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4j" }
+
+# testImplementation group: 'org.junit.vintage', name: 'junit-vintage-engine', version: '5.9.3' # JUnit-5 (兼容 4)
+# testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.9.3' # JUnit-5
+junit5-cp4 = { module = "org.junit.vintage:junit-vintage-engine", version.ref = "junit" }   # JUnit-5 (兼容 4)
+junit5 = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit" }       # JUnit-5
+
+
+# -----------------
+[bundles] # 用于声明依赖包（依赖组）
+hutool5 = ["hutool-core", "hutool-crypto"]
+slf4j = ["slf4j-api", "slf4j-simple"]
+junit5 = ["junit5-cp4", "junit5"]
+
+
+# -----------------
+[plugins] # 用于声明插件
+lombok = { id = "io.freefair.lombok", version.ref = "lombok" }
