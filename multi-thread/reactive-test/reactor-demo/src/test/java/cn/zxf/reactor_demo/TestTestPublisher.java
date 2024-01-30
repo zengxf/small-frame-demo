@@ -5,15 +5,15 @@ import reactor.test.publisher.TestPublisher;
 
 public class TestTestPublisher {
 
-    public static void main( String[] args ) {
+    public static void main(String[] args) {
         TestPublisher<String> testPublisher = TestPublisher.create();
-        testPublisher.next( "a" );
-        testPublisher.next( "b" );
+        testPublisher.next("a");
+        testPublisher.next("b");
         testPublisher.complete();
 
-        StepVerifier.create( testPublisher )
-                .expectNext( "a" )
-                .expectNext( "b" )
+        StepVerifier.create(testPublisher)
+                .expectNext("a")
+                .expectNext("b")
                 .expectComplete();
     }
 

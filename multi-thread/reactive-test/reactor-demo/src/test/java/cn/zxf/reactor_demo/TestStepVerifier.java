@@ -8,8 +8,10 @@ import reactor.test.StepVerifier;
 public class TestStepVerifier {
 
     public static void main(String[] args) {
-        StepVerifier.withVirtualTime(() -> Flux.interval(Duration.ofHours(4), Duration.ofDays(1))
-                        .take(2))
+        StepVerifier.withVirtualTime(
+                        () -> Flux.interval(Duration.ofHours(4), Duration.ofDays(1))
+                                .take(2)
+                )
                 .expectSubscription()
                 .expectNoEvent(Duration.ofHours(4))
                 .expectNext(0L)
