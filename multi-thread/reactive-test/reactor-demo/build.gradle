@@ -1,6 +1,7 @@
 plugins {
     id "java"
     id "io.freefair.lombok" version "8.4"
+//    id "net.bytebuddy.byte-buddy-gradle-plugin" version "1.14.11"
 }
 
 sourceCompatibility = 17
@@ -11,6 +12,10 @@ repositories {
     mavenCentral()
 }
 
+//configurations {
+//    byteBuddyPlugin
+//}
+
 ext {
     reactor = "3.6.2"
     slf4j = "2.0.11"
@@ -18,10 +23,21 @@ ext {
 
 dependencies {
     // Reactor
+    // implementation group: "io.projectreactor", name: "reactor-bom", version: "2023.0.2", ext: "pom" // 没用
     implementation group: "io.projectreactor", name: "reactor-core", version: "${reactor}"
+//    implementation group: "io.projectreactor", name: "reactor-tools", version: "${reactor}"
     testImplementation group: "io.projectreactor", name: "reactor-test", version: "${reactor}"
 
     // Slf4j
     implementation group: "org.slf4j", name: "slf4j-api", version: "${slf4j}"
     implementation group: "org.slf4j", name: "slf4j-simple", version: "${slf4j}"
+
+//    byteBuddyPlugin(group: "io.projectreactor", name: "reactor-tools", classifier: "original", version: "${reactor}")
 }
+
+//byteBuddy {
+//    transformation {
+//        plugin = "reactor.tools.agent.ReactorDebugByteBuddyPlugin"
+//        classPath = configurations.byteBuddyPlugin
+//    }
+//}
