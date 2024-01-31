@@ -15,7 +15,7 @@ public class PubSubTest {
     public static void main(String[] args) throws InterruptedException {
         // 1. 定义 String 类型的数据发布者，JDK 9 自带的
         // SubmissionPublisher 实现了 Publisher
-        SubmissionPublisher<String> publisher = new SubmissionPublisher<>();
+        SubmissionPublisher<String> publisher = new SubmissionPublisher<>();    // sign_demo_001
 
         // 2. 创建一个订阅者，用于接收发布者的消息
         Subscriber<String> subscriber = new Subscriber<>() {
@@ -62,17 +62,17 @@ public class PubSubTest {
         };
 
         // 3. 发布者和订阅者需要建立关系
-        publisher.subscribe(subscriber);
+        publisher.subscribe(subscriber);    // sign_demo_010
 
         // 4. 发布者开始发布数据
         for (int i = 0; i < 10; i++) {
             String message = "pub - sub - " + i;
             System.out.println("【发布者】发布消息 ------> " + message);
-            publisher.submit(message);
+            publisher.submit(message);      // sign_demo_020
         }
 
         // 5. 发布结束后，关闭发布者
-        publisher.close();
+        publisher.close();                  // sign_demo_030
 
         // main 线程延迟关闭，不然订阅者还没接收完消息，线程就被关闭了
         Thread.currentThread().join(2000);
