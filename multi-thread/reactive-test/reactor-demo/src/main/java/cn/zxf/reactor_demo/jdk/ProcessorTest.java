@@ -11,6 +11,8 @@ import java.util.concurrent.SubmissionPublisher;
  * 它是 Publisher 和 Subscriber 的结合体，充当数据处理的角色，<br/>
  * 通常的做法是用它来接收发布者发布的消息，然后进行相应的处理，再将数据发布出去，供消息订阅者接收。
  * <p/>
+ * ref: https://mrbird.cc/Java-9-Flow-API-Learn.html
+ * <p/>
  * Created by ZXFeng on 2024/1/30
  */
 public class ProcessorTest {

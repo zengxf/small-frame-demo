@@ -9,6 +9,8 @@ import java.util.concurrent.TimeUnit;
 /**
  * 模拟背压
  * <p/>
+ * ref: https://mrbird.cc/Java-9-Flow-API-Learn.html
+ * <p/>
  * Created by ZXFeng on 2024/1/30
  */
 public class BackpressureTest {

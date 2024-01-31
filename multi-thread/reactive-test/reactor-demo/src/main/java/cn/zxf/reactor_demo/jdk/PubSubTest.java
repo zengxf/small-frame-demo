@@ -6,6 +6,8 @@ import java.util.concurrent.SubmissionPublisher;
 /**
  * 简单的发布订阅示例
  * <p/>
+ * ref: https://mrbird.cc/Java-9-Flow-API-Learn.html
+ * <p/>
  * Created by ZXFeng on 2024/1/30
  */
 public class PubSubTest {
