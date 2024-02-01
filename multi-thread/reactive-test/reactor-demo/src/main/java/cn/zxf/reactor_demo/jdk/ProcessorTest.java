@@ -48,7 +48,7 @@ public class ProcessorTest {
         @Override
         public void onError(Throwable throwable) {
             // 过程中出现异常会回调这个方法
-            System.out.println("【处理器】数据接收出现异常，" + throwable);
+            System.err.println("【处理器】数据接收出现异常，" + throwable);
 
             // 出现异常，取消订阅，告诉发布者我不再接收数据了
             this.subscription.cancel();
@@ -56,7 +56,7 @@ public class ProcessorTest {
 
         @Override
         public void onComplete() {
-            System.out.println("【处理器】数据处理完毕");
+            System.err.println("【处理器】数据处理完毕");
 
             // 处理器处理完数据后关闭
             super.close();
@@ -93,13 +93,13 @@ public class ProcessorTest {
 
             @Override
             public void onError(Throwable throwable) {
-                System.out.println("【订阅者】数据接收出现异常，" + throwable);
+                System.err.println("【订阅者】数据接收出现异常，" + throwable);
                 this.subscription.cancel();
             }
 
             @Override
             public void onComplete() {
-                System.out.println("【订阅者】数据接收完毕");
+                System.err.println("【订阅者】数据接收完毕");
             }
         };
 
@@ -117,7 +117,8 @@ public class ProcessorTest {
         publisher.close();
 
         // main线程延迟关闭，不然订阅者还没接收完消息，线程就被关闭了
-        Thread.currentThread().join(1000);
+        Thread.sleep(1000);
+        System.err.println("Main 线程退出！");
     }
 
 }

@@ -1,5 +1,7 @@
 package cn.zxf.reactor_demo.jdk;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.concurrent.Flow.*;
 import java.util.concurrent.SubmissionPublisher;
 
@@ -10,6 +12,7 @@ import java.util.concurrent.SubmissionPublisher;
  * <p/>
  * Created by ZXFeng on 2024/1/30
  */
+@Slf4j
 public class PubSubTest {
 
     public static void main(String[] args) throws InterruptedException {
@@ -17,23 +20,25 @@ public class PubSubTest {
         // SubmissionPublisher 实现了 Publisher
         SubmissionPublisher<String> publisher = new SubmissionPublisher<>();    // sign_demo_001
 
+        publisher.submit("<---------->"); // 没订阅者，里面不做处理
+
         // 2. 创建一个订阅者，用于接收发布者的消息
         Subscriber<String> subscriber = new Subscriber<>() {
             private Subscription subscription;
 
-            @Override
+            @Override // sign_demo_110
             public void onSubscribe(Subscription subscription) {
                 // 通过 Subscription 和发布者保持订阅关系，并用它来给发布者反馈
                 this.subscription = subscription;
                 // 请求一个数据
-                this.subscription.request(1);
-                System.out.println("<---------- 订阅成功");
+                this.subscription.request(1);   // 要主动拉取，否则不消费
+                log.info("<---------- 订阅成功");
             }
 
-            @Override
+            @Override // sign_demo_120
             public void onNext(String item) {
                 // 接收发布者发布的消息
-                System.out.println("【订阅者】接收消息 <------ " + item);
+                log.info("【订阅者】接收消息 <------ " + item);
 
                 // 接收后再次请求一个数据
                 this.subscription.request(1);
@@ -42,10 +47,10 @@ public class PubSubTest {
                 // this.subscription.cancel();
             }
 
-            @Override
+            @Override // sign_demo_130
             public void onError(Throwable throwable) {
                 // 过程中出现异常会回调这个方法
-                System.out.println("【订阅者】数据接收出现异常，" + throwable);
+                log.error("【订阅者】数据接收出现异常，" + throwable);
 
                 // 出现异常，取消订阅，告诉发布者我不再接收数据了
                 // 实际测试发现，只要订阅者接收消息出现异常，进入了这个回调
@@ -53,11 +58,11 @@ public class PubSubTest {
                 this.subscription.cancel();
             }
 
-            @Override
+            @Override // sign_demo_140
             public void onComplete() {
                 // 当发布者发出的数据都被接收了，
                 // 并且发布者关闭后，会回调这个方法
-                System.out.println("【订阅者】数据接收完毕");
+                log.warn("【订阅者】数据接收完毕");
             }
         };
 
@@ -67,7 +72,7 @@ public class PubSubTest {
         // 4. 发布者开始发布数据
         for (int i = 0; i < 10; i++) {
             String message = "pub - sub - " + i;
-            System.out.println("【发布者】发布消息 ------> " + message);
+            log.info("【发布者】发布消息 ------> " + message);
             publisher.submit(message);      // sign_demo_020
         }
 
@@ -75,7 +80,8 @@ public class PubSubTest {
         publisher.close();                  // sign_demo_030
 
         // main 线程延迟关闭，不然订阅者还没接收完消息，线程就被关闭了
-        Thread.currentThread().join(2000);
+        Thread.sleep(2000);
+        log.warn("Main 线程退出！");
     }
 
 }
