@@ -13,7 +13,8 @@ public class ComplexTest {
 
     public static void main(String[] args) {
         Flux.range(1, 10)       // sign_demo_001 初始化流
-                // .log("init")             // sign_demo_101 打印日志
+
+                .log("init")       // sign_demo_101 打印日志
 
                 .filter(i -> i % 2 == 0)   // sign_demo_201 过滤
                 // .log("filter")
