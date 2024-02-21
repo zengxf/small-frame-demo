@@ -10,8 +10,8 @@ public class TestScheduler {
     public static void main(String[] args) {
         // 输出：[[boundedElastic-1]] <[single-1]> {parallel-1}
         Flux.create(sink -> {
-                    sink.next("{" + Thread.currentThread().getName() + "}");
-                    sink.next("{" + Thread.currentThread().getName() + "}");
+                    sink.next("{" + Thread.currentThread().getName() + "--1}");
+                    sink.next("{" + Thread.currentThread().getName() + "--2}");
                     sink.complete();
                 })
                 .subscribeOn(Schedulers.parallel())     // 上面的 sink -> next 用的线程
