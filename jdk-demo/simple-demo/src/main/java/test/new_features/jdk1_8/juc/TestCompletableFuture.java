@@ -15,8 +15,7 @@ import util.SleepUtils;
 
 /**
  * 都有对应的异步方法 xxAsync()
- * 
- * <p>
+ * <p/>
  * Created by zengxf on 2017-11-28
  */
 @Slf4j
@@ -24,8 +23,9 @@ public class TestCompletableFuture {
 
     static ExecutorService executor = Executors.newCachedThreadPool();
 
-    public static void main( String[] args ) throws ExecutionException, InterruptedException {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
         // testThenApply();
+        testThenApply2();
         // testThenAccept();
         // testThenRun();
         // testThenCompose();
@@ -39,86 +39,111 @@ public class TestCompletableFuture {
         // testExceptionally();
         // howStart();
         // testWhenComplete();
+        // testComplete();
         // test_runAsync();
 
         // solveCallbackHell();
 
-        test_get();
+        // test_get();
         // test_getNow();
 
+        SleepUtils.second(1);
         executor.shutdown();
+    }
+
+    public static void testThenApply2() throws ExecutionException, InterruptedException {
+        CompletableFuture
+                .supplyAsync(() -> {
+                    log.info("------------- 1");
+                    return "1";
+                }, executor)
+                // })
+                .thenApply((v) -> { // 同线程
+                    log.info("------------- 2");
+                    return v + "-2";
+                })
+                .thenApplyAsync((v) -> {    // 开启新线程
+                    log.info("------------- 3");
+                    return v + "-3";
+                }, executor)
+                .thenAccept(v -> {  // 同线程
+                    log.info("接收 v: [{}]", v);
+                })
+                .thenRun(() -> {    // 同线程
+                    log.info("------------- 完成");
+                });
     }
 
     // 会等待
     static void test_get() throws InterruptedException, ExecutionException {
-        CompletableFuture<Integer> cf = CompletableFuture.supplyAsync( () -> {
-            System.out.println( "------ 1" );
-            SleepUtils.second( 1 );
-            System.out.println( "------ 2" );
+        CompletableFuture<Integer> cf = CompletableFuture.supplyAsync(() -> {
+            System.out.println("------ 1");
+            SleepUtils.second(1);
+            System.out.println("------ 2");
             return 100;
-        } );
-        System.out.println( "res: " + cf.get() );
+        });
+        System.out.println("res: " + cf.get());
     }
 
     // 不等待，直接返回默认值
     static void test_getNow() throws InterruptedException, ExecutionException {
-        CompletableFuture<Integer> cf = CompletableFuture.supplyAsync( () -> {
-            System.out.println( "------ 1" );
-            SleepUtils.second( 1 );
-            System.out.println( "------ 2" );
+        CompletableFuture<Integer> cf = CompletableFuture.supplyAsync(() -> {
+            System.out.println("------ 1");
+            SleepUtils.second(1);
+            System.out.println("------ 2");
             return 100;
-        } );
-        System.out.println( "res: " + cf.getNow( 0 ) );
+        });
+        System.out.println("res: " + cf.getNow(0));
     }
 
     // 解决**回调地狱**问题
     static void solveCallbackHell() {
         long l = System.currentTimeMillis();
 
-        CompletableFuture<Integer> completableFuture = CompletableFuture.supplyAsync( () -> {
-            System.out.println( "在回调中执行耗时操作..." );
+        CompletableFuture<Integer> completableFuture = CompletableFuture.supplyAsync(() -> {
+            System.out.println("在回调中执行耗时操作...");
             timeConsumingOperation();
             return 100;
-        } );
-        completableFuture = completableFuture.thenCompose( i -> {
-            return CompletableFuture.supplyAsync( () -> {
-                System.out.println( "在回调的回调中执行耗时操作..." );
+        });
+        completableFuture = completableFuture.thenCompose(i -> {
+            return CompletableFuture.supplyAsync(() -> {
+                System.out.println("在回调的回调中执行耗时操作...");
                 timeConsumingOperation();
                 return i + 100;
-            } );
-        } );// <1>
-        completableFuture.whenComplete( ( result, e ) -> {
-            System.out.println( "计算结果:" + result );
-        } );
+            });
+        });// <1>
+        completableFuture.whenComplete((result, e) -> {
+            System.out.println("计算结果:" + result);
+        });
 
-        System.out.println( "主线程运算耗时:" + ( System.currentTimeMillis() - l ) + " ms" );
+        System.out.println("主线程运算耗时:" + (System.currentTimeMillis() - l) + " ms");
 
-        SleepUtils.second( 3 );
+        SleepUtils.second(3);
     }
 
     static void timeConsumingOperation() {
         try {
-            Thread.sleep( 1000 );
-            System.out.println( "执行耗时操作...1000ms" );
-        } catch ( Exception e ) {
+            Thread.sleep(1000);
+            System.out.println("执行耗时操作...1000ms");
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     static void test_runAsync() {
         Runnable runnable = () -> {
-            log.info( "async --> start ..." );
-            sleep( 2000 );
-            log.info( "async --> end ..." );
+            log.info("async --> start ...");
+            sleep(2000);
+            log.info("async --> end ...");
         };
-        CompletableFuture.runAsync( runnable, executor );
-        log.info( "async --> return !!!" );
+        CompletableFuture.runAsync(runnable, executor);
+        log.info("async --> return !!!");
     }
 
-    static void sleep( int millis ) {
+    static void sleep(int millis) {
         try {
-            Thread.sleep( millis );
-        } catch ( InterruptedException e ) {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
@@ -127,109 +152,123 @@ public class TestCompletableFuture {
      * 完成后处理
      */
     public static void testWhenComplete() throws InterruptedException, ExecutionException {
-        CompletableFuture<String> f1 = CompletableFuture.supplyAsync( () -> {
-            System.out.println( "f1 run ..." );
-            if ( System.currentTimeMillis() % 2 == 0 ) {
-                throw new RuntimeException( "random error !!!" );
+        CompletableFuture<String> f1 = CompletableFuture.supplyAsync(() -> {
+            System.out.println("f1 run ...");
+            if (System.currentTimeMillis() % 2 == 0) {
+                throw new RuntimeException("random error !!!");
             }
             return "zero";
-        }, executor );
-        f1.whenComplete( ( str, e ) -> {
-            System.out.println( "result: " + str );
-            System.out.println( "e: " + e );
-        } );
+        }, executor);
+        f1.whenComplete((str, e) -> {
+            System.out.println("result: " + str);
+            System.out.println("e: " + e);
+        });
         // System.out.println( "f1 get result: " + f1.join() );
+    }
+
+    /*** 主动完成 */
+    public static void testComplete() {
+        var future = CompletableFuture.supplyAsync(() -> {
+            try {
+                Thread.sleep(100L);
+                return "test";
+            } catch (Exception e) {
+                return "failed test";
+            }
+        });
+        future.complete("manual test");   // 主动完成
+        System.out.println(future.join());      // 打印结果是“manual test”
     }
 
     /**
      * 如何创建和获取
      */
     public static void howStart() throws InterruptedException, ExecutionException {
-        CompletableFuture<String> f1 = CompletableFuture.supplyAsync( () -> {
-            System.out.println( "f1 run ..." );
+        CompletableFuture<String> f1 = CompletableFuture.supplyAsync(() -> {
+            System.out.println("f1 run ...");
             return "zero";
-        }, executor );
-        System.out.println( "f1 get result: " + f1.get() );
+        }, executor);
+        System.out.println("f1 get result: " + f1.get());
 
-        CompletableFuture<Void> f2 = CompletableFuture.runAsync( () -> {
-            System.out.println( "f2 run ..." );
-        }, executor );
-        System.out.println( "f2 get result: " + f2.get() );
+        CompletableFuture<Void> f2 = CompletableFuture.runAsync(() -> {
+            System.out.println("f2 run ...");
+        }, executor);
+        System.out.println("f2 get result: " + f2.get());
     }
 
     /**
      * 结果和异常处理
      */
     public static void testHandle() throws InterruptedException, ExecutionException {
-        CompletableFuture<String> f1 = CompletableFuture.supplyAsync( () -> {
+        CompletableFuture<String> f1 = CompletableFuture.supplyAsync(() -> {
             return "zero";
-        }, executor );
-        CompletableFuture<String> cf = f1.handle( ( String t, Throwable u ) -> {
-            System.out.println( "result: " + t );
-            System.out.println( "u: " + u );
+        }, executor);
+        CompletableFuture<String> cf = f1.handle((String t, Throwable u) -> {
+            System.out.println("result: " + t);
+            System.out.println("u: " + u);
             return "test-" + t;
-        } );
-        System.out.println( "cf result: " + cf.get() );
+        });
+        System.out.println("cf result: " + cf.get());
     }
 
     /**
      * 异常处理
      */
     public static void testExceptionally() throws InterruptedException, ExecutionException {
-        CompletableFuture<String> f1 = CompletableFuture.supplyAsync( () -> {
+        CompletableFuture<String> f1 = CompletableFuture.supplyAsync(() -> {
             return "zero";
-        }, executor );
-        CompletableFuture<String> cf = f1.exceptionally( ( t ) -> {
-            System.out.println( "t: " + t ); // 异常时才调用
+        }, executor);
+        CompletableFuture<String> cf = f1.exceptionally((t) -> {
+            System.out.println("t: " + t); // 异常时才调用
             return "def";
-        } );
-        System.out.println( "cf result: " + cf.get() );
+        });
+        System.out.println("cf result: " + cf.get());
     }
 
     /**
      * 等待多个 future 当中最快的一个返回
      */
     public static void testAnyOf() throws InterruptedException {
-        List<CompletableFuture<String>> futures = IntStream.range( 1, 10 )//
-                .mapToObj( i -> longCost( i ) )//
-                .collect( Collectors.toList() );
-        CompletableFuture<Object> firstCompleted = CompletableFuture.anyOf( futures.toArray( new CompletableFuture[] {} ) );
-        firstCompleted.thenAccept( ( Object result ) -> {
-            System.out.println( "get at: " + System.currentTimeMillis() + ", first result: " + result );
-        } );
+        List<CompletableFuture<String>> futures = IntStream.range(1, 10)
+                .mapToObj(i -> longCost(i))
+                .collect(Collectors.toList());
+        CompletableFuture<Object> firstCompleted = CompletableFuture.anyOf(futures.toArray(new CompletableFuture[]{}));
+        firstCompleted.thenAccept((Object result) -> {
+            System.out.println("get at: " + System.currentTimeMillis() + ", first result: " + result);
+        });
     }
 
     /**
      * 等待多个 future 返回
      */
     public static void testAllOf() throws InterruptedException {
-        List<CompletableFuture<String>> futures = IntStream.range( 1, 10 ) //
-                .mapToObj( i -> longCost( i ) )//
-                .collect( Collectors.toList() );
-        CompletableFuture<Void> allCompleted = CompletableFuture.allOf( futures.toArray( new CompletableFuture[] {} ) );
-        allCompleted.thenRun( () -> {
+        List<CompletableFuture<String>> futures = IntStream.range(1, 10) //
+                .mapToObj(i -> longCost(i))//
+                .collect(Collectors.toList());
+        CompletableFuture<Void> allCompleted = CompletableFuture.allOf(futures.toArray(new CompletableFuture[]{}));
+        allCompleted.thenRun(() -> {
             futures.stream()
-                    .forEach( future -> {
+                    .forEach(future -> {
                         try {
-                            System.out.println( "get future at:" + System.currentTimeMillis() + ", result:" + future.get() );
-                        } catch ( InterruptedException | ExecutionException e ) {
+                            System.out.println("get future at:" + System.currentTimeMillis() + ", result:" + future.get());
+                        } catch (InterruptedException | ExecutionException e) {
                             e.printStackTrace();
                         }
-                    } );
-        } );
+                    });
+        });
     }
 
-    static CompletableFuture<String> longCost( int i ) {
-        CompletableFuture<String> f1 = CompletableFuture.supplyAsync( () -> {
+    static CompletableFuture<String> longCost(int i) {
+        CompletableFuture<String> f1 = CompletableFuture.supplyAsync(() -> {
             try {
-                System.out.println( "f1-" + i + " start to sleep at:" + System.currentTimeMillis() );
-                TimeUnit.SECONDS.sleep( i );
-                System.out.println( "f1-" + i + " stop sleep at:" + System.currentTimeMillis() );
-            } catch ( Exception e ) {
+                System.out.println("f1-" + i + " start to sleep at:" + System.currentTimeMillis());
+                TimeUnit.SECONDS.sleep(i);
+                System.out.println("f1-" + i + " stop sleep at:" + System.currentTimeMillis());
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return "i-" + i;
-        }, executor );
+        }, executor);
         return f1;
     }
 
@@ -238,131 +277,131 @@ public class TestCompletableFuture {
      * 当任意一个 CompletionStage 完成的时候，action 这个消费者就会被执行。这个方法返回 CompletableFuture<Void>
      */
     public static void testAcceptEither() throws ExecutionException, InterruptedException {
-        CompletableFuture<String> f1 = CompletableFuture.supplyAsync( () -> {
+        CompletableFuture<String> f1 = CompletableFuture.supplyAsync(() -> {
             try {
-                System.out.println( "f1 start to sleep at:" + System.currentTimeMillis() );
-                TimeUnit.SECONDS.sleep( 3 );
-                System.out.println( "f1 stop sleep at:" + System.currentTimeMillis() );
-            } catch ( Exception e ) {
+                System.out.println("f1 start to sleep at:" + System.currentTimeMillis());
+                TimeUnit.SECONDS.sleep(3);
+                System.out.println("f1 stop sleep at:" + System.currentTimeMillis());
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return "zero";
-        }, executor );
-        CompletableFuture<String> f2 = CompletableFuture.supplyAsync( () -> {
+        }, executor);
+        CompletableFuture<String> f2 = CompletableFuture.supplyAsync(() -> {
             try {
-                System.out.println( "f2 start to sleep at:" + System.currentTimeMillis() );
-                TimeUnit.SECONDS.sleep( 5 );
-                System.out.println( "f2 stop sleep at:" + System.currentTimeMillis() );
-            } catch ( Exception e ) {
+                System.out.println("f2 start to sleep at:" + System.currentTimeMillis());
+                TimeUnit.SECONDS.sleep(5);
+                System.out.println("f2 stop sleep at:" + System.currentTimeMillis());
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return "hello";
-        }, executor );
+        }, executor);
 
-        CompletableFuture<Void> reslutFuture = f1.acceptEither( f2, r -> {
-            System.out.println( "quicker result: " + r );
-        } );
-        System.out.println( "result: " + reslutFuture.get() );// should be null , wait for complete
+        CompletableFuture<Void> reslutFuture = f1.acceptEither(f2, r -> {
+            System.out.println("quicker result: " + r);
+        });
+        System.out.println("result: " + reslutFuture.get());// should be null , wait for complete
     }
 
     /**
-     * 当任意一个 CompletionStage 完成的时候，fn 会被执行,它的返回值会当做新的 CompletableFuture<U> 的计算结果
+     * 当任意一个 CompletionStage 完成的时候，fn 会被执行，它的返回值会当做新的 CompletableFuture<U> 的计算结果
      */
     public static void testApplyToEither() throws ExecutionException, InterruptedException {
-        CompletableFuture<String> f1 = CompletableFuture.supplyAsync( () -> {
+        CompletableFuture<String> f1 = CompletableFuture.supplyAsync(() -> {
             try {
-                System.out.println( "f1 start to sleep at:" + System.currentTimeMillis() );
-                TimeUnit.SECONDS.sleep( 5 );
-                System.out.println( "f1 stop sleep at:" + System.currentTimeMillis() );
-            } catch ( Exception e ) {
+                System.out.println("f1 start to sleep at:" + System.currentTimeMillis());
+                TimeUnit.SECONDS.sleep(5);
+                System.out.println("f1 stop sleep at:" + System.currentTimeMillis());
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return "fromF1";
-        }, executor );
-        CompletableFuture<String> f2 = CompletableFuture.supplyAsync( () -> {
+        }, executor);
+        CompletableFuture<String> f2 = CompletableFuture.supplyAsync(() -> {
             try {
-                System.out.println( "f2 start to sleep at:" + System.currentTimeMillis() );
-                TimeUnit.SECONDS.sleep( 2 );
-                System.out.println( "f2 stop sleep at:" + System.currentTimeMillis() );
-            } catch ( Exception e ) {
+                System.out.println("f2 start to sleep at:" + System.currentTimeMillis());
+                TimeUnit.SECONDS.sleep(2);
+                System.out.println("f2 stop sleep at:" + System.currentTimeMillis());
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return "fromF2";
-        }, executor );
+        }, executor);
 
-        CompletableFuture<String> reslutFuture = f1.applyToEither( f2, i -> i.toString() );
-        System.out.println( "result: " + reslutFuture.get() ); // should not be null , wait for complete
+        CompletableFuture<String> reslutFuture = f1.applyToEither(f2, i -> i.toString());
+        System.out.println("result: " + reslutFuture.get()); // should not be null , wait for complete
     }
 
     /**
      * thenAcceptBoth 用于组合两个并发的任务, 产生新的 future 没有返回值
      */
     public static void testThenAcceptBoth() throws ExecutionException, InterruptedException {
-        CompletableFuture<String> f1 = CompletableFuture.supplyAsync( () -> {
+        CompletableFuture<String> f1 = CompletableFuture.supplyAsync(() -> {
             try {
-                System.out.println( "f1 start to sleep at:" + System.currentTimeMillis() );
-                TimeUnit.SECONDS.sleep( 1 );
-                System.out.println( "f1 stop sleep at:" + System.currentTimeMillis() );
-            } catch ( Exception e ) {
+                System.out.println("f1 start to sleep at:" + System.currentTimeMillis());
+                TimeUnit.SECONDS.sleep(1);
+                System.out.println("f1 stop sleep at:" + System.currentTimeMillis());
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return "zero";
-        }, executor );
-        CompletableFuture<String> f2 = CompletableFuture.supplyAsync( () -> {
+        }, executor);
+        CompletableFuture<String> f2 = CompletableFuture.supplyAsync(() -> {
             try {
-                System.out.println( "f2 start to sleep at:" + System.currentTimeMillis() );
-                TimeUnit.SECONDS.sleep( 3 );
-                System.out.println( "f2 stop sleep at:" + System.currentTimeMillis() );
-            } catch ( Exception e ) {
+                System.out.println("f2 start to sleep at:" + System.currentTimeMillis());
+                TimeUnit.SECONDS.sleep(3);
+                System.out.println("f2 stop sleep at:" + System.currentTimeMillis());
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return "hello";
-        }, executor );
+        }, executor);
 
-        CompletableFuture<Void> reslutFuture = f1.thenAcceptBoth( f2, ( t, u ) -> {
-            System.out.println( "f3 start to accept at:" + System.currentTimeMillis() );
-            System.out.println( t + " over" );
-            System.out.println( u + " over" );
-        } );
+        CompletableFuture<Void> reslutFuture = f1.thenAcceptBoth(f2, (t, u) -> {
+            System.out.println("f3 start to accept at:" + System.currentTimeMillis());
+            System.out.println(t + " over");
+            System.out.println(u + " over");
+        });
 
-        System.out.println( reslutFuture.get() );
-        System.out.println( "finish accept at:" + System.currentTimeMillis() );
+        System.out.println(reslutFuture.get());
+        System.out.println("finish accept at:" + System.currentTimeMillis());
     }
 
     /**
      * thenCombine 用于组合两个并发的任务, 产生新的 future 有返回值
      */
     public static void testThenCombine() throws ExecutionException, InterruptedException {
-        CompletableFuture<String> f1 = CompletableFuture.supplyAsync( () -> {
+        CompletableFuture<String> f1 = CompletableFuture.supplyAsync(() -> {
             try {
-                System.out.println( "f1 start to sleep at:" + System.currentTimeMillis() );
-                Thread.sleep( 1000 );
-                System.out.println( "f1 finish sleep at:" + System.currentTimeMillis() );
-            } catch ( InterruptedException e ) {
+                System.out.println("f1 start to sleep at:" + System.currentTimeMillis());
+                Thread.sleep(1000);
+                System.out.println("f1 finish sleep at:" + System.currentTimeMillis());
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             return "zero";
-        }, executor );
+        }, executor);
 
-        CompletableFuture<String> f2 = CompletableFuture.supplyAsync( () -> {
+        CompletableFuture<String> f2 = CompletableFuture.supplyAsync(() -> {
             try {
-                System.out.println( "f2 start to sleep at:" + System.currentTimeMillis() );
-                Thread.sleep( 3000 );
-                System.out.println( "f2 finish sleep at:" + System.currentTimeMillis() );
-            } catch ( InterruptedException e ) {
+                System.out.println("f2 start to sleep at:" + System.currentTimeMillis());
+                Thread.sleep(3000);
+                System.out.println("f2 finish sleep at:" + System.currentTimeMillis());
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             return "hello";
-        }, executor );
+        }, executor);
 
-        BiFunction<String, String, String> fn = ( t, u ) -> {
-            System.out.println( "f3 start to combine at:" + System.currentTimeMillis() );
+        BiFunction<String, String, String> fn = (t, u) -> {
+            System.out.println("f3 start to combine at:" + System.currentTimeMillis());
             return t + "-" + u;
         };
-        CompletableFuture<String> reslutFuture = f1.thenCombine( f2, fn );
+        CompletableFuture<String> reslutFuture = f1.thenCombine(f2, fn);
 
-        System.out.println( "result: " + reslutFuture.get() ); // zero-hello
-        System.out.println( "finish combine at:" + System.currentTimeMillis() );
+        System.out.println("result: " + reslutFuture.get()); // zero-hello
+        System.out.println("finish combine at:" + System.currentTimeMillis());
         executor.shutdown();
     }
 
@@ -370,25 +409,25 @@ public class TestCompletableFuture {
      * compose 相当于 flatMap, 避免 CompletableFuture<CompletableFuture<String>> 这种
      */
     public static void testThenCompose() throws ExecutionException, InterruptedException {
-        CompletableFuture<String> f1 = CompletableFuture.supplyAsync( () -> {
+        CompletableFuture<String> f1 = CompletableFuture.supplyAsync(() -> {
             return "zero";
-        }, executor );
-        CompletableFuture<CompletableFuture<String>> f4 = f1.thenApply( TestCompletableFuture::calculate );
-        System.out.println( "f4.get: " + f4.get() );
-        System.out.println( "f4.get.get: " + f4.get()
-                .get() );
+        }, executor);
+        CompletableFuture<CompletableFuture<String>> f4 = f1.thenApply(TestCompletableFuture::calculate);
+        System.out.println("f4.get: " + f4.get());
+        System.out.println("f4.get.get: " + f4.get()
+                .get());
 
-        CompletableFuture<String> f5 = f1.thenCompose( TestCompletableFuture::calculate );
-        System.out.println( "f5.get: " + f5.get() );
+        CompletableFuture<String> f5 = f1.thenCompose(TestCompletableFuture::calculate);
+        System.out.println("f5.get: " + f5.get());
 
-        System.out.println( f1.get() );
+        System.out.println(f1.get());
     }
 
-    public static CompletableFuture<String> calculate( String input ) {
-        CompletableFuture<String> future = CompletableFuture.supplyAsync( () -> {
-            System.out.println( input );
+    public static CompletableFuture<String> calculate(String input) {
+        CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> {
+            System.out.println(input);
             return input + "---" + input.length();
-        }, executor );
+        }, executor);
         return future;
     }
 
@@ -396,41 +435,65 @@ public class TestCompletableFuture {
      * 结果传递(变换)
      */
     public static void testThenApply() throws ExecutionException, InterruptedException {
-        CompletableFuture<String> f1 = CompletableFuture.supplyAsync( () -> {
+        CompletableFuture<String> f1 = CompletableFuture.supplyAsync(() -> {
             return "zero";
-        }, executor );
+        }, executor);
 
-        CompletableFuture<Integer> f2 = f1.thenApply( ( t ) -> {
-            System.out.println( t );
-            return Integer.valueOf( t.length() );
-        } );
+        CompletableFuture<Integer> f2 = f1.thenApply((t) -> {
+            System.out.println(t);
+            return Integer.valueOf(t.length());
+        });
 
-        CompletableFuture<Double> f3 = f2.thenApply( r -> r * 2.0 );
-        System.out.println( f3.get() );
+        CompletableFuture<Double> f3 = f2.thenApply(r -> r * 2.0);
+        System.out.println(f3.get());
+    }
+
+    public static void testThenApply3() throws ExecutionException, InterruptedException {
+        CompletableFuture<String> f1 = CompletableFuture.supplyAsync(() -> {
+            log.info("------------- 1");
+            return "1";
+        }, executor);
+        CompletableFuture<String> f2 = f1.thenApply((v) -> {
+            log.info("------------- 2");
+            return v + "-2";
+        });
+        CompletableFuture<String> f3 = f2.thenApply((v) -> {
+            log.info("------------- 3");
+            return v + "-3";
+        });
+        CompletableFuture<Void> a1 = f3.thenAccept(v -> {
+            log.info("v: [{}]", v);
+        });
+        CompletableFuture<Void> r1 = a1.thenRun(() -> {
+            log.info("------------- 完成 -------------");
+        });
+        r1.get();
+        String v = f3.get();
+        log.info("v: [{}]", v);
     }
 
     /**
      * future 完成处理, 可获取结果
      */
     public static void testThenAccept() {
-        CompletableFuture<String> f1 = CompletableFuture.supplyAsync( () -> {
+        CompletableFuture<String> f1 = CompletableFuture.supplyAsync(() -> {
             return "zero";
-        }, executor );
-        f1.thenAccept( e -> {
-            System.out.println( "get result: " + e );
-        } );
+        }, executor);
+        f1.thenAccept(e -> {
+            System.out.println("get result: " + e);
+        });
     }
 
     /**
      * future 完成处理
      */
     public static void testThenRun() {
-        CompletableFuture<String> f1 = CompletableFuture.supplyAsync( () -> {
+        CompletableFuture<String> f1 = CompletableFuture.supplyAsync(() -> {
             return "zero";
-        }, executor );
-        f1.thenRun( () -> {
-            System.out.println( "finished" );
-        } );
+        }, executor);
+        f1.thenRun(() -> {
+            System.out.println("finished");
+        });
     }
 
 }
