@@ -20,12 +20,12 @@ public class TestBackpressureSimple {
                 })
                 .subscribeOn(Schedulers.parallel()) // 上面的 sink -> next 用的线程
                 .publishOn(Schedulers.single()) // 下面操作符用的线程
-                .subscribe(i -> {
-                    System.out.println(Thread.currentThread().getName() + " == i: " + i);
+                .subscribe(v -> {
+                    System.out.println(Thread.currentThread().getName() + " == v: " + v);
                     sleep(100);
                 });
 
-        sleep(2200); // 自带的都是守护线程，不等待会直接退出
+        sleep(5600); // 自带的都是守护线程，不等待会直接退出
     }
 
     static void sleep(int millis) {
