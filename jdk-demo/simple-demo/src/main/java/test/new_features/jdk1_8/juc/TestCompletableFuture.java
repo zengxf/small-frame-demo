@@ -51,9 +51,9 @@ public class TestCompletableFuture {
         executor.shutdown();
     }
 
-    public static void testThenApply2() throws ExecutionException, InterruptedException {
+    public static void testThenApply2() {
         CompletableFuture
-                .supplyAsync(() -> {
+                .supplyAsync(() -> {    // sign_demo_010
                     log.info("------------- 1");
                     return "1";
                 }, executor)
