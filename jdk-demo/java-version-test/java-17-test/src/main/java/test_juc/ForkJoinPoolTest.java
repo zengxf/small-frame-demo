@@ -10,10 +10,10 @@ public class ForkJoinPoolTest {
 
     public static void main(String[] args) throws Exception {
         ForkJoinPool forkJoinPool = new ForkJoinPool();
-        CountTask task = new CountTask(1, 5);
+        CountTask task = new CountTask(1, 10);
         // System.out.println(task.compute());  // 也可直接用默认的 fj 线程池执行
         Future<Integer> result = forkJoinPool.submit(task);
-        System.out.println(result.get());
+        System.out.println("结果：" + result.get());
     }
 
     public static class CountTask extends RecursiveTask<Integer> {
@@ -29,6 +29,12 @@ public class ForkJoinPoolTest {
         @Override
         public Integer compute() {
             int sum = 0;
+
+            try {
+                Thread.sleep(200L);
+                System.out.printf("cur-thread: [%s].%n", Thread.currentThread().getName());
+            } catch (InterruptedException e) {
+            }
 
             // 如果任务足够小就计算任务
             boolean canCompute = (end - start) <= THRESHOLD;
