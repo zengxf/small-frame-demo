@@ -41,11 +41,13 @@ public class TestBufferSlice {
         // 3 3 3
         log.info("position: [{}], limit: [{}], capacity: [{}]", sliceBuf.position(), sliceBuf.limit(), sliceBuf.capacity());
 
+        log.info("--------------------------------");
         log.info("bytes-1: [{}]", bytes);
 
         // 使用 slice() 后，再调用 arrayOffset() 方法时，会出现返回值非 0 的情况
         // 其是对原缓冲区的偏移
-        log.info("offset: [{}]", sliceBuf.arrayOffset());
+        log.info("byteBuffer-offset: [{}]", byteBuffer.arrayOffset());
+        log.info("sliceBuf-offset: [{}]", sliceBuf.arrayOffset());
     }
 
 }
