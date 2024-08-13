@@ -16,25 +16,25 @@ import java.util.Scanner;
  */
 public class TestMappedByteBuffer {
 
-    @SuppressWarnings( "resource" )
-    public static void main( String[] args ) {
-        File file = new File( "D:\\test\\read\\aa.txt" );
+    @SuppressWarnings("resource")
+    public static void main(String[] args) {
+        File file = new File("D:\\test\\read\\aa.txt");
         long len = file.length();
         byte[] ds = new byte[(int) len];
 
         try {
-            MappedByteBuffer mappedByteBuffer = new RandomAccessFile( file, "r" ).getChannel()
-                    .map( FileChannel.MapMode.READ_ONLY, 0, len );
-            for ( int offset = 0; offset < len; offset++ ) {
+            MappedByteBuffer mappedByteBuffer = new RandomAccessFile(file, "r").getChannel()
+                    .map(FileChannel.MapMode.READ_ONLY, 0, len);
+            for (int offset = 0; offset < len; offset++) {
                 byte b = mappedByteBuffer.get();
                 ds[offset] = b;
             }
 
-            Scanner scan = new Scanner( new ByteArrayInputStream( ds ) ).useDelimiter( " " );
-            while ( scan.hasNext() ) {
-                System.out.print( scan.next() + " " );
+            Scanner scan = new Scanner(new ByteArrayInputStream(ds)).useDelimiter(" ");
+            while (scan.hasNext()) {
+                System.out.print(scan.next() + " ");
             }
-        } catch ( IOException e ) {
+        } catch (IOException e) {
         }
     }
 

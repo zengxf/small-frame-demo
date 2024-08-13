@@ -7,6 +7,9 @@ import lombok.extern.slf4j.Slf4j;
 public class TempTest {
 
     public static void main(String[] args) throws Exception {
+        System.out.println("输出中文 Test 123");
+        log.info("输出中文 Test 123");
+
         test(10, 10);
         test(10, 3);
         test(2, 3);

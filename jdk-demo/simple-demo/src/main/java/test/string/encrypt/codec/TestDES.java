@@ -12,49 +12,49 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 
 public class TestDES {
-    public static void main( String[] argv ) {
+    public static void main(String[] argv) {
         try {
-            KeyGenerator keygenerator = KeyGenerator.getInstance( "DES" );
+            KeyGenerator keygenerator = KeyGenerator.getInstance("DES");
             SecretKey myDesKey = keygenerator.generateKey();
 
             Cipher desCipher;
 
             // Create the cipher
-            desCipher = Cipher.getInstance( "DES/ECB/PKCS5Padding" );
+            desCipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
 
             // Initialize the cipher for encryption
-            desCipher.init( Cipher.ENCRYPT_MODE, myDesKey );
+            desCipher.init(Cipher.ENCRYPT_MODE, myDesKey);
 
             // sensitive information
             byte[] text = "No body can see me".getBytes();
 
-            System.out.println( "Text [Byte Format] : " + Base64.getEncoder()
-                    .encodeToString( text ) );
-            System.out.println( "Text : " + new String( text ) );
+            System.out.println("Text [Byte Format] : " + Base64.getEncoder()
+                    .encodeToString(text));
+            System.out.println("Text : " + new String(text));
 
             // Encrypt the text
-            byte[] textEncrypted = desCipher.doFinal( text );
+            byte[] textEncrypted = desCipher.doFinal(text);
 
-            System.out.println( "Text Encryted : " + Base64.getEncoder()
-                    .encodeToString( textEncrypted ) );
+            System.out.println("Text Encryted : " + Base64.getEncoder()
+                    .encodeToString(textEncrypted));
 
             // Initialize the same cipher for decryption
-            desCipher.init( Cipher.DECRYPT_MODE, myDesKey );
+            desCipher.init(Cipher.DECRYPT_MODE, myDesKey);
 
             // Decrypt the text
-            byte[] textDecrypted = desCipher.doFinal( textEncrypted );
+            byte[] textDecrypted = desCipher.doFinal(textEncrypted);
 
-            System.out.println( "Text Decryted : " + new String( textDecrypted ) );
+            System.out.println("Text Decryted : " + new String(textDecrypted));
 
-        } catch ( NoSuchAlgorithmException e ) {
+        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
-        } catch ( NoSuchPaddingException e ) {
+        } catch (NoSuchPaddingException e) {
             e.printStackTrace();
-        } catch ( InvalidKeyException e ) {
+        } catch (InvalidKeyException e) {
             e.printStackTrace();
-        } catch ( IllegalBlockSizeException e ) {
+        } catch (IllegalBlockSizeException e) {
             e.printStackTrace();
-        } catch ( BadPaddingException e ) {
+        } catch (BadPaddingException e) {
             e.printStackTrace();
         }
     }
