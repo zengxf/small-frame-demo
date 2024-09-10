@@ -6,6 +6,7 @@ plugins {
 }
 
 sourceCompatibility = 17
+compileJava.options.encoding = "UTF-8"  // 解决乱码
 
 repositories {
     mavenLocal()

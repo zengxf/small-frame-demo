@@ -6,7 +6,11 @@
 gradle init --project-name helloworld --type java-application --test-framework junit-jupiter --dsl groovy
 
 # 编译
-xx> gradle nativeCompile
+gradle nativeCompile
+
+# 运行 (传参测试)
+./build/native/nativeCompile/JDK17-test  ab cd  -Dtest.sign=233
+./build/native/nativeCompile/JDK17-test  -Dtest.sign=688  ef gh
 ```
 
 ## 问题
