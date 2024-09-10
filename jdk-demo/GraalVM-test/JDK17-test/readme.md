@@ -11,6 +11,11 @@ gradle nativeCompile
 # 运行 (传参测试)
 ./build/native/nativeCompile/JDK17-test  ab cd  -Dtest.sign=233
 ./build/native/nativeCompile/JDK17-test  -Dtest.sign=688  ef gh
+
+
+# 并不影响构建
+gradle build
+java  -Dtest.sign=688   -jar ./build/libs/JDK17-test.jar   ef gh
 ```
 
 ## 问题

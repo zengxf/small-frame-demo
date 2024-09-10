@@ -19,6 +19,7 @@ public class TestMain {
         log.info("Test ----------------");
         log.info("中文");
         log.info("Test ----------------");
+        log.info("M1   ----------------");
     }
 
 }

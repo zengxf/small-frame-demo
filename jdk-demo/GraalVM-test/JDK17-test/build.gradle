@@ -39,5 +39,12 @@ test {
 
 application {
     // 定义应用程序的主类
-    mainClass = 'test.TestMain'
+    mainClass = "test.TestMain"
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "test.TestMain2",
+                "Implementation-Title": "Gradle Quickstart"
+    }
 }
