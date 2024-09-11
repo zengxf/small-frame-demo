@@ -1,0 +1,22 @@
+plugins {
+    id "java"
+    id "io.freefair.lombok" version "8.10"
+}
+
+sourceCompatibility = 17
+
+repositories {
+    mavenLocal()
+    maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
+    mavenCentral()
+}
+
+ext {
+    vLogback = "1.5.8"
+    vSlf4j = "2.0.16"
+}
+dependencies {
+    implementation group: 'ch.qos.logback', name: 'logback-core', version: "${vLogback}"
+    implementation group: "ch.qos.logback", name: "logback-classic", version: "${vLogback}"
+    implementation group: "org.slf4j", name: "slf4j-api", version: "${vSlf4j}"
+}
