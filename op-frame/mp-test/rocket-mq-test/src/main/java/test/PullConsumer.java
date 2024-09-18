@@ -30,12 +30,14 @@ public class PullConsumer {
         System.out.printf("Consumer Started. %n");
 
         for (int i = 0; i < 2; i++) {
-            List<MessageExt> msgList = consumer.poll();
+            List<MessageExt> msgList = consumer.poll(); // def: 5s timeout
             String msg = msgList.stream()
                     .map(item -> String.format("  msg-item: [%s]. %n", new String(item.getBody())))
                     .collect(Collectors.joining());
             System.out.printf("%n[%s] Receive New Messages: %n%s%n", Thread.currentThread().getName(), msg);
         }
+
+        consumer.shutdown();
     }
 
 }
