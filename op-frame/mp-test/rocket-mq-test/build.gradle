@@ -1,0 +1,38 @@
+plugins {
+    id "java"
+    id "io.freefair.lombok" version "8.10"
+}
+
+sourceCompatibility = 17
+
+repositories {
+    mavenLocal()
+    maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
+    mavenCentral()
+}
+
+ext {
+    rocketmq = "5.2.0"
+    slf4j = "2.0.16"
+    junit5 = "5.11.0"
+}
+
+dependencies {
+    // RocketMQ
+    implementation group: "org.apache.rocketmq", name: "rocketmq-client", version: "${rocketmq}"
+
+    // Slf4j
+    implementation group: "org.slf4j", name: "slf4j-api", version: "${slf4j}"
+    implementation group: "org.slf4j", name: "slf4j-simple", version: "${slf4j}"
+
+    // JUnit-5 (兼容 4)
+    testImplementation group: "org.junit.vintage", name: "junit-vintage-engine", version: "${junit5}"
+    // JUnit-5
+    testImplementation group: "org.junit.jupiter", name: "junit-jupiter-engine", version: "${junit5}"
+
+}
+
+// 启用 JUnit 5
+test {
+    useJUnitPlatform()
+}
