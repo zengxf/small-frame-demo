@@ -31,5 +31,5 @@ gradle jlink
 cd ./build/image/lib
 
 # 提取
-jimage extract modules 
+jimage extract modules
 ```
