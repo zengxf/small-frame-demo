@@ -45,6 +45,6 @@ application {
 jar {
     manifest {
         attributes "Main-Class": "test.TestMain2",
-                "Implementation-Title": "Gradle Quickstart"
+        "Implementation-Title": "Gradle Quickstart"
     }
 }

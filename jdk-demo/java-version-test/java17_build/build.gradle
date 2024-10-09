@@ -1,0 +1,61 @@
+plugins {
+    id "java"
+    id "application"
+    id "io.freefair.lombok" version "8.10"
+    id "org.beryx.jlink" version "3.0.1"    // jLink
+    // id "org.beryx.runtime" version "1.13.1" // jPackage
+}
+
+sourceCompatibility = 17
+compileJava.options.encoding = 'UTF-8'
+// mainClassName = "cn.test.TestMain"
+
+repositories {
+    mavenLocal()
+    maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
+    mavenCentral()
+}
+
+ext {
+    slf4j = "2.0.16"
+    junit5 = "5.11.0"
+}
+dependencies {
+    // Slf4j
+    implementation group: "org.slf4j", name: "slf4j-api", version: "${slf4j}"
+    implementation group: "org.slf4j", name: "slf4j-simple", version: "${slf4j}"
+
+    // JUnit-5
+    testImplementation group: "org.junit.vintage", name: "junit-vintage-engine", version: "${junit5}" // 兼容 4
+    testImplementation group: "org.junit.jupiter", name: "junit-jupiter-engine", version: "${junit5}"
+}
+
+// 启用 JUnit 5
+test {
+    useJUnitPlatform()
+}
+
+application {
+    // 定义应用程序的主类
+    mainClass = "cn.test.TestMain"
+    // mainClass = "cn.test.TestLogMain"
+}
+
+jlink {
+    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+    mergedModule {
+        // requires 'java.base'
+        // requires 'java.xml'
+        requires 'org.slf4j'
+    }
+    launcher {
+        name = 'java17-build'
+        jvmArgs = ['-Dfile.encoding=UTF-8']
+    }
+    jpackage {
+        // if (org.gradle.internal.os.OperatingSystem.current().windows) {
+        //     installerOptions += ['--win-per-user-install', '--win-dir-chooser', '--win-menu', '--win-shortcut']
+        //     imageOptions += ['--win-console']
+        // }
+    }
+}

@@ -1,0 +1,23 @@
+# Java 17 打包测试
+
+## JLink 测试
+```shell
+# Git Bash 下运行
+
+# 这种麻烦 (且没试成功)
+jlink \
+  --module-path ./build/classes/java/main/ \
+  --add-modules java.base,java.xml \
+  --output D:\Data\Test\test \
+  --ignore-signing-information \
+  --launcher app=cn.test/cn.test.TestMain
+
+# 使用 Gradle 插件
+gradle jlink
+
+# 运行
+# GitBash
+./build/image/bin/java17-build
+# cmd
+"build/image/bin/java17-build.bat"
+```
