@@ -24,3 +24,12 @@ gradle jlink
 
 ### 原理
 - 将依赖的 jar 包和代码打包到 `./build/image/lib/modules` 里面
+
+### 解压
+```shell
+# 进目录
+cd ./build/image/lib
+
+# 提取
+jimage extract modules 
+```
