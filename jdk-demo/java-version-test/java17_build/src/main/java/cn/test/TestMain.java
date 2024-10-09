@@ -1,5 +1,7 @@
 package cn.test;
 
+import cn.test.utils.StrUtils;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -13,6 +15,8 @@ public class TestMain {
         System.out.println("测试 123");
         System.out.println("测试 " + LocalDate.now());
         System.out.println("测试 " + LocalTime.now());
+
+        System.out.println(StrUtils.outMsg());
     }
 
 }

@@ -1,5 +1,6 @@
 package cn.test;
 
+import cn.test.utils.StrUtils;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -13,6 +14,8 @@ public class TestLogMain {
         log.info("测试 info");
         log.warn("测试 warn");
         log.error("测试 error");
+
+        log.info(StrUtils.outMsg());
     }
 
 }

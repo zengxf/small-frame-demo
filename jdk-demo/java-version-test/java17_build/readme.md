@@ -21,3 +21,6 @@ gradle jlink
 # cmd
 "build/image/bin/java17-build.bat"
 ```
+
+### 原理
+- 将依赖的 jar 包和代码打包到 `./build/image/lib/modules` 里面
