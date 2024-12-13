@@ -9,39 +9,39 @@ import java.io.*;
 import java.util.stream.Stream;
 
 /**
- * 商密加密文件
+ * 商密解密文件
  * <p/>
  * ZXF 创建于 2024/12/13
  */
-public class FileSM4Encrypt implements Constant {
+public class FileSM4Decrypt implements Constant {
 
     public static void main(String[] args) {
-        String srcFolder = "D:/Data/Test/sm4-test";
-        String enFolder = "D:/Data/Test/sm4-test/encrypt";
+        String srcFolder = "D:/Data/Test/sm4-test/encrypt";
+        String deFolder = "D:/Data/Test/sm4-test/decrypt";
 
         File srcFolderFile = new File(srcFolder);
-        FileFilter zipFilter = f -> f.getName().endsWith(".zip");
-        File[] childList = srcFolderFile.listFiles(zipFilter);
+        FileFilter encryptFilter = f -> f.getName().endsWith(ENCRYPT_SUFFIX);
+        File[] childList = srcFolderFile.listFiles(encryptFilter);
         if (childList == null) {
-            System.err.println("没有找到 zip 文件");
+            System.err.println("没有找到加密文件");
             return;
         }
 
         Stream.of(childList)
                 .forEach(srcFile -> {
                     String fileName = srcFile.getName();
-                    String encryptFileName = fileName + ENCRYPT_SUFFIX;
+                    String decryptFileName = fileName.replace(ENCRYPT_SUFFIX, "");
 
                     System.out.println(fileName);
 
                     try {
                         InputStream is = new FileInputStream(srcFile);
-                        OutputStream os = new FileOutputStream(enFolder + "/" + encryptFileName);
+                        OutputStream os = new FileOutputStream(deFolder + "/" + decryptFileName);
                         SymmetricCrypto sm4 = SmUtil.sm4(KEY);
-                        sm4.encrypt(is, os, true);  // 加密
+                        sm4.decrypt(is, os, true);  // 加密
                     } catch (Exception e) {
                         System.err.println(
-                                StrUtil.format("加密 [{}] 出错，err: [{}]", fileName, e.getMessage())
+                                StrUtil.format("解密 [{}] 出错，err: [{}]", fileName, e.getMessage())
                         );
                     }
                 });
