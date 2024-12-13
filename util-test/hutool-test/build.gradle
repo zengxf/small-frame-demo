@@ -1,6 +1,5 @@
 plugins {
     id "java"
-    id "io.freefair.lombok" version "6.3.0"
 }
 
 sourceCompatibility = 17
@@ -11,16 +10,15 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    hutoolV = "5.8.34"
+    bcprovV = "1.79"
+    slf4jV = "2.0.16"
+}
+
 dependencies {
     // HuTool
-    implementation group: "cn.hutool", name: "hutool-all", version: "5.7.18"
+    implementation group: "cn.hutool", name: "hutool-all", version: "${hutoolV}"
     // bcprov
-    implementation group: "org.bouncycastle", name: "bcprov-jdk15on", version: "1.65"
-
-    // Lombok
-    // compileOnly group: "org.projectlombok", name: "lombok", version: "1.18.8"
-
-    // Slf4j
-    implementation group: "org.slf4j", name: "slf4j-api", version: "1.7.32"
-    implementation group: "org.slf4j", name: "slf4j-simple", version: "1.7.32"
+    implementation group: "org.bouncycastle", name: "bcprov-jdk18on", version: "${bcprovV}"
 }

@@ -1,7 +1,6 @@
 package test;
 
 import cn.hutool.core.util.StrUtil;
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
 
@@ -9,15 +8,14 @@ import java.util.Map;
  * <br/>
  * Created by ZXFeng on 2021/12/28.
  */
-@Slf4j
-public class TestStrUtil {
+public class StrUtilTest {
 
     public static void main(String[] args) {
         String fmt = "{name} != null && {name} >= {value}";
         Map<String, Object> map = Map.of("name", "age", "value", 33);
         String str = StrUtil.format(fmt, map);
-        log.info("fmt: [{}], map: [{}]", fmt, map);
-        log.info("str: [{}]", str);
+        System.out.println(StrUtil.format("fmt: [{}], map: [{}]", fmt, map));
+        System.out.println(StrUtil.format("str: [{}]", str));
     }
 
 }
