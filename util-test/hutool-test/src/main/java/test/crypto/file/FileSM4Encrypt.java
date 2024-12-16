@@ -6,45 +6,46 @@ import cn.hutool.crypto.symmetric.SymmetricCrypto;
 import test.crypto.Constant;
 
 import java.io.*;
-import java.util.stream.Stream;
 
 /**
- * 商密加密文件
+ * 用商密加密文件
  * <p/>
  * ZXF 创建于 2024/12/13
  */
 public class FileSM4Encrypt implements Constant {
 
-    public static void main(String[] args) {
-        String srcFolder = "D:/Data/Test/sm4-test";
-        String enFolder = "D:/Data/Test/sm4-test/encrypt";
+    static final String
+            SRC_FOLDER = "D:/Data/Test/sm4-test",
+            EN_FOLDER = "D:/Data/Test/sm4-test/encrypt";
 
-        File srcFolderFile = new File(srcFolder);
-        FileFilter zipFilter = f -> f.getName().endsWith(".zip");
+    public static void main(String[] args) {
+        byte[] myKey = SM4Utils.extractKeys(args);
+
+        File srcFolderFile = new File(SRC_FOLDER);
+        FileFilter zipFilter = f -> f.getName().endsWith(TARGET_SUFFIX);
         File[] childList = srcFolderFile.listFiles(zipFilter);
         if (childList == null) {
             System.err.println("没有找到 zip 文件");
             return;
         }
 
-        Stream.of(childList)
-                .forEach(srcFile -> {
-                    String fileName = srcFile.getName();
-                    String encryptFileName = fileName + ENCRYPT_SUFFIX;
+        for (File srcFile : childList) {
+            String fileName = srcFile.getName();
+            String encryptFileName = fileName.replace(TARGET_SUFFIX, ENCRYPT_SUFFIX);
 
-                    System.out.println(fileName);
+            System.out.println(fileName);
 
-                    try {
-                        InputStream is = new FileInputStream(srcFile);
-                        OutputStream os = new FileOutputStream(enFolder + "/" + encryptFileName);
-                        SymmetricCrypto sm4 = SmUtil.sm4(KEY);
-                        sm4.encrypt(is, os, true);  // 加密
-                    } catch (Exception e) {
-                        System.err.println(
-                                StrUtil.format("加密 [{}] 出错，err: [{}]", fileName, e.getMessage())
-                        );
-                    }
-                });
+            try {
+                InputStream is = new FileInputStream(srcFile);
+                OutputStream os = new FileOutputStream(EN_FOLDER + "/" + encryptFileName);
+                SymmetricCrypto sm4 = SmUtil.sm4(myKey);
+                sm4.encrypt(is, os, true);  // 加密
+            } catch (Exception e) {
+                System.err.println(
+                        StrUtil.format("加密 [{}] 出错，err: [{}]", fileName, e.getMessage())
+                );
+            }
+        }
     }
 
 }

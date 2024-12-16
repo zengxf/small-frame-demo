@@ -17,6 +17,7 @@ public interface Constant {
     String KEY_MD5 = DigestUtil.md5Hex16(KEY_STR);  // 128 bit
     byte[] KEY = KEY_MD5.getBytes(UTF8);
 
+    String TARGET_SUFFIX = ".zip";
     String ENCRYPT_SUFFIX = ".en_data";
 
 }
