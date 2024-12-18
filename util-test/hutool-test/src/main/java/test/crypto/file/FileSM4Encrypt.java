@@ -22,10 +22,10 @@ public class FileSM4Encrypt implements Constant {
         byte[] myKey = SM4Utils.extractKeys(args);
 
         File srcFolderFile = new File(SRC_FOLDER);
-        FileFilter zipFilter = f -> f.getName().endsWith(TARGET_SUFFIX);
-        File[] childList = srcFolderFile.listFiles(zipFilter);
+        FileFilter targetFilter = f -> f.getName().endsWith(TARGET_SUFFIX);
+        File[] childList = srcFolderFile.listFiles(targetFilter);
         if (childList == null) {
-            System.err.println("没有找到 zip 文件");
+            System.err.println("没有找到目标文件");
             return;
         }
 

@@ -13,7 +13,6 @@ repositories {
 ext {
     hutoolV = "5.8.34"
     bcprovV = "1.79"
-    slf4jV = "2.0.16"
 }
 
 dependencies {

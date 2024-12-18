@@ -18,6 +18,6 @@ public interface Constant {
     byte[] KEY = KEY_MD5.getBytes(UTF8);
 
     String TARGET_SUFFIX = ".zip";
-    String ENCRYPT_SUFFIX = ".en_data";
+    String ENCRYPT_SUFFIX = ".x64.dll";
 
 }
