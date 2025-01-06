@@ -1,5 +1,6 @@
 package test;
 
+import cn.hutool.core.util.DesensitizedUtil;
 import cn.hutool.core.util.StrUtil;
 
 import java.util.Map;
@@ -16,6 +17,10 @@ public class StrUtilTest {
         String str = StrUtil.format(fmt, map);
         System.out.println(StrUtil.format("fmt: [{}], map: [{}]", fmt, map));
         System.out.println(StrUtil.format("str: [{}]", str));
+
+
+        String pwd = "123456abc890";
+        System.out.println(DesensitizedUtil.idCardNum(pwd, 3, 3)); // 数据脱敏
     }
 
 }
