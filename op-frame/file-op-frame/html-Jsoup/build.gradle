@@ -1,6 +1,5 @@
 plugins {
 	id "java"
-	id "io.freefair.lombok" version "8.10"
 }
 
 sourceCompatibility = 17
@@ -11,15 +10,7 @@ repositories {
     mavenCentral()
 }
 
-ext {
-    slf4j = "2.0.16"
-}
-
 dependencies {
     // Jsoup
     implementation group: 'org.jsoup', name: 'jsoup', version: '1.18.3'
-
-    // Slf4j
-    implementation group: "org.slf4j", name: "slf4j-api", version: "${slf4j}"
-    implementation group: "org.slf4j", name: "slf4j-simple", version: "${slf4j}"
 }
