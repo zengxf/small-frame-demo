@@ -8,7 +8,7 @@ import org.jsoup.select.Elements;
  * <p/>
  * ZXF 创建于 2025/1/14
  */
-public class ReadBySelector {
+public class ReadByXPath {
 
     public static void main(String[] args) {
         String html = "" +
@@ -17,19 +17,22 @@ public class ReadBySelector {
                 "        <h3 class=\"title-1\" style=\"color: rgb(149, 113, 233); font-size: 14px; line-height: 18px;\">1 申请理由</h3>\n" +
                 "        <div id=\"editorContent0\" data-placeholder=\"\" class=\"pell-content\">\n" +
                 "            <p>中文</p>\n" +
-                "            <p>8899</p>\n" +
                 "            <p>5566</p>\n" +
                 "        </div>\n" +
                 // 查出此元素
                 "        <div id=\"editorContent10\" data-placeholder=\"\" class=\"pell-content\">\n" +
-                "            <p>中文2</p>\n" +
-                "            <p>889966</p>\n" +
-                "            <p>556688</p>\n" +
+                "            <p>中文--2</p>\n" +
+                "            <p>8899--66</p>\n" +
+                "            <p>5566--88</p>\n" +
+                "        </div>\n" +
+                "        <div id=\"editorContent101\" data-placeholder=\"\" class=\"pell-content\">\n" +
+                "            <p>XX</p>\n" +
+                "            <p>BB</p>\n" +
                 "        </div>\n" +
                 "    </div>\n" +
                 "    <div class=\"e-section-2\">\n" +
                 "        <h3 class=\"title-2\" style=\"color: rgb(149, 113, 233); font-size: 14px; line-height: 18px;\">2 维修/装修内容</h3>\n" +
-                "        <div contenteditable=\"true\" id=\"editorContent1\" data-placeholder=\"\" class=\"pell-content\">xxx</div>\n" +
+                "        <div contenteditable=\"true\" id=\"editorContent12\" data-placeholder=\"\" class=\"pell-content\">xxx</div>\n" +
                 "    </div>\n" +
                 "</div>";
 
@@ -38,8 +41,7 @@ public class ReadBySelector {
         // 解析 HTML 字符串
         Document doc = Jsoup.parse(html);
         // 根据 Class 查找特定的元素
-        Elements divC10 = doc.select("div.e-section-1").select("#editorContent10");
-        // Elements divC10 = doc.select("div.e-section-1 div#editorContent10"); // 这种写法也可以
+        Elements divC10 = doc.selectXpath("//div[@id='editorContent10']");
 
         if (divC10.isEmpty()) {
             System.out.println("divC10 is null");
