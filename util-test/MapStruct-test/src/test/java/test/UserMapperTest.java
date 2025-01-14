@@ -7,6 +7,9 @@ import test.vo.UserRes;
 
 public class UserMapperTest {
 
+    UserMapper mapper = UserMapper.INSTANCE;
+
+
     @Test
     public void test() {
         UserReq req = new UserReq()
@@ -18,16 +21,16 @@ public class UserMapperTest {
                 .setBizFollowerName("老李");
         System.out.println("req: " + req);
 
-        UserPO po = UserMapper.INSTANCE.reqToPo(req);
+        UserPO po = mapper.reqToPo(req);
         System.out.println("po: " + po);
 
-        UserRes res = UserMapper.INSTANCE.poToRes(po);
+        UserRes res = mapper.poToRes(po);
         System.out.println("res: " + res);
 
-        UserRes res2 = UserMapper.INSTANCE.poToRes2(po);
+        UserRes res2 = mapper.poToRes2(po);
         System.out.println("res2: " + res2);
 
-        UserRes res3 = UserMapper.INSTANCE.poToRes3(po);
+        UserRes res3 = mapper.poToRes3(po);
         System.out.println("res3: " + res3);
     }
 

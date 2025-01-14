@@ -1,6 +1,6 @@
 plugins {
-	id "java"
-	id "io.freefair.lombok" version "8.10"
+    id "java"
+    id "io.freefair.lombok" version "8.10"
 }
 
 sourceCompatibility = 17
@@ -11,11 +11,16 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    mapStructV = "1.6.3"
+    jUnit4V = "4.13.2"
+}
+
 dependencies {
     // MapStruct
-    implementation group: 'org.mapstruct', name: 'mapstruct', version: '1.6.3'
-    annotationProcessor group: 'org.mapstruct', name: 'mapstruct-processor', version: '1.6.3'
+    implementation group: "org.mapstruct", name: "mapstruct", version: "${mapStructV}"
+    annotationProcessor group: "org.mapstruct", name: "mapstruct-processor", version: "${mapStructV}"
 
     // JUnit-4
-     testImplementation group: "junit", name: "junit", version: "4.13.2"
+    testImplementation group: "junit", name: "junit", version: "${jUnit4V}"
 }

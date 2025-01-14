@@ -12,6 +12,7 @@ public class GroupMapperTest {
 
     GroupMapper mapper = GroupMapper.INSTANCE;
 
+
     @Test
     public void test() {
         UserReq userReq = new UserReq()

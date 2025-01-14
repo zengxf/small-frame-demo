@@ -10,7 +10,7 @@ import test.vo.UserReq;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-14T14:31:25+0800",
+    date = "2025-01-14T20:35:20+0800",
     comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.12 (Eclipse Adoptium)"
 )
 public class GroupMapperImpl implements GroupMapper {
