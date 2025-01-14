@@ -1,0 +1,21 @@
+plugins {
+	id "java"
+	id "io.freefair.lombok" version "8.10"
+}
+
+sourceCompatibility = 17
+
+repositories {
+    mavenLocal()
+    maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
+    mavenCentral()
+}
+
+dependencies {
+    // MapStruct
+    implementation group: 'org.mapstruct', name: 'mapstruct', version: '1.6.3'
+    annotationProcessor group: 'org.mapstruct', name: 'mapstruct-processor', version: '1.6.3'
+
+    // JUnit-4
+     testImplementation group: "junit", name: "junit", version: "4.13.2"
+}
