@@ -44,18 +44,12 @@
 ## drools-demo
 规则引擎 demo
 
-## javaee7-demo
-
 ## jdk-demo
 - `APT-demo` 注册处理
 - `instrument-demo` Java Agent 测试 
 - `java-9-demo` Java 9
 - `spi-demo`
 - `idea-jdk-9` java 9 demo
-
-## parse-test
-- `jsqlparser-demo`
-- `jsoup-parse-html`
 
 ## junit-demo
 - 其中包含微基准测试
