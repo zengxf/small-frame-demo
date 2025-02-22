@@ -7,6 +7,9 @@ import cn.hutool.captcha.ShearCaptcha;
 import cn.hutool.core.lang.Console;
 
 /**
+ * 生成：图形验证码
+ * <p/>
+ * ref: https://doc.hutool.cn/pages/captcha/
  * <p/>
  * ZXF 创建于 2025/2/21
  */
@@ -20,6 +23,7 @@ public class TestEnNum {
         testShear();
     }
 
+    // 扭曲干扰验证码
     private static void testShear() {
         //定义图形验证码的长、宽、验证码字符数、干扰线宽度
         ShearCaptcha captcha = CaptchaUtil.createShearCaptcha(200, 100, 4, 4);
@@ -31,6 +35,7 @@ public class TestEnNum {
         Console.log("verify: {}", captcha.verify("1234"));
     }
 
+    // 圆圈干扰验证码
     static void testCircle() {
         //定义图形验证码的长、宽、验证码字符数、干扰元素个数
         CircleCaptcha captcha = CaptchaUtil.createCircleCaptcha(200, 100, 4, 20);
@@ -42,6 +47,7 @@ public class TestEnNum {
         Console.log("verify: {}", captcha.verify("1234"));
     }
 
+    // 线段干扰的验证码
     static void testLine() {
         //定义图形验证码的长和宽
         LineCaptcha lineCaptcha = CaptchaUtil.createLineCaptcha(200, 100);
