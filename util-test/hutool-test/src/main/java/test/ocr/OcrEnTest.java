@@ -3,6 +3,8 @@ package test.ocr;
 /**
  * 测试识别英文
  * <p/>
+ * 效果可以
+ * <p/>
  * ZXF 创建于 2025/2/22
  */
 public class OcrEnTest extends BaseTest {

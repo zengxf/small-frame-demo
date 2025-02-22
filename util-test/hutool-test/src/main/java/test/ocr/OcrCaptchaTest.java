@@ -7,6 +7,7 @@ package test.ocr;
  * <p/>
  * ZXF 创建于 2025/2/22
  */
+@Deprecated
 public class OcrCaptchaTest extends BaseTest {
 
     public static void main(String[] args) {
