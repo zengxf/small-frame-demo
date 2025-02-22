@@ -1,4 +1,4 @@
-package test;
+package test.codec;
 
 import cn.hutool.core.codec.Base62;
 import cn.hutool.core.codec.Base62Codec;
