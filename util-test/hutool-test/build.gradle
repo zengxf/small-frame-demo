@@ -20,4 +20,7 @@ dependencies {
     implementation group: "cn.hutool", name: "hutool-all", version: "${hutoolV}"
     // bcprov
     implementation group: "org.bouncycastle", name: "bcprov-jdk18on", version: "${bcprovV}"
+
+    // Tess4J
+    implementation group: "net.sourceforge.tess4j", name: "tess4j", version: "5.15.0"
 }
