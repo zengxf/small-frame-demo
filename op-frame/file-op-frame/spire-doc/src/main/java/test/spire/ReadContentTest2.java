@@ -1,4 +1,4 @@
-package test;
+package test.spire;
 
 import com.spire.doc.Document;
 import com.spire.doc.Section;

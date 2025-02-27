@@ -1,4 +1,4 @@
-package test;
+package test.spire;
 
 import cn.hutool.core.io.file.FileReader;
 import cn.hutool.core.io.file.FileWriter;
@@ -15,7 +15,7 @@ import java.awt.*;
  * ZXF 创建于 2025/2/26
  */
 @Deprecated(since = "太麻烦了，要先创建 md 文件并复制内容到 md 里面去")
-public class ReplaceReadHighlightTest {
+public class ReplaceHighlightToMdTest {
 
     public static void main(String[] args) {
         String mdPath = "D:/Data/Test/doc/aa.md";

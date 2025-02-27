@@ -10,7 +10,7 @@ import com.spire.doc.fields.TextRange;
 import java.awt.*;
 
 /**
- * 替换高亮显示的文本 -> Markdown -> 加粗
+ * 将 Word 转换成 Markdown，高亮显示的文本进行加粗
  * <p/>
  * ZXF 创建于 2025/2/26
  */
@@ -57,7 +57,7 @@ public class DocToMarkdownTest {
         new FileWriter(mdPath).write(mdContent);
     }
 
-    static String readContent(String docPath) {
+    public static String readContent(String docPath) {
         Document doc = new Document();
         doc.loadFromFile(docPath, FileFormat.Docx);
         String content = doc.getText();

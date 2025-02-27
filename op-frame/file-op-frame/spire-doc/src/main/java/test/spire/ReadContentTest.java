@@ -1,4 +1,6 @@
-package test;
+package test.spire;
+
+import test.DocToMarkdownTest;
 
 /**
  * 读取 Docx 内容
@@ -8,7 +10,7 @@ package test;
  * <p/>
  * ZXF 创建于 2025/2/27
  */
-public class ReadContentCompareTest {
+public class ReadContentTest {
 
     public static void main(String[] args) {
         String docPath = "D:/Data/Test/doc/aa.docx";
