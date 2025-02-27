@@ -8,8 +8,10 @@ import java.awt.Color;
 
 /**
  * 读取设置高亮显示的文本
- * <p/>
- * Created by ZXFeng on 2023/11/22
+ * <p>
+ * 效果非常好
+ * </p>
+ * ZXF 创建于 2025/2/26
  */
 public class ReadHighlightTest {
 

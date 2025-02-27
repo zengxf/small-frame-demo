@@ -25,6 +25,8 @@ ext {
 dependencies {
     // Spire.Doc
     implementation group: 'e-iceblue', name: 'spire.doc.free', version: '5.3.2'
+    // POI
+    implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '5.4.0' // 包含 (name: 'poi' 依赖)
     // HuTool
     implementation group: 'cn.hutool', name: 'hutool-all', version: '5.8.36'
 

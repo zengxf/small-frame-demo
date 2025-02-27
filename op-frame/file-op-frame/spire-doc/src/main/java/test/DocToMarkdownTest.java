@@ -3,6 +3,7 @@ package test;
 import cn.hutool.core.io.file.FileWriter;
 import cn.hutool.core.util.StrUtil;
 import com.spire.doc.Document;
+import com.spire.doc.FileFormat;
 import com.spire.doc.documents.Paragraph;
 import com.spire.doc.fields.TextRange;
 
@@ -11,15 +12,18 @@ import java.awt.*;
 /**
  * 替换高亮显示的文本 -> Markdown -> 加粗
  * <p/>
- * Created by ZXFeng on 2023/11/22
+ * ZXF 创建于 2025/2/26
  */
 public class DocToMarkdownTest {
 
     public static void main(String[] args) {
-        String mdPath = "D:/Data/Test/doc/aa.md";
         String docPath = "D:/Data/Test/doc/aa.docx";
+        String mdPath = "D:/Data/Test/doc/aa.md";
+        toMarkdown(docPath, mdPath);
+    }
 
-        String mdContent = "";
+    static void toMarkdown(String docPath, String mdPath) {
+        String mdContent = readContent(docPath);
 
         Document doc = new Document();
         doc.loadFromFile(docPath);
@@ -51,6 +55,14 @@ public class DocToMarkdownTest {
 
         System.out.println(mdContent.length());
         new FileWriter(mdPath).write(mdContent);
+    }
+
+    static String readContent(String docPath) {
+        Document doc = new Document();
+        doc.loadFromFile(docPath, FileFormat.Docx);
+        String content = doc.getText();
+        doc.close();
+        return content;
     }
 
 }

@@ -12,8 +12,9 @@ import java.awt.*;
 /**
  * 替换高亮显示的文本 -> Markdown -> 加粗
  * <p/>
- * Created by ZXFeng on 2023/11/22
+ * ZXF 创建于 2025/2/26
  */
+@Deprecated(since = "太麻烦了，要先创建 md 文件并复制内容到 md 里面去")
 public class ReplaceReadHighlightTest {
 
     public static void main(String[] args) {
