@@ -1,6 +1,6 @@
 package test.spire;
 
-import test.DocToMarkdownTest;
+import test.DocToMarkdown;
 
 /**
  * 读取 Docx 内容
@@ -14,7 +14,7 @@ public class ReadContentTest {
 
     public static void main(String[] args) {
         String docPath = "D:/Data/Test/doc/aa.docx";
-        String text = DocToMarkdownTest.readContent(docPath);
+        String text = DocToMarkdown.readContent(docPath);
         System.out.println(text);
     }
 

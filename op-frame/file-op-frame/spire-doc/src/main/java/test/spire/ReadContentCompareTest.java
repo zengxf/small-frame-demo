@@ -3,7 +3,7 @@ package test.spire;
 import cn.hutool.core.io.file.FileReader;
 import cn.hutool.core.io.file.FileWriter;
 import cn.hutool.core.lang.Console;
-import test.DocToMarkdownTest;
+import test.DocToMarkdown;
 
 /**
  * 读取 Docx 内容并比较手动复制的
@@ -20,7 +20,7 @@ public class ReadContentCompareTest {
         String md2Path = "D:/Data/Test/doc/cc.md";
 
         String mdContent = new FileReader(mdPath).readString();
-        String docContent = DocToMarkdownTest.readContent(docPath);
+        String docContent = DocToMarkdown.readContent(docPath);
         new FileWriter(md2Path).write(docContent);
 
         Console.log("mdContent.length: [{}]", mdContent.length());      // 手动复制的少一行

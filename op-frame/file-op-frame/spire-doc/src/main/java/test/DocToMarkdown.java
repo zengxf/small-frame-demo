@@ -14,7 +14,7 @@ import java.awt.*;
  * <p/>
  * ZXF 创建于 2025/2/26
  */
-public class DocToMarkdownTest {
+public class DocToMarkdown {
 
     public static void main(String[] args) {
         String docPath = "D:/Data/Test/doc/aa.docx";
