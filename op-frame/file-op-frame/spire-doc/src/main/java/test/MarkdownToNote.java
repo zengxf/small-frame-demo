@@ -27,7 +27,7 @@ public class MarkdownToNote {
 
         while (matcher.find()) {
             result.add(matcher.group(1));
-            result.add("\n");
+            result.add("");
         }
 
         new FileWriter(notePath).writeLines(result);
