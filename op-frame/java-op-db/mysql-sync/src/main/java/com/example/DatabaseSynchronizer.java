@@ -3,10 +3,7 @@ package com.example;
 import lombok.extern.slf4j.Slf4j;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 数据库表结构同步工具类
@@ -87,7 +84,7 @@ public class DatabaseSynchronizer {
      * @return 表名列表
      * @throws SQLException 如果发生SQL异常
      */
-    private List<String> getAllTables(Connection conn) throws SQLException {
+    public List<String> getAllTables(Connection conn) throws SQLException {
         List<String> tables = new ArrayList<>();
         DatabaseMetaData metaData = conn.getMetaData();
 
@@ -146,7 +143,7 @@ public class DatabaseSynchronizer {
      * @return 列信息映射，key为列名（小写），value为列信息对象
      * @throws SQLException 如果发生SQL异常
      */
-    private Map<String, ColumnInfo> getTableColumns(DatabaseMetaData metaData, String tableName) throws SQLException {
+    public Map<String, ColumnInfo> getTableColumns(DatabaseMetaData metaData, String tableName) throws SQLException {
         Map<String, ColumnInfo> columns = new LinkedHashMap<>();
 
         try (ResultSet rs = metaData.getColumns(null, null, tableName, null)) {
@@ -191,18 +188,11 @@ public class DatabaseSynchronizer {
 
         sql.append(")");
 
+        log.info("Create table sql: \n\n{}\n\n", sql);
+
         try (Statement stmt = conn.createStatement()) {
             stmt.execute(sql.toString());
             log.info("Created table '{}'", tableName);
-
-            // 添加列注释
-            for (ColumnInfo column : columns.values()) {
-                if (column.getRemarks() != null && !column.getRemarks().isEmpty()) {
-                    String commentSql = String.format("ALTER TABLE %s MODIFY COLUMN %s %s COMMENT '%s'",
-                            tableName, column.getName(), column.getTypeName(), column.getRemarks());
-                    stmt.execute(commentSql);
-                }
-            }
         }
     }
 
@@ -215,9 +205,11 @@ public class DatabaseSynchronizer {
      * @param targetColumns 目标表列信息
      * @throws SQLException 如果发生SQL异常
      */
-    private void synchronizeColumns(Connection conn, String tableName,
-                                    Map<String, ColumnInfo> sourceColumns,
-                                    Map<String, ColumnInfo> targetColumns) throws SQLException {
+    private void synchronizeColumns(
+            Connection conn, String tableName,
+            Map<String, ColumnInfo> sourceColumns,
+            Map<String, ColumnInfo> targetColumns
+    ) throws SQLException {
         for (Map.Entry<String, ColumnInfo> entry : sourceColumns.entrySet()) {
             String columnName = entry.getKey();
             ColumnInfo sourceColumn = entry.getValue();
@@ -294,9 +286,12 @@ public class DatabaseSynchronizer {
                         .append(column.getDecimalDigits())
                         .append(")");
             } else {
-                def.append("(")
-                        .append(column.getColumnSize())
-                        .append(")");
+                Set<String> lenColSet = Set.of("VARCHAR", "CHAR");
+                if (lenColSet.contains(column.getTypeName())) {
+                    def.append("(")
+                            .append(column.getColumnSize())
+                            .append(")");
+                }
             }
         }
 
@@ -333,9 +328,7 @@ public class DatabaseSynchronizer {
                 source.getColumnSize() == target.getColumnSize() &&
                 source.getDecimalDigits() == target.getDecimalDigits() &&
                 source.isNullable() == target.isNullable() &&
-                ((source.getDefaultValue() == null && target.getDefaultValue() == null) ||
-                        (source.getDefaultValue() != null && source.getDefaultValue().equals(target.getDefaultValue()))) &&
-                ((source.getRemarks() == null && target.getRemarks() == null) ||
-                        (source.getRemarks() != null && source.getRemarks().equals(target.getRemarks())));
+                Objects.equals(source.getDefaultValue(), target.getDefaultValue()) &&
+                Objects.equals(source.getRemarks(), target.getRemarks());
     }
 }
