@@ -1,0 +1,16 @@
+# 模型配置
+model_name: "TheBloke/deepseek-r1-distill-qwen-1.5b-q6_k-GGUF"
+
+# 数据集配置
+dataset_name: "yangshan96/my_data_set"
+text_column: "text"
+max_length: 512
+
+# 训练参数
+batch_size: 8
+learning_rate: 2e-5
+num_epochs: 3
+save_every_epochs: 1
+
+# 输出配置
+output_dir: "checkpoints"
