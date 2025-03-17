@@ -29,3 +29,12 @@ cd simple_demo
 # 运行 py 文件
 python HelloWorld.py
 ```
+
+## 查看版本
+```shell
+# 列出所有已安装的 Python 版本
+py -0
+
+# 查看默认版本
+py --version
+```
