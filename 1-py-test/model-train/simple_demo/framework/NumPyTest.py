@@ -13,7 +13,7 @@ print("------------------------------- 2")
 zeros_arr = np.zeros((2, 3))  # 2行3列全零矩阵
 ones_arr = np.ones(5)  # 长度为5的全一数组
 print(zeros_arr)  # [[0. 0. 0.], [0. 0. 0.]]
-print("------------------------------- 3")
+print("------------------------------- ")
 print(ones_arr)  # [1. 1. 1. 1. 1.]
 
 # 生成随机数组
@@ -72,3 +72,12 @@ matrix_a = np.array([[1, 2], [3, 4]])
 matrix_b = np.array([[5, 6], [7, 8]])
 dot_product = np.dot(matrix_a, matrix_b)  # 矩阵点乘
 print(dot_product)  # [[19 22], [43 50]]
+
+# 图像处理基础
+print("------------------------------- 13")
+# 模拟RGB彩色图像（3通道）
+image = np.random.randint(0, 256, (100, 100, 3), dtype=np.uint8)
+red_channel = image[:, :, 0]  # 提取红色通道[2,4](@ref)
+print(image)
+print("------------------------------- ")
+print(red_channel)
