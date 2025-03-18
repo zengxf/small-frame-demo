@@ -16,3 +16,14 @@ print("图片形状:", sample["image"].size)  # 输出 (28, 28)
 print("标签:", sample["label"])  # 输出 5
 # 查看数据集列名和统计信息
 print(dataset["train"].features)  # 显示特征类型（如 Image/ClassLabel）
+
+# 处理文本数据集示例
+# -----------------------------------------------
+print("\n------------------------------- 3")
+# 加载数据集
+news_dataset = load_dataset("ag_news")
+print(news_dataset["train"][:2])  # 查看前两条新闻的文本和标签
+print("------------------------------- ")
+# 过滤长文本（保留长度超过 100 的新闻）
+filtered_data = news_dataset["train"].filter(lambda x: len(x["text"]) > 100)
+print(filtered_data)
