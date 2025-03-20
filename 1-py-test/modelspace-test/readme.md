@@ -19,6 +19,8 @@ logging>=0.4.9.6
 pyyaml>=6.0.1
 numpy>=1.24.3
 matplotlib>=3.9.0
+modelscope>=1.24.0
+addict>=2.4.0
 
 ```
 
@@ -28,12 +30,9 @@ matplotlib>=3.9.0
 
 pip install matplotlib==3.9.0
 
-# pip install modelscope==1.24.0
-# pip install addict==2.4.0
+pip install modelscope==1.24.0
 
-# 删除库
-pip uninstall modelscope
-pip uninstall addict
+pip install addict==2.4.0
 ```
 
 ## 手动运行
