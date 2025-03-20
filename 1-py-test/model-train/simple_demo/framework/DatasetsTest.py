@@ -1,4 +1,9 @@
+# ------------------------------------------------------------
+# 加载数据集 (datasets 库（由 Hugging Face 维护）)
+# ------------------------------------------------------------
+
 from datasets import load_dataset
+from tqdm import tqdm
 
 # 基础数据加载
 # -----------------------------------------------
@@ -30,8 +35,28 @@ from datasets import load_dataset
 
 # 流式模式处理大数据
 # -----------------------------------------------
+# print("\n------------------------------- 4")
+# # 流式加载（避免内存溢出）
+# stream_dataset = load_dataset("ag_news", streaming=True)
+# for batch in stream_dataset["train"].take(5):  # 仅加载前 5 条
+#     print(batch["text"][:50] + "...")
+
+# 流式模式处理大数据 (带进度条的)
+# -----------------------------------------------
 print("\n------------------------------- 4")
-# 流式加载（避免内存溢出）
+# 初始化进度条（动态计算总量或预设）
+total_samples = 5  # 明确指定加载前5条
+progress_bar = tqdm(total=total_samples, desc="流式加载进度", unit="样本")
+
+# 流式加载数据集（不缓存到本地）
 stream_dataset = load_dataset("ag_news", streaming=True)
-for batch in stream_dataset["train"].take(5):  # 仅加载前 5 条
-    print(batch["text"][:50] + "...")
+
+# 逐条加载并处理数据
+for batch in stream_dataset["train"].take(total_samples):
+    truncated_text = batch["text"][:50] + "..."
+    print(truncated_text)
+
+    # 更新进度条（根据实际加载量）
+    progress_bar.update(1)  # 每次迭代更新1个单位
+
+progress_bar.close()  # 关闭进度条防止残留

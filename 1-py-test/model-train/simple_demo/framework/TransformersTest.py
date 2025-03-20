@@ -1,3 +1,7 @@
+# ------------------------------------------------------------
+# 模型训练与调用 (transformers 库（由 Hugging Face 维护）)
+# ------------------------------------------------------------
+
 from transformers import pipeline
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from transformers import BertTokenizer, BertForSequenceClassification
