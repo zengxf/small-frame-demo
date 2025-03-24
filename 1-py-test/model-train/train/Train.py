@@ -1,3 +1,7 @@
+"""
+模型训练 (有问题，运行不起来)
+"""
+
 import os
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
