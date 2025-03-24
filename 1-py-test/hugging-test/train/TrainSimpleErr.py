@@ -1,3 +1,9 @@
+"""
+代码有问题
+
+load_metric 未知函数
+"""
+
 import torch
 from transformers import BertTokenizer, BertForSequenceClassification, Trainer, TrainingArguments
 from datasets import load_dataset, load_metric

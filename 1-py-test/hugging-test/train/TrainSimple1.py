@@ -1,4 +1,8 @@
-# train_bert_sentiment.py
+"""
+简单模型训练
+
+运行是可以的，效果不清楚
+"""
 
 from datasets import load_dataset
 from transformers import (
@@ -16,7 +20,7 @@ import torch
 #
 # 定义数据集和模型名
 # ds_name = "yelp_review_full"
-ds_name = "imdb" # 数据集少
+ds_name = "imdb"  # 数据集少
 model_name = "bert-base-uncased"
 
 
@@ -24,7 +28,7 @@ def main():
     # 步骤1：加载数据集
     try:
         dataset = load_dataset(ds_name)
-        small_train = dataset["train"].shuffle(seed=42).select(range(1000))
+        small_train = dataset["train"].shuffle(seed=42).select(range(500))  # range(1000)
         small_eval = dataset["test"].shuffle(seed=42).select(range(100))
     except Exception as e:
         print(f"数据集加载失败，请检查网络连接: {str(e)}")
