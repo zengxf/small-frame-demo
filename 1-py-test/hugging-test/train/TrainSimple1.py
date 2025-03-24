@@ -19,8 +19,8 @@ import torch
 #
 #
 # 定义数据集和模型名
-# ds_name = "yelp_review_full"
-ds_name = "imdb"  # 数据集少
+# ds_name = "yelp_review_full"  # 数据大。 ref: https://huggingface.co/datasets/Yelp/yelp_review_full
+ds_name = "imdb"                # 数据少。 ref: https://huggingface.co/datasets/stanfordnlp/imdb
 model_name = "bert-base-uncased"
 
 
