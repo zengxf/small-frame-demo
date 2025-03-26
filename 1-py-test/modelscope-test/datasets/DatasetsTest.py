@@ -21,3 +21,5 @@ print("------------------------------------")
 # -----------------------------------------------
 ds = MsDataset.load('swift/self-cognition', subset_name='default', split='train')
 print(ds)
+
+print("---------------------------\n")

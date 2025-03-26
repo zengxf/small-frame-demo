@@ -1,4 +1,11 @@
-modelscope>=1.24.0
-addict>=2.4.0
-numpy>=2.2.4
-datasets>=3.2.0
+modelscope>=1.24.0  # 25-03
+addict>=2.4.0       # 20-11
+numpy>=2.2.4        # 25-03
+datasets>=3.3.0     # 25-02
+setuptools>=78.1.0  # 25-03
+torch>=2.6.0        # 25-01
+Pillow>=11.1.0      # 25-01
+simplejson>=3.20.1  # 25-02
+sortedcontainers>=2.4.0   # 21-05
+transformers>=4.50.1      # 25-03
+sentencepiece>=0.2.0      # 24-02
