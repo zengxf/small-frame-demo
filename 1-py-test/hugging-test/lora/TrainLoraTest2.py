@@ -1,3 +1,7 @@
+"""
+参考 https://yuanbao.tencent.com/chat/naQivTmsDa/db467971-388f-437c-9299-1df6dc52c296
+"""
+
 # 环境准备（整合网页1、3、4、7的加速方案）
 from transformers import (
     AutoModelForSeq2SeqLM, AutoTokenizer,
