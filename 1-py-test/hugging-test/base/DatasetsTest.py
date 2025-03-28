@@ -3,6 +3,13 @@
 # ------------------------------------------------------------
 
 from datasets import load_dataset
+from datasets import config
+
+#
+# 基础数据加载 imdb
+# -----------------------------------------------
+print("\n------------------------------- 0")
+print(config.HF_DATASETS_CACHE)
 
 #
 # 基础数据加载 imdb
@@ -14,6 +21,10 @@ print("------------------------")
 print(dataset["train"].num_rows)
 print("------------------------")
 print(dataset["test"].num_rows)
+print("------------------------")
+print('本地缓存文件:', dataset.cache_files)
+# print("------------------------")
+# print('本地下载文件:', dataset.info.download_checksums)  # 没有 info 属性
 
 # #
 # # 基础数据加载 yelp_review_full

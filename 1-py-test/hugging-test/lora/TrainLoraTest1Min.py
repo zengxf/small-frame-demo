@@ -1,7 +1,7 @@
 """
 改小，只用 250 条数据测试
 
-测试不通过
+运行正常 (但预测不准)
 """
 
 # 导入必要的库
@@ -93,3 +93,5 @@ with torch.no_grad():
     outputs = model(**inputs)
     predictions = torch.argmax(outputs.logits, dim=-1)
 print(f"Prediction: {'Positive' if predictions == 1 else 'Negative'}")
+
+print("\n--------------------------------------")
