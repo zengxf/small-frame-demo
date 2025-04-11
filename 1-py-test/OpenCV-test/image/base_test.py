@@ -1,5 +1,5 @@
 """
-图像读取与显示
+基础测试
 """
 
 import cv2
@@ -12,4 +12,4 @@ cv2.imshow('OpenCV-test-Image', image)
 
 # 等待按键后关闭窗口
 cv2.waitKey(0)
-cv2.destroyAllWindows()
+# cv2.destroyAllWindows()   # 可以不用
