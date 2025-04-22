@@ -6,6 +6,7 @@
 
 #include <iostream>
 
+
 /**
 指针的声明方式为：
     类型 *指针名;
@@ -15,6 +16,10 @@
     double  *dptr;  // dptr 是一个指向 double 类型的指针
     char    *cptr;  // cptr 是一个指向 char 类型的指针
 */
+void _info() {
+}
+
+// 指针的初始化
 int base_test() {
     /*
     代码解释：
@@ -63,6 +68,37 @@ void pointer_operation() {
     std::cout << "arr-ptr++: " << ptr << std::endl; // 下一个指针位置 (自动 +4)
 }
 
+// 指针与数组
+// 在 C++ 中，数组名本身就是指向数组第一个元素的指针。因此，可以通过指针来访问数组元素。
+void pointer_array() {
+    int arr[] = {5, 10, 15, 20, 25};
+    int *ptr = arr; // 等同于 int *ptr = &arr[0];
+
+    for (int i = 0; i < 5; i++) {
+        std::cout << "Element " << i << ": " << *(ptr + i) << std::endl;
+    }
+}
+
+// ----------------------------------------
+// 指针与函数
+
+// 函数声明：交换两个整数的值
+void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void swap_test() {
+    int x = 5;
+    int y = 10;
+    std::cout << "Before swap: x = " << x << ", y = " << y << std::endl;
+    swap(&x, &y); // 传递变量的地址
+    std::cout << "After swap: x = " << x << ", y = " << y << std::endl;
+}
+
+// ----------------------------------------
+
 int main() {
     base_test();
     std::cout << std::endl;
@@ -71,6 +107,12 @@ int main() {
     std::cout << std::endl;
 
     pointer_operation();
+    std::cout << std::endl;
+
+    pointer_array();
+    std::cout << std::endl;
+
+    swap_test();
     std::cout << std::endl;
 
     return 0;
