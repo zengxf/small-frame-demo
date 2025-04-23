@@ -12,6 +12,12 @@ int test_int() {
     return 0;
 }
 
+int test_int2() {
+    std::cout << "test_int2()!" << std::endl << std::endl;
+    // return 10; // 不返回，编译不会报错，但运行时会报错
+    return 10;
+}
+
 // 值传递（Pass by Value）
 void Pass_by_Value_increment(int a) {
     a++;
@@ -60,6 +66,7 @@ void test_Lambda() {
 
 int main() {
     test_int();
+    test_int2();
 
     int a = 5;
     Pass_by_Value_increment(a);
