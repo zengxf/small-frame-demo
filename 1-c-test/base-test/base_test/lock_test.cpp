@@ -75,20 +75,20 @@ void increment2(int num) {
 
 void test_lock2() {
     std::thread t1(increment2, 5);
-    // std::thread t2(increment2, 5);
+    std::thread t2(increment2, 5);
 
     t1.join();
-    // t2.join();
+    t2.join();
 
     std::cout << "Final counter value: " << counter << std::endl;
 }
 
 int main() {
-    // test_lock1();
+    test_lock1();
     std::cout << std::endl;
 
     test_lock2();
-    // std::cout << std::endl;
+    std::cout << std::endl;
 
     return 0;
 }
