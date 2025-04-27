@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+    <info id="1.0">
+        <name>yoyo</name>
+        <age>28</age>
+        <job>
+            <text>dep，AI</text>
+            <sal>AI</sal>
+        </job>
+    </info>
+</data>

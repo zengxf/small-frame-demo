@@ -2,6 +2,7 @@
 文件操作
 """
 
+# test_file = "../0test.md"
 test_file = "0test.md"
 
 print("\n-----------------------------")
