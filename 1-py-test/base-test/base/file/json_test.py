@@ -4,7 +4,8 @@ Json 测试
 
 import json
 
-json_str = '{"name": "yoyo", "age": 30, "city": "shenzhen"}'
+json_str = '{ "name": "yoyo", "age": 30, "city": "shenzhen" }'
+# json_str = "{ 'age': 30, 'city': 'sz' }" # 出错。 json 中的键和值必须使用双引号，
 
 # 将 json 字符串转换为 dict 字典
 json_to_dict = json.loads(json_str)
