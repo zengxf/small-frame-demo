@@ -1,0 +1,4 @@
+import calc
+
+print(calc.add(4, 5))
+print(calc.sub(5, 6))
