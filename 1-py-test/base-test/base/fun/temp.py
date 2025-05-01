@@ -1,12 +1,5 @@
-def divide(x, y):
-    if y == 0:
-        # raise ZeroDivisionError('除数不能为 0') # 特定异常
-        raise Exception('除数不能为 0')  # 通常使用万能异常
-    return x / y
+''' 3. pow(数值,次方) 求数值的次方 '''
+print(pow(2, 3), pow(3, 0.5), pow(2, -4))  # 8 1.7320508075688772 0.0625
 
-
-# result = divide(10, 0)
-try:
-    result = divide(10, 0)
-except Exception as e:
-    print(f'程序异常： {e}')
+''' 4. divmod(被除数,除数) 求商和余数，返回到元组中(商,余数) '''
+print(divmod(7, 3))  # (2, 1) 元组

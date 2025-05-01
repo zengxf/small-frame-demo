@@ -24,3 +24,21 @@ def clac_binary(n):
 
 
 print(clac_binary(20))
+
+
+#
+
+
+# ---------------------------------
+class MagicMethod1:
+    def __init__(self, 形参实例属性):
+        self.实例属性 = 形参实例属性
+
+    def __call__(self, *args, **kwargs):
+        return [self.实例属性 * _ for _ in args]
+        # return [self.实例属性 * _ for _ in kwargs.values()]
+
+
+# 创建实例对象 instance_object1，可以当函数使用
+instance_object1 = MagicMethod1(10)  # 实例属性为 10
+print(instance_object1(1, 2, 3))
