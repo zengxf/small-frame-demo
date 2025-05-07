@@ -50,3 +50,16 @@ print('abcABC1234'.isalnum())  # 是否字母+数字
 print('q1!@#'.isascii())  # ascii码 print('qeQ132_'.isidentifier())  # 是否符合标识符
 print(' '.isspace())  # 是否为空格
 print('qwe123!@#'.isprintable())  # 判断字符串所有字符是否都可以打印，除 \n \t \r 等
+
+print("\n----------------------------")
+str2 = 'abcdefg'
+# 切片至少有一个冒号，如果没有冒号，则是字符串的索引
+print(str2[:])  # abcdefg
+# 只输入 2 个冒号，都使用默认值
+print(str2[::])  # abcdefg
+# 从 2 到 5 进行切片，左闭右开，取 2，3，4
+print(str2[2: 5])  # cde
+# 设置切片的步长为 2，每隔 2 位截取一个
+print(str2[:: 2])  # aceg
+# 步长为负数，从右边到左，相当于将字符串反转
+print(str2[:: -1])  # gfedcba
