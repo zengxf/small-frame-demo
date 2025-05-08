@@ -11,7 +11,7 @@
  */
 
 // #include "fun_h.h" // 可省
-#include "fun_cpp.cpp" // 要引用
+#include "fun_h_cpp.cpp" // 要引用
 
 int main() {
     int a = 100;
