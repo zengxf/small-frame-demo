@@ -51,7 +51,7 @@ private:
 int person::m_A = 10;
 int person::m_B = 10;
 
-void test01() {
+void testOut() {
     // 静态成员变量有两种方式
 
     // 1.通过对象
@@ -81,6 +81,6 @@ void test01() {
 }
 
 int main() {
-    test01();
+    testOut();
     return 0;
 }

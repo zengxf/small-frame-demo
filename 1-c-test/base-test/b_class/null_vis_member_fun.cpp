@@ -31,14 +31,14 @@ public:
     int mAge;
 };
 
-void test01() {
+void testOut() {
     person *p = NULL;
     p->showClassName(); // 空指针，可以调用成员函数
     p->showPerson(); // 如果成员函数中用到了this指针，就不可以了
 }
 
 int main() {
-    test01();
+    testOut();
     // system("pause");
     return 0;
 }
