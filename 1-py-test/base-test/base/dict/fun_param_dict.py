@@ -6,7 +6,7 @@
 
 
 def dict_fun_test1(a, b, **kw_args):
-    print('\n-------------------- 1')
+    print('\n**************************** 1')
     print(f"a: {a}")
     print(f"b: {b}")
     print(f"kw-args: {kw_args}")
@@ -14,7 +14,7 @@ def dict_fun_test1(a, b, **kw_args):
 
 # def dict_fun_test2(a, b, **kwargs, d):  # 编译出错
 def dict_fun_test2(a, b, **kwargs):
-    print('\n-------------------- 2')
+    print('\n**************************** 2')
     print(f"a: {a}")
     print(f"b: {b}")
     print(f"kw-args: {kwargs}")

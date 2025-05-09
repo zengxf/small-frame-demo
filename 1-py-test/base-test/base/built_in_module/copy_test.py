@@ -15,7 +15,7 @@ print(copy_lst, '浅拷贝后 id:', id(copy_lst))
 deepcopy_lst = copy.deepcopy(lst)  # 创建完全独立的新对象
 print(deepcopy_lst, '深拷贝后 id:', id(deepcopy_lst))
 
-print("\n-----------------------------")
+print("\n****************************")
 lst[2][0] = 'python'
 print(lst, '修改后原列表 id:', id(lst))
 print(copy_lst, '修改后浅拷贝 id:', id(copy_lst))

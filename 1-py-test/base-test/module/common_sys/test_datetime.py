@@ -5,6 +5,6 @@ from datetime import datetime
 
 now = datetime.now()
 
-print("-----------------------------------")
+print("****************************")
 print(now)
 print(now.strftime("%Y-%m-%d %H:%M:%S"))

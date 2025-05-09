@@ -13,7 +13,7 @@ dict_list = [{'name': 'yoyo', 'age': 27, 'sal': 2000},
              {'name': 'zhao', 'age': None, 'sal': 6000}]
 print(list(map(lambda d: {**d, 'birth': 2024 - d['age'] if d['age'] is not None else 2024}, dict_list)))
 
-print("---------------------------------\n")
+print("****************************\n")
 # 案例：找出 dict_list 中最高薪资的用户信息
 # 首先过滤 None 值
 filter_none = list(filter(lambda d: d['sal'] is not None, dict_list))

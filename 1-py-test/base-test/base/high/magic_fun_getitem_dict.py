@@ -39,12 +39,12 @@ print(instance_object['name'])
 print(instance_object[::])
 print(instance_object[1:3])
 print(instance_object[::2])
-print("---------------------------------------\n")
+print("****************************\n")
 
 #
-# -------------------------------
+# ****************************
 # del test
-# -------------------------------
+# ****************************
 #
 
 instance_object = MagicMethod({'name': 'yoyo', 'age': 30, 'sal': 3000})

@@ -20,7 +20,7 @@ class MyContextManager:
 
 
 # --
-print("\n----------------------------------------")
+print("\n****************************")
 
 # 使用自定义上下文管理器
 with MyContextManager() as cm:

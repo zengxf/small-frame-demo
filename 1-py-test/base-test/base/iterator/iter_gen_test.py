@@ -9,7 +9,7 @@ iterator = iter(my_list)
 print(next(iterator))  # 输出: 1
 print(next(iterator))  # 输出: 2
 print(next(iterator))  # 输出: 3
-print("---------------------------------")
+print("****************************")
 
 
 #

@@ -3,7 +3,7 @@
 """
 
 #
-print("\n-----------------------------")
+print("\n****************************")
 print("try-except")
 try:
     result = 10 / 0
@@ -11,7 +11,7 @@ except ZeroDivisionError:
     print("除以零错误")
 
 #
-print("\n-----------------------------")
+print("\n****************************")
 print("try-except-finally")
 try:
     result = 10 / 0
@@ -21,7 +21,7 @@ finally:
     print("执行结束")
 
 #
-print("\n-----------------------------")
+print("\n****************************")
 print("try-except-else-finally")
 try:
     result = 10 / 2
