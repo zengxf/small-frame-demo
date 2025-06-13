@@ -375,3 +375,161 @@ def binary(n):
 
 
 print(binary(10))
+
+# 2025-06-13
+# ------------------------------
+#
+#
+# 推导式
+# 多重循环与嵌套规则
+# 执行顺序：从左到右，外层到内层
+"""
+语法：
+[表达式 for 变量A in 可迭代A for 变量B in 可迭代B]
+
+等效逻辑：
+result = []  
+for 变量A in 可迭代A:  
+    for 变量B in 可迭代B:  
+        result.append(表达式)  
+"""
+matrix = [[1, 2], [3, 4]]
+flat1 = [num for row in matrix for num in row]  # [1, 2, 3, 4] (先左后右)
+flat2 = [[num + 10 for num in row] for row in matrix]  # [[11, 12], [13, 14]] (先外后内)
+
+# ------------------------------
+# 实现递归阶乘
+fac = (f := lambda n: 1 if n == 0 else n * f(n - 1))
+print(fac(5))
+
+# ------------------------------
+# 输入 "aaabbcccca"，输出压缩后的字符串 "a3b2c4a1"，若压缩后更长则返回原字符串
+
+s = 'aaabbcccca'
+zips = ''
+count = 1
+for i in range(1, len(s)):
+    if s[i - 1] == s[i]:
+        count += 1
+    else:
+        zips += s[i - 1] + str(count)
+        count = 1  # 重置
+zips += s[-1] + str(count)
+print(zips)
+
+# ------------------------------
+# 计算 [5,32,24,22,35,12] 整数数组中的最大值、最小值、及他们的最大公约数
+
+numbers = [5, 32, 24, 22, 35, 12]
+min_, max_ = min(numbers), max(numbers)
+print(min_, max_)
+while max_ != 0:
+    min_, max_ = max_, min_ % max_
+    print(min_, max_)  # 互换: 35 5 # 5 0
+print(min_)
+
+# ------------------------------
+# 删除 lst = [0.5, 0.8, -0.2, 0.6, -0.7] 中绝对值较大的元素
+# 关键：三元 + 海象 + max
+
+lst = [0.5, -0.8, -0.2, 0.6, -0.7]
+lst.remove(max_num) if (max_num := max(lst, key=abs)) else print('err')
+print(lst)  # [0.5, -0.2, 0.6, -0.7]
+
+# ------------------------------
+# 将 [[1,2],[3,4],[5]] 二维列表扁平化为 [1,2,3,4]
+
+arr_2d = [[1, 2], [3, 4, 8], [5]]
+flat_arr = lambda l: sum(l, [])
+print(flat_arr(arr_2d))
+
+from functools import reduce
+
+flat_arr = reduce(lambda x, y: x + y, arr_2d, [])
+print(flat_arr)
+
+
+# ------------------------------
+# 使用 yield 从列表 lst = [1,2,3,4,5,6,7,8,9,10] 中，生成 3 个元素的所有子列表
+
+def generate_sub_list(lst, size):
+    # 个数 = len() - size + 1
+    print('---------------- 只一次')
+    for i in range(len(lst) - size + 1):
+        # 每次生成从索引 i 开始、长度为 size 的子列表
+        print('---------------- 外面 for 一次就进入')
+        yield lst[i:i + size]
+
+
+lst = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+sub_list = generate_sub_list(lst, size=3)
+print(sub_list)  # <generator object generate_sub_list at 0x000001D897941620>
+for sub_lst in sub_list:
+    print(sub_lst)
+
+# ------------------------------
+# 数据批处理迭代器：在训练模型时，通常需要按批次处理数据，划分 batch
+# 比如训练 data 为 [1 ~ 20]，每隔 batch_size 为 5 次输出一组数据
+# [1, 2, 3, 4, 5]
+# [6, 7, 8, 9, 10]
+# [11, 12, 13, 14, 15]
+# [16, 17, 18, 19, 20]
+
+class DataBatchIter:
+    def __iter__(self):
+        self.start = 0
+        return self
+
+    def __next__(self):
+        if self.start > len(self.data):
+            raise StopIteration
+        batch = self.data[self.start: self.start + self.batch_size]
+        self.start += self.batch_size
+        return batch
+
+# ------------------------------
+# 定义数据集类：通过索引访问单个样本
+
+class CustomDataSet:
+    def __getitem__(self, item):
+        if isinstance(item, slice):
+            return self.data[item.start: item.stop: item.step]
+        elif isinstance(item, int):
+            return self.data[item]
+        return '类型错误'
+
+
+# 测试
+# 构造 data 数据集
+data = [(i, i ** 2) for i in range(1, 10)]
+dataset = CustomDataSet(data)
+print(dataset[5])
+print(dataset[2: 8])
+
+# ------------------------------
+# 给定一个整数数组 arr1 和一个整数目标值 target，
+# 请你在该数组中找出所有和为目标值的那两个整数，并返回下标
+# 比如： arr=[21, 11, 23, 25, 33, 28] target=44 输出：[{'nums': [21, 23], 'index': [0, 2]}, ...]
+
+def two_num(arr, target):
+    # 定义列表，保存所有的组合的数组和下标
+    result = []
+    save_num_index = {} # 存索引的
+    for i, num in enumerate(arr):
+        temp = target - num # 第一次记录
+        if temp in save_num_index: # 第二次输出
+            result.append({'nums': [temp, num], 'index': [save_num_index[temp], i]})
+        save_num_index[num] = i
+    return result
+
+arr = [21, 11, 23, 25, 33, 28]
+target = 44
+print(two_num(arr, target))
+
+# ------------------------------
+
+# ------------------------------
+
+# ------------------------------
+
+# ------------------------------

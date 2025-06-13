@@ -1,8 +1,15 @@
-import numpy as np
+def two_num(arr, target):
+    # 定义列表，保存所有的组合的数组和下标
+    result = []
+    save_num_index = {}
+    for i, num in enumerate(arr):
+        temp = target - num
+        if temp in save_num_index:
+            result.append({'nums': [temp, num], 'index': [save_num_index[temp], i]})
+        save_num_index[num] = i
+    return result
 
-''' 8. repeat(数组, 重复次数, axis=轴)  指定轴重复'''
 
-m = np.zeros((8, 8))
-m[1::2, ::2] = 1
-m[0::2, 1::2] = 1
-print(m)
+arr = [21, 11, 23, 25, 33, 28]
+target = 44
+print(two_num(arr, target))
