@@ -189,3 +189,89 @@ print(arr3[:, [1, 0, 2], [0, 1, 0], :])
 #
 arr3 = np.arange(36).reshape(2, 3, 2, 3)
 print(arr3[:, [1, 0, 2], :, [0, 1, 0]].shape)  # (3, 2, 2)
+
+'''
+6. np.argsort  排序后返回索引值
+
+ref: https://chat.minimaxi.com/?type=chat&chatID=389509790736633857
+
+排序后的索引
+'''
+# 多维数组
+a = np.array([[3, 1, 2],
+              [9, 7, 8]])
+
+# 对每一行进行排序，并获取索引
+sorted_indices = np.argsort(a, axis=1)
+print("排序后的索引:\n", sorted_indices)
+# 输出:
+# 排序后的索引:
+# [[1 2 0]
+#  [2 1 0]]
+# 使用索引重新排列数组
+sorted_a = np.take_along_axis(a, sorted_indices, axis=1)
+print("排序后的数组:\n", sorted_a)
+# 输出:
+# 排序后的数组:
+# [[1 2 3]
+#  [7 8 9]]
+
+# ------------------------------
+'''
+2. np.sort 默认按最后一维排序
+
+https://chat.minimaxi.com/?type=chat&chatID=389581149328183300
+'''
+np.random.seed(1)
+arr3 = np.random.randint(1, 12, (3, 4))
+print(arr3)
+print("*" * 20)
+# print(np.sort(arr3))  # axis=-1  只对最里面进行排序
+# print(np.sort(arr3, axis=0))  # 对列进行排序
+# print(np.sort(arr3, axis=None))  # 展平排序
+
+# ----------------------------------
+#
+# 多维数组 是怎么排序的
+# https://chat.minimaxi.com/?type=chat&chatID=389583517784539139
+arr3 = np.array([[[3, 1, 4],
+                  [1, 5, 9]],
+
+                 [[2, 6, 5],
+                  [9, 2, 7]]])
+
+sorted_arr3_axis0 = np.sort(arr3, axis=0)
+print("原始数组:\n", arr3)
+print("沿着轴=0排序后:\n", sorted_arr3_axis0)
+
+# ----------------------------------
+#
+#
+''' 条件1：第一个列必须与第二个行，相等，返回（第一个行, 第二个的列）'''
+# shape1=(行, 列)    @ shape2=(行, 列) = shape(1行, 2列)
+arr1 = np.array([[1, 2, 3], [4, 5, 6]])
+print(arr1.shape)  # (2, 3)
+arr2 = np.array([[1, 2, 3, 4], [4, 5, 6, 8], [7, 6, 8, 9]])  # （3, 4)
+print(arr2.shape)  # (3, 4)
+print(arr1 @ arr2)
+
+# ----------------------------------
+# 多维矩阵相乘
+#
+# 广播解释的好
+# https://chat.minimaxi.com/?type=chat&chatID=389592300996861958
+# 只有一个明细示例
+# https://yuanbao.tencent.com/chat/naQivTmsDa/4bf83ae0-ff0c-4e73-9f67-84687ea7a0d5
+#
+# 解释得更详细
+# https://chat.deepseek.com/a/chat/s/70c03cb7-ac4c-4441-b6dc-99cefbec08b8
+''' 条件2：多维矩阵相乘：必须满足（1列=2行），shape=(剩余的必须满足广播, 1行，2列)'''
+arr3 = np.arange(1, 25).reshape(1, 2, 3, 4)
+print(arr3)
+print("*" * 20)
+arr4 = np.arange(1, 13).reshape(3, 1, 4, 1)
+print(arr4)
+print("*" * 20)
+arr6 = arr3 @ arr4
+print(arr6)
+print(arr6.shape)
