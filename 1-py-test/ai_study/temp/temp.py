@@ -1,10 +1,8 @@
 import numpy as np
 
-arr2 = np.random.uniform(1, 10, (2, 3))
-print(arr2)
-print('*' * 50)
-print('截取整数', np.trunc(arr2))
-print('*' * 50)
-print(np.round(arr2, 2))
-print('*' * 50)
-print(np.ceil(arr2))
+''' 8. repeat(数组, 重复次数, axis=轴)  指定轴重复'''
+
+m = np.zeros((8, 8))
+m[1::2, ::2] = 1
+m[0::2, 1::2] = 1
+print(m)
