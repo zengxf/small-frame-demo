@@ -1,4 +1,8 @@
 numpy>=2.2.4
-matplotlib>=3.10.3
-pandas>=2.3.0
-labelImg>=1.8.6
+matplotlib>=3.10.3  # 图表
+pandas>=2.3.0  # 读取 csv
+
+# labelImg>=1.8.6   # (矩形)  图片标注、使用 Anaconda 安装
+# labelme>=5.8.1    # (多边形) 图片标注、使用 Anaconda 安装
+
+pillow>=11.2.1  # 图片处理

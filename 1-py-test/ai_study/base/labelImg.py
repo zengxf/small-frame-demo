@@ -51,7 +51,7 @@ from libs.create_ml_io import JSON_EXT
 from libs.ustr import ustr
 from libs.hashableQListWidgetItem import HashableQListWidgetItem
 
-__appname__ = 'labelImg'
+__appname__ = 'labelImg_f'
 
 
 class WindowMixin(object):
@@ -1621,7 +1621,7 @@ def get_main_app(argv=[]):
     args.class_file = args.class_file and os.path.normpath(args.class_file)
     args.save_dir = args.save_dir and os.path.normpath(args.save_dir)
 
-    # Usage : labelImg.py image classFile saveDir
+    # Usage : labelImg_f.py image classFile saveDir
     win = MainWindow(args.image_dir,
                      args.class_file,
                      args.save_dir)
