@@ -7,16 +7,16 @@
 import os
 
 # 1. 打开 txt
-label_dir = r'C:\Study\datapro\yolo_label'
+label_dir = r'./label-data'
 
 # 打开 classes.txt 读取类别，转为字典 {face:0, mask:1}
-class_path = r'C:\Study\datapro\yolo_label\classes.txt'
+class_path = r'./label-data/classes.txt'
 with open(class_path, mode='r', encoding='utf-8') as fc:
-    class_names = {i:c.strip() for i, c in enumerate(fc.readlines())}
+    class_names = {i: c.strip() for i, c in enumerate(fc.readlines())}
     # print(class_names)
 
 # 2. 读取数据：class_id, x, y, w, h
-with open(os.path.join(label_dir, 'test_00001546.txt'), mode='r', encoding='utf-8') as f:
+with open(os.path.join(label_dir, 'test_00000546.txt'), mode='r', encoding='utf-8') as f:
     # 读取数据（文件读取返回字符串）：去两边空格，分割为列表
     # class_id, x, y, w, h = map(float, f.read().strip().split())
 
@@ -38,12 +38,13 @@ with open(os.path.join(label_dir, 'test_00001546.txt'), mode='r', encoding='utf-
 
         bbox.append([class_name, xmin, ymin, xmax, ymax])
 
-        # print(bbox)
+        print(bbox)
 
 # 4. 写入 xml 文件，标签属性都是字符串
 # [['face', 40.79997, 43.19991, 139.20003, 141.59997]]
 
 import xml.etree.ElementTree as ET
+
 # 1）构造 element 元素的根标签
 root = ET.Element('annotation')
 
@@ -60,16 +61,16 @@ ET.SubElement(bndbox, 'xmin').text = str(40.79997)
 ET.SubElement(bndbox, 'ymin').text = str(43.19991)
 
 # 3）转 element 元素树结构。write()
-# tree = ET.ElementTree(root)
-# tree.write('new_label.xml')
+tree = ET.ElementTree(root)
+tree.write(os.path.join(label_dir, 'new_label.xml'))
 
 # 4）格式化生成 xml， 导入 from xml.dom import minidom
 from xml.dom import minidom
+
 tree = ET.tostring(root, encoding='utf-8')
 format_xml = minidom.parseString(tree).toprettyxml(indent='\t')
 
-with open('new_label1.xml', mode='w', encoding='utf-8') as f:
+with open(os.path.join(label_dir, 'new_label1.xml'), mode='w', encoding='utf-8') as f:
     f.write(format_xml)
-
 
 pass

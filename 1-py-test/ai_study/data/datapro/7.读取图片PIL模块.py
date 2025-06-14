@@ -3,10 +3,10 @@
 # 终端安装：pip install pillow -i 国内源
 
 from PIL import Image
-from setuptools.package_index import distros_for_url
+# from setuptools.package_index import distros_for_url
 
 # png、jpg\jpge、bmp、gif动态
-img_path = r'C:\Study\datapro\lenna.png'
+img_path = r'.\lenna.png'
 
 # open 打开图片，返回 image 图片对象，变量 img
 # img = Image.open(img_path)

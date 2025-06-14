@@ -10,25 +10,25 @@
 import xml.etree.ElementTree as ET
 
 # 2. 解析 xml 文件，返回元素树对象
-xml_file_path = r'C:\Study\datapro\voc_label\test_00000546.xml'
+xml_file_path = r'.\label-data\test_00000546.xml'
 tree = ET.parse(xml_file_path)
-print(tree)         # xml.etree.ElementTree.ElementTree object
+print(tree)  # xml.etree.ElementTree.ElementTree object
 
 # 3. 从元素树对象中获取根
 root = tree.getroot()
-print(root)         # Element 'annotation'
+print(root)  # Element 'annotation'
 
 # 4. 从 root 下面获取（size 图片大小，name 标注的类别，bbox框的: xmin,ymin,xmax,ymax)
 # 路径：/ 表示绝对路径         // 表示相对路径
 # 1）size 大小：width，height
 width = root.find('size/width').text
-print(type(width),width)            # <class 'str'>
+print(type(width), width)  # <class 'str'>
 
 height = root.findtext('size/height')
 print(height)
 
 # 2）name，bndbox（如果多个框，都在 object 子标签中）
-objects = root.findall('object')        # 返回列表，objects 元素树对象
+objects = root.findall('object')  # 返回列表，objects 元素树对象
 print(objects)
 
 # 多个循环读取：for

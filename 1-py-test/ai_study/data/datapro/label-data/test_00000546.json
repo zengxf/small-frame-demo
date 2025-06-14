@@ -1,0 +1,25 @@
+[
+  {
+    "image": "test_00000546.jpg",
+    "annotations": [
+      {
+        "label": "face",
+        "coordinates": {
+          "x": 110.0,
+          "y": 68.5,
+          "width": 80.0,
+          "height": 93.0
+        }
+      },
+      {
+        "label": "others",
+        "coordinates": {
+          "x": 40.8,
+          "y": 138.4,
+          "width": 47.0,
+          "height": 45.0
+        }
+      }
+    ]
+  }
+]

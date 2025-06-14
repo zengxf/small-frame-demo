@@ -9,6 +9,11 @@ ref: xx
 """
 Anaconda 命令行启动
 
+可先用 GUI 创建 Python 3.9 的环境
+
+查看环境
+conda env list
+
 激活
 conda activate datapro
 
