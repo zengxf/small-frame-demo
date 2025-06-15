@@ -1,15 +1,19 @@
-def two_num(arr, target):
-    # 定义列表，保存所有的组合的数组和下标
-    result = []
-    save_num_index = {}
-    for i, num in enumerate(arr):
-        temp = target - num
-        if temp in save_num_index:
-            result.append({'nums': [temp, num], 'index': [save_num_index[temp], i]})
-        save_num_index[num] = i
-    return result
 
 
-arr = [21, 11, 23, 25, 33, 28]
-target = 44
-print(two_num(arr, target))
+import uuid
+print(uuid.uuid4())
+
+
+# lxml 第三方模块，需要安装。读取 xml
+# xpath 语句：xpath(//相对/绝对.text())
+
+
+import csv          # pandas
+
+# with open(r'C:\Study\datapro\data.csv',mode='r',encoding='utf-8') as f:
+#     c = csv.reader(f)
+#     for row in c:
+#         print(row)
+
+
+
