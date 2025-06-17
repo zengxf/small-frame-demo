@@ -15,6 +15,8 @@ print(np.sort(arr3, axis=0))
 
 print(np.sort(arr3, axis=None))  # 展平排序
 
+# ------------------------ 250618
+
 ''' 3. ravel 展平数组一维'''
 np.random.seed(2)
 arr4 = np.random.randint(1, 12, (3, 4))
