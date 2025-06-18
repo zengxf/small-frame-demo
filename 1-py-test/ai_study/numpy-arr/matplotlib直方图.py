@@ -19,8 +19,7 @@ import matplotlib.pyplot as plt
 # plt.xlim()      # x轴范围
 # plt.ylim()      # y轴范围
 # plt.legend()    # 图例名称的位置：loc= upper right, lower left
-# plt.grid(True)        # 网格图
-#
+# plt.grid(True)  # 网格图
 # plt.xticks()    # x轴刻度
 # plt.yticks()    # y轴刻度
 
