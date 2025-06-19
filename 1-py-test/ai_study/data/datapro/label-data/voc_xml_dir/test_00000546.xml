@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<annotation>
+	<filename>test_00000546.jpg</filename>
+	<path>./label-img\test_00000546.jpg</path>
+	<size>
+		<width>180</width>
+		<height>180</height>
+	</size>
+	<object>
+		<name>face</name>
+		<bndbox>
+			<xmin>110.0</xmin>
+			<ymin>68.5</ymin>
+			<xmax>190.0</xmax>
+			<ymax>161.5</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>others</name>
+		<bndbox>
+			<xmin>40.8</xmin>
+			<ymin>138.4</ymin>
+			<xmax>87.8</xmax>
+			<ymax>183.4</ymax>
+		</bndbox>
+	</object>
+</annotation>
