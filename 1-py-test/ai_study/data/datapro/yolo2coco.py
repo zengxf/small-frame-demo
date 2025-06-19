@@ -38,27 +38,26 @@ def coco_json(coco_boxs, image_name, coco_dir):
     for box in coco_boxs:
         class_name, x, y, width, height = box
         annotation.append({'label': class_name,
-                        'coordinates': {'x': x, 'y': y, 'width': width, 'height': height}})
+                           'coordinates': {'x': x, 'y': y, 'width': width, 'height': height}})
 
     json_data = [{'image': os.path.basename(image_name), 'annotations': annotation}]
 
-    coco_file_name = os.path.join(coco_dir , os.path.splitext(os.path.basename(image_name))[0] + '.json')
+    coco_file_name = os.path.join(coco_dir, os.path.splitext(os.path.basename(image_name))[0] + '.json')
 
     with open(coco_file_name, mode='w', encoding='utf-8') as f:
         json_str = json.dumps(json_data, indent=4)
         f.write(json_str)
 
 
-
 if __name__ == '__main__':
     # yolo 标签目录：类别文件、标签文件
-    yolo_label_dir = r'C:\Study\datapro\yolo_label'
+    yolo_label_dir = r'./label-data'
 
     # 图片目录
-    image_dir = r'C:\Study\datapro\label_images'
+    image_dir = r'./label-img'
 
     # 创建 coco_dir
-    coco_dir = r'C:\Study\datapro\coco_dir'
+    coco_dir = r'./label-data/coco_json_dir'
     os.makedirs(coco_dir, exist_ok=True)
 
     # 获取目录下的文件
@@ -83,5 +82,3 @@ if __name__ == '__main__':
             coco_box = yolo_to_coco(yolo_boxs, class_name, img_width, img_height)
 
             coco_json(coco_box, image_name, coco_dir)
-
-

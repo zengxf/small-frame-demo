@@ -68,7 +68,7 @@ if __name__ == '__main__':
     image_dir = r'./label-img'
 
     # 生成 xml 文件
-    xml_dir = r'./label-data/xml_dir'
+    xml_dir = r'label-data/voc_xml_dir'
     os.makedirs(xml_dir, exist_ok=True)
 
     # 循环读取 json 文件

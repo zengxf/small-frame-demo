@@ -98,16 +98,16 @@ def generate_yolo_txt(yolo_txt_path, yolo_box):
 
 if __name__ == '__main__':
     # xml 标签文件目录，图片文件目录
-    file_xml_dir = r'C:\Study\datapro\voc_label'
-    image_dir = r'C:\Study\datapro\label_images'
+    file_xml_dir = r'./label-data'
+    image_dir = r'./label-img'
 
     # 定义生成 yolo 标签额目录，创建目录
-    yolo_dir = r'C:\Study\datapro\yolo_dir'
+    yolo_dir = r'./label-data/yolo_txt_dir'
     if not os.path.exists(yolo_dir):
         os.makedirs(yolo_dir)
 
     # 类别
-    class_name = ['face', 'mask']
+    class_name = ['face', 'others']
     class_name_dict = {c: i for i, c in enumerate(class_name)}
 
     # 判断
