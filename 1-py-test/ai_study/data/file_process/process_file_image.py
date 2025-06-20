@@ -40,8 +40,8 @@ def process_file(label_dir, image_dir, new_labels, new_images):
 
 
 if __name__ == '__main__':
-    # 源数据额目录
-    data_dir = r'C:\Study\datapro\pcb_dataset'
+    # 复制数据源目录
+    data_dir = r'D:\Data\Test\AI-img\pcb_dataset'
     shutil.copytree(os.path.join(data_dir, 'ImageSets'), os.path.join(data_dir, 'labels'), dirs_exist_ok=True)
     shutil.copytree(os.path.join(data_dir, 'JPEGImages'), os.path.join(data_dir, 'images'), dirs_exist_ok=True)
 
@@ -56,4 +56,3 @@ if __name__ == '__main__':
     old_labels = os.path.join(data_dir, 'labels')
 
     process_file(old_labels, old_images, new_labels, new_images)
-
