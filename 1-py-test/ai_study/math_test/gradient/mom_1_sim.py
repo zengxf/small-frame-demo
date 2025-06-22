@@ -41,6 +41,6 @@ if __name__ == '__main__':
         w, w_gradient, v_current = compute_gradient_momentum(w_current, v_last, LEARNING_RATE, gamma_factor)
         w_current = w
         v_last = v_current
-        loss = compute_loss(w)
+        loss = compute_loss(w)  # 函数 + 5，只能无限逼近 5
         print("step={0:>2d}  w={1:>10f}  loss={2:>10f}  grad={3:>10f}  delta={4:>10f}"
               .format(i + 1, w, loss, w_gradient, v_current))
