@@ -1,4 +1,3 @@
-# -*- coding: UTF-8 -*-
 '''
 loss function: L(w) = (w - 20)^2 + 5
 gradient: 2 * (w - 20)
@@ -40,10 +39,10 @@ if __name__ == '__main__':
     v_last = 0
     gamma_factor = 0.5
     for i in range(20):
-        w, w_gradient, v_current = compute_gradient_nag(w_current, v_last, LEARNING_RATE, gamma_factor)
-        w_current = w
+        new_w, w_gradient, v_current = compute_gradient_nag(w_current, v_last, LEARNING_RATE, gamma_factor)
+        w_current = new_w
         v_last = v_current
-        loss = compute_loss(w)
+        loss = compute_loss(w_current)
         print(
             "step={0:0>2d}  w={1:>10f}  loss={2:>10f} grad={3:>10f}  delta={4:>10f}"
-            .format(i + 1, w, loss, w_gradient, v_current))
+            .format(i + 1, new_w, loss, w_gradient, v_current))

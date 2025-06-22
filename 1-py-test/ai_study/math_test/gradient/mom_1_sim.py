@@ -1,4 +1,3 @@
-# -*- coding: UTF-8 -*-
 '''
 loss function: L(w) = (w - 20)^2 + 5
 gradient: 2 * (w - 20)
