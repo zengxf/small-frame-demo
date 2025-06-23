@@ -1,4 +1,6 @@
 """
+SGD (Stochastic Gradient Descent)
+
 L(w0, w1) = 1/4 * ( (63 - (60 * w1 + w0))^2 + (65.2 - (62 * w1 + w0))^2 )
 
 L'(w0) = −64.1 + 61w1 + w0

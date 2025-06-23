@@ -1,9 +1,9 @@
 '''
+SGD (Stochastic Gradient Descent)
+
 loss function: L(w) = (w - 20)^2 + 5
 gradient: 2 * (w - 20)
 '''
-
-import numpy as np
 
 
 def compute_gradient_sgd(w, learning_rate):
