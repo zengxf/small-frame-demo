@@ -40,7 +40,7 @@ if __name__ == '__main__':
     W_INIT = np.array([w0, w1])
 
     w_current = W_INIT
-    print(f"Momentum 算法，w 初值: {W_INIT}，学习率: {rate}, gamma: {gamma}")
+    print(f"Momentum 算法，w 初值: {W_INIT}，学习率: {rate:>10f}, gamma: {gamma}")
 
     # momentum
     v_last = np.array([0, 0])

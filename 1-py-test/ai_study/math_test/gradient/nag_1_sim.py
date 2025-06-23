@@ -37,7 +37,7 @@ if __name__ == '__main__':
     w_current = W_INIT
     print("NAG(Nesterov Accelerated Gradient)算法，w初值:", W_INIT, "，w最优点：20", "，学习率:", LEARNING_RATE)
 
-    # momentum
+    # NAG
     v_last = 0
     gamma_factor = 0.5
     for i in range(20):
