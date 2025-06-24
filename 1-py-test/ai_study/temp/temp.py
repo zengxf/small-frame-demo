@@ -1,13 +1,5 @@
-# 输入 "aaabbcccca"，输出压缩后的字符串 "a3b2c4a1"
-
-s = 'aaabbcccca'
-zips = ''
-count = 1
-for i in range(1, len(s)):
-    if s[i - 1] == s[i]:
-        count += 1
-    else:
-        zips += s[i - 1] + str(count)
-        count = 1  # 重置
-zips += s[-1] + str(count)
-print(zips) # a3b2c4a1
+lst = [0.5, -0.8, -0.2, 0.6, -0.7]
+lst.remove(max_num) \
+    if (max_num := max(lst, key=abs)) \
+    else print('err')
+print(lst)  # [0.5, -0.2, 0.6, -0.7]

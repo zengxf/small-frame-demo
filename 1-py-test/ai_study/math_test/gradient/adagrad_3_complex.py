@@ -23,7 +23,7 @@ def compute_gradient_adagrad(w0, w1, g_w0, g_w1, learning_rate):
     epsilon = 0.00000001
     lr_w0 = learning_rate / np.sqrt(g_w0 + epsilon)  # ρ / G^(1/2)
     lr_w1 = learning_rate / np.sqrt(g_w1 + epsilon)
-    w0_new = w0 - lr_w0 * w0_gradient # w - [ρ / G^(1/2)] * ∇
+    w0_new = w0 - lr_w0 * w0_gradient  # w - [ρ / G^(1/2)] * ∇
     w1_new = w1 - lr_w1 * w1_gradient
 
     return [w0_new, w1_new, g_w0, g_w1, w0_gradient, w1_gradient, lr_w0, lr_w1]
