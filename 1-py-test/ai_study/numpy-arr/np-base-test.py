@@ -36,3 +36,8 @@ b2 = np.sqrt(b + eps)
 print(b2)
 # [[2. 3.]
 #  [4. 5.]]
+
+print('*' * 50)
+Eg2 = 1e-6
+Eg3 = 1e-8
+print(f'Eg2(e): {Eg2},  Eg2: {Eg2:.6f},  Eg3: {Eg3:.6f}')

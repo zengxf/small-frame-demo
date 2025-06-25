@@ -1,25 +1,27 @@
 """
 AdaDelta (Adaptive Delta)
 
-loss function: L(w1,w2)=0.5 * (w1-10)**2 + 5*(w2+30)**2
-gradient: ((w1-10), 10*(w2+30))
+L(w0, w1) = 1/4 * ( (63 - (60 * w1 + w0))^2 + (65.2 - (62 * w1 + w0))^2 )
 
-w_initial: (0,0)
-learning_rate: 0.1
+L'(w0) = -64.1 + 61w1 + w0
+L'(w1) = -3911.2 + 3722w1 + 61w0
+
+w_initial: (10, 10)
 """
+
 import numpy as np
 
 
 # 定义损失函数
-def loss(w1, w2):
-    return 0.5 * (w1 - 10) ** 2 + 5 * (w2 + 30) ** 2
+def loss(w0, w1):
+    return 1 / 4 * ((63 - (60 * w1 + w0)) ** 2 + (65.2 - (62 * w1 + w0)) ** 2)
 
 
 # 定义梯度
-def gradient(w1, w2):
-    grad_w1 = (w1 - 10)
-    grad_w2 = 10 * (w2 + 30)
-    return np.array([grad_w1, grad_w2])
+def gradient(w0, w1):
+    grad_w0 = -64.1 + 61 * w1 + w0
+    grad_w1 = -3911.2 + 3722 * w1 + 61 * w0
+    return np.array([grad_w0, grad_w1])
 
 
 # AdaDelta 优化器实现
@@ -62,10 +64,10 @@ def adadelta(grad, loss_func, x0, rho=0.95, eps=1e-6, num_iters=1000):
 
 
 # 初始参数
-w_initial = [0.0, 0.0]
+w_initial = [10.0, 10.0]
 
 # 运行 AdaDelta
-optimal_weights, _ = adadelta(gradient, loss, w_initial, num_iters=5000)
+optimal_weights, _ = adadelta(gradient, loss, w_initial, num_iters=3500)
 
 print("\nOptimized weights:", optimal_weights)
 print("Expected minimum at (10, -30)")
