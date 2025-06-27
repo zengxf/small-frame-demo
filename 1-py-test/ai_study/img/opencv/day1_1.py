@@ -71,18 +71,26 @@ def show(img, title=''):
     cv2.waitKey(0)
 
 
-path = r'F:\2025\py_do2025\ClosesSeg\clothes_color_by_person\clothes_color_by_person\bing_images_aquamarine\image_9_65439a43-9548-4f04-b671-c2a4a73244e6.jpg'
-img = cv2.imread(path, 1)  # 如果是0代表灰度图。1代表是BGR图。opecv读图，读出来是numpy格式
-img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-old_img = img.copy()
-r, g, b = cv2.split(img)  # 在某些情况下，整个rgb偏暗或者梯度不明显的时候，可能某个通道会好处
+path = 'D:/Data/Test/img/52.png'
+img = cv2.imread(path, 1)  # 0 代表灰度图。1 代表是 BGR 图。读出来是 numpy 格式
+print("shape", img.shape)
 h, w = img.shape[:2]  # np.uint8 值域在0-255之间 无符号int型。-1这叫有符号int
-# 展示出来
-show(r, 'r')
-show(g, 'g')
-show(b, 'b')
 
-img[10:100, 10:100, :] = (0, 0, 0)  # cut_out
+# show(img, '原图')
+# img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+# show(img, 'xx2')
+# img = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR) # err
+# show(img, 'xx3')
+old_img = img.copy()
+# r, g, b = cv2.split(img)  # 在某些情况下，整个rgb偏暗或者梯度不明显的时候，可能某个通道会好处
+# h, w = img.shape[:2]  # np.uint8 值域在0-255之间 无符号int型。-1这叫有符号int
+# 展示出来
+# show(r, 'r')
+# show(g, 'g')
+# show(b, 'b')
+
+# cut_out 相当于裁剪、切掉
+img[100:200, 10:50, :] = (0, 0, 0)
 show(img)
 
 for ih in range(h):

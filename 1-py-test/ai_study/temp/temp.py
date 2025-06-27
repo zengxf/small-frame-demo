@@ -1,18 +1,23 @@
+arr_2d = [[1, 2], [3, 4, 8], [5]]
+flat_arr = lambda l: sum(l, [])
+print(flat_arr(arr_2d))
+# [1, 2, 3, 4, 8, 5]
 
-def infinite_sequence():
-    num = 0
-    while True:
-        yield num
-        num += 1
+"""
+sum 函数在 Python 中用于对可迭代对象进行求和。
+  对于列表，sum 默认从 0 开始累加数值。
+  但是，通过提供第二个参数 [] 作为起始值，
+    sum 会将 l 中的每个子列表依次与起始值 [] 进行连接（+ 操作）。
+第一步：[] + [1, 2] = [1, 2]
+第二步：[1, 2] + [3, 4, 8] = [1, 2, 3, 4, 8]
+第三步：[1, 2, 3, 4, 8] + [5] = [1, 2, 3, 4, 8, 5]
+最终得到一个展平后的一维列表 [1, 2, 3, 4, 8, 5]。
+"""
+print(sum([[23, 34], [43, 54]], []))
+# [23, 34, 43, 54]
+print(sum(arr_2d, []))  # 可以直接用，没必要写 lambda
+# [1, 2, 3, 4, 8, 5]
 
-# 使用生成器
-for item in infinite_sequence():
-    if item > 10:
-        break
-    print(item)
-
-# 使用生成器
-for item in infinite_sequence():
-    if item > 15:
-        break
-    print(item)
+# print(sum([23, 34], []))  # 出错，元素不能与数组相加
+print(sum([20, 30], 10))
+# 以 10 为起始值，相当于 10 + 20 + 30 = 60
