@@ -60,36 +60,16 @@ PILLOW 主要在python领域
        hsv(image, h_ratio,s_ratio,v_ratio)
 
 """
+
 # pip install opencv-python
 import cv2
-import random
-import numpy as np
+
 
 def show(img, title=''):
     cv2.imshow(title, img)
     # 等待在图中按任意键
     cv2.waitKey(0)
-    print('hello')
-"""
-3种方法
-第1单词小写，第2个单词大写
-驼峰法
-imageRead
-第1个单缩写，第2个单词不缩小
-imRead
-imgRead
 
-所有首字母都大写
-ImageRead
-ImgRead
-ImRead
-
-蛇形法
-image_read
-img_read
-im_read
-
-"""
 
 path = r'F:\2025\py_do2025\ClosesSeg\clothes_color_by_person\clothes_color_by_person\bing_images_aquamarine\image_9_65439a43-9548-4f04-b671-c2a4a73244e6.jpg'
 img = cv2.imread(path, 1)  # 如果是0代表灰度图。1代表是BGR图。opecv读图，读出来是numpy格式
@@ -112,6 +92,8 @@ for ih in range(h):
             old_img[ih, iw, :] = (0, 0, 0)
 show(old_img, 'o2')
 
+import random
+import numpy as np
 old_img_hsv = cv2.cvtColor(old_img, cv2.COLOR_RGB2HSV)
 h, s, v = cv2.split(old_img_hsv)
 
