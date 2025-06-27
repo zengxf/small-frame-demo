@@ -1,4 +1,8 @@
 import numpy as np
 
-print(np.zeros(2))
-print(np.zeros((1, 2)))
+w = np.array([2, 3])  # 初始值
+# w0, w1, w2 = w
+w0, w1 = w
+print(w)
+print(w0)
+print(w1)
