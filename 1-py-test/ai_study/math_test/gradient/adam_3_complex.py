@@ -37,19 +37,19 @@ def adam_optimizer(loss_func, grad_func, initial_w,
 
     print(f"Starting optimization from w = {w}")
 
-    for t in range(1, num_iters + 1):
-        g_t = grad_func(w)  # 计算当前梯度
+    for t in range(1, num_iters + 1):  # t + 1
+        g_t = grad_func(w)  # 计算当前梯度  g_t
 
         # 更新一阶矩估计和二阶矩估计
-        m = beta1 * m + (1 - beta1) * g_t
-        v = beta2 * v + (1 - beta2) * g_t ** 2
+        m = beta1 * m + (1 - beta1) * g_t  # m_t
+        v = beta2 * v + (1 - beta2) * g_t ** 2  # v_t
 
         # 偏差校正
-        m_hat = m / (1 - beta1 ** t)
-        v_hat = v / (1 - beta2 ** t)
+        m_hat = m / (1 - beta1 ** t)  # m hat t
+        v_hat = v / (1 - beta2 ** t)  # v hat t
 
         # 参数更新
-        w = w - lr * m_hat / (np.sqrt(v_hat) + eps)
+        w = w - lr * m_hat / (np.sqrt(v_hat) + eps)  # w_t+1
 
         # 打印训练信息（每 50 次打印一次）
         # if t % 50 == 0:
