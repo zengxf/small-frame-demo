@@ -72,11 +72,12 @@ def show(img, title=''):
 
 
 path = 'D:/Data/Test/img/52.png'
+path = r'./imgs/1.png'
 img = cv2.imread(path, 1)  # 0 代表灰度图。1 代表是 BGR 图。读出来是 numpy 格式
 print("shape", img.shape)
 h, w = img.shape[:2]  # np.uint8 值域在0-255之间 无符号int型。-1这叫有符号int
 
-# show(img, '原图')
+show(img, '原图')
 # img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 # show(img, 'xx2')
 # img = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR) # err
@@ -90,24 +91,27 @@ old_img = img.copy()
 # show(b, 'b')
 
 # cut_out 相当于裁剪、切掉
-img[100:200, 10:50, :] = (0, 0, 0)
-show(img)
+# img[100:200, 10:50, :] = (0, 0, 0)
+# show(img)
 
-for ih in range(h):
-    for iw in range(w):
-        px = old_img[ih, iw, :]  # 取某个坐标点所在的像素值
-        if (ih >= 10 and ih <= 100) and (iw >= 10 and iw <= 100):
-            old_img[ih, iw, :] = (0, 0, 0)
-show(old_img, 'o2')
+# for ih in range(h):
+#     for iw in range(w):
+#         px = old_img[ih, iw, :]  # 取某个坐标点所在的像素值
+#         if (ih >= 10 and ih <= 100) and (iw >= 10 and iw <= 100):
+#             old_img[ih, iw, :] = (0, 0, 0)
+# show(old_img, 'o2')
 
 import random
 import numpy as np
 old_img_hsv = cv2.cvtColor(old_img, cv2.COLOR_RGB2HSV)
 h, s, v = cv2.split(old_img_hsv)
+show(old_img_hsv, 'old_img_hsv')
 
-ratio = random.uniform(0.1, 0.6)
-h, s, v = h * ratio, s * ratio, v * ratio  # int->float
+# ratio = random.uniform(0.1, 0.6)
+# h, s, v = h * ratio, s * ratio, v * ratio  # int->float
 
-hsv_img = cv2.merge([h,s,v])
-bgr_hsv_img = cv2.cvtColor(hsv_img.astype(np.uint8),cv2.COLOR_HSV2BGR)
-show(bgr_hsv_img,'b')
+hsv_img = cv2.merge([h, s, v])
+# show(hsv_img, 'hsv_img')
+
+bgr_hsv_img = cv2.cvtColor(hsv_img.astype(np.uint8), cv2.COLOR_HSV2BGR)
+show(bgr_hsv_img, 'b')

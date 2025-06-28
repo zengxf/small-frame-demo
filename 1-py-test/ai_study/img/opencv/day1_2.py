@@ -78,10 +78,10 @@ while True:
     ret, frame = video.read()  # 读1帧
     # persons1 =  检查是否有人的函数(frame) # 每个帧都检测
     # 30fps, 5fps
-    if i % 6 == 0:
+    # if i % 6 == 0:
         # 抽帧检测
         #  persons2 =  检查是否有人的函数(frame)
-        cv2.imwrite(f'./imgs/{str(uuid.uuid4())}.jpg', frame)
+        # cv2.imwrite(f'./imgs/{str(uuid.uuid4())}.jpg', frame)
     if ret:  # 是否读成功
         cv2.imshow('video', frame)
         cv2.waitKey(1)
