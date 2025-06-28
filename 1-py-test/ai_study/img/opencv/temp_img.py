@@ -1,62 +1,32 @@
 import cv2
+import numpy as np
 
 
 def show(img, title=''):
-    cv2.imshow(title, img)
-    # cv2.waitKey(0)
-
-# 自定义二值化 (当前是 3 个值)
-def custom_thresholds(gray_img, min_conf_ths, max_conf_ths):
-    h, w = gray_img.shape[:2]
-    for i in range(h):
-        for j in range(w):
-            px = gray_img[i, j]  # 取某个坐标点的像素值
-            if px < min_conf_ths:
-                gray_img[i, j] = 0
-            elif px >= min_conf_ths and px < max_conf_ths:
-                gray_img[i, j] = 128
-            else:
-                gray_img[i, j] = 255
-    return gray_img
+    cv2.imshow(title, img)  # 展示图片出来。img 要为 NumPy 格式
 
 
-# path = 'D:/Data/Test/img/52.png'
-path = r'./imgs/1.png'
-img = cv2.imread(path, 0)  # 灰度读
-show(img, 'src-img')
+path = 'D:/Data/Test/img/52.png'
+# 0 代表灰度图；1 代表是 BGR 图。
+img = cv2.imread(path, 1)  # 读出来是 NumPy 格式
+show(img, 'src-img')  # 原图，中文显示有乱码
 
-img_old = img.copy()  # 深 copy
-# show(img_old, 'old')
+# img[h1:h2, w1:w2, :] 切图，相当于裁剪 (cut_out)
+cat = img[10:100, 10:100, :]  # 默认切片生成视图
+print(f"img.shape: {img.shape}, cat.shape: {cat.shape}")
 
-# # 自定义二值化
-# img2thresholds = custom_thresholds(img, 40, 150)
-# show(img2thresholds, 'img2thresholds')
+# cat_c = cat.copy()  # 使用 copy 才不会相互影响
+# cat_c[...] = (0, 0, 0)
 
-"""
-cv2.THRESH_BINARY, 超过 127 变为 255，否则为 0
-cv2.THRESH_BINARY_INV, 超过 127 的为 0，否则为 255
-cv2.THRESH_TRUNC，超过 127 的为 127，否则不变
-cv2.THRESH_TOZERO, 小于 127 的为 0，否则不变
-cv2.THRESH_TOZERO_INV, 小于 127 的不变，否则为 0 
-"""
-ret, ths1_img = cv2.threshold(img_old.copy(), 127, 255, cv2.THRESH_BINARY)
-show(ths1_img, 'ths1_img')
+# cat[...] = (255, 0, 0)  # (显式赋值) 设置 BGR 值，相当于 cat[x][y] = (255, 0, 0)
+# # cat[...] = (255, 0, 0, 3)  # Err: 无法将输入数组从形状 (4,) 广播到形状 (90,90,3)
+# # cat[...] = 0  # (标量广播) 相当于设值 (0, 0, 0)
 
-ret, ths2_img = cv2.threshold(img_old.copy(), 127, 255, cv2.THRESH_BINARY_INV)
-show(ths2_img, 'ths2_img')
+# cat[...] *= 0.4  # Err: output from dtype('float64') to dtype('uint8')
+cat[...] = cat * 0.4  # 对视图区域直接赋值 (乘随机数)
+# cat[...] = cat.astype(np.uint8)  # 小数没关系，可以不用转整数
 
-ret, ths3_img = cv2.threshold(img_old.copy(), 127, 255, cv2.THRESH_TRUNC)
-show(ths3_img, 'ths3_img')
-
-ret, ths4_img = cv2.threshold(img_old.copy(), 127, 255, cv2.THRESH_TOZERO)
-show(ths4_img, 'ths4_img')
-
-ret, ths5_img = cv2.threshold(img_old.copy(), 127, 255, cv2.THRESH_TOZERO_INV)
-show(ths5_img, 'ths5_img')
-
-# 自适应二值化 (没什么用)
-# ksize 画格子，下面是 11 * 11，就是每个格子的宽高都是 11，
-ada_img = cv2.adaptiveThreshold(img_old.copy(), 127, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 0)
-show(ada_img, 'ada_img')
+# img[10:100, 10:100, :] = (0, 0, 0)  # 相当于上面 cat = 和 cat[...] =
+show(img, 'cat-img')
 
 cv2.waitKey(0)
