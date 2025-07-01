@@ -3,30 +3,75 @@ import numpy as np
 
 
 def show(img, title=''):
-    cv2.imshow(title, img)  # 展示图片出来。img 要为 NumPy 格式
+    cv2.imshow(title, img)
 
 
-path = 'D:/Data/Test/img/52.png'
-# 0 代表灰度图；1 代表是 BGR 图。
-img = cv2.imread(path, 1)  # 读出来是 NumPy 格式
-show(img, 'src-img')  # 原图，中文显示有乱码
+path = r"./imgs/lenaNoise.png"
+path = r"D:/Data/Test/img/qianming.png"
+img = cv2.imread(path, 0)
+# show(img, 'src_img')
 
-# img[h1:h2, w1:w2, :] 切图，相当于裁剪 (cut_out)
-cat = img[10:100, 10:100, :]  # 默认切片生成视图
-print(f"img.shape: {img.shape}, cat.shape: {cat.shape}")
+# - -
 
-# cat_c = cat.copy()  # 使用 copy 才不会相互影响
-# cat_c[...] = (0, 0, 0)
+# 高斯
+gas_blur = cv2.GaussianBlur(img, (5, 5), 0)
+concat_gas_blur = np.hstack([img, gas_blur])
+show(concat_gas_blur, 'concat_gas_blur')
 
-# cat[...] = (255, 0, 0)  # (显式赋值) 设置 BGR 值，相当于 cat[x][y] = (255, 0, 0)
-# # cat[...] = (255, 0, 0, 3)  # Err: 无法将输入数组从形状 (4,) 广播到形状 (90,90,3)
-# # cat[...] = 0  # (标量广播) 相当于设值 (0, 0, 0)
+# - -
 
-# cat[...] *= 0.4  # Err: output from dtype('float64') to dtype('uint8')
-cat[...] = cat * 0.4  # 对视图区域直接赋值 (乘随机数)
-# cat[...] = cat.astype(np.uint8)  # 小数没关系，可以不用转整数
+# 黑白 (转黑白)
+# ret, ths1_img = cv2.threshold(gas_blur, 30, 255, cv2.THRESH_BINARY)
+ret, ths1_img = cv2.threshold(gas_blur, 127, 255, cv2.THRESH_BINARY)
+# show(ths1_img, 'ths1_img')
+concat_ths1_img = np.hstack([img, ths1_img])
+show(concat_ths1_img, 'concat_ths1_img')
 
-# img[10:100, 10:100, :] = (0, 0, 0)  # 相当于上面 cat = 和 cat[...] =
-show(img, 'cat-img')
+# - -
+
+# 腐蚀
+yuan = np.array([
+    [0, 0, 1, 0, 0],
+    [0, 1, 1, 1, 0],
+    [1, 1, 1, 1, 1],
+    [0, 1, 1, 1, 0],
+    [0, 0, 1, 0, 0],
+], dtype=np.uint8)
+erosion = cv2.erode(ths1_img, yuan, iterations=1)  # 腐蚀
+concat_erosion = np.hstack([img, erosion])
+show(concat_erosion, 'concat_erosion 5')
+
+kernel = np.ones((3, 3), np.uint8)
+erosion = cv2.erode(ths1_img, kernel, iterations=2)  # 腐蚀
+concat_erosion = np.hstack([img, erosion])
+show(concat_erosion, 'concat_erosion 3')
+
+# - -
+
+# 膨胀
+dilate_img = cv2.dilate(ths1_img, kernel, iterations=1)  # 膨胀
+concat_dilate_img = np.hstack([img, dilate_img])
+show(concat_dilate_img, 'concat_dilate_img')
+
+# - -
+
+# 黑白 - 腐蚀  = 得到边缘，或者空心效果
+sub_erosion_img = np.abs(ths1_img - erosion)
+concat_sub_erosion_img = np.hstack([img, sub_erosion_img])
+show(concat_sub_erosion_img, 'ths1 sub erosion')
+
+# - -
+
+# 黑白 - 膨胀 = 有可能是空心效果
+sub_dilate_img = np.abs(ths1_img - dilate_img)
+concat_sub_dilate_img = np.hstack([img, sub_dilate_img])
+show(concat_sub_dilate_img, '(concat 1) ths1 sub dilate')
+concat_sub_dilate_img = np.hstack([ths1_img, dilate_img, sub_dilate_img])
+show(concat_sub_dilate_img, '(concat 2) ths1 sub dilate')
+
+# - -
+
+# 膨胀 - 腐蚀 = 或者空心效果。边缘
+show(np.hstack([img, np.abs(dilate_img - erosion)]), 'dilate sub erosion')
 
 cv2.waitKey(0)
