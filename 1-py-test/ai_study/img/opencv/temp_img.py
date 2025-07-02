@@ -1,73 +1,32 @@
 import cv2
-import numpy as np
-import random
+import time
+import uuid
 
-def show(img, title=''):
-    cv2.imshow(title, img)
+file_name = r"D:/Data/Test/img/test-s1.mp4"
+rtsp_url = r"http://devimages.apple.com/iphone/samples/bipbop/gear1/prog_index.m3u8"
+# 创建一个视频流对象
+video = cv2.VideoCapture(file_name)  # 20s * 33.97帧/s
+# video = cv2.VideoCapture(rtsp_url)
+i = 0
+while True:
+    s = time.time()
+    ret, frame = video.read()  # 读 1 帧 (直接读，不会等，很快)
+    print(f'读取 {i} 帧，耗时: {time.time() - s} s')
+    # persons1 =  检查是否有人的函数(frame) # 每个帧都检测
 
-# 随机模糊
-def rnd_blur(image):
-    k_size = random.choice([25, 35])
-    ratio = random.uniform(0, 1)
-    print(f'rnd_blur, k_size: {k_size}, ratio: {ratio}')
+    # 抽帧检测
+    # if i % 6 == 0:
+    #   persons2 =  检查是否有人的函数(frame)
+    #   cv2.imwrite(f'./imgs/{str(uuid.uuid4())}.jpg', frame) # 保存图片
 
-    blur_img = None
-    if ratio < 0.3:
-        blur_img = cv2.medianBlur(image, k_size)
-    if ratio >= 0.3 and ratio < 0.6:
-        blur_img = cv2.blur(image, (k_size, k_size))
-    if ratio >= 0.6:
-        blur_img = cv2.GaussianBlur(image, (k_size, k_size), 0)
-    return blur_img
-
-# 将 2 张图片进行 混合
-def mix(img1, img2):
-    h, w = img1.shape[:2]  # 读 img 1 的 h w
-    img2 = cv2.resize(img2, [w, h])  # 对 img 2 进行大小调整
-    # last_img = (img2 * 0.5 + img1 * 0.5).astype(np.uint8)
-    last_img = cv2.addWeighted(img2, 0.5, img1, 0.5, 0)  # 相当于上面的封装
-    return last_img
-
-# 先模糊，再将模糊的图与原图进行 混合
-def blur_mix(img1):
-    img2 = rnd_blur(img1)
-    ratio = random.uniform(0.3, 0.7)
-    print(f'blur_mix, ratio: {ratio}')
-
-    last_img = cv2.addWeighted(img2, ratio, img1, 1 - ratio, 0)
-    return last_img
-
-# path1 = r"./imgs/lenaNoise.png"
-path1 = r"D:/Data/Test/img/lenaNoise.png"
-# path2 = r"./imgs/ye2.jpg"
-path2 = r"D:/Data/Test/img/ye2.jpg"
-img = cv2.imread(path1, 1)
-img2 = cv2.imread(path2, 1)
-# show(img, 'src_img')
-
-# - -
-
-# 随机
-rnd_blur_img = rnd_blur(img)
-concat_rnd_blur = np.hstack([img, rnd_blur_img])
-show(concat_rnd_blur, 'concat_rnd_blur')
-
-# - -
-
-# 两图混合 1
-mix_img1 = mix(img, img2)
-concat_mix_img = np.hstack([img, mix_img1])
-show(concat_mix_img, 'concat_mix_img 1')
-
-mix_img2 = mix(img2, img)
-concat_mix_img = np.hstack([img2, mix_img2])
-show(concat_mix_img, 'concat_mix_img 2')
-
-# - -
-
-# 模糊混合
-blur_mix_img = blur_mix(img)
-concat_blur_mix = np.hstack([img, blur_mix_img])
-show(concat_blur_mix, 'concat_blur_mix')
-
-cv2.waitKey(0)
+    if ret:  # 是否读成功
+        cv2.imshow('video', frame)
+        cv2.waitKey(1)
+        i += 1
+    else:
+        # 已读完
+        print(f'已读完，i: {i}')
+        cv2.waitKey(0)
+        break
+    # if i == 30:
+    #     i = 0
