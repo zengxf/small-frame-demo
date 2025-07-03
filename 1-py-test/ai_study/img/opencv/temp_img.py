@@ -1,32 +1,44 @@
 import cv2
-import time
-import uuid
+import numpy as np
 
-file_name = r"D:/Data/Test/img/test-s1.mp4"
-rtsp_url = r"http://devimages.apple.com/iphone/samples/bipbop/gear1/prog_index.m3u8"
-# 创建一个视频流对象
-video = cv2.VideoCapture(file_name)  # 20s * 33.97帧/s
-# video = cv2.VideoCapture(rtsp_url)
-i = 0
-while True:
-    s = time.time()
-    ret, frame = video.read()  # 读 1 帧 (直接读，不会等，很快)
-    print(f'读取 {i} 帧，耗时: {time.time() - s} s')
-    # persons1 =  检查是否有人的函数(frame) # 每个帧都检测
 
-    # 抽帧检测
-    # if i % 6 == 0:
-    #   persons2 =  检查是否有人的函数(frame)
-    #   cv2.imwrite(f'./imgs/{str(uuid.uuid4())}.jpg', frame) # 保存图片
+def show(img, title=''):
+    cv2.imshow(title, img)
 
-    if ret:  # 是否读成功
-        cv2.imshow('video', frame)
-        cv2.waitKey(1)
-        i += 1
-    else:
-        # 已读完
-        print(f'已读完，i: {i}')
-        cv2.waitKey(0)
-        break
-    # if i == 30:
-    #     i = 0
+
+"""
+画点，画线，画矩形，画圆，画多边形
+"""
+
+zero_img = np.zeros([512, 512, 3], dtype=np.uint8)
+# 画点 (画小圆)
+cv2.circle(zero_img, (100, 100), 2, [0, 0, 255], 2, 1)
+# 画圆
+# center: (200, 200) 坐标, radius: 220半径，color: [0, 0, 255] 线条颜色值， 2 和 1 决定的线条的粗细
+cv2.circle(zero_img, (200, 200), 20, [0, 0, 255], 2, 1)
+# 画线 需要 2 个坐标
+cv2.line(zero_img, (10, 10), (200, 200), [255, 0, 255], 2, 1)
+
+# 画矩形
+#
+# for x in 标签目录
+#     将归一化的坐标，转成 left_x, left_y, w, h
+#     把这个框画上去
+#     cv.waitkey(0) == ord('q') 如果用户按的是q键
+#        shutil.move 移动走
+
+cv2.rectangle(zero_img, [10, 10, 20, 20], [255, 0, 255], 2, 1)
+# left_x,left_y, right_x, right_y
+
+# 多边形
+# 对一组坐标进行连线
+#  N x1 x2  的一个 shape
+points = np.array([[10, 5], [20, 30], [70, 20], [50, 10], [100, 300]], np.int32)
+points = points.reshape((-1, 1, 2))
+isClosed = False
+zero_img = cv2.polylines(zero_img, [points], False, [255, 255, 255], 2)
+# zero_img = cv2.polylines(zero_img, [points], True, (255, 0, 0), 2, 1)
+
+show(zero_img, 'img')
+
+cv2.waitKey(0)
