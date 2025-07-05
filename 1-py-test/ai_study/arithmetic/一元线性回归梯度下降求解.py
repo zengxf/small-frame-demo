@@ -68,10 +68,14 @@ def plt_gradient_linear_process(X, Y, result_wb):
     plt.show()
 
 if __name__ == "__main__":
+    # import numpy
+    # numpy.random.uniform()
+    # X, 归一化。uniform() 随机值，但是满足正态分布。
+
     epoch = 21  # 迭代次数
     init_wb = 1, 40  # 初始参数值 迁移学习
     temp_w, temp_b = init_wb[0], init_wb[1]
-    learning = 0.0001  # 学习率
+    learning = 0.0001  # 学习率 1e-3, 1e-4,1e-5,1e-6[*1.0, *3.0, *5.0], epoch = 200,最好前100左右1e-3, 后再按%20 *0.1
     X = [60, 62, 64, 65, 66, 67, 68, 70, 72, 74]
     Y = [63.6, 65.2, 66, 65.5, 66.9, 67.1, 67.4, 68.3, 70.1, 70]
     result_wb = []  # 存储过程中的梯度

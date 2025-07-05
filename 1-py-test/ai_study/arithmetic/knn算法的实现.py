@@ -98,7 +98,7 @@ def plot_k_error(error, start=1, end=10, step=2):
         plt.text(a, b, b, ha='center', va='bottom', fontsize=8)
     plt.show()
 
-
+# 历史数据（训练数据）如果有归一化，预测数据也要同步进行归一化。归一化的方法要一样。
 def test():
     raw_data = historical_data()
     input_x = ['小文', 26, 13000 / amount_ratio]
