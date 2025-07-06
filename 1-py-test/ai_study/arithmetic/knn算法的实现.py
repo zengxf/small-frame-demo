@@ -3,6 +3,8 @@ import math
 import matplotlib.pyplot as plt
 
 amount_ratio = 1000
+
+
 # 历史相亲数据的描述
 def historical_data():
     # 所有金额缩小到K为单位，方便计算
@@ -98,6 +100,7 @@ def plot_k_error(error, start=1, end=10, step=2):
         plt.text(a, b, b, ha='center', va='bottom', fontsize=8)
     plt.show()
 
+
 # 历史数据（训练数据）如果有归一化，预测数据也要同步进行归一化。归一化的方法要一样。
 def test():
     raw_data = historical_data()
@@ -112,5 +115,5 @@ if __name__ == "__main__":
     # knn的算法过程
     test()
     # 测试，K取那一个值能够在验证集中效果最佳。数据较少，所以这里取所有
-    # error = guess_k(lenged=1)
-    # plot_k_error(error)
+    error = guess_k(lenged=1)
+    plot_k_error(error)

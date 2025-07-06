@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 
 
 # 预测函数
+# y = wx + b
 def prediction(w, x, b):
     return w * x + b
 
@@ -11,6 +12,8 @@ def prediction(w, x, b):
 def sum_loss(X, Y, w, b):
     total_loss = 0
     for x, y in zip(X, Y):
+        # y -> MSE , Loss
+        # (y_e - y)^2
         total_loss += (y - prediction(w, x, b)) ** 2
     return 1 / (2 * len(X)) * total_loss
 
@@ -19,6 +22,8 @@ def sum_loss(X, Y, w, b):
 def sum_gradient_w(X, Y, w, b):
     total_w = 0
     for x, y in zip(X, Y):
+        # 本来是   (y - y_e) * -x
+        # 换顺序为 (y_e - y) * x
         total_w += (prediction(w, x, b) - y) * x
     return 1 / len(X) * total_w
 
@@ -27,8 +32,12 @@ def sum_gradient_w(X, Y, w, b):
 def sum_gradient_b(X, Y, w, b):
     total_b = 0
     for x, y in zip(X, Y):
+        # 本来是   (y - y_e) * -b
+        # 换顺序为 (y_e - y) * b
         total_b += (prediction(w, x, b) - y) * 1
     return 1 / len(X) * total_b
+
+
 def plt_gradient_linear_process(X, Y, result_wb):
     # 用来正常显示中文标签
     plt.rcParams['font.sans-serif'] = ['SimHei']
@@ -42,9 +51,9 @@ def plt_gradient_linear_process(X, Y, result_wb):
     num = int(length * 0.2)
     mid_wb = result_wb[num]
     last_wb = result_wb[-1]
-    plt.plot(X, [mid_wb[0] * x + mid_wb[1] for x in X], label='学习第{}次拟合直线'.format(num),linestyle='--')
+    plt.plot(X, [mid_wb[0] * x + mid_wb[1] for x in X], label='学习第{}次拟合直线'.format(num), linestyle='--')
     plt.plot(X, [0.4645 * x + 35.97 for x in X], label='最佳拟合直线')
-    plt.plot(X, [last_wb[0] * x + last_wb[1] for x in X], label='学习第{}次拟合直线'.format(length),linestyle=':')
+    plt.plot(X, [last_wb[0] * x + last_wb[1] for x in X], label='学习第{}次拟合直线'.format(length), linestyle=':')
     # plt.title("父亲身高x（时）与儿子身高y（时）的关系\n梯度下降线性拟合过程")
     plt.xlabel('父亲身高x（时）')
     plt.ylabel('儿子身高y（时）')
@@ -66,6 +75,7 @@ def plt_gradient_linear_process(X, Y, result_wb):
              )
     plt.savefig('loss_lr.png')
     plt.show()
+
 
 if __name__ == "__main__":
     # import numpy

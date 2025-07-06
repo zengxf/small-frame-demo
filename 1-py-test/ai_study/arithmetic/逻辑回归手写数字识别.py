@@ -26,13 +26,14 @@ if __name__ == "__main__":
     image_name = {str(x): [] for x in range(10)}
     for img in images_dir:
         file_num = img.split('_')[0]
-        img_numpy = cv2.imread(f'{path}/{img}', 0) # RGB, 0灰度值。 [
+        img_numpy = cv2.imread(f'{path}/{img}', 0)  # RGB, 0灰度值。 [
         if img_numpy is not None:
-            img_numpy = img_numpy/255.0  # 归一化。如果不/255.0，会出现梯度爆炸。nan
-            img_numpy = np.reshape(img_numpy, [-1]) #[-1,2]
-            image_name[file_num].append(img_numpy) # 将img_numpy的值添加到{0:[图片1,图片2])
+            img_numpy = img_numpy / 255.0  # 归一化。如果不/255.0，会出现梯度爆炸。nan
+            img_numpy = np.reshape(img_numpy, [-1])  # [-1,2]
+            image_name[file_num].append(img_numpy)  # 将img_numpy的值添加到{0:[图片1,图片2])
     # 1933 x 1024
     train_data = np.concatenate([np.array(image_name[img]) for img in image_name], axis=0)
+
 
     def grad_logic_by_num(num='2', alpha=1e-4, epoch=1000):
         end_num = [len(image_name[str(num)]) for num in range(10)]
@@ -94,7 +95,7 @@ if __name__ == "__main__":
             if i % 20 == 0 or i == 99:
                 print('逻辑回归手写数字识别_{},第{}次,损失={}'.format(num, i + 1, loss))
         # 将最后1次的权重写到numpy文件中
-        os.makedirs('./weights',exist_ok=True)
+        os.makedirs('./weights', exist_ok=True)
         np.save(f'./weights/逻辑回归手写数字识别_{num}.npy', theta)
 
 

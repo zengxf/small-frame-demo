@@ -13,12 +13,12 @@ plt.rcParams['ytick.direction'] = 'in'
 
 # 将所有数据展示在图表中
 def describe_scatter(x1, x2):
-    plt.scatter(x1[:, 0], x1[:, 1], label='未录取分数',marker='s')
+    plt.scatter(x1[:, 0], x1[:, 1], label='未录取分数', marker='s')
     plt.scatter(x2[:, 0], x2[:, 1], label='录取分数')
     plt.xlabel(u'语文分数')
     plt.ylabel(u'数学分数')
     # plt.title("某学校录取结果分布")
-    plt.savefig('某学校录取结果分布')
+    # plt.savefig('某学校录取结果分布')
     plt.legend(loc='upper right')
     plt.legend()
     plt.show()
@@ -42,7 +42,7 @@ def describe_sigmoid():
     plt.xlabel(u'x')
     plt.ylabel(u'y')
     # plt.title("Sigmoid函数值域分布")
-    plt.savefig('Sigmoid函数值域分布')
+    # plt.savefig('Sigmoid函数值域分布')
     plt.legend(loc='upper right')
     plt.legend()
     plt.show()
@@ -50,7 +50,7 @@ def describe_sigmoid():
 
 # 处理数据，然后展示到图表中
 def describe_plt_data():
-    data = pd.read_csv('某学校录取结果.csv', encoding='gbk')
+    data = pd.read_csv(r'./data/某学校录取结果.csv', encoding='utf-8')
     ok_result = []
     fail_result = []
     for index, row in enumerate(data['录取结果']):
@@ -64,15 +64,17 @@ def describe_plt_data():
 # 数据预处理
 def data_preprocessing(path, frac=0.8):
     # 读取数据
-    data = pd.read_csv(path, encoding='gbk')
+    data = pd.read_csv(path, encoding='utf-8')
     # 打乱数据并取80%的内容
     data = data.sample(frac=frac).reset_index(drop=True)
     data.insert(0, '偏置顶', 1)
     return data
 
+
 # Sigmoid()函数
 def sigmoid(z):
     return 1 / (1 + np.exp(-z))
+
 
 # 逻辑回归的损失函数
 def cost_loss(X, Y, theta):
@@ -90,7 +92,7 @@ def describe_plt_loss(epoch, loss_list):
     plt.xlabel(u'迭代次数')
     plt.ylabel(u'损失')
     # plt.title("逻辑回归迭代次数与损失变化")
-    plt.savefig('逻辑回归迭代次数与损失变化')
+    # plt.savefig('逻辑回归迭代次数与损失变化')
     plt.legend(loc='upper right')
     plt.legend()
     plt.show()
@@ -105,7 +107,7 @@ def verfiy_result(final_theta, theta2):
     positive = data[data['录取结果'] == 1]  # 1
     negetive = data[data['录取结果'] == 0]  # 0
     fig, ax = plt.subplots(figsize=(8, 5))
-    ax.scatter(positive['语文'], positive['数学'], label='未录取分数',marker='s')
+    ax.scatter(positive['语文'], positive['数学'], label='未录取分数', marker='s')
     ax.scatter(negetive['语文'], negetive['数学'], label='录取分数')
     ax.plot(x1, x2, label='最后决策边界')
     x3 = -(theta2[0] + x1 * theta2[1]) / theta2[2]
@@ -119,8 +121,8 @@ def verfiy_result(final_theta, theta2):
 
 if __name__ == "__main__":
     # describe_plt_data()
-    describe_sigmoid()
-    data = data_preprocessing('某学校录取结果.csv')
+    # describe_sigmoid()
+    data = data_preprocessing(r'./data/某学校录取结果.csv')
 
     X = data.iloc[:, :3].values
     Y = np.reshape(data.iloc[:, -1].values, [-1, 1])
