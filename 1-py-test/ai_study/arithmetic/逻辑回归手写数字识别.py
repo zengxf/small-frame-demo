@@ -20,7 +20,7 @@ def cost_loss(X, Y, theta):
 
 
 if __name__ == "__main__":
-    path = r"./training_img"
+    path = r"D:/Data/Test/img/numeral_img/training_img"
     images_dir = os.listdir(path)
     # 0,0_png
     image_name = {str(x): [] for x in range(10)}
@@ -87,7 +87,7 @@ if __name__ == "__main__":
         # 初始权重
         theta = np.zeros([X.shape[1], 1])
         for i in range(epoch):
-            gradient = np.matmul(X.T, sigmoid(np.matmul(X, theta)) - Y)
+            gradient = np.matmul(X.T, (sigmoid(np.matmul(X, theta)) - Y))
             # 梯度下降
             theta = theta - alpha * gradient
             # 求损失
@@ -95,8 +95,8 @@ if __name__ == "__main__":
             if i % 20 == 0 or i == 99:
                 print('逻辑回归手写数字识别_{},第{}次,损失={}'.format(num, i + 1, loss))
         # 将最后1次的权重写到numpy文件中
-        os.makedirs('./weights', exist_ok=True)
-        np.save(f'./weights/逻辑回归手写数字识别_{num}.npy', theta)
+        os.makedirs('D:/Data/Test/img/numeral_img/weights', exist_ok=True)
+        np.save(f'D:/Data/Test/img/numeral_img/weights/逻辑回归手写数字识别_{num}.npy', theta)
 
 
     # 构建逻辑回归0的识别器 训练10个二分类  0[0/1], 1[0/1], 2[0/1]
@@ -105,11 +105,11 @@ if __name__ == "__main__":
     # 训练逻辑和预测逻辑，应该是分开的。在这里只是为了演示一下
 
     # 预测
-    pred_img = cv2.imread('5_124.png', 0) / 255.0
+    pred_img = cv2.imread(f'D:/Data/Test/img/numeral_img/training_img/5_124.png', 0) / 255.0
     # 训练的时候X(1,1024)与训练时要保持一致
     X = np.reshape(pred_img, [1, -1])
     # 导入的theta是[1024,1)与训练时要保持一致
-    theta_list = [np.load(f'./weights/逻辑回归手写数字识别_{str(i)}.npy') for i in range(10)]
+    theta_list = [np.load(f'D:/Data/Test/img/numeral_img/weights/逻辑回归手写数字识别_{str(i)}.npy') for i in range(10)]
     # 得到9个类别的概率
     pred = np.array([sigmoid(np.matmul(X, theta)) for theta in theta_list])
     # 降成1维
