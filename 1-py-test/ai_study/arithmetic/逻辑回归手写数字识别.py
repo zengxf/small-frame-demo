@@ -48,39 +48,11 @@ if __name__ == "__main__":
             endIndex += end_num[_i]
             if _i < int(num):
                 startIndex += end_num[_i]
-        Y[startIndex:endIndex] = 1
+        Y[startIndex:endIndex] = 1  # 设置对应的图识结果为 1
         # 这是一个错误的方法
         # 1.只喂0的数据，其它不是0的图片没有喂进去--> 0/1代表是不是0
         #   只喂1的数据，其它不是1的图片没有喂进去--> 0/1代表是不是0
         #   只喂2的数据，其它不是2的图片没有喂进去--> 0/1代表是不是0
-        # X = np.array(image_name[num])
-        # Y = np.ones(X.shape[0])
-
-        # if num == '0':
-        #     Y[:end_num[0]] = 1
-        # elif num == '1':
-        #     Y[end_num[0]:end_num[0] + end_num[1]] = 1
-        # elif num == '2':
-        #     Y[end_num[0] + end_num[1]:end_num[0] + end_num[1]+end_num[2]] = 1
-        # elif num == '3':
-        #     Y[end_num[0] + end_num[1]+end_num[2]:end_num[0] + end_num[1]+end_num[2]+end_num[3]] = 1
-        # elif num == '4':
-        #     Y[end_num[0] + end_num[1]+end_num[2]+end_num[3]:end_num[0] + end_num[1]+end_num[2]+end_num[3]+end_num[4]] = 1
-        # elif num == '5':
-        #     Y[end_num[0] + end_num[1] + end_num[2] + end_num[3] +end_num[4]:
-        #       end_num[0] + end_num[1] + end_num[2] + end_num[3] +end_num[4]+end_num[5]] = 1
-        # elif num == '6':
-        #     Y[end_num[0] + end_num[1] + end_num[2] + end_num[3] +end_num[4]+end_num[5]:
-        #       end_num[0] + end_num[1] + end_num[2] + end_num[3] +end_num[4]+end_num[5]+end_num[6]] = 1
-        # elif num == '7':
-        #     Y[end_num[0] + end_num[1] + end_num[2] + end_num[3] +end_num[4]+end_num[5]+end_num[6]:
-        #       end_num[0] + end_num[1] + end_num[2] + end_num[3] +end_num[4]+end_num[5]+end_num[6]+end_num[7]] = 1
-        # elif num == '8':
-        #     Y[end_num[0] + end_num[1] + end_num[2] + end_num[3] +end_num[4]+end_num[5]+end_num[6]+end_num[7]:
-        #       end_num[0] + end_num[1] + end_num[2] + end_num[3] +end_num[4]+end_num[5]+end_num[6]+end_num[7]+end_num[8]] = 1
-        # elif num == '9':
-        #     Y[end_num[0] + end_num[1] + end_num[2] + end_num[3] +end_num[4]+end_num[5]+end_num[6]+end_num[7]+end_num[8]:
-        #       end_num[0] + end_num[1] + end_num[2] + end_num[3] +end_num[4]+end_num[5]+end_num[6]+end_num[7]+end_num[8]+end_num[9]] = 1
 
         # 前面的189为1
         Y = np.reshape(Y, [-1, 1])
