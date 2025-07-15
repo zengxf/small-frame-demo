@@ -16,7 +16,7 @@ def show(img, title=''):
 img = cv2.imread(r'F:\data_source\dongqi\0511_pt_2\images\train\0da4eb90-ab54-4a2b-8407-59b0704ec8ef.jpg')
 # img, height, width
 # cv2.INTER_NEAREST，最近邻插值法, 复制最近的像素。速度快。
-# cv2.INTER_NEAREST，三线性插值法, 过渡会平滑一些。慢一点。
+# cv2.INTER_LINEAR，三线性插值法, 过渡会平滑一些。慢一点。
 
 # 作业：1， 3， 4
 # 1.不等比例的数据增强
