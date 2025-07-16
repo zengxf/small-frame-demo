@@ -39,7 +39,7 @@ yuan = np.array([
     [0,0,0,0,0],
 ],dtype=np.uint8)
 
-img = cv2.imread('./imgs/qianming.png',0)
+img = cv2.imread('../imgs/qianming.png', 0)
 
 blur = cv2.GaussianBlur(img,(5,5),0)
 

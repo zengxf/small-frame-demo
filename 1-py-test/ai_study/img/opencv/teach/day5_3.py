@@ -19,7 +19,7 @@ if mindis<120: // 120是我们人为阈值
 
 """
 
-target = cv2.imread(r"./imgs/lenaNoise.png",0)
+target = cv2.imread(r"../imgs/lenaNoise.png", 0)
 target = cv2.resize(target,[512,512])
 target = cv2.GaussianBlur(target,[3,3], 0)
 # target = (target*0.5).astype(np.uint8)
