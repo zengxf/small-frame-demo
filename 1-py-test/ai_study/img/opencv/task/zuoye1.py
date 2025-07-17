@@ -10,8 +10,7 @@ def show(img, title=''):
     print('hello')
 
 
-def cut_out_box(img, rect_size=(20, 20), num_regions=1, boxes_xyxy=[[]], min_cut_box_size=[64, 64],
-                color=[170, 170, 170]):
+def cut_out_box(img, rect_size=(20, 20), num_regions=1, boxes_xyxy=[[]], min_cut_box_size=[64, 64],color=[170,170,170]):
     """
     在box区域中进行mask=0。迫使CNN去学习主要特征，减少误检。但不适用小目标
     :param img:
@@ -60,7 +59,7 @@ def cut_out_box(img, rect_size=(20, 20), num_regions=1, boxes_xyxy=[[]], min_cut
     return img
 
 
-def cut_out_class(img, rect_size=(20, 20), num_regions=1, color=[170, 170, 170]):
+def cut_out_class(img, rect_size=(20, 20), num_regions=1,color=[170,170,170]):
     """
     实现cut_out。分类可能涨0.8
     :param image:
@@ -89,7 +88,7 @@ def cut_out_class(img, rect_size=(20, 20), num_regions=1, color=[170, 170, 170])
     return img
 
 
-def cut_mix(image1, image1_boxes_xyxy, image2, image2_boxes_xyxy, model_size=[640, 640]):
+def cut_mix(image1, image1_boxes_xyxy, image2, image2_boxes_xyxy,model_size=[640,640]):
     """
     实现cut_mix，目标检测和分类都有可能涨+1%。注意事项，要传box，要同时resize。
     还要注意，透明度的比例.
@@ -107,7 +106,7 @@ def cut_mix(image1, image1_boxes_xyxy, image2, image2_boxes_xyxy, model_size=[64
     # image2_h, image2_w = image2.shape[:2]
     m_h, m_w = model_size
     # 这个函数要换成letterbox
-    image1 = cv2.resize(image1, [m_w, m_h])
+    image1 = cv2.resize(image1,[m_w, m_h])
     image2 = cv2.resize(image2, [m_w, m_h])
 
     box = random.choice(image1_boxes_xyxy)
@@ -117,12 +116,14 @@ def cut_mix(image1, image1_boxes_xyxy, image2, image2_boxes_xyxy, model_size=[64
     box_img = image1[left_y:right_y, left_x:right_x]
     mask[left_y:right_y, left_x:right_x] = box_img
 
-    cut_mix_img = cv2.addWeighted(mask, 0.6, image2, 0.4, 0)
-    return cut_mix_img, box, image2_boxes_xyxy
+    cut_mix_img = cv2.addWeighted(mask,0.6, image2, 0.4,0)
+    return cut_mix_img,box,image2_boxes_xyxy
+
+
+
 
 
 if __name__ == "__main__":
-    target = cv2.imread(r"D:/Data/Test/img/lenaNoise2.png", 0)
     img = cv2.imread(r'D:\zhigu-ai-27-note\untitled2\opencv0627\imgs\lenaNoise.png')
     img2 = cv2.imread(r'D:\zhigu-ai-27-note\untitled2\opencv0627\imgs\1.png')
     """
@@ -141,5 +142,5 @@ if __name__ == "__main__":
 
     # cut_box_img = cut_out_box(img, rect_size=[40, 40], boxes_xyxy=[[223, 134, 845, 818]], num_regions=5)
     # show(cut_box_img, 'cut2')
-    mix_cut_img, _, _ = cut_mix(img, [[223, 134, 845, 818]], img2, [[]])
-    show(mix_cut_img, 'mixcut')
+    mix_cut_img,_,_ = cut_mix(img,[[223, 134, 845, 818]],img2,[[]])
+    show(mix_cut_img,'mixcut')
