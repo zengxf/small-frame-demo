@@ -632,17 +632,17 @@ if __name__ == '__main__':
     #
     image, boxes, ratio, padT, padB, padL, padR = letterbox(datas[0][0], size=[640, 640], boxes=datas[0][1])
     #
-    # image, boxes, classes = yolo_box_to_origin_image(datas[0][0], image, boxes, ratio, padT, padL)
+    image, boxes, classes = yolo_box_to_origin_image(datas[0][0], image, boxes, ratio, padT, padL)
     #
     # image, boxes = bgr2rgb(datas[0][0], datas[0][1])
     #
     # image, boxes = bgr2gray(datas[0][0], datas[0][1])
     #
-    # image, boxes = global_histogram_equalization(datas[0][0], datas[0][1])
+    image, boxes = global_histogram_equalization(datas[0][0], datas[0][1])
     #
-    # image, boxes = adaptive_histogram_equalization(datas[0][0], datas[0][1])
+    image, boxes = adaptive_histogram_equalization(datas[0][0], datas[0][1])
     #
-    # image, boxes, ratio = random_brightness(datas[0][0], datas[0][1], rnd_min=0.5, rnd_max=1.5)
+    image, boxes, ratio = random_brightness(datas[0][0], datas[0][1], rnd_min=0.5, rnd_max=1.5)
     #
     # image, boxes = img_bitwise_not(datas[0][0], datas[0][1])
     #
