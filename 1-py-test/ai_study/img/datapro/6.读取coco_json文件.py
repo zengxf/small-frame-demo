@@ -6,7 +6,7 @@ json = {"键1": "值1", "键2": "值2"}
 
 import json
 
-json_file_path = r'./label-data/test_00000546.json'
+json_file_path = r'label-data/test_00000546.json'
 size_w, size_h = 180, 180
 
 ''' 1. 读取 json 文件：load、loads 

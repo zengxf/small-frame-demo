@@ -7,10 +7,10 @@
 import os
 
 # 1. 打开 txt
-label_dir = r'./label-data'
+label_dir = r'label-data'
 
 # 打开 classes.txt 读取类别，转为字典 {face:0, mask:1}
-class_path = r'./label-data/classes.txt'
+class_path = r'label-data/classes.txt'
 with open(class_path, mode='r', encoding='utf-8') as fc:
     class_names = {i: c.strip() for i, c in enumerate(fc.readlines())}
     # print(class_names)

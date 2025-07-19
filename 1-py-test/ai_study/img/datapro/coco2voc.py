@@ -61,11 +61,11 @@ def voc_xml(voc_boxs, image_path, save_xml):
 
 if __name__ == '__main__':
     # coco 的目录，获取文件
-    coco_dir = r'./label-data'
+    coco_dir = r'label-data'
     coco_files = [file for file in os.listdir(coco_dir) if file.endswith('.json')]
 
     # 图片目录
-    image_dir = r'./label-img'
+    image_dir = r'label-img'
 
     # 生成 xml 文件
     xml_dir = r'label-data/voc_xml_dir'

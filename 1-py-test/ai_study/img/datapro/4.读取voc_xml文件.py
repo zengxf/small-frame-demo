@@ -10,7 +10,7 @@
 import xml.etree.ElementTree as ET
 
 # 2. 解析 xml 文件，返回元素树对象
-xml_file_path = r'.\label-data\test_00000546.xml'
+xml_file_path = r'label-data/test_00000546.xml'
 tree = ET.parse(xml_file_path)
 print(tree)  # xml.etree.ElementTree.ElementTree object
 

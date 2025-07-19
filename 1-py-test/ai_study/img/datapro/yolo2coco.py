@@ -51,13 +51,13 @@ def coco_json(coco_boxs, image_name, coco_dir):
 
 if __name__ == '__main__':
     # yolo 标签目录：类别文件、标签文件
-    yolo_label_dir = r'./label-data'
+    yolo_label_dir = r'label-data'
 
     # 图片目录
-    image_dir = r'./label-img'
+    image_dir = r'label-img'
 
     # 创建 coco_dir
-    coco_dir = r'./label-data/coco_json_dir'
+    coco_dir = r'label-data/coco_json_dir'
     os.makedirs(coco_dir, exist_ok=True)
 
     # 获取目录下的文件
