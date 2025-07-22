@@ -34,13 +34,14 @@ class MyModel(nn.Module):
 #        [ batch, height,  width,  channel] ->TensorFlow
 if __name__ == "__main__":
     # 0. 搭建模型
-    net = MyModel(num_class=1)
+    net = MyModel(num_class=10)
     # 1. 下载一些公开数据集 图像分类时：X[60000,28,28],Y[60000]，一张图片1个label,label每个分类下标索引
     transforms = transforms.Compose(
         [
             transforms.Resize([28, 28]),
             transforms.ToTensor(),
-            transforms.Grayscale()
+            transforms.Grayscale(),
+
         ]
     )
     train_dataset = MNIST('./data', train=True,
@@ -76,6 +77,7 @@ if __name__ == "__main__":
     )
 
     # 3. 设置优化器
+    # net.parameters() 相当于权重 w
     optim = torch.optim.Adam(net.parameters(), lr=1e-4)
 
     # 4. 设置损失函数
@@ -90,7 +92,7 @@ if __name__ == "__main__":
             net.zero_grad()  # 将上一批的梯度清0。上一个batch的梯度不应该传梯到下一批数据
             # 实现前向传播
             pre_out = net(data)
-            pre_out = torch.argmax(pre_out, dim=1)
+            # pre_out = torch.argmax(pre_out, dim=1)
             # 利用损失函数，求损失
             loss = criterion(pre_out, label)
             print("训练损失：", loss.item())
@@ -103,8 +105,8 @@ if __name__ == "__main__":
         net.train(False)
         for t_data, t_label in val_loader:
             pre_out = net(t_data)
-            pre_out = torch.argmax(pre_out, dim=1)
-            loss = criterion(pre_out, t_label)
+            # pre_out = torch.argmax(pre_out, dim=1)
+            loss = criterion(pre_out, t_label) # 分类的概率值, 分类的标签
             print("验证损失：", loss.item())
 
     # 8. 保存模型【保存图结构、保存权重】

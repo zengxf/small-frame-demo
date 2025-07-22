@@ -2,8 +2,7 @@ import torch
 import torch.nn as nn
 
 
-# 整个输入的图像x= 28 x 28 x 1
-
+# 整个输入的图像 x = 28 x 28 x 1
 class MyModel(nn.Module):
     '''一般在init中来构建网络算子层的初始属性'''
     def __init__(self, num_class):
@@ -19,10 +18,9 @@ class MyModel(nn.Module):
         # torch.sigmoid()，计算函数，常用来求损失;
         # nn.Sigmoid() 算一个图结构中的层，在PyTorch中算一个网络层
 
-    ''' forward，必须叫这个名称。但是输入的参数，可以有多少。至少有1个input_X'''
-
+    # forward，必须叫这个名称。但是输入的参数，可以有多少。至少有1个input_X
     def forward(self, input_X):
-        x = self.flat(input_X)
+        x = self.flat(input_X) # 16x784
         x = self.fc1(x)
         x = self.act(x)
         x = self.fc2(x)
@@ -43,7 +41,7 @@ class MyModel2(nn.Module):
         # 继承父类中的初始构造函数
         super(MyModel2, self).__init__()
         self.flat = nn.Flatten()  # 定义了一个网络层
-        self.ll = nn.Sequential(
+        self.ll = nn.Sequential( # 快一点。缺点，排错困难
             nn.Linear(in_features=784, out_features=784),
             nn.Sigmoid(),
             nn.Linear(in_features=784, out_features=128),
