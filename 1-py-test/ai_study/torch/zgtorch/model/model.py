@@ -4,8 +4,8 @@ import pickle
 class Tensor:
     """参数类，封装数据和梯度"""
     def __init__(self, data):
-        self.data = data    # 参数值（numpy 数组）
-        self.grad = None    # 梯度值（numpy 数组）
+        self.data = data    # 参数值（numpy 数组），真正需要保存的数据
+        self.grad = None    # 梯度值（numpy 数组），可以理解为一个中间变量
 
 class BaseModel:
 
