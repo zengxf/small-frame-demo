@@ -109,13 +109,26 @@ if __name__ == "__main__":
             loss = criterion(pre_out, t_label) # 分类的概率值, 分类的标签
             print("验证损失：", loss.item())
 
+
+    torch.serialization.add_safe_globals([MyModel])
+    torch.serialization.add_safe_globals([torch.nn.modules.flatten.Flatten])
+    torch.serialization.add_safe_globals([torch.nn.modules.container.Sequential])
+    torch.serialization.add_safe_globals([torch.nn.modules.linear.Linear])
+    torch.serialization.add_safe_globals([torch.nn.modules.activation.Sigmoid])
+    torch.serialization.add_safe_globals([torch.nn.modules.activation.Softmax])
+
     # 8. 保存模型【保存图结构、保存权重】
     # 方法一
-    torch.save(net, f"{epoch}.pth")  # 是将模型和权重都进行保存
+    torch.save(net, f"0.pth")  # 是将模型和权重都进行保存
     model1 = torch.load('./0.pth') # 加载模型和权重
 
     # 方法二
-    torch.save(net.state_dict(), f'{epoch}-weight.pt')  # 保存的是权重
+    torch.save(net.state_dict(), f'0-weight.pt')  # 保存的是权重
     weights = torch.load('0-weight.pt')
     model2 = net.load_state_dict(weights)
+
+    print("*" * 40)
+    print(model1)
+    print("*" * 40)
+    print(model2)
     pass

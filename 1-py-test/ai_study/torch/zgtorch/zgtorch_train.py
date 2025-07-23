@@ -28,8 +28,8 @@ def train():
 
     train_file = r'data/classify/train/data.csv'
     batch_size = 8
-    # dataset = CSVDataset(train_file, batch_size)  # 数据集
-    dataset = RandomDataset()
+    dataset = CSVDataset(train_file, batch_size)  # 数据集
+    # dataset = RandomDataset()
 
     # 训练循环
     n_epochs = 200

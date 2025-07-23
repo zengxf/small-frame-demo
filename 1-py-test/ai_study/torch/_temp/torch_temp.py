@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 
+
 class MyModel2(nn.Module):
     def __init__(self, num_class):
         # 继承父类中的初始构造函数
@@ -21,6 +22,7 @@ class MyModel2(nn.Module):
         x = self.ll(x)
         out = self.softmax(x)
         return out
+
 
 if __name__ == "__main__":
     net = MyModel2(num_class=10)

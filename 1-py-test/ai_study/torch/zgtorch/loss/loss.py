@@ -37,7 +37,7 @@ class MSELoss(BaseLoss):
             input_matrix = self.model.input
 
         grad_w = (2.0 / self.n_samples) * np.dot(input_matrix.T, error)
-        grad_b = (2.0 / self.n_samples) * np.sum(error)
+        grad_b = (2.0 / self.n_samples) * np.sum(error)  # b 相当于常量为 1 的数组
 
         # 更新梯度
         self.model.w.grad = grad_w.reshape(self.model.w.data.shape)

@@ -10,6 +10,7 @@ LR = 1e-3
 
 # 2. 数据
 transform = transforms.Compose([transforms.ToTensor()])
+# 文件保存在 ./MNIST/raw 目录下
 train_ds = datasets.MNIST(root='.', train=True, download=True, transform=transform)
 test_ds = datasets.MNIST(root='.', train=False, download=True, transform=transform)
 train_loader = torch.utils.data.DataLoader(train_ds, batch_size=BATCH_SIZE, shuffle=True)
