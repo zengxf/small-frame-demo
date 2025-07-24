@@ -1,9 +1,8 @@
+import os
+
 import cv2
 import numpy as np
 import torch
-from PIL import Image
-import os
-import torchvision
 from torch.utils.data import Dataset, DataLoader
 
 """
@@ -152,22 +151,23 @@ class BoxDataSet(Dataset):
         image_name = self.all_imgs[item]
         return self._get_imgs_and_labels(image_name)
 
+    # batch 合并
     @staticmethod
     def collate_fn(batch):  # batch,[[img,[box]],[img,[box]]] pytorch这个框架控制传入的时候
         """
         batch必须是tensor
         :return: zip把image和box 分别放在一起
         """
-        img, box = zip(*batch) # batch, [img, box], [img, box] ->zip, [[img],[img]], [box,box]]
-        for i, l in enumerate(box): # 0, box1; 1, box2 -> box2 2x6
+        img, box = zip(*batch)  # batch, [img, box], [img, box] ->zip, [[img],[img]], [box,box]]
+        for i, l in enumerate(box):  # 0, box1; 1, box2 -> box2 2x6
             l[..., 0] = i
         img = torch.stack(img, 0)  # 维度都是一样. 2x 3x640x640
         last_box = torch.cat(box, 0)  # 只能某一个维度不一样。拼接(相加,cat,add)
-        return img, last_box # N x 6
+        return img, last_box  # N x 6
 
 
 if __name__ == "__main__":
-    path = r"F:\2025\5_fishingdetection\data"
+    path = r"D:/Data/Test/img/img_label_data"
     device = "cuda:0" if torch.cuda.is_available() else "cpu"
     train_dataset = BoxDataSet(root_path=path, is_train=True, device=device)  # 创建一个 dataset
     train_dataloader = DataLoader(

@@ -1,7 +1,7 @@
 import json
-import numpy as np
+
 import cv2
-from pathlib import Path
+import numpy as np
 
 
 def labelme_points_to_mask(json_path, output_path=None):
@@ -44,8 +44,8 @@ def labelme_points_to_mask(json_path, output_path=None):
 
 # 示例用法
 if __name__ == "__main__":
-    json_file = r"D:\26--ppt\face_data\face_data\labels\ddddd.json"  # 替换为你的LabelMe JSON文件
-    output_mask = "mask.png"  # 输出的mask文件名
+    json_file = r"D:\Data\Test\img\mask_data\test-mm\lenaNoise.json"  # 替换为你的LabelMe JSON文件
+    output_mask = r"D:\Data\Test\img\mask_data\test-mm\lenaNoise-mask.png"  # 输出的mask文件名
 
     mask = labelme_points_to_mask(json_file, output_mask)
     print(f"Mask图像已生成，尺寸: {mask.shape}")

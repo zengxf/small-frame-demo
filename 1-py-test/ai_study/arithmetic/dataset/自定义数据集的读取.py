@@ -1,13 +1,11 @@
-import torch
-import torchvision
-from tqdm import tqdm
-import cv2
-# 供dataset和dataloader使用的
-from torch.utils.data.dataset import Dataset
-from torch.utils.data import DataLoader
 # 创建一个自己的dataset
 import os
 import random
+
+import cv2
+import torch
+# 供dataset和dataloader使用的
+from torch.utils.data.dataset import Dataset
 
 
 # 继承torch.dataset 这个库
@@ -31,10 +29,10 @@ class MyDataSet(Dataset):
         return torch.tensor(label, dtype=torch.float32).to(self.device)
 
     def _get_image_bgr(self, file_name):
-        # D:\root\1.jpg
         # D:/root/1.jpg
-        # D:\root/1.jpg
-        image = cv2.imread(f"{self.root}\\{file_name}")
+        # D:/root/1.jpg
+        # D:/root/1.jpg
+        image = cv2.imread(f"{self.root}//{file_name}")
         gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         # 加一个letterbox的尺寸统一化
         resize_gray_image = cv2.resize(gray_image, (28, 28))
@@ -66,7 +64,7 @@ class MyDataSet(Dataset):
 """
 
 if __name__ == "__main__":
-    path = r"../training_img"
+    path = r"D:/Data/Test/img/numeral_img/training_img"
     device = "cuda:0" if torch.cuda.is_available() else "cpu"
     train_dataset = MyDataSet(path, device)
     batch_size = 2
@@ -76,7 +74,7 @@ if __name__ == "__main__":
         shuffle=True
     )
 
-    val_dataset = MyDataSet(path, device,is_train=False)
+    val_dataset = MyDataSet(path, device, is_train=False)
     val_dataloader = torch.utils.data.DataLoader(
         dataset=val_dataset,
         batch_size=batch_size,

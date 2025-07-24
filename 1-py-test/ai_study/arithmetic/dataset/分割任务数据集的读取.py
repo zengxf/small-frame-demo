@@ -1,14 +1,12 @@
-from torch.utils.data import Dataset, DataLoader
-import cv2
-import numpy as np
-import torch
-from PIL import Image
 import os
-import torchvision
+
+import cv2
+import torch
+from torch.utils.data import Dataset
 
 
 class MaskDataSet(Dataset):
-    def __init__(self, image_path, mask_path, device="cpu", size=(224, 224), transform=None):
+    def __init__(self, image_path, mask_path, device="cpu", size=(224, 256), transform=None):
         super(MaskDataSet, self).__init__()
         self.device = device
         self.size = size
@@ -32,7 +30,7 @@ class MaskDataSet(Dataset):
         if not os.path.exists(mask_img_path):
             raise (f"{mask_img_path} not found")
         # 分割标签如果是255，也需要归一化。 y值要有类别
-        orginImage = cv2.imread(orgin_img_path) / 255.0 # 读原图归一化
+        orginImage = cv2.imread(orgin_img_path) / 255.0  # 读原图归一化
         maskImage = cv2.imread(mask_img_path, 0)
         maskImage = cv2.cvtColor(maskImage, cv2.COLOR_GRAY2BGR) / 255.0
         # 如果是一个类别，全白，需要归一化。如果是多个类别，全黑图，不能归一化。如果看到彩色图，用彩色对应值域替换成对应的类别值
@@ -48,17 +46,24 @@ class MaskDataSet(Dataset):
 
 
 if __name__ == "__main__":
-    image_path = r"F:\data_source\3D_print_data\mask_data\images"
-    mask_path = r"F:\data_source\3D_print_data\mask_data\masks"
+    image_path = r"D:/Data/Test/img/mask_data/images"
+    mask_path = r"D:/Data/Test/img/mask_data/masks"
     train_dataset = MaskDataSet(image_path, mask_path)
 
     train_loader = torch.utils.data.DataLoader(
         train_dataset,
-        batch_size=2,
+        batch_size=4,
         shuffle=True,
         num_workers=1  # 必须写__name__ == "__main__"
     )
 
     for x1, y1 in train_loader:
         # model
+        print(f'x1:{x1.shape}, y1:{y1.shape}')
+        # PyTorch 格式是 BCHW
+        #   B: 批次 batch
+        #   C: 通道 channel
+        #   H: 高 height
+        #   W: 宽 width
+        # x1:torch.Size([2, 3, 224, 256]), y1:torch.Size([2, 3, 224, 256])
         pass

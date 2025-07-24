@@ -1,13 +1,5 @@
 import torch
 import torchvision
-from tqdm import tqdm
-import cv2
-# 供dataset和dataloader使用的
-from torch.utils.data.dataset import Dataset
-from torch.utils.data import DataLoader
-# 创建一个自己的dataset
-import os
-import random
 from torchvision import transforms
 
 """
@@ -40,16 +32,17 @@ transforms = transforms.Compose(
 先划分训练集和验证集
 """
 train_dataset = torchvision.datasets.ImageFolder(
-    root=r"D:\DLAI\dataSet\flower_photos",
+    root=r"D:/Data/Test/img/flower_photos",
     transform=transforms
-) # 本身是不绑定在gpu上的
+)  # 本身是不绑定在 gpu 上的
 test_dataset = torchvision.datasets.ImageFolder(
-    root=r"D:\DLAI\dataSet\flower_photos",
+    root=r"D:/Data/Test/img/flower_photos",
     transform=transforms
 )
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
+print('device:', device)
 for x, y in train_dataset:
-    x = x.to(device)
-    y = y.to(device)
+    # x = x.to(device)
+    # y = y.to(device)
     print(x.shape)
-    print(y.shape)
+    print(y)  # int
