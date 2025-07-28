@@ -1,3 +1,9 @@
+"""
+自定义 FC 网络
+
+https://docs.pytorch.org/docs/stable/generated/torch.nn.Linear.html
+"""
+
 import torch
 import torch.nn as nn
 
