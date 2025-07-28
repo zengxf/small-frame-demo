@@ -10,11 +10,11 @@ import com.spire.doc.fields.TextRange;
 import java.awt.*;
 
 /**
- * 将 Word 转换成 Markdown，高亮显示的文本进行加粗
+ * 将 Word 高亮部分提取到 Markdown，其他内容直接丢掉
  * <p/>
- * ZXF 创建于 2025/2/26
+ * ZXF 创建于 2025/7/28
  */
-public class DocToMarkdown {
+public class DocExtractToMD {
 
     public static void main(String[] args) {
         String docPath = "D:/Data/Test/doc/aa.doc"; // doc, docx
@@ -23,7 +23,7 @@ public class DocToMarkdown {
     }
 
     static void toMarkdown(String docPath, String mdPath) {
-        String mdContent = readContent(docPath);
+        String mdContent = "";
 
         Document doc = new Document();
         doc.loadFromFile(docPath);
@@ -32,8 +32,7 @@ public class DocToMarkdown {
         for (Object item : doc.getSections().get(0).getParagraphs()) {
             Paragraph para = (Paragraph) item;
             for (Object obj : para.getChildObjects()) {
-                if (obj instanceof TextRange) {
-                    TextRange textRange = (TextRange) obj;
+                if (obj instanceof TextRange textRange) {
                     String text = textRange.getText();
 
                     Color highlightColor = textRange.getCharacterFormat().getHighlightColor();
@@ -45,9 +44,7 @@ public class DocToMarkdown {
                         System.out.println("文本: " + text);
                         System.out.println("高亮颜色: " + highlightColor);
                         System.out.println();
-                        mdContent += StrUtil.format("**{}**", text);
-                    } else {
-                        mdContent += text;
+                        mdContent += text + "\n\n";
                     }
                 }
             }
@@ -55,14 +52,6 @@ public class DocToMarkdown {
 
         System.out.println(mdContent.length());
         new FileWriter(mdPath).write(mdContent);
-    }
-
-    public static String readContent(String docPath) {
-        Document doc = new Document();
-        doc.loadFromFile(docPath, FileFormat.Docx);
-        String content = doc.getText();
-        doc.close();
-        return content;
     }
 
 }

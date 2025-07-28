@@ -7,17 +7,18 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 /**
- * 读取 Docx 内容
+ * 读取 Doc 内容
  * <p>
  * 读取非常好，
  * 能跟看到和复制的一样，换行效果非常好
  * <p/>
- * ZXF 创建于 2025/2/27
+ * ZXF 创建于 2025/7/28
  */
-public class ReadContentWithPOITest {
+@Deprecated(since = "要改")
+public class ReadDocContentWithPOITest {
 
     public static void main(String[] args) {
-        String docPath = "D:/Data/Test/doc/aa.docx";
+        String docPath = "D:/Data/Test/doc/aa.doc";
         try (FileInputStream fis = new FileInputStream(docPath); XWPFDocument doc = new XWPFDocument(fis)) {
             XWPFWordExtractor extractor = new XWPFWordExtractor(doc);
             String text = extractor.getText();

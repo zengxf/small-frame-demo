@@ -8,10 +8,10 @@ sourceCompatibility = 17
 
 repositories {
     mavenLocal()
-    maven {
-        url "http://repo.e-iceblue.cn/repository/maven-public/"
-        allowInsecureProtocol = true  // 允许 HTTP 协议（旧版 Gradle 可能需要）
-    }
+    // maven {
+    //     url "http://repo.e-iceblue.cn/repository/maven-public/"
+    //     allowInsecureProtocol = true  // 允许 HTTP 协议（旧版 Gradle 可能需要）
+    // }
     maven {
         url "https://maven.aliyun.com/nexus/content/groups/public/"
     }
@@ -24,7 +24,10 @@ ext {
 
 dependencies {
     // Spire.Doc
-    implementation group: 'e-iceblue', name: 'spire.doc.free', version: '5.3.2'
+    // implementation group: 'e-iceblue', name: 'spire.doc.free', version: '5.3.2'
+    // https://mvnrepository.com/artifact/e-iceblue/spire.doc.free/5.3.2
+    implementation files('libs/spire.doc.free-5.3.2.jar')
+
     // POI
     implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '5.4.0' // 包含 (name: 'poi' 依赖)
     // HuTool

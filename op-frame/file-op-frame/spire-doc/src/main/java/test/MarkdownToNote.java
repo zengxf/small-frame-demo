@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 public class MarkdownToNote {
 
     public static void main(String[] args) {
-        String mdPath = "D:/Data/Test/doc/a3.md";
+        String mdPath = "D:/Data/Test/doc/aa.md";
         String notePath = mdPath + ".nt.md";
 
         String str = new FileReader(mdPath).readString();
