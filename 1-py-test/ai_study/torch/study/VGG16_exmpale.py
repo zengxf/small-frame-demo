@@ -327,9 +327,10 @@ class Vgg16NOTFC(nn.Module):
 
 if __name__ == "__main__":
     device = "cuda:0" if torch.cuda.is_available() else "cpu"
-    # model = Vgg16NOTFC(class_num=10).to(device)
-    model = Vgg16(class_num=10).to(device)
+    model = Vgg16NOTFC(class_num=10).to(device)
+    # model = Vgg16(class_num=10).to(device)
     print(model)
     test_x = torch.randn([1, 3, 224, 224]).to(device)
     # 模拟前向传播
     out = model(test_x)
+    print(out.shape)

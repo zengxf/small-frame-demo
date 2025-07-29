@@ -4,7 +4,6 @@ import torchvision
 from torchvision import transforms
 import logging
 
-
 isDebug = False
 
 logging.basicConfig(
@@ -13,6 +12,7 @@ logging.basicConfig(
     filename='%(asctime)s.txt'
 )
 logger = logging.getLogger(__name__)
+
 
 # 自定义算子
 class InceptionV1(nn.Module):
@@ -83,17 +83,19 @@ class InceptionV1(nn.Module):
         # b,c,h,w
         return torch.concat([x1, x2, x3, x4], dim=1)
 
+
 if isDebug:
-    x = torch.randn(192,28,28) # 模拟的上一层的输入
-    net = InceptionV1(192,64,96,128,16,32,32) # 调model
-    net(x) # 前向传播
+    x = torch.randn(192, 28, 28)  # 模拟的上一层的输入
+    net = InceptionV1(192, 64, 96, 128, 16, 32, 32)  # 调model
+    net(x)  # 前向传播
+
 
 class AugHead(nn.Module):
     def __init__(self, in_ch, out_1x1, class_num):
         super().__init__()
         self.avgpool = nn.AvgPool2d(kernel_size=5, stride=3)
         self.conv1x1 = nn.Conv2d(in_ch, out_1x1, kernel_size=(1, 1))
-        self.fc1 = nn.Linear(2048, 1024) # 4096,2048,1024,512,256,128
+        self.fc1 = nn.Linear(2048, 1024)  # 4096,2048,1024,512,256,128
         self.fc2 = nn.Linear(1024, class_num)
         self.relu = nn.ReLU()
         self.sigmoid = nn.Sigmoid()
@@ -113,12 +115,15 @@ class AugHead(nn.Module):
 
         return x
         # return self.sigmoid(self.fc2(self.relu(self.fc1(self.relu(self.conv1x1(self.avgpool(x)))))))
-if isDebug:
-    x = torch.randn(192,28,28) # 模拟的上一层的输入
-    net = AugHead(192,64,5) # 调model
-    net(x) # 前向传播
 
-class GoogleNetV1(nn.Module):
+
+if isDebug:
+    x = torch.randn(192, 28, 28)  # 模拟的上一层的输入
+    net = AugHead(192, 64, 5)  # 调model
+    net(x)  # 前向传播
+
+
+class GoogLeNetV1(nn.Module):
     def __init__(self, in_ch=3, num_class=10):
         super().__init__()
 
@@ -190,8 +195,6 @@ class GoogleNetV1(nn.Module):
         return x, out2, out1
 
 
-
-
 if __name__ == "__main__":
     """
     1. 了解每一种数据的数据量
@@ -237,8 +240,9 @@ if __name__ == "__main__":
 
     # rnd = torch.randn(1,3,224,224)
     device = "cuda:0"
+    device = "cpu"
 
-    net = GoogleNetV1(in_ch=3, num_class=7).to(device)
+    net = GoogLeNetV1(in_ch=3, num_class=7).to(device)
 
     transforms = transforms.Compose(
         [
@@ -250,11 +254,11 @@ if __name__ == "__main__":
     )
 
     train_dataset = torchvision.datasets.ImageFolder(
-        root=r"C:\Users\qwen\Desktop\11\10\train",
+        root=r"D:\Data\Test\img\flower_photos\_mini\train",
         transform=transforms
     )
     test_dataset = torchvision.datasets.ImageFolder(
-        root=r"C:\Users\qwen\Desktop\11\10\val",
+        root=r"D:\Data\Test\img\flower_photos\_mini\val",
         transform=transforms
     )
     batchSize = 10
@@ -275,7 +279,7 @@ if __name__ == "__main__":
     # 4. 设置损失函数
     criterion = nn.CrossEntropyLoss()
 
-    EPOCHS = 1  # epoch的次数，一共要训练多个轮
+    EPOCHS = 2  # epoch的次数，一共要训练多个轮
 
     # 5. 循环dataloader数据
     for epoch in range(EPOCHS):
@@ -321,4 +325,4 @@ if __name__ == "__main__":
             epoch, epoch, loss1.item(), accuracy.item()
         )
         print(desc)
-        torch.save(net,f"{epoch}.pth")
+        torch.save(net, f"{epoch}.pth")
