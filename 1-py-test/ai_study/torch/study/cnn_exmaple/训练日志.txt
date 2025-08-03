@@ -1,0 +1,698 @@
+D:\conda_pytorch\python.exe D:/zhigu-ai-27-note/untitled2/opencv0627/cnn_exmaple/face_age.py
+Training Epoch 1/20: 100%|██████████| 245/245 [01:36<00:00,  2.53batch/s]
+
+ 未进行数据增强的训练日志
+
+Train [1/20] Loss: 2.1051, Acc: 28.76%
+Class-wise Train Accuracy:
+  Class 0: 94.11% (1932/2053)
+  Class 1: 2.14% (18/843)
+  Class 2: 2.12% (13/614)
+  Class 3: 23.12% (237/1025)
+  Class 4: 1.40% (9/641)
+  Class 5: 0.17% (1/589)
+  Class 6: 3.53% (27/765)
+  Class 7: 0.89% (5/564)
+  Class 8: 0.85% (3/352)
+  Class 9: 1.82% (5/275)
+  Class 10: 0.00% (0/103)
+Validating Epoch 1/20: 100%|██████████| 62/62 [00:10<00:00,  6.19batch/s]
+
+Val [1/20] Loss: 1.8095, Acc: 36.81%
+Class-wise Val Accuracy:
+  Class 0: 90.62% (464/512)
+  Class 1: 11.79% (25/212)
+  Class 2: 0.00% (0/160)
+  Class 3: 56.52% (143/253)
+  Class 4: 26.22% (43/164)
+  Class 5: 2.21% (3/136)
+  Class 6: 15.30% (28/183)
+  Class 7: 0.00% (0/151)
+  Class 8: 0.00% (0/93)
+  Class 9: 21.88% (14/64)
+  Class 10: 0.00% (0/28)
+✨ Saving Best Model (Acc: 36.81%, Loss: 1.8095)
+Training Epoch 2/20: 100%|██████████| 245/245 [01:36<00:00,  2.54batch/s]
+Validating Epoch 2/20:   0%|          | 0/62 [00:00<?, ?batch/s]
+Train [2/20] Loss: 1.6404, Acc: 39.83%
+Class-wise Train Accuracy:
+  Class 0: 88.50% (1817/2053)
+  Class 1: 25.98% (219/843)
+  Class 2: 8.31% (51/614)
+  Class 3: 49.27% (505/1025)
+  Class 4: 13.10% (84/641)
+  Class 5: 13.07% (77/589)
+  Class 6: 27.84% (213/765)
+  Class 7: 15.60% (88/564)
+  Class 8: 4.83% (17/352)
+  Class 9: 16.36% (45/275)
+  Class 10: 0.00% (0/103)
+Validating Epoch 2/20: 100%|██████████| 62/62 [00:10<00:00,  6.18batch/s]
+
+Val [2/20] Loss: 1.4993, Acc: 44.12%
+Class-wise Val Accuracy:
+  Class 0: 90.04% (461/512)
+  Class 1: 26.42% (56/212)
+  Class 2: 11.25% (18/160)
+  Class 3: 72.33% (183/253)
+  Class 4: 0.00% (0/164)
+  Class 5: 41.18% (56/136)
+  Class 6: 11.48% (21/183)
+  Class 7: 29.14% (44/151)
+  Class 8: 6.45% (6/93)
+  Class 9: 26.56% (17/64)
+  Class 10: 3.57% (1/28)
+✨ Saving Best Model (Acc: 44.12%, Loss: 1.4993)
+Training Epoch 3/20: 100%|██████████| 245/245 [01:36<00:00,  2.53batch/s]
+Validating Epoch 3/20:   0%|          | 0/62 [00:00<?, ?batch/s]
+Train [3/20] Loss: 1.4558, Acc: 45.74%
+Class-wise Train Accuracy:
+  Class 0: 90.40% (1856/2053)
+  Class 1: 38.91% (328/843)
+  Class 2: 17.59% (108/614)
+  Class 3: 54.15% (555/1025)
+  Class 4: 18.88% (121/641)
+  Class 5: 16.47% (97/589)
+  Class 6: 32.94% (252/765)
+  Class 7: 23.58% (133/564)
+  Class 8: 7.67% (27/352)
+  Class 9: 36.00% (99/275)
+  Class 10: 2.91% (3/103)
+Validating Epoch 3/20: 100%|██████████| 62/62 [00:09<00:00,  6.38batch/s]
+
+Val [3/20] Loss: 1.3306, Acc: 49.85%
+Class-wise Val Accuracy:
+  Class 0: 93.16% (477/512)
+  Class 1: 38.68% (82/212)
+  Class 2: 24.38% (39/160)
+  Class 3: 55.73% (141/253)
+  Class 4: 21.95% (36/164)
+  Class 5: 5.88% (8/136)
+  Class 6: 71.58% (131/183)
+  Class 7: 0.00% (0/151)
+  Class 8: 30.11% (28/93)
+  Class 9: 48.44% (31/64)
+  Class 10: 7.14% (2/28)
+✨ Saving Best Model (Acc: 49.85%, Loss: 1.3306)
+Training Epoch 4/20: 100%|██████████| 245/245 [01:35<00:00,  2.57batch/s]
+Validating Epoch 4/20:   0%|          | 0/62 [00:00<?, ?batch/s]
+Train [4/20] Loss: 1.3180, Acc: 50.74%
+Class-wise Train Accuracy:
+  Class 0: 91.18% (1872/2053)
+  Class 1: 51.72% (436/843)
+  Class 2: 26.38% (162/614)
+  Class 3: 54.63% (560/1025)
+  Class 4: 23.56% (151/641)
+  Class 5: 20.71% (122/589)
+  Class 6: 39.35% (301/765)
+  Class 7: 28.55% (161/564)
+  Class 8: 17.33% (61/352)
+  Class 9: 46.18% (127/275)
+  Class 10: 16.50% (17/103)
+Validating Epoch 4/20: 100%|██████████| 62/62 [00:09<00:00,  6.36batch/s]
+
+Val [4/20] Loss: 1.1817, Acc: 55.98%
+Class-wise Val Accuracy:
+  Class 0: 91.99% (471/512)
+  Class 1: 65.57% (139/212)
+  Class 2: 15.62% (25/160)
+  Class 3: 73.52% (186/253)
+  Class 4: 23.17% (38/164)
+  Class 5: 17.65% (24/136)
+  Class 6: 51.37% (94/183)
+  Class 7: 37.09% (56/151)
+  Class 8: 33.33% (31/93)
+  Class 9: 42.19% (27/64)
+  Class 10: 14.29% (4/28)
+Training Epoch 5/20:   0%|          | 0/245 [00:00<?, ?batch/s]✨ Saving Best Model (Acc: 55.98%, Loss: 1.1817)
+Training Epoch 5/20: 100%|██████████| 245/245 [01:36<00:00,  2.55batch/s]
+
+Train [5/20] Loss: 1.1881, Acc: 54.37%
+Class-wise Train Accuracy:
+  Class 0: 91.96% (1888/2053)
+  Class 1: 59.91% (505/843)
+  Class 2: 36.97% (227/614)
+  Class 3: 55.61% (570/1025)
+  Class 4: 26.68% (171/641)
+  Class 5: 25.30% (149/589)
+  Class 6: 41.18% (315/765)
+  Class 7: 33.33% (188/564)
+  Class 8: 22.44% (79/352)
+  Class 9: 48.36% (133/275)
+  Class 10: 28.16% (29/103)
+Validating Epoch 5/20: 100%|██████████| 62/62 [00:09<00:00,  6.40batch/s]
+
+Val [5/20] Loss: 1.0612, Acc: 59.46%
+Class-wise Val Accuracy:
+  Class 0: 96.88% (496/512)
+  Class 1: 52.36% (111/212)
+  Class 2: 18.12% (29/160)
+  Class 3: 84.98% (215/253)
+  Class 4: 24.39% (40/164)
+  Class 5: 41.18% (56/136)
+  Class 6: 41.53% (76/183)
+  Class 7: 41.06% (62/151)
+  Class 8: 30.11% (28/93)
+  Class 9: 60.94% (39/64)
+  Class 10: 39.29% (11/28)
+✨ Saving Best Model (Acc: 59.46%, Loss: 1.0612)
+Training Epoch 6/20: 100%|██████████| 245/245 [01:52<00:00,  2.17batch/s]
+Validating Epoch 6/20:   0%|          | 0/62 [00:00<?, ?batch/s]
+Train [6/20] Loss: 1.0537, Acc: 59.97%
+Class-wise Train Accuracy:
+  Class 0: 93.67% (1923/2053)
+  Class 1: 67.73% (571/843)
+  Class 2: 42.51% (261/614)
+  Class 3: 61.17% (627/1025)
+  Class 4: 29.64% (190/641)
+  Class 5: 30.05% (177/589)
+  Class 6: 51.37% (393/765)
+  Class 7: 39.72% (224/564)
+  Class 8: 32.39% (114/352)
+  Class 9: 59.27% (163/275)
+  Class 10: 47.57% (49/103)
+Validating Epoch 6/20: 100%|██████████| 62/62 [00:19<00:00,  3.21batch/s]
+
+Val [6/20] Loss: 0.9640, Acc: 64.47%
+Class-wise Val Accuracy:
+  Class 0: 96.48% (494/512)
+  Class 1: 64.62% (137/212)
+  Class 2: 38.75% (62/160)
+  Class 3: 81.82% (207/253)
+  Class 4: 39.02% (64/164)
+  Class 5: 33.82% (46/136)
+  Class 6: 71.58% (131/183)
+  Class 7: 27.15% (41/151)
+  Class 8: 45.16% (42/93)
+  Class 9: 35.94% (23/64)
+  Class 10: 50.00% (14/28)
+✨ Saving Best Model (Acc: 64.47%, Loss: 0.9640)
+Training Epoch 7/20: 100%|██████████| 245/245 [02:02<00:00,  2.00batch/s]
+Validating Epoch 7/20:   0%|          | 0/62 [00:00<?, ?batch/s]
+Train [7/20] Loss: 0.8790, Acc: 66.91%
+Class-wise Train Accuracy:
+  Class 0: 95.03% (1951/2053)
+  Class 1: 73.78% (622/843)
+  Class 2: 52.44% (322/614)
+  Class 3: 65.66% (673/1025)
+  Class 4: 43.84% (281/641)
+  Class 5: 46.52% (274/589)
+  Class 6: 55.29% (423/765)
+  Class 7: 51.06% (288/564)
+  Class 8: 42.33% (149/352)
+  Class 9: 68.36% (188/275)
+  Class 10: 62.14% (64/103)
+Validating Epoch 7/20: 100%|██████████| 62/62 [00:09<00:00,  6.39batch/s]
+
+Val [7/20] Loss: 0.8299, Acc: 69.94%
+Class-wise Val Accuracy:
+  Class 0: 98.63% (505/512)
+  Class 1: 62.74% (133/212)
+  Class 2: 51.25% (82/160)
+  Class 3: 79.84% (202/253)
+  Class 4: 28.05% (46/164)
+  Class 5: 73.53% (100/136)
+  Class 6: 51.37% (94/183)
+  Class 7: 47.68% (72/151)
+  Class 8: 78.49% (73/93)
+  Class 9: 70.31% (45/64)
+  Class 10: 57.14% (16/28)
+Training Epoch 8/20:   0%|          | 0/245 [00:00<?, ?batch/s]✨ Saving Best Model (Acc: 69.94%, Loss: 0.8299)
+Training Epoch 8/20: 100%|██████████| 245/245 [01:38<00:00,  2.50batch/s]
+
+Train [8/20] Loss: 0.6668, Acc: 75.47%
+Class-wise Train Accuracy:
+  Class 0: 97.08% (1993/2053)
+  Class 1: 81.73% (689/843)
+  Class 2: 63.03% (387/614)
+  Class 3: 72.78% (746/1025)
+  Class 4: 56.01% (359/641)
+  Class 5: 59.76% (352/589)
+  Class 6: 67.32% (515/765)
+  Class 7: 63.65% (359/564)
+  Class 8: 59.38% (209/352)
+  Class 9: 79.27% (218/275)
+  Class 10: 75.73% (78/103)
+Validating Epoch 8/20: 100%|██████████| 62/62 [00:10<00:00,  6.17batch/s]
+
+Val [8/20] Loss: 0.6356, Acc: 80.47%
+Class-wise Val Accuracy:
+  Class 0: 99.22% (508/512)
+  Class 1: 80.19% (170/212)
+  Class 2: 81.88% (131/160)
+  Class 3: 85.38% (216/253)
+  Class 4: 61.59% (101/164)
+  Class 5: 60.29% (82/136)
+  Class 6: 72.68% (133/183)
+  Class 7: 62.25% (94/151)
+  Class 8: 74.19% (69/93)
+  Class 9: 75.00% (48/64)
+  Class 10: 78.57% (22/28)
+✨ Saving Best Model (Acc: 80.47%, Loss: 0.6356)
+Training Epoch 9/20: 100%|██████████| 245/245 [01:38<00:00,  2.48batch/s]
+Validating Epoch 9/20:   0%|          | 0/62 [00:00<?, ?batch/s]
+Train [9/20] Loss: 0.4338, Acc: 84.52%
+Class-wise Train Accuracy:
+  Class 0: 98.10% (2014/2053)
+  Class 1: 90.04% (759/843)
+  Class 2: 80.13% (492/614)
+  Class 3: 81.07% (831/1025)
+  Class 4: 71.45% (458/641)
+  Class 5: 72.16% (425/589)
+  Class 6: 77.78% (595/765)
+  Class 7: 77.84% (439/564)
+  Class 8: 75.28% (265/352)
+  Class 9: 89.45% (246/275)
+  Class 10: 86.41% (89/103)
+Validating Epoch 9/20: 100%|██████████| 62/62 [00:09<00:00,  6.22batch/s]
+
+Val [9/20] Loss: 0.5835, Acc: 84.36%
+Class-wise Val Accuracy:
+  Class 0: 98.83% (506/512)
+  Class 1: 78.30% (166/212)
+  Class 2: 81.25% (130/160)
+  Class 3: 88.54% (224/253)
+  Class 4: 65.85% (108/164)
+  Class 5: 84.56% (115/136)
+  Class 6: 72.68% (133/183)
+  Class 7: 84.11% (127/151)
+  Class 8: 77.42% (72/93)
+  Class 9: 81.25% (52/64)
+  Class 10: 60.71% (17/28)
+Training Epoch 10/20:   0%|          | 0/245 [00:00<?, ?batch/s]✨ Saving Best Model (Acc: 84.36%, Loss: 0.5835)
+Training Epoch 10/20: 100%|██████████| 245/245 [01:38<00:00,  2.49batch/s]
+
+Train [10/20] Loss: 0.2630, Acc: 91.27%
+Class-wise Train Accuracy:
+  Class 0: 98.64% (2025/2053)
+  Class 1: 92.65% (781/843)
+  Class 2: 86.48% (531/614)
+  Class 3: 88.68% (909/1025)
+  Class 4: 84.40% (541/641)
+  Class 5: 86.93% (512/589)
+  Class 6: 89.41% (684/765)
+  Class 7: 89.72% (506/564)
+  Class 8: 86.93% (306/352)
+  Class 9: 91.64% (252/275)
+  Class 10: 91.26% (94/103)
+Validating Epoch 10/20: 100%|██████████| 62/62 [00:09<00:00,  6.39batch/s]
+
+Val [10/20] Loss: 0.6260, Acc: 86.20%
+Class-wise Val Accuracy:
+  Class 0: 97.85% (501/512)
+  Class 1: 91.04% (193/212)
+  Class 2: 75.62% (121/160)
+  Class 3: 82.61% (209/253)
+  Class 4: 81.10% (133/164)
+  Class 5: 80.15% (109/136)
+  Class 6: 85.79% (157/183)
+  Class 7: 73.51% (111/151)
+  Class 8: 80.65% (75/93)
+  Class 9: 85.94% (55/64)
+  Class 10: 78.57% (22/28)
+✨ Saving Best Model (Acc: 86.20%, Loss: 0.6260)
+Training Epoch 11/20: 100%|██████████| 245/245 [01:39<00:00,  2.47batch/s]
+Validating Epoch 11/20:   0%|          | 0/62 [00:00<?, ?batch/s]
+Train [11/20] Loss: 0.1821, Acc: 94.20%
+Class-wise Train Accuracy:
+  Class 0: 98.59% (2024/2053)
+  Class 1: 94.19% (794/843)
+  Class 2: 90.23% (554/614)
+  Class 3: 92.59% (949/1025)
+  Class 4: 89.24% (572/641)
+  Class 5: 91.85% (541/589)
+  Class 6: 94.38% (722/765)
+  Class 7: 93.62% (528/564)
+  Class 8: 92.05% (324/352)
+  Class 9: 96.00% (264/275)
+  Class 10: 95.15% (98/103)
+Validating Epoch 11/20: 100%|██████████| 62/62 [00:10<00:00,  6.16batch/s]
+
+Val [11/20] Loss: 0.6285, Acc: 88.91%
+Class-wise Val Accuracy:
+  Class 0: 99.02% (507/512)
+  Class 1: 84.91% (180/212)
+  Class 2: 83.12% (133/160)
+  Class 3: 86.96% (220/253)
+  Class 4: 87.20% (143/164)
+  Class 5: 87.50% (119/136)
+  Class 6: 84.70% (155/183)
+  Class 7: 81.46% (123/151)
+  Class 8: 84.95% (79/93)
+  Class 9: 87.50% (56/64)
+  Class 10: 85.71% (24/28)
+Training Epoch 12/20:   0%|          | 0/245 [00:00<?, ?batch/s]✨ Saving Best Model (Acc: 88.91%, Loss: 0.6285)
+Training Epoch 12/20: 100%|██████████| 245/245 [01:38<00:00,  2.50batch/s]
+Validating Epoch 12/20:   0%|          | 0/62 [00:00<?, ?batch/s]
+Train [12/20] Loss: 0.1106, Acc: 97.55%
+Class-wise Train Accuracy:
+  Class 0: 99.17% (2036/2053)
+  Class 1: 97.63% (823/843)
+  Class 2: 95.77% (588/614)
+  Class 3: 96.59% (990/1025)
+  Class 4: 96.57% (619/641)
+  Class 5: 98.64% (581/589)
+  Class 6: 98.04% (750/765)
+  Class 7: 96.81% (546/564)
+  Class 8: 94.32% (332/352)
+  Class 9: 97.09% (267/275)
+  Class 10: 97.09% (100/103)
+Validating Epoch 12/20: 100%|██████████| 62/62 [00:09<00:00,  6.33batch/s]
+
+Val [12/20] Loss: 0.6872, Acc: 88.91%
+Class-wise Val Accuracy:
+  Class 0: 99.41% (509/512)
+  Class 1: 85.38% (181/212)
+  Class 2: 78.12% (125/160)
+  Class 3: 90.91% (230/253)
+  Class 4: 85.37% (140/164)
+  Class 5: 86.03% (117/136)
+  Class 6: 85.25% (156/183)
+  Class 7: 81.46% (123/151)
+  Class 8: 82.80% (77/93)
+  Class 9: 90.62% (58/64)
+  Class 10: 82.14% (23/28)
+Training Epoch 13/20: 100%|██████████| 245/245 [01:38<00:00,  2.49batch/s]
+Validating Epoch 13/20:   0%|          | 0/62 [00:00<?, ?batch/s]
+Train [13/20] Loss: 0.0995, Acc: 97.38%
+Class-wise Train Accuracy:
+  Class 0: 99.07% (2034/2053)
+  Class 1: 97.63% (823/843)
+  Class 2: 94.95% (583/614)
+  Class 3: 97.46% (999/1025)
+  Class 4: 95.16% (610/641)
+  Class 5: 96.77% (570/589)
+  Class 6: 97.39% (745/765)
+  Class 7: 98.05% (553/564)
+  Class 8: 96.02% (338/352)
+  Class 9: 95.64% (263/275)
+  Class 10: 98.06% (101/103)
+Validating Epoch 13/20: 100%|██████████| 62/62 [00:09<00:00,  6.30batch/s]
+Training Epoch 14/20:   0%|          | 0/245 [00:00<?, ?batch/s]
+Val [13/20] Loss: 0.7584, Acc: 88.91%
+Class-wise Val Accuracy:
+  Class 0: 99.22% (508/512)
+  Class 1: 86.32% (183/212)
+  Class 2: 75.62% (121/160)
+  Class 3: 92.89% (235/253)
+  Class 4: 83.54% (137/164)
+  Class 5: 86.03% (117/136)
+  Class 6: 84.70% (155/183)
+  Class 7: 82.78% (125/151)
+  Class 8: 84.95% (79/93)
+  Class 9: 85.94% (55/64)
+  Class 10: 85.71% (24/28)
+Training Epoch 14/20: 100%|██████████| 245/245 [01:38<00:00,  2.48batch/s]
+Validating Epoch 14/20:   0%|          | 0/62 [00:00<?, ?batch/s]
+Train [14/20] Loss: 0.0731, Acc: 98.33%
+Class-wise Train Accuracy:
+  Class 0: 99.46% (2042/2053)
+  Class 1: 97.75% (824/843)
+  Class 2: 96.58% (593/614)
+  Class 3: 98.05% (1005/1025)
+  Class 4: 97.82% (627/641)
+  Class 5: 98.30% (579/589)
+  Class 6: 98.95% (757/765)
+  Class 7: 98.58% (556/564)
+  Class 8: 96.88% (341/352)
+  Class 9: 97.82% (269/275)
+  Class 10: 97.09% (100/103)
+Validating Epoch 14/20: 100%|██████████| 62/62 [00:09<00:00,  6.36batch/s]
+
+Val [14/20] Loss: 0.7032, Acc: 89.06%
+Class-wise Val Accuracy:
+  Class 0: 98.24% (503/512)
+  Class 1: 88.21% (187/212)
+  Class 2: 81.25% (130/160)
+  Class 3: 92.09% (233/253)
+  Class 4: 85.37% (140/164)
+  Class 5: 83.82% (114/136)
+  Class 6: 84.70% (155/183)
+  Class 7: 80.13% (121/151)
+  Class 8: 86.02% (80/93)
+  Class 9: 85.94% (55/64)
+  Class 10: 85.71% (24/28)
+Training Epoch 15/20:   0%|          | 0/245 [00:00<?, ?batch/s]✨ Saving Best Model (Acc: 89.06%, Loss: 0.7032)
+Training Epoch 15/20: 100%|██████████| 245/245 [01:38<00:00,  2.50batch/s]
+Validating Epoch 15/20:   0%|          | 0/62 [00:00<?, ?batch/s]
+Train [15/20] Loss: 0.0560, Acc: 98.90%
+Class-wise Train Accuracy:
+  Class 0: 99.71% (2047/2053)
+  Class 1: 98.46% (830/843)
+  Class 2: 97.39% (598/614)
+  Class 3: 99.02% (1015/1025)
+  Class 4: 98.75% (633/641)
+  Class 5: 99.15% (584/589)
+  Class 6: 99.48% (761/765)
+  Class 7: 98.76% (557/564)
+  Class 8: 97.16% (342/352)
+  Class 9: 98.18% (270/275)
+  Class 10: 98.06% (101/103)
+Validating Epoch 15/20: 100%|██████████| 62/62 [00:09<00:00,  6.36batch/s]
+
+Val [15/20] Loss: 0.6291, Acc: 88.96%
+Class-wise Val Accuracy:
+  Class 0: 99.22% (508/512)
+  Class 1: 88.21% (187/212)
+  Class 2: 85.62% (137/160)
+  Class 3: 88.93% (225/253)
+  Class 4: 79.88% (131/164)
+  Class 5: 86.76% (118/136)
+  Class 6: 84.15% (154/183)
+  Class 7: 80.79% (122/151)
+  Class 8: 88.17% (82/93)
+  Class 9: 81.25% (52/64)
+  Class 10: 85.71% (24/28)
+Training Epoch 16/20: 100%|██████████| 245/245 [01:37<00:00,  2.50batch/s]
+Validating Epoch 16/20:   0%|          | 0/62 [00:00<?, ?batch/s]
+Train [16/20] Loss: 0.0501, Acc: 99.03%
+Class-wise Train Accuracy:
+  Class 0: 99.61% (2045/2053)
+  Class 1: 98.81% (833/843)
+  Class 2: 97.56% (599/614)
+  Class 3: 98.93% (1014/1025)
+  Class 4: 99.06% (635/641)
+  Class 5: 99.15% (584/589)
+  Class 6: 99.48% (761/765)
+  Class 7: 99.65% (562/564)
+  Class 8: 98.01% (345/352)
+  Class 9: 97.82% (269/275)
+  Class 10: 98.06% (101/103)
+Validating Epoch 16/20: 100%|██████████| 62/62 [00:09<00:00,  6.34batch/s]
+
+Val [16/20] Loss: 0.5474, Acc: 89.21%
+Class-wise Val Accuracy:
+  Class 0: 98.24% (503/512)
+  Class 1: 91.51% (194/212)
+  Class 2: 81.88% (131/160)
+  Class 3: 90.51% (229/253)
+  Class 4: 82.93% (136/164)
+  Class 5: 84.56% (115/136)
+  Class 6: 85.25% (156/183)
+  Class 7: 79.47% (120/151)
+  Class 8: 89.25% (83/93)
+  Class 9: 85.94% (55/64)
+  Class 10: 82.14% (23/28)
+Training Epoch 17/20:   0%|          | 0/245 [00:00<?, ?batch/s]✨ Saving Best Model (Acc: 89.21%, Loss: 0.5474)
+Training Epoch 17/20: 100%|██████████| 245/245 [01:37<00:00,  2.51batch/s]
+Validating Epoch 17/20:   0%|          | 0/62 [00:00<?, ?batch/s]
+Train [17/20] Loss: 0.0463, Acc: 99.21%
+Class-wise Train Accuracy:
+  Class 0: 99.76% (2048/2053)
+  Class 1: 99.29% (837/843)
+  Class 2: 97.88% (601/614)
+  Class 3: 99.02% (1015/1025)
+  Class 4: 98.91% (634/641)
+  Class 5: 99.83% (588/589)
+  Class 6: 99.74% (763/765)
+  Class 7: 98.94% (558/564)
+  Class 8: 98.30% (346/352)
+  Class 9: 98.91% (272/275)
+  Class 10: 97.09% (100/103)
+Validating Epoch 17/20: 100%|██████████| 62/62 [00:09<00:00,  6.31batch/s]
+
+Val [17/20] Loss: 0.5306, Acc: 89.72%
+Class-wise Val Accuracy:
+  Class 0: 98.83% (506/512)
+  Class 1: 91.04% (193/212)
+  Class 2: 81.25% (130/160)
+  Class 3: 91.30% (231/253)
+  Class 4: 85.37% (140/164)
+  Class 5: 88.24% (120/136)
+  Class 6: 85.79% (157/183)
+  Class 7: 80.13% (121/151)
+  Class 8: 84.95% (79/93)
+  Class 9: 84.38% (54/64)
+  Class 10: 85.71% (24/28)
+Training Epoch 18/20:   0%|          | 0/245 [00:00<?, ?batch/s]✨ Saving Best Model (Acc: 89.72%, Loss: 0.5306)
+Training Epoch 18/20: 100%|██████████| 245/245 [01:37<00:00,  2.52batch/s]
+Validating Epoch 18/20:   0%|          | 0/62 [00:00<?, ?batch/s]
+Train [18/20] Loss: 0.0410, Acc: 99.16%
+Class-wise Train Accuracy:
+  Class 0: 99.61% (2045/2053)
+  Class 1: 98.81% (833/843)
+  Class 2: 97.88% (601/614)
+  Class 3: 99.22% (1017/1025)
+  Class 4: 99.06% (635/641)
+  Class 5: 99.83% (588/589)
+  Class 6: 99.48% (761/765)
+  Class 7: 99.29% (560/564)
+  Class 8: 98.01% (345/352)
+  Class 9: 98.55% (271/275)
+  Class 10: 99.03% (102/103)
+Validating Epoch 18/20: 100%|██████████| 62/62 [00:09<00:00,  6.38batch/s]
+Training Epoch 19/20:   0%|          | 0/245 [00:00<?, ?batch/s]
+Val [18/20] Loss: 0.6702, Acc: 88.70%
+Class-wise Val Accuracy:
+  Class 0: 98.44% (504/512)
+  Class 1: 87.26% (185/212)
+  Class 2: 85.62% (137/160)
+  Class 3: 86.56% (219/253)
+  Class 4: 84.15% (138/164)
+  Class 5: 83.82% (114/136)
+  Class 6: 85.79% (157/183)
+  Class 7: 80.13% (121/151)
+  Class 8: 88.17% (82/93)
+  Class 9: 84.38% (54/64)
+  Class 10: 85.71% (24/28)
+Training Epoch 19/20: 100%|██████████| 245/245 [01:37<00:00,  2.51batch/s]
+Validating Epoch 19/20:   0%|          | 0/62 [00:00<?, ?batch/s]
+Train [19/20] Loss: 0.0423, Acc: 99.18%
+Class-wise Train Accuracy:
+  Class 0: 99.51% (2043/2053)
+  Class 1: 98.93% (834/843)
+  Class 2: 98.05% (602/614)
+  Class 3: 99.22% (1017/1025)
+  Class 4: 98.91% (634/641)
+  Class 5: 99.49% (586/589)
+  Class 6: 99.74% (763/765)
+  Class 7: 99.65% (562/564)
+  Class 8: 98.30% (346/352)
+  Class 9: 98.91% (272/275)
+  Class 10: 98.06% (101/103)
+Validating Epoch 19/20: 100%|██████████| 62/62 [00:09<00:00,  6.30batch/s]
+Training Epoch 20/20:   0%|          | 0/245 [00:00<?, ?batch/s]
+Val [19/20] Loss: 0.6296, Acc: 89.42%
+Class-wise Val Accuracy:
+  Class 0: 99.61% (510/512)
+  Class 1: 84.91% (180/212)
+  Class 2: 83.75% (134/160)
+  Class 3: 90.51% (229/253)
+  Class 4: 88.41% (145/164)
+  Class 5: 82.35% (112/136)
+  Class 6: 86.34% (158/183)
+  Class 7: 81.46% (123/151)
+  Class 8: 86.02% (80/93)
+  Class 9: 84.38% (54/64)
+  Class 10: 85.71% (24/28)
+Training Epoch 20/20: 100%|██████████| 245/245 [01:37<00:00,  2.52batch/s]
+Validating Epoch 20/20:   0%|          | 0/62 [00:00<?, ?batch/s]
+Train [20/20] Loss: 0.0487, Acc: 98.79%
+Class-wise Train Accuracy:
+  Class 0: 99.46% (2042/2053)
+  Class 1: 98.10% (827/843)
+  Class 2: 97.88% (601/614)
+  Class 3: 98.93% (1014/1025)
+  Class 4: 98.28% (630/641)
+  Class 5: 99.15% (584/589)
+  Class 6: 98.82% (756/765)
+  Class 7: 99.29% (560/564)
+  Class 8: 98.30% (346/352)
+  Class 9: 98.18% (270/275)
+  Class 10: 96.12% (99/103)
+Validating Epoch 20/20: 100%|██████████| 62/62 [00:09<00:00,  6.34batch/s]
+
+Val [20/20] Loss: 0.7236, Acc: 89.57%
+Class-wise Val Accuracy:
+  Class 0: 99.02% (507/512)
+  Class 1: 88.68% (188/212)
+  Class 2: 85.62% (137/160)
+  Class 3: 90.51% (229/253)
+  Class 4: 83.54% (137/164)
+  Class 5: 85.29% (116/136)
+  Class 6: 85.79% (157/183)
+  Class 7: 80.79% (122/151)
+  Class 8: 86.02% (80/93)
+  Class 9: 87.50% (56/64)
+  Class 10: 82.14% (23/28)
+
+Process finished with exit code 0
+
+使用未数据增强的模型权重做为初始权重，然后增加数据增强，过度数据增强的表现
+Train [11/20] Loss: 4.0297, Acc: 13.41%
+Class-wise Train Accuracy:
+  Class 0: 23.59% (480/2035)
+  Class 1: 8.31% (73/878)
+  Class 2: 16.38% (105/641)
+  Class 3: 14.45% (147/1017)
+  Class 4: 7.04% (47/668)
+  Class 5: 7.13% (42/589)
+  Class 6: 8.30% (61/735)
+  Class 7: 7.36% (41/557)
+  Class 8: 4.72% (16/339)
+  Class 9: 11.58% (30/259)
+  Class 10: 6.60% (7/106)
+Validating Epoch 11/20: 100%|██████████| 62/62 [00:10<00:00,  6.13batch/s]
+Training Epoch 12/20:   0%|          | 0/245 [00:00<?, ?batch/s]
+Val [11/20] Loss: 1.1326, Acc: 82.52%
+Class-wise Val Accuracy:
+  Class 0: 93.79% (498/531)
+  Class 1: 84.98% (181/213)
+  Class 2: 67.09% (106/158)
+  Class 3: 81.89% (217/265)
+  Class 4: 75.00% (126/168)
+  Class 5: 86.99% (127/146)
+  Class 6: 84.97% (130/153)
+  Class 7: 84.78% (117/138)
+  Class 8: 54.44% (49/90)
+  Class 9: 67.95% (53/78)
+  Class 10: 62.50% (10/16)
+
+# 再一次减少数据增强的精度
+
+Train [19/20] Loss: 1.1493, Acc: 54.36%
+Class-wise Train Accuracy:
+  Class 0: 92.16% (1845/2002)
+  Class 1: 60.21% (513/852)
+  Class 2: 27.99% (180/643)
+  Class 3: 62.03% (642/1035)
+  Class 4: 22.92% (149/650)
+  Class 5: 24.96% (145/581)
+  Class 6: 45.76% (345/754)
+  Class 7: 36.19% (203/561)
+  Class 8: 16.48% (58/352)
+  Class 9: 52.98% (151/285)
+  Class 10: 20.18% (22/109)
+Validating Epoch 19/20: 100%|██████████| 62/62 [00:09<00:00,  6.28batch/s]
+Training Epoch 20/20:   0%|          | 0/245 [00:00<?, ?batch/s]
+Val [19/20] Loss: 4.5273, Acc: 25.92%
+Class-wise Val Accuracy:
+  Class 0: 99.80% (493/494)
+  Class 1: 0.00% (0/207)
+  Class 2: 0.00% (0/146)
+  Class 3: 0.00% (0/256)
+  Class 4: 0.00% (0/157)
+  Class 5: 0.00% (0/162)
+  Class 6: 1.88% (4/213)
+  Class 7: 0.65% (1/153)
+  Class 8: 0.00% (0/78)
+  Class 9: 13.85% (9/65)
+  Class 10: 0.00% (0/25)
+
+# 动态权重 + 数据涉漏
+
+Val [20/20] Loss: 0.2377, Acc: 95.45%
+Class-wise Val Accuracy:
+  Class 0: 99.61% (505/507)
+  Class 1: 92.89% (196/211)
+  Class 2: 95.57% (151/158)
+  Class 3: 97.49% (272/279)
+  Class 4: 88.74% (134/151)
+  Class 5: 85.62% (125/146)
+  Class 6: 95.14% (176/185)
+  Class 7: 96.06% (122/127)
+  Class 8: 97.87% (92/94)
+  Class 9: 94.29% (66/70)
+  Class 10: 100.00% (28/28)
+
+Process finished with exit code 0
