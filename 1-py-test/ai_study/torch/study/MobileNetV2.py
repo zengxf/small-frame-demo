@@ -1,76 +1,83 @@
 """
-https://www.kimi.com/chat/d27hcja5hvllsf02hdtg
+https://github.com/tonylins/pytorch-mobilenet-v2/
 """
 
-import torch
 import torch.nn as nn
-from typing import List, Optional, Callable
+import torch
+import math
 
 
-# 1.1 倒残差模块
+def conv_bn(inp, oup, stride):
+    return nn.Sequential(
+        nn.Conv2d(inp, oup, 3, stride, 1, bias=False),
+        nn.BatchNorm2d(oup),
+        nn.ReLU6(inplace=True)
+    )
+
+
+def conv_1x1_bn(inp, oup):
+    return nn.Sequential(
+        nn.Conv2d(inp, oup, 1, 1, 0, bias=False),
+        nn.BatchNorm2d(oup),
+        nn.ReLU6(inplace=True)
+    )
+
+
+def make_divisible(x, divisible_by=8):
+    import numpy as np
+    return int(np.ceil(x * 1. / divisible_by) * divisible_by)
+
+
 class InvertedResidual(nn.Module):
-    def __init__(self,
-                 in_ch: int,
-                 out_ch: int,
-                 stride: int,
-                 expand_ratio: int,
-                 norm_layer: Optional[Callable[..., nn.Module]] = None):
-        super().__init__()
-        assert stride in (1, 2)
-        if norm_layer is None:
-            norm_layer = nn.BatchNorm2d
+    def __init__(self, inp, oup, stride, expand_ratio):
+        super(InvertedResidual, self).__init__()
+        self.stride = stride
+        assert stride in [1, 2]
 
-        hidden = int(round(in_ch * expand_ratio))
-        self.use_res = stride == 1 and in_ch == out_ch
+        hidden_dim = int(inp * expand_ratio)
+        # 残差要相加，输入通道和输出通道一定是要相等的
+        self.use_res_connect = self.stride == 1 and inp == oup
 
-        layers: List[nn.Module] = []
-        if expand_ratio != 1:  # 1×1 升维
-            layers.append(
-                self._conv_bn_act(in_ch, hidden, 1, 1, 0, norm_layer, nn.ReLU6)
+        if expand_ratio == 1:
+            self.conv = nn.Sequential(
+                # dw
+                nn.Conv2d(hidden_dim, hidden_dim, 3, stride, 1, groups=hidden_dim, bias=False),
+                nn.BatchNorm2d(hidden_dim),
+                nn.ReLU6(inplace=True),
+                # pw-linear
+                nn.Conv2d(hidden_dim, oup, 1, 1, 0, bias=False),
+                nn.BatchNorm2d(oup),
             )
-        # 3×3 depthwise
-        layers.append(
-            self._conv_bn_act(hidden, hidden, 3, stride, 1, norm_layer,
-                              nn.ReLU6, groups=hidden)
-        )
-        # 1×1 降维（线性）
-        layers.append(
-            nn.Conv2d(hidden, out_ch, 1, 1, 0, bias=False)
-        )
-        layers.append(norm_layer(out_ch))
+        else:
+            self.conv = nn.Sequential(
+                # pw
+                nn.Conv2d(inp, hidden_dim, 1, 1, 0, bias=False),
+                nn.BatchNorm2d(hidden_dim),
+                nn.ReLU6(inplace=True),
+                # dw
+                nn.Conv2d(hidden_dim, hidden_dim, 3, stride, 1, groups=hidden_dim, bias=False),
+                nn.BatchNorm2d(hidden_dim),
+                nn.ReLU6(inplace=True),
+                # pw-linear
+                nn.Conv2d(hidden_dim, oup, 1, 1, 0, bias=False),
+                nn.BatchNorm2d(oup),
+            )
 
-        self.conv = nn.Sequential(*layers)
-
-    @staticmethod
-    def _conv_bn_act(in_c, out_c, k, s, p, norm, act, **kwargs):
-        return nn.Sequential(
-            nn.Conv2d(in_c, out_c, k, s, p, bias=False, **kwargs),
-            norm(out_c),
-            act(inplace=True)
-        )
-
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        if self.use_res:
+    def forward(self, x):
+        if self.use_res_connect:
             return x + self.conv(x)
-        return self.conv(x)
+        else:
+            return self.conv(x)
 
 
-# 1.2 MobileNet-V2 主体
 class MobileNetV2(nn.Module):
-    def __init__(self,
-                 num_classes: int = 1000,
-                 width_mult: float = 1.0,
-                 round_nearest: int = 8,
-                 norm_layer: Optional[Callable[..., nn.Module]] = None):
-        super().__init__()
-        if norm_layer is None:
-            norm_layer = nn.BatchNorm2d
-
-        def _make_divisible(ch, divisor=round_nearest):
-            return int(ch + divisor / 2) // divisor * divisor
-
-        # 倒残差配置： (expand_ratio, channels, num_blocks, stride)
-        inverted_residual_setting = [
+    def __init__(self, n_class=1000, input_size=224, width_mult=1.):
+        super(MobileNetV2, self).__init__()
+        block = InvertedResidual
+        input_channel = 32
+        last_channel = 1280
+        interverted_residual_setting = [
+            # t, c, n, s
             [1, 16, 1, 1],
             [6, 24, 2, 2],
             [6, 32, 3, 2],
@@ -80,97 +87,72 @@ class MobileNetV2(nn.Module):
             [6, 320, 1, 1],
         ]
 
-        input_channel = _make_divisible(32 * width_mult)
-        last_channel = _make_divisible(1280 * max(1.0, width_mult))
-
-        # 首层
-        features: List[nn.Module] = [
-            self._conv_bn_act(3, input_channel, 3, 2, 1, norm_layer, nn.ReLU6)
-        ]
-
-        # 倒残差堆叠
-        for t, c, n, s in inverted_residual_setting:
-            output_channel = _make_divisible(c * width_mult)
+        # building first layer
+        assert input_size % 32 == 0
+        # input_channel = make_divisible(input_channel * width_mult)  # first channel is always 32!
+        self.last_channel = make_divisible(last_channel * width_mult) if width_mult > 1.0 else last_channel
+        self.features = [conv_bn(3, input_channel, 2)]
+        # building inverted residual blocks
+        for t, c, n, s in interverted_residual_setting:
+            output_channel = make_divisible(c * width_mult) if t > 1 else c
             for i in range(n):
-                stride = s if i == 0 else 1
-                features.append(
-                    InvertedResidual(input_channel, output_channel, stride, t, norm_layer)
-                )
+                if i == 0:
+                    self.features.append(block(input_channel, output_channel, s, expand_ratio=t))
+                else:
+                    self.features.append(block(input_channel, output_channel, 1, expand_ratio=t))
                 input_channel = output_channel
+        # building last several layers
+        self.features.append(conv_1x1_bn(input_channel, self.last_channel))
+        # make it nn.Sequential
+        self.features = nn.Sequential(*self.features)
 
-        # 1×1 卷积
-        features.append(
-            self._conv_bn_act(input_channel, last_channel, 1, 1, 0, norm_layer, nn.ReLU6)
-        )
+        # building classifier
+        self.classifier = nn.Linear(self.last_channel, n_class)
 
-        self.features = nn.Sequential(*features)
-        self.avgpool = nn.AdaptiveAvgPool2d(1)
-        self.classifier = nn.Sequential(
-            nn.Dropout(0.2),
-            nn.Linear(last_channel, num_classes),
-        )
+        self._initialize_weights()
 
-        self._init_weights()
-
-    @staticmethod
-    def _conv_bn_act(in_c, out_c, k, s, p, norm, act):
-        return nn.Sequential(
-            nn.Conv2d(in_c, out_c, k, s, p, bias=False),
-            norm(out_c),
-            act(inplace=True)
-        )
-
-    def _init_weights(self):
-        for m in self.modules():
-            if isinstance(m, nn.Conv2d):
-                nn.init.kaiming_normal_(m.weight, mode='fan_out')
-                if m.bias is not None:
-                    nn.init.zeros_(m.bias)
-            elif isinstance(m, (nn.BatchNorm2d, nn.GroupNorm)):
-                nn.init.ones_(m.weight)
-                nn.init.zeros_(m.bias)
-            elif isinstance(m, nn.Linear):
-                nn.init.normal_(m.weight, 0, 0.01)
-                nn.init.zeros_(m.bias)
-
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
+    def forward(self, x):
         x = self.features(x)
-        x = self.avgpool(x)
-        x = torch.flatten(x, 1)
+        x = x.mean(3).mean(2)
         x = self.classifier(x)
         return x
 
+    def _initialize_weights(self):
+        for m in self.modules():
+            if isinstance(m, nn.Conv2d):
+                n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
+                m.weight.data.normal_(0, math.sqrt(2. / n))
+                if m.bias is not None:
+                    m.bias.data.zero_()
+            elif isinstance(m, nn.BatchNorm2d):
+                m.weight.data.fill_(1)
+                m.bias.data.zero_()
+            elif isinstance(m, nn.Linear):
+                n = m.weight.size(1)
+                m.weight.data.normal_(0, 0.01)
+                m.bias.data.zero_()
 
-# 1.3 构建函数（兼容 torchvision 调用习惯）
-def mobilenet_v2(num_classes: int = 1000, pretrained: bool = False):
-    model = MobileNetV2(num_classes=num_classes)
+
+def mobilenet_v2(pretrained=True):
+    model = MobileNetV2(width_mult=1)
+
     if pretrained:
-        # 官方权重
-        state_dict = torch.hub.load_state_dict_from_url(
-            "https://download.pytorch.org/models/mobilenet_v2-b0353104.pth",
-            progress=True
-        )
-        model.load_state_dict(state_dict, strict=False)
+        try:
+            from torch.hub import load_state_dict_from_url
+        except ImportError:
+            from torch.utils.model_zoo import load_url as load_state_dict_from_url
+        state_dict = load_state_dict_from_url(
+            'https://www.dropbox.com/s/47tyzpofuuyyv1b/mobilenetv2_1.0-f2a8633.pth.tar?dl=1', progress=True)
+        model.load_state_dict(state_dict)
     return model
 
 
-if __name__ == "__main__":
-    net = mobilenet_v2(pretrained=True)  # 也可设为 False 从零开始
+if __name__ == '__main__':
+    net = mobilenet_v2(True)
     net.eval()
     x = torch.randn(1, 3, 224, 224)
     y = net(x)
     print("output shape:", y.shape)  # [1, 1000]
 
-# # 一行调用 torchvision 官方实现（可选）
-# import torchvision, torch
-# model = torchvision.models.mobilenet_v2(weights='IMAGENET1K_V1')
-# model.eval()
-
-# 一行调用 torchvision 官方实现（手动下载权重）
-# url: https://download.pytorch.org/models/mobilenet_v2-b0353104.pth
-import torchvision, torch
-model = torchvision.models.mobilenet_v2(pretrained=False)
-model.load_state_dict(torch.load('./mobilenet_v2-b0353104.pth'))
-model.eval()
-
-
+    # v = make_divisible(22)
+    # print(v)
