@@ -165,3 +165,12 @@ if __name__ == "__main__":
 # import torchvision, torch
 # model = torchvision.models.mobilenet_v2(weights='IMAGENET1K_V1')
 # model.eval()
+
+# 一行调用 torchvision 官方实现（手动下载权重）
+# url: https://download.pytorch.org/models/mobilenet_v2-b0353104.pth
+import torchvision, torch
+model = torchvision.models.mobilenet_v2(pretrained=False)
+model.load_state_dict(torch.load('./mobilenet_v2-b0353104.pth'))
+model.eval()
+
+

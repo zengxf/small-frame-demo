@@ -3,6 +3,7 @@ https://github.com/tonylins/pytorch-mobilenet-v2/
 """
 
 import torch.nn as nn
+import torch
 import math
 
 
@@ -34,6 +35,7 @@ class InvertedResidual(nn.Module):
         assert stride in [1, 2]
 
         hidden_dim = int(inp * expand_ratio)
+        # 残差要相加，输入通道和输出通道一定是要相等的
         self.use_res_connect = self.stride == 1 and inp == oup
 
         if expand_ratio == 1:
@@ -147,3 +149,10 @@ def mobilenet_v2(pretrained=True):
 
 if __name__ == '__main__':
     net = mobilenet_v2(True)
+    net.eval()
+    x = torch.randn(1, 3, 224, 224)
+    y = net(x)
+    print("output shape:", y.shape)  # [1, 1000]
+
+    # v = make_divisible(22)
+    # print(v)
