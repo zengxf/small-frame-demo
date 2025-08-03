@@ -38,11 +38,11 @@ class BottleNeck(nn.Module):
     def forward(self, x):
         x1 = self.conv1x1_1(x)
 
-        if self.is_resnet:
+        if self.is_resnet:  # 使用残差
             x1 = self.conv3x3_s1(x1)
             x1 = x + self.conv1x1_2(x1)
             return self.relu(x1)
-        else:
+        else:  # 不使用残差
             x1 = self.download(x1)
             x1 = self.download_conv(x1)
             return x1
@@ -55,21 +55,21 @@ class MyBlock(nn.Module):
         super(MyBlock, self).__init__()
         self.repeat = repeat
         self.isFirst = isFirst
-        self.block1 = BottleNeck(in_c, is_resnet=True)
-        self.block2 = BottleNeck(in_c, is_resnet=False)
+        self.block1 = BottleNeck(in_c, is_resnet=True)  # 使用残差
+        self.block2 = BottleNeck(in_c, is_resnet=False)  # 不使用残差
 
     def forward(self, x):
         if self.isFirst:
             # 1x256x56x56
             for _ in range(self.repeat):
-                x = self.block1(x)
+                x = self.block1(x)  # 首次，都使用残差
         else:
             for i in range(self.repeat):
                 if i == 0:
                     # 下采样
                     x = self.block2(x)  # 1x512x28x28
                 else:
-                    x = self.block1(x)
+                    x = self.block1(x)  # 后面的，第1个不用，第2个用残差
         return x
 
 
@@ -100,7 +100,7 @@ class ResNet(nn.Module):
     def forward(self, x):
         x = self.conv7x7(x)
         if self.is_train:
-            x = x + torch.randn(x.shape)
+            x = x + torch.randn(x.shape)  # 加噪声
         x = self.max_pool(x)
 
         x = self.conv1x1_1(x)
