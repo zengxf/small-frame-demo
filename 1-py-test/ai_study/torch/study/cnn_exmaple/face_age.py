@@ -1,22 +1,19 @@
-import torch
-import torchvision
-from tqdm import tqdm
-import cv2
-# 供dataset和dataloader使用的
-from torch.utils.data.dataset import Dataset
-from torch.utils.data import DataLoader
 import os
 import random
-import torch.nn as nn
-from torchvision import transforms
-import torchvision
-from tqdm import tqdm
+
+import cv2
 import matplotlib.pyplot as plt
 import numpy as np
-from torchvision import transforms
+import torch
+import torch.nn as nn
+import torchvision
 from PIL import Image
 from PIL import ImageEnhance
-from torch.optim.lr_scheduler import StepLR
+# 供dataset和dataloader使用的
+from torch.utils.data.dataset import Dataset
+from torchvision import transforms
+
+from tqdm import tqdm
 
 
 class Conv(nn.Module):
@@ -241,50 +238,100 @@ if __name__ == "__main__":
     device = "cuda:0" if torch.cuda.is_available() else "cpu"
 
     my_transform = transforms.Compose([
-        transforms.ToPILImage(),  # 将numpy数组转换为PIL图像
-        transforms.Resize((224, 224)),
-        transforms.RandomHorizontalFlip(p=0.1),  # 随机水平翻转
-        transforms.RandomRotation(15),  # 随机旋转20度
-        transforms.RandomEqualize(p=0.5),
-        transforms.RandomVerticalFlip(p=0.1),
-        # transforms.RandomCrop(size=(224, 224)),
-        # transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.1),
+        transforms.Resize((224, 224)),  # 先调整图片尺寸
+        # ---------------- 数据增强，顺序不要搞反
+        transforms.RandomEqualize(p=0.5),  # 增强：随机均衡化
+        transforms.RandomHorizontalFlip(p=0.1),  # 增强：随机水平翻转
+        transforms.RandomRotation(5),  # 增强：随机旋转15度
+        transforms.RandomVerticalFlip(p=0.1),  # 增强：随机垂直翻转
+        # 其他增强操作可以按需打开，比如：
+        transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.1),
         # transforms.RandomAffine(degrees=10, translate=(0.1, 0.1), scale=(0.8, 1.2), shear=10),
         # transforms.RandomPerspective(distortion_scale=0.5, p=0.1),
         # transforms.RandomPosterize(bits=4, p=0.1),
         # RandomSharpness(sharpness_factor=2, p=0.5),
-        # transforms.GaussianBlur(kernel_size=(5, 5), sigma=(0.1, 2.0)),
-        # RandomCutout(n_holes=8, length=8, fill_value=0),
-        transforms.ToTensor(),  # 将PIL图像转换为Tensor
+        transforms.GaussianBlur(kernel_size=(5, 5), sigma=(0.1, 2.0)),
+        RandomCutout(n_holes=8, length=8, fill_value=114),
+        # ----------------
+        transforms.ToTensor(),  # 转换为Tensor
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])  # 最后标准化
+    ])
+
+    val_transform = transforms.Compose([
+        transforms.Resize((224, 224)),
+        transforms.ToTensor(),
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])  # 标准化
     ])
-    is_auto_aug = False
-    if is_auto_aug:
-        train_dataset = MyDataSet(path, device, transforms=my_transform,is_train=True)
-    else:
-        train_dataset = MyDataSet(path, device, transforms=None,is_train=True)
 
-    batch_size = 32
+    # is_auto_aug = False
+    # if is_auto_aug:
+    #     train_dataset = MyDataSet(path, device, transforms=my_transform,is_train=True)
+    # else:
+    #     train_dataset = MyDataSet(path, device, transforms=None,is_train=True)
+
+    num_classes = 2  # 对应之前年龄分组的0-10组
+
+    model = torchvision.models.resnet34(pretrained=False)
+    model.load_state_dict(torch.load('./resnet34-b627a593.pth'))
+    model.fc = torch.nn.Linear(model.fc.in_features, num_classes)
+    # 冻结所有层
+    for param in model.parameters():
+        param.requires_grad = False
+    # 解冻所有参数进行训练 全量更新
+    # for i, (name, module) in enumerate(model.named_modules()):
+    #     print(name)
+    #     module.requires_grad = True
+
+    # 部分权重更新。微调
+    for name, module in model.named_modules():
+        if name.startswith('layer4'):
+            for param in module.parameters():
+                param.requires_grad = True
+
+    # 解冻最后的全连接层 (fc)
+    model.fc.requires_grad = True
+
+    # model = torchvision.models.mobilenet_v3_small(pretrained=False)
+    # model.load_state_dict(torch.load('./mobilenet_v3_small-047dcff4.pth'))
+    # model.classifier[3] = torch.nn.Linear(model.classifier[3].in_features, num_classes)
+
+    # model = torchvision.models.efficientnet_b1(pretrained=False)
+    # model.load_state_dict(torch.load('./efficientnet_b1_rwightman-bac287d4.pth'))
+    # model.classifier[1] = torch.nn.Linear(model.classifier[1].in_features, num_classes)
+
+    model.to(device)
+    # 训练集用增强后的 transform
+    train_dataset = torchvision.datasets.ImageFolder(
+        root=r"F:\data_source\age_face\age_face4\train",
+        transform=my_transform
+    )
+    # 验证集不增强的 transform
+    test_dataset = torchvision.datasets.ImageFolder(
+        root=r"F:\data_source\age_face\age_face4\val",
+        transform=val_transform
+    )
+
+    batch_size = 16
     train_dataloader = torch.utils.data.DataLoader(
         dataset=train_dataset,
         batch_size=batch_size,
         shuffle=True
     )
 
-    val_dataset = MyDataSet(path, device, is_train=False)
+    # val_dataset = MyDataSet(path, device, is_train=False)
     val_dataloader = torch.utils.data.DataLoader(
-        dataset=val_dataset,
+        dataset=test_dataset,
         batch_size=batch_size,
         shuffle=False
     )
     # 假设类别数量（根据你的任务修改）
-    num_classes = 11  # 对应之前年龄分组的0-10组
-    EPOCHS = 20  # 设置epoch次数
-    isLoad = True
+
+    EPOCHS = 35  # 设置epoch次数
+    isLoad = False
     isWeight = False
-    init_lr = 1e-4
+    init_lr = 1e-5
     current_lr = init_lr
-    model = Vgg16_Sub(class_num=num_classes).to(device)
+    # model = Vgg16_Sub(class_num=num_classes).to(device)
 
     if isLoad and os.path.exists('./best.pt'):
         print(f'加载初始权重best.pt')
@@ -296,7 +343,7 @@ if __name__ == "__main__":
         print(f'历史学习率={current_lr},上次验证损失={best_val_loss}，验证acc={best_val_accuracy}')
         # init_lr = current_lr
     # VGG的学习率
-    optim = torch.optim.Adam(model.parameters(), lr=init_lr)
+    optim = torch.optim.AdamW(model.parameters(), lr=init_lr)
     # 每训练10次缩小0.1
     # scheduler = StepLR(optim, step_size=20, gamma=0.1)
     # 设置损失函数
@@ -402,8 +449,8 @@ if __name__ == "__main__":
                     val_class_total[c] += (label == c).sum().item()
 
         # 计算并打印验证结果
-        avg_val_loss = val_loss_epoch / total_val_samples
-        avg_val_accuracy = val_accuracy_epoch / total_val_samples
+        avg_val_loss = val_loss_epoch / (total_val_samples + 1e-8)
+        avg_val_accuracy = val_accuracy_epoch / (total_val_samples + 1e-8)
         val_losses.append(avg_val_loss)
         val_accuracies.append(avg_val_accuracy)
 
@@ -454,4 +501,4 @@ if __name__ == "__main__":
     # 保存图像
     plt.tight_layout()
     plt.savefig('training_validation_curve_fake.png')
-    plt.show()
+    # plt.show()
