@@ -12,6 +12,26 @@ def getMyModel(model_path):
     model.load_state_dict(torch.load(model_path)['model_state_dict'])
 
     return model
+
+
+def export_model_to_onnx(model, onnx_path):
+    model.eval()  # 切换到评估模式
+    dummy_input = torch.randn(1, 3, 224, 224)  # 假输入，通常是 (batch_size, channels, height, width)
+
+    # 使用 torch.onnx.export 导出模型
+    torch.onnx.export(
+        model,  # 要导出的模型
+        dummy_input,  # 输入示例
+        onnx_path,  # 导出的onnx文件路径
+        input_names=['input'],  # 输入名称
+        output_names=['output'],  # 输出名称
+        opset_version=11,  # ONNX 操作集版本
+        do_constant_folding=True  # 启用常量折叠优化
+    )
+    print(f"Model successfully exported to {onnx_path}")
+
+
+
 class InferenceModel:
     def __init__(self, model_path, device):
         """
@@ -36,7 +56,7 @@ class InferenceModel:
             output = self.model(input_data)  # 执行推理
             # 获取每个样本的最大概率和对应的类
             max_probs, max_classes = torch.max(output, dim=1)
-            return max_classes.item(), max_probs.item()  # 返回类别索引和概率
+            return max_classes, max_probs  # 返回类别索引和概率
 
 
 class ParallelInference:
@@ -50,7 +70,10 @@ class ParallelInference:
             raise ValueError("Only two model paths are supported.")
 
         # 加载两个模型并封装成 InferenceModel 类
-        self.models = [InferenceModel(model_paths[0], device), InferenceModel(model_paths[1], device)]
+        self.models = [
+            InferenceModel(model_paths[0], device),
+            InferenceModel(model_paths[1], device)
+        ]
         self.device = device
 
     def run_parallel_inference(self, input_data):
@@ -103,6 +126,43 @@ def load_image(image_path, device, transform=None):
     image = image.unsqueeze(0)  # 扩展维度，变成 [1, 3, H, W] 形状
     return image.to(device)
 
+if __name__ == "__main__1":
+    model = getMyModel('./best.pt')
+    export_model_to_onnx(model,"sex.onnx")
+
+
+if __name__ == "__main__2":
+
+    import time
+    # batch = 2推理
+    device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
+
+    # device = "cpu"
+    # 预处理的图像变换操作
+    transform = transforms.Compose([
+        transforms.Resize((224, 224)),  # 调整为模型输入的大小
+        transforms.ToTensor(),  # 转换为 Tensor
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])  # 标准化
+    ])
+    model_path = r'./best.pt'
+    image_path1 = "training_validation_curve_fake.png"  # 替换为实际的图片路径
+    image_path2 = "training_validation_curve_fake.png"
+    input_data1 = load_image(image_path1, device, transform)
+    input_data2 = load_image(image_path2, device, transform)
+
+    batch_data = torch.concat([input_data1, input_data2,input_data2,input_data2], dim=0)
+
+    net = InferenceModel(model_path,device)
+    for _ in range(3):
+        t1 = time.time()
+        all_result = net.get_max_probability_class(batch_data)
+        print("batch=2 is time = ",time.time() - t1)
+
+        t1 = time.time()
+        items2 = [input_data1, input_data2,input_data2,input_data2]
+        for i in range(2):
+            net.get_max_probability_class(items2[i])
+        print("for=2 is time = ", time.time() - t1)
 
 # 示例用法
 if __name__ == "__main__":
@@ -123,12 +183,12 @@ if __name__ == "__main__":
 
     # 初始化 ParallelInference 类
     parallel_inference = ParallelInference(model_paths, device)
+    for _ in range(3):
+        # 执行并行推理
+        start_time = time.time()
+        results = parallel_inference.run_parallel_inference(input_data)
+        end_time = time.time()
 
-    # 执行并行推理
-    start_time = time.time()
-    results = parallel_inference.run_parallel_inference(input_data)
-    end_time = time.time()
-
-    # 打印推理结果
-    print(f"Inference results: {results}")
-    print(f"Total time taken: {end_time - start_time:.4f} seconds")
+        # 打印推理结果
+        print(f"Inference results: {results}")
+        print(f"Total time taken: {end_time - start_time:.4f} seconds")
