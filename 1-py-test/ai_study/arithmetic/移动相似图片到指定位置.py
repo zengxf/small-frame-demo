@@ -1,12 +1,11 @@
-import os
 import hashlib
+import os
 import shutil
-from PIL import Image
+
+import cv2
 import imagehash
-import cv2
-import numpy as np
+from PIL import Image
 from skimage.metrics import structural_similarity as ssim
-import cv2
 
 # 配置参数
 SIMILARITY_THRESHOLD = 5     # 汉明距离阈值（pHash）
