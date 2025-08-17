@@ -1,16 +1,21 @@
+
 import numpy as np
 
-arr2 = np.array([[1, 2, 3],
-                 [4, 5, 6],
-                 [7, 8, 9]])
+# 求对数
 
-print('#' * 50)
-# [[8 8 8 8 8]
-#  [8 1 2 3 8]
-#  [8 4 5 6 8]
-#  [8 7 8 9 8]
-#  [8 8 8 8 8]]
+print('*' * 50)
+print(f'np.log(e): {np.log(np.e)}')
+# np.log(e): 1.0
 
-print('#' * 50)
-print(np.pad(arr2, pad_width=2, mode='edge'))
-np.pad(arr2, pad_width=2, mode='constant', constant_values=0)
+print('*' * 50)
+print(f'np.log10(100): {np.log10(100)}')
+# np.log10(100): 2.0
+
+print('*' * 50)
+print(f'np.log2(8): {np.log2(8)}')
+# np.log2(8): 3.0
+
+print('*' * 50)
+print(f'np.log1p(np.e - 1): {np.log1p(np.e - 1)}')
+# 相当于 log1p(x) = ln(1 + x)
+# np.log1p(np.e - 1): 1.0
