@@ -1,4 +1,9 @@
 import numpy as np
 
-print(np.round([1.5, 2.5, 4.5]))
-print(np.round([2.5]))
+arr = np.arange(0, 24).reshape((2, 3, 4))
+print(arr)
+
+print('*' * 40)
+ar1 = np.transpose(arr, (0, -1, -2))
+print(ar1.shape)
+print(ar1)

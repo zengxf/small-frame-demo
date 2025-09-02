@@ -7,9 +7,12 @@ pandas >= 2.3.0       # 读取 csv
 
 pillow >= 11.2.1    # 图片处理
 
-opencv-python >= 4.11.0.86    # 图片处理 25-01
+opencv-python >= 4.11.0.86    # 图片处理    25-01
 
 torch >= 2.7.1          # 25-06
 torchvision >= 0.22.1   # 25-06
 
-tqdm >= 4.67.1      # 进度条 24-11
+tqdm >= 4.67.1      # 进度条   24-11
+
+Flask >= 3.1.2      # HTTP 服务   25-08
+requests >= 2.32.5  # HTTP cli   25-08

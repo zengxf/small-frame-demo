@@ -1,37 +1,33 @@
 import cv2
+import numpy as np
 
 
 def show(img, title=''):
-    cv2.imshow(title, img)
-    cv2.waitKey(0)
+    cv2.imshow(title, img)  # 展示图片出来。img 要为 NumPy 格式
 
 
-# 等比例图像缩放并填充
-def letterbox(image, size=(640, 640), boxes=None):
-    ih, iw = image.shape[:2]
-    w, h = size
+# path = r'./imgs/52.png'
+path = 'D:/Data/Test/img/52.png'
+# 0 代表灰度图；1 代表是 BGR 图。
+img = cv2.imread(path, 1)  # 读出来是 NumPy 格式
+show(img, 'src-img')  # 原图，中文显示有乱码
 
-    if ih == h and iw == w:
-        return image, boxes, 1, 0, 0, 0, 0  # image, boxes, ratio, padT, padB, padL, padR
+# img[h1:h2, w1:w2, :] 切图，相当于裁剪 (cut_out)
+cat = img[10:100, 10:100, :]  # 默认切片生成视图
+print(f"img.shape: {img.shape}, cat.shape: {cat.shape}")
 
-    ratio = min(w / iw, h / ih)
+# cat_c = cat.copy()  # 使用 copy 才不会相互影响
+# cat_c[...] = (0, 0, 0)
 
-    new_w = int(iw * ratio)
-    new_h = int(ih * ratio)
+# cat[...] = (255, 0, 0)  # (显式赋值) 设置 BGR 值，相当于 cat[x][y] = (255, 0, 0)
+# # cat[...] = (255, 0, 0, 3)  # Err: 无法将输入数组从形状 (4,) 广播到形状 (90,90,3)
+# # cat[...] = 0  # (标量广播) 相当于设值 (0, 0, 0)
 
-    dw = (w - new_w) // 2
-    dh = (h - new_h) // 2
+# cat[...] *= 0.4  # Err: output from dtype('float64') to dtype('uint8')
+cat[...] = cat * 0.4  # 对视图区域直接赋值 (乘随机数)
+# cat[...] = cat.astype(np.uint8)  # 小数没关系，可以不用转整数
 
-    scale_img = cv2.resize(image, [new_w, new_h])
+# img[10:100, 10:100, :] = (0, 0, 0)  # 相当于上面 cat = 和 cat[...] =
+show(img, 'cat-img')
 
-    padded_image = cv2.copyMakeBorder(scale_img,
-                                      dh, h - dh - new_h, dw, w - dw - new_w,
-                                      cv2.BORDER_CONSTANT,
-                                      value=[114, 114, 114])
-    return padded_image
-
-
-if __name__ == "__main__":
-    img = cv2.imread(r"D:/Data/Test/img/lenaNoise2.png")
-    img2 = letterbox(img)
-    show(img2, 'resize')
+cv2.waitKey(0)
