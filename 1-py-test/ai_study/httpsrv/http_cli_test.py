@@ -1,5 +1,5 @@
 """
-pip install requests
+pip install requests  --proxy http://127.0.0.1:7890
 """
 import requests
 

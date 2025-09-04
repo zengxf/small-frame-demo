@@ -1,5 +1,5 @@
 """
-pip install Flask
+pip install Flask  --proxy http://127.0.0.1:7890
 
 # Get 测试
 curl http://localhost:5000/
