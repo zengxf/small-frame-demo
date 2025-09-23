@@ -5,6 +5,7 @@
 
 #include<iostream>
 using namespace std;
+#include <string> // 字符串库
 
 int main() {
     int a = 10;
@@ -16,6 +17,15 @@ int main() {
     cout << sizeof(char *) << endl;
     cout << sizeof(float *) << endl;
     cout << sizeof(double *) << endl;
+
+    // ------------------------------
+
+    std::string name = "wahahahahahawahahahahahawahahahahahawahahahahaha";
+
+    cout << "name size: " << sizeof(name) << endl;
+    std::string *ptr_name = &name;
+    cout << "ptr_name size: " << sizeof(ptr_name) << endl;
+    cout << "name size: " << sizeof(name) << endl;
 
     return 0;
 }
