@@ -15,6 +15,10 @@ import torchvision
 import torchvision.transforms as transforms
 import matplotlib.pyplot as plt
 
+
+plt.rcParams['font.sans-serif'] = ['SimHei']	# 解决中文显示问题
+plt.rcParams['axes.unicode_minus'] = False
+
 # 设置设备
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"使用设备: {device}")
