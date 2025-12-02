@@ -27,12 +27,12 @@ public class Test21StringTemplate {
 
     // 测试：多行
     static void test0() {
-        String time = STR. "The current time is \{
+        String time = STR."The current time is \{
                 // 可以写代码块
                 DateTimeFormatter
                         .ofPattern("HH:mm:ss")
                         .format(LocalTime.now())
-                }." ;
+                }.";
         // 最终输出为：The current time is 16:51:02.
         System.out.println(time);
     }
@@ -40,7 +40,7 @@ public class Test21StringTemplate {
     // 测试：表达式
     static void test1() {
         int x = 10, y = 20;
-        String s = STR. "\{ x } + \{ y } = \{ x + y }" ; // "10 + 20 = 30"
+        String s = STR."\{x} + \{y} = \{x + y}"; // "10 + 20 = 30"
         System.out.println(s);
     }
 
@@ -50,15 +50,15 @@ public class Test21StringTemplate {
         String message;
 
         // variable
-        message = STR. "Greetings \{ name }!" ;
+        message = STR."Greetings \{name}!";
         System.out.println("msg: " + message);
 
         // method
-        message = STR. "Greetings \{ getName() }!" ;
+        message = STR."Greetings \{getName()}!";
         System.out.println("msg: " + message);
 
         // field
-        message = STR. "Greetings \{ f_name }!" ;
+        message = STR."Greetings \{f_name}!";
         System.out.println("msg: " + message);
     }
 
@@ -71,15 +71,15 @@ public class Test21StringTemplate {
         String name = "ZXF";
 
         // STR
-        String message = STR. "姓名：\{ name }." ;
+        String message = STR."姓名：\{name}.";
         System.out.println("msg: " + message);
 
         // FMT
-        message = FMT. "姓名：%-5s\{ name }." ;
+        message = FMT."姓名：%-5s\{name}.";
         System.out.println("msg: " + message);
 
         // RAW
-        StringTemplate st = RAW. "姓名：\{ name }." ;
+        StringTemplate st = RAW."姓名：\{name}.";
         message = STR.process(st);
         System.out.println("msg: " + message);
     }
