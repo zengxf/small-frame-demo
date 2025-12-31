@@ -7,3 +7,25 @@
 
 ## 下载 protoc
 - https://github.com/protocolbuffers/protobuf/releases
+
+- 对应 `3.x` 版本
+  - https://github.com/protocolbuffers/protobuf/releases/tag/v21.2
+  - 选 `protoc-21.2-win64.zip`
+    - 最终：https://github.com/protocolbuffers/protobuf/releases/download/v21.2/protoc-21.2-win64.zip
+  - 解压 & 添加到 Path
+
+- 下面的太新了，对应的是 `4.x` 版本 
+  - https://github.com/protocolbuffers/protobuf/releases/tag/v33.0
+  - 选 `protoc-33.0-win64.zip`
+    - 最终：https://github.com/protocolbuffers/protobuf/releases/download/v33.0/protoc-33.0-win64.zip
+  - 解压 & 添加到 Path
+
+
+### 命令
+```shell
+# 查看版本
+protoc --version
+
+# 查看帮助
+protoc -h
+```

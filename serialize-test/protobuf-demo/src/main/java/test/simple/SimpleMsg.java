@@ -19,17 +19,29 @@ public final class SimpleMsg {
       com.google.protobuf.MessageOrBuilder {
 
     /**
+     * <pre>
+     * 消息 ID
+     * </pre>
+     *
      * <code>uint32 id = 1;</code>
      * @return The id.
      */
     int getId();
 
     /**
+     * <pre>
+     * 消息内容
+     * </pre>
+     *
      * <code>string content = 2;</code>
      * @return The content.
      */
     java.lang.String getContent();
     /**
+     * <pre>
+     * 消息内容
+     * </pre>
+     *
      * <code>string content = 2;</code>
      * @return The bytes for content.
      */
@@ -37,11 +49,19 @@ public final class SimpleMsg {
         getContentBytes();
 
     /**
+     * <pre>
+     * 用户名
+     * </pre>
+     *
      * <code>string user_name = 3;</code>
      * @return The userName.
      */
     java.lang.String getUserName();
     /**
+     * <pre>
+     * 用户名
+     * </pre>
+     *
      * <code>string user_name = 3;</code>
      * @return The bytes for userName.
      */
@@ -49,6 +69,10 @@ public final class SimpleMsg {
         getUserNameBytes();
 
     /**
+     * <pre>
+     * 状态
+     * </pre>
+     *
      * <code>uint32 status = 4;</code>
      * @return The status.
      */
@@ -164,6 +188,10 @@ public final class SimpleMsg {
     public static final int ID_FIELD_NUMBER = 1;
     private int id_;
     /**
+     * <pre>
+     * 消息 ID
+     * </pre>
+     *
      * <code>uint32 id = 1;</code>
      * @return The id.
      */
@@ -175,6 +203,10 @@ public final class SimpleMsg {
     public static final int CONTENT_FIELD_NUMBER = 2;
     private volatile java.lang.Object content_;
     /**
+     * <pre>
+     * 消息内容
+     * </pre>
+     *
      * <code>string content = 2;</code>
      * @return The content.
      */
@@ -192,6 +224,10 @@ public final class SimpleMsg {
       }
     }
     /**
+     * <pre>
+     * 消息内容
+     * </pre>
+     *
      * <code>string content = 2;</code>
      * @return The bytes for content.
      */
@@ -213,6 +249,10 @@ public final class SimpleMsg {
     public static final int USER_NAME_FIELD_NUMBER = 3;
     private volatile java.lang.Object userName_;
     /**
+     * <pre>
+     * 用户名
+     * </pre>
+     *
      * <code>string user_name = 3;</code>
      * @return The userName.
      */
@@ -230,6 +270,10 @@ public final class SimpleMsg {
       }
     }
     /**
+     * <pre>
+     * 用户名
+     * </pre>
+     *
      * <code>string user_name = 3;</code>
      * @return The bytes for userName.
      */
@@ -251,6 +295,10 @@ public final class SimpleMsg {
     public static final int STATUS_FIELD_NUMBER = 4;
     private int status_;
     /**
+     * <pre>
+     * 状态
+     * </pre>
+     *
      * <code>uint32 status = 4;</code>
      * @return The status.
      */
@@ -618,6 +666,10 @@ public final class SimpleMsg {
 
       private int id_ ;
       /**
+       * <pre>
+       * 消息 ID
+       * </pre>
+       *
        * <code>uint32 id = 1;</code>
        * @return The id.
        */
@@ -626,6 +678,10 @@ public final class SimpleMsg {
         return id_;
       }
       /**
+       * <pre>
+       * 消息 ID
+       * </pre>
+       *
        * <code>uint32 id = 1;</code>
        * @param value The id to set.
        * @return This builder for chaining.
@@ -637,6 +693,10 @@ public final class SimpleMsg {
         return this;
       }
       /**
+       * <pre>
+       * 消息 ID
+       * </pre>
+       *
        * <code>uint32 id = 1;</code>
        * @return This builder for chaining.
        */
@@ -649,6 +709,10 @@ public final class SimpleMsg {
 
       private java.lang.Object content_ = "";
       /**
+       * <pre>
+       * 消息内容
+       * </pre>
+       *
        * <code>string content = 2;</code>
        * @return The content.
        */
@@ -665,6 +729,10 @@ public final class SimpleMsg {
         }
       }
       /**
+       * <pre>
+       * 消息内容
+       * </pre>
+       *
        * <code>string content = 2;</code>
        * @return The bytes for content.
        */
@@ -682,6 +750,10 @@ public final class SimpleMsg {
         }
       }
       /**
+       * <pre>
+       * 消息内容
+       * </pre>
+       *
        * <code>string content = 2;</code>
        * @param value The content to set.
        * @return This builder for chaining.
@@ -697,6 +769,10 @@ public final class SimpleMsg {
         return this;
       }
       /**
+       * <pre>
+       * 消息内容
+       * </pre>
+       *
        * <code>string content = 2;</code>
        * @return This builder for chaining.
        */
@@ -707,6 +783,10 @@ public final class SimpleMsg {
         return this;
       }
       /**
+       * <pre>
+       * 消息内容
+       * </pre>
+       *
        * <code>string content = 2;</code>
        * @param value The bytes for content to set.
        * @return This builder for chaining.
@@ -725,6 +805,10 @@ public final class SimpleMsg {
 
       private java.lang.Object userName_ = "";
       /**
+       * <pre>
+       * 用户名
+       * </pre>
+       *
        * <code>string user_name = 3;</code>
        * @return The userName.
        */
@@ -741,6 +825,10 @@ public final class SimpleMsg {
         }
       }
       /**
+       * <pre>
+       * 用户名
+       * </pre>
+       *
        * <code>string user_name = 3;</code>
        * @return The bytes for userName.
        */
@@ -758,6 +846,10 @@ public final class SimpleMsg {
         }
       }
       /**
+       * <pre>
+       * 用户名
+       * </pre>
+       *
        * <code>string user_name = 3;</code>
        * @param value The userName to set.
        * @return This builder for chaining.
@@ -773,6 +865,10 @@ public final class SimpleMsg {
         return this;
       }
       /**
+       * <pre>
+       * 用户名
+       * </pre>
+       *
        * <code>string user_name = 3;</code>
        * @return This builder for chaining.
        */
@@ -783,6 +879,10 @@ public final class SimpleMsg {
         return this;
       }
       /**
+       * <pre>
+       * 用户名
+       * </pre>
+       *
        * <code>string user_name = 3;</code>
        * @param value The bytes for userName to set.
        * @return This builder for chaining.
@@ -801,6 +901,10 @@ public final class SimpleMsg {
 
       private int status_ ;
       /**
+       * <pre>
+       * 状态
+       * </pre>
+       *
        * <code>uint32 status = 4;</code>
        * @return The status.
        */
@@ -809,6 +913,10 @@ public final class SimpleMsg {
         return status_;
       }
       /**
+       * <pre>
+       * 状态
+       * </pre>
+       *
        * <code>uint32 status = 4;</code>
        * @param value The status to set.
        * @return This builder for chaining.
@@ -820,6 +928,10 @@ public final class SimpleMsg {
         return this;
       }
       /**
+       * <pre>
+       * 状态
+       * </pre>
+       *
        * <code>uint32 status = 4;</code>
        * @return This builder for chaining.
        */

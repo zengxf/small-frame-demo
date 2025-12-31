@@ -9,7 +9,7 @@ import "proto/SimpleEnum.proto";
 package test.complex;
 
 option java_package = "test.complex";
-option java_outer_classname = "ComplexImport";
+option java_outer_classname = "ComplexImport"; // 建议 Java 以 Proto 结尾，如 XxProto
 
 message Complex {
     uint32 id = 1;

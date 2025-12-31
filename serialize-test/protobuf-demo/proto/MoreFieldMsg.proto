@@ -1,0 +1,128 @@
+/**
+ * 多字段测试
+ *
+ * 只是看下 hasXx() 实现
+ *
+ * 其通过多个 bitField*_ 进行扩展
+ *     private int bitField0_;
+ *     private int bitField1_;
+ *     private int bitField2_;
+ */
+
+// 生成 java 命令：[ protoc --java_out=./src/main/java/ ./proto/MoreFieldMsg.proto ]
+
+// [开始声明]
+syntax = "proto3";
+// package test.simple;  // 定义 protobuf 的包名称空间 (可不定义)
+// [结束声明]
+
+
+// [开始 java 选项配置]
+option java_package = "test.simple";
+option java_outer_classname = "MoreFieldMsg"; // 建议 Java 以 Proto 结尾，如 XxMsgProto
+// [结束 java 选项配置]
+
+
+// [开始 消息定义]
+message MoreFMsg { // 不要与上面的 java_outer_classname 一致
+  uint32 id = 1;
+  string name = 2;
+  optional string str03 = 3;
+  optional string str04 = 4;
+  optional string str05 = 5;
+  optional string str06 = 6;
+  optional string str07 = 7;
+  optional string str08 = 8;
+  optional string str09 = 9;
+
+  optional string str10 = 10;
+  optional string str11 = 11;
+  optional string str12 = 12;
+  optional string str13 = 13;
+  optional string str14 = 14;
+  optional string str15 = 15;
+  optional string str16 = 16;
+  optional string str17 = 17;
+  optional string str18 = 18;
+  optional string str19 = 19;
+
+  optional string str20 = 20;
+  optional string str21 = 21;
+  optional string str22 = 22;
+  optional string str23 = 23;
+  optional string str24 = 24;
+  optional string str25 = 25;
+  optional string str26 = 26;
+  optional string str27 = 27;
+  optional string str28 = 28;
+  optional string str29 = 29;
+
+  optional string str30 = 30;
+  optional string str31 = 31;
+  optional string str32 = 32;
+  optional string str33 = 33;
+  optional string str34 = 34;
+  optional string str35 = 35;
+  optional string str36 = 36;
+  optional string str37 = 37;
+  optional string str38 = 38;
+  optional string str39 = 39;
+
+  optional string str40 = 40;
+  optional string str41 = 41;
+  optional string str42 = 42;
+  optional string str43 = 43;
+  optional string str44 = 44;
+  optional string str45 = 45;
+  optional string str46 = 46;
+  optional string str47 = 47;
+  optional string str48 = 48;
+  optional string str49 = 49;
+
+  optional string str50 = 50;
+  optional string str51 = 51;
+  optional string str52 = 52;
+  optional string str53 = 53;
+  optional string str54 = 54;
+  optional string str55 = 55;
+  optional string str56 = 56;
+  optional string str57 = 57;
+  optional string str58 = 58;
+  optional string str59 = 59;
+
+  optional string str60 = 60;
+  optional string str61 = 61;
+  optional string str62 = 62;
+  optional string str63 = 63;
+  optional string str64 = 64;
+  optional string str65 = 65;
+  optional string str66 = 66;
+  optional string str67 = 67;
+  optional string str68 = 68;
+  optional string str69 = 69;
+
+  //  string str70 = 70;
+  //  string str71 = 71;
+  //  string str72 = 72;
+  //  string str73 = 73;
+  //  string str74 = 74;
+  //  string str75 = 75;
+  //  string str76 = 76;
+  //  string str77 = 77;
+  //  string str78 = 78;
+  //  string str79 = 79;
+
+  //  string str80 = 80;
+  //  string str81 = 81;
+  //  string str82 = 82;
+  //  string str83 = 83;
+  //  string str84 = 84;
+  //  string str85 = 85;
+  //  string str86 = 86;
+  //  string str87 = 87;
+  //  string str88 = 88;
+  //  string str89 = 89;
+
+  optional string str99 = 99;
+}
+// [结束 消息定义]
