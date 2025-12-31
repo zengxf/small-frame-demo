@@ -8,7 +8,7 @@
 ## 下载 protoc
 - https://github.com/protocolbuffers/protobuf/releases
 
-- 对应 `3.x` 版本
+- 对应 `3.21.x` 版本
   - https://github.com/protocolbuffers/protobuf/releases/tag/v21.2
   - 选 `protoc-21.2-win64.zip`
     - 最终：https://github.com/protocolbuffers/protobuf/releases/download/v21.2/protoc-21.2-win64.zip

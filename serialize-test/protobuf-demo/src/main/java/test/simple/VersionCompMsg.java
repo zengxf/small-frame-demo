@@ -88,33 +88,28 @@ public final class VersionCompMsg {
         getStr05Bytes();
 
     /**
-     * <code>optional string str06 = 6;</code>
-     * @return Whether the str06 field is set.
-     */
-    boolean hasStr06();
-    /**
-     * <code>optional string str06 = 6;</code>
-     * @return The str06.
-     */
-    java.lang.String getStr06();
-    /**
-     * <code>optional string str06 = 6;</code>
-     * @return The bytes for str06.
-     */
-    com.google.protobuf.ByteString
-        getStr06Bytes();
-
-    /**
+     * <pre>
+     * optional string str06 = 6; // 删除个字段测试
+     * </pre>
+     *
      * <code>optional string str07 = 7;</code>
      * @return Whether the str07 field is set.
      */
     boolean hasStr07();
     /**
+     * <pre>
+     * optional string str06 = 6; // 删除个字段测试
+     * </pre>
+     *
      * <code>optional string str07 = 7;</code>
      * @return The str07.
      */
     java.lang.String getStr07();
     /**
+     * <pre>
+     * optional string str06 = 6; // 删除个字段测试
+     * </pre>
+     *
      * <code>optional string str07 = 7;</code>
      * @return The bytes for str07.
      */
@@ -156,6 +151,35 @@ public final class VersionCompMsg {
         getStr09Bytes();
 
     /**
+     * <pre>
+     * 新增个字段测试
+     * </pre>
+     *
+     * <code>optional string str10 = 10;</code>
+     * @return Whether the str10 field is set.
+     */
+    boolean hasStr10();
+    /**
+     * <pre>
+     * 新增个字段测试
+     * </pre>
+     *
+     * <code>optional string str10 = 10;</code>
+     * @return The str10.
+     */
+    java.lang.String getStr10();
+    /**
+     * <pre>
+     * 新增个字段测试
+     * </pre>
+     *
+     * <code>optional string str10 = 10;</code>
+     * @return The bytes for str10.
+     */
+    com.google.protobuf.ByteString
+        getStr10Bytes();
+
+    /**
      * <code>optional string str99 = 99;</code>
      * @return Whether the str99 field is set.
      */
@@ -193,10 +217,10 @@ public final class VersionCompMsg {
       str03_ = "";
       str04_ = "";
       str05_ = "";
-      str06_ = "";
       str07_ = "";
       str08_ = "";
       str09_ = "";
+      str10_ = "";
       str99_ = "";
     }
 
@@ -260,28 +284,28 @@ public final class VersionCompMsg {
               str05_ = s;
               break;
             }
-            case 50: {
-              java.lang.String s = input.readStringRequireUtf8();
-              bitField0_ |= 0x00000008;
-              str06_ = s;
-              break;
-            }
             case 58: {
               java.lang.String s = input.readStringRequireUtf8();
-              bitField0_ |= 0x00000010;
+              bitField0_ |= 0x00000008;
               str07_ = s;
               break;
             }
             case 66: {
               java.lang.String s = input.readStringRequireUtf8();
-              bitField0_ |= 0x00000020;
+              bitField0_ |= 0x00000010;
               str08_ = s;
               break;
             }
             case 74: {
               java.lang.String s = input.readStringRequireUtf8();
-              bitField0_ |= 0x00000040;
+              bitField0_ |= 0x00000020;
               str09_ = s;
+              break;
+            }
+            case 82: {
+              java.lang.String s = input.readStringRequireUtf8();
+              bitField0_ |= 0x00000040;
+              str10_ = s;
               break;
             }
             case 794: {
@@ -512,63 +536,25 @@ public final class VersionCompMsg {
       }
     }
 
-    public static final int STR06_FIELD_NUMBER = 6;
-    private volatile java.lang.Object str06_;
-    /**
-     * <code>optional string str06 = 6;</code>
-     * @return Whether the str06 field is set.
-     */
-    @java.lang.Override
-    public boolean hasStr06() {
-      return ((bitField0_ & 0x00000008) != 0);
-    }
-    /**
-     * <code>optional string str06 = 6;</code>
-     * @return The str06.
-     */
-    @java.lang.Override
-    public java.lang.String getStr06() {
-      java.lang.Object ref = str06_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        str06_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>optional string str06 = 6;</code>
-     * @return The bytes for str06.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getStr06Bytes() {
-      java.lang.Object ref = str06_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        str06_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
     public static final int STR07_FIELD_NUMBER = 7;
     private volatile java.lang.Object str07_;
     /**
+     * <pre>
+     * optional string str06 = 6; // 删除个字段测试
+     * </pre>
+     *
      * <code>optional string str07 = 7;</code>
      * @return Whether the str07 field is set.
      */
     @java.lang.Override
     public boolean hasStr07() {
-      return ((bitField0_ & 0x00000010) != 0);
+      return ((bitField0_ & 0x00000008) != 0);
     }
     /**
+     * <pre>
+     * optional string str06 = 6; // 删除个字段测试
+     * </pre>
+     *
      * <code>optional string str07 = 7;</code>
      * @return The str07.
      */
@@ -586,6 +572,10 @@ public final class VersionCompMsg {
       }
     }
     /**
+     * <pre>
+     * optional string str06 = 6; // 删除个字段测试
+     * </pre>
+     *
      * <code>optional string str07 = 7;</code>
      * @return The bytes for str07.
      */
@@ -612,7 +602,7 @@ public final class VersionCompMsg {
      */
     @java.lang.Override
     public boolean hasStr08() {
-      return ((bitField0_ & 0x00000020) != 0);
+      return ((bitField0_ & 0x00000010) != 0);
     }
     /**
      * <code>optional string str08 = 8;</code>
@@ -658,7 +648,7 @@ public final class VersionCompMsg {
      */
     @java.lang.Override
     public boolean hasStr09() {
-      return ((bitField0_ & 0x00000040) != 0);
+      return ((bitField0_ & 0x00000020) != 0);
     }
     /**
      * <code>optional string str09 = 9;</code>
@@ -690,6 +680,64 @@ public final class VersionCompMsg {
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         str09_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int STR10_FIELD_NUMBER = 10;
+    private volatile java.lang.Object str10_;
+    /**
+     * <pre>
+     * 新增个字段测试
+     * </pre>
+     *
+     * <code>optional string str10 = 10;</code>
+     * @return Whether the str10 field is set.
+     */
+    @java.lang.Override
+    public boolean hasStr10() {
+      return ((bitField0_ & 0x00000040) != 0);
+    }
+    /**
+     * <pre>
+     * 新增个字段测试
+     * </pre>
+     *
+     * <code>optional string str10 = 10;</code>
+     * @return The str10.
+     */
+    @java.lang.Override
+    public java.lang.String getStr10() {
+      java.lang.Object ref = str10_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        str10_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * 新增个字段测试
+     * </pre>
+     *
+     * <code>optional string str10 = 10;</code>
+     * @return The bytes for str10.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getStr10Bytes() {
+      java.lang.Object ref = str10_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        str10_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -772,16 +820,16 @@ public final class VersionCompMsg {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, str05_);
       }
       if (((bitField0_ & 0x00000008) != 0)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, str06_);
-      }
-      if (((bitField0_ & 0x00000010) != 0)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 7, str07_);
       }
-      if (((bitField0_ & 0x00000020) != 0)) {
+      if (((bitField0_ & 0x00000010) != 0)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 8, str08_);
       }
-      if (((bitField0_ & 0x00000040) != 0)) {
+      if (((bitField0_ & 0x00000020) != 0)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 9, str09_);
+      }
+      if (((bitField0_ & 0x00000040) != 0)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 10, str10_);
       }
       if (((bitField0_ & 0x00000080) != 0)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 99, str99_);
@@ -812,16 +860,16 @@ public final class VersionCompMsg {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, str05_);
       }
       if (((bitField0_ & 0x00000008) != 0)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, str06_);
-      }
-      if (((bitField0_ & 0x00000010) != 0)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, str07_);
       }
-      if (((bitField0_ & 0x00000020) != 0)) {
+      if (((bitField0_ & 0x00000010) != 0)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, str08_);
       }
-      if (((bitField0_ & 0x00000040) != 0)) {
+      if (((bitField0_ & 0x00000020) != 0)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(9, str09_);
+      }
+      if (((bitField0_ & 0x00000040) != 0)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(10, str10_);
       }
       if (((bitField0_ & 0x00000080) != 0)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(99, str99_);
@@ -860,11 +908,6 @@ public final class VersionCompMsg {
         if (!getStr05()
             .equals(other.getStr05())) return false;
       }
-      if (hasStr06() != other.hasStr06()) return false;
-      if (hasStr06()) {
-        if (!getStr06()
-            .equals(other.getStr06())) return false;
-      }
       if (hasStr07() != other.hasStr07()) return false;
       if (hasStr07()) {
         if (!getStr07()
@@ -879,6 +922,11 @@ public final class VersionCompMsg {
       if (hasStr09()) {
         if (!getStr09()
             .equals(other.getStr09())) return false;
+      }
+      if (hasStr10() != other.hasStr10()) return false;
+      if (hasStr10()) {
+        if (!getStr10()
+            .equals(other.getStr10())) return false;
       }
       if (hasStr99() != other.hasStr99()) return false;
       if (hasStr99()) {
@@ -912,10 +960,6 @@ public final class VersionCompMsg {
         hash = (37 * hash) + STR05_FIELD_NUMBER;
         hash = (53 * hash) + getStr05().hashCode();
       }
-      if (hasStr06()) {
-        hash = (37 * hash) + STR06_FIELD_NUMBER;
-        hash = (53 * hash) + getStr06().hashCode();
-      }
       if (hasStr07()) {
         hash = (37 * hash) + STR07_FIELD_NUMBER;
         hash = (53 * hash) + getStr07().hashCode();
@@ -927,6 +971,10 @@ public final class VersionCompMsg {
       if (hasStr09()) {
         hash = (37 * hash) + STR09_FIELD_NUMBER;
         hash = (53 * hash) + getStr09().hashCode();
+      }
+      if (hasStr10()) {
+        hash = (37 * hash) + STR10_FIELD_NUMBER;
+        hash = (53 * hash) + getStr10().hashCode();
       }
       if (hasStr99()) {
         hash = (37 * hash) + STR99_FIELD_NUMBER;
@@ -1079,13 +1127,13 @@ public final class VersionCompMsg {
         bitField0_ = (bitField0_ & ~0x00000002);
         str05_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
-        str06_ = "";
-        bitField0_ = (bitField0_ & ~0x00000008);
         str07_ = "";
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000008);
         str08_ = "";
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000010);
         str09_ = "";
+        bitField0_ = (bitField0_ & ~0x00000020);
+        str10_ = "";
         bitField0_ = (bitField0_ & ~0x00000040);
         str99_ = "";
         bitField0_ = (bitField0_ & ~0x00000080);
@@ -1134,19 +1182,19 @@ public final class VersionCompMsg {
         if (((from_bitField0_ & 0x00000008) != 0)) {
           to_bitField0_ |= 0x00000008;
         }
-        result.str06_ = str06_;
+        result.str07_ = str07_;
         if (((from_bitField0_ & 0x00000010) != 0)) {
           to_bitField0_ |= 0x00000010;
         }
-        result.str07_ = str07_;
+        result.str08_ = str08_;
         if (((from_bitField0_ & 0x00000020) != 0)) {
           to_bitField0_ |= 0x00000020;
         }
-        result.str08_ = str08_;
+        result.str09_ = str09_;
         if (((from_bitField0_ & 0x00000040) != 0)) {
           to_bitField0_ |= 0x00000040;
         }
-        result.str09_ = str09_;
+        result.str10_ = str10_;
         if (((from_bitField0_ & 0x00000080) != 0)) {
           to_bitField0_ |= 0x00000080;
         }
@@ -1222,24 +1270,24 @@ public final class VersionCompMsg {
           str05_ = other.str05_;
           onChanged();
         }
-        if (other.hasStr06()) {
-          bitField0_ |= 0x00000008;
-          str06_ = other.str06_;
-          onChanged();
-        }
         if (other.hasStr07()) {
-          bitField0_ |= 0x00000010;
+          bitField0_ |= 0x00000008;
           str07_ = other.str07_;
           onChanged();
         }
         if (other.hasStr08()) {
-          bitField0_ |= 0x00000020;
+          bitField0_ |= 0x00000010;
           str08_ = other.str08_;
           onChanged();
         }
         if (other.hasStr09()) {
-          bitField0_ |= 0x00000040;
+          bitField0_ |= 0x00000020;
           str09_ = other.str09_;
+          onChanged();
+        }
+        if (other.hasStr10()) {
+          bitField0_ |= 0x00000040;
+          str10_ = other.str10_;
           onChanged();
         }
         if (other.hasStr99()) {
@@ -1633,98 +1681,23 @@ public final class VersionCompMsg {
         return this;
       }
 
-      private java.lang.Object str06_ = "";
-      /**
-       * <code>optional string str06 = 6;</code>
-       * @return Whether the str06 field is set.
-       */
-      public boolean hasStr06() {
-        return ((bitField0_ & 0x00000008) != 0);
-      }
-      /**
-       * <code>optional string str06 = 6;</code>
-       * @return The str06.
-       */
-      public java.lang.String getStr06() {
-        java.lang.Object ref = str06_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          str06_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>optional string str06 = 6;</code>
-       * @return The bytes for str06.
-       */
-      public com.google.protobuf.ByteString
-          getStr06Bytes() {
-        java.lang.Object ref = str06_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          str06_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string str06 = 6;</code>
-       * @param value The str06 to set.
-       * @return This builder for chaining.
-       */
-      public Builder setStr06(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000008;
-        str06_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string str06 = 6;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearStr06() {
-        bitField0_ = (bitField0_ & ~0x00000008);
-        str06_ = getDefaultInstance().getStr06();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string str06 = 6;</code>
-       * @param value The bytes for str06 to set.
-       * @return This builder for chaining.
-       */
-      public Builder setStr06Bytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        bitField0_ |= 0x00000008;
-        str06_ = value;
-        onChanged();
-        return this;
-      }
-
       private java.lang.Object str07_ = "";
       /**
+       * <pre>
+       * optional string str06 = 6; // 删除个字段测试
+       * </pre>
+       *
        * <code>optional string str07 = 7;</code>
        * @return Whether the str07 field is set.
        */
       public boolean hasStr07() {
-        return ((bitField0_ & 0x00000010) != 0);
+        return ((bitField0_ & 0x00000008) != 0);
       }
       /**
+       * <pre>
+       * optional string str06 = 6; // 删除个字段测试
+       * </pre>
+       *
        * <code>optional string str07 = 7;</code>
        * @return The str07.
        */
@@ -1741,6 +1714,10 @@ public final class VersionCompMsg {
         }
       }
       /**
+       * <pre>
+       * optional string str06 = 6; // 删除个字段测试
+       * </pre>
+       *
        * <code>optional string str07 = 7;</code>
        * @return The bytes for str07.
        */
@@ -1758,6 +1735,10 @@ public final class VersionCompMsg {
         }
       }
       /**
+       * <pre>
+       * optional string str06 = 6; // 删除个字段测试
+       * </pre>
+       *
        * <code>optional string str07 = 7;</code>
        * @param value The str07 to set.
        * @return This builder for chaining.
@@ -1767,22 +1748,30 @@ public final class VersionCompMsg {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000010;
+  bitField0_ |= 0x00000008;
         str07_ = value;
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * optional string str06 = 6; // 删除个字段测试
+       * </pre>
+       *
        * <code>optional string str07 = 7;</code>
        * @return This builder for chaining.
        */
       public Builder clearStr07() {
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000008);
         str07_ = getDefaultInstance().getStr07();
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * optional string str06 = 6; // 删除个字段测试
+       * </pre>
+       *
        * <code>optional string str07 = 7;</code>
        * @param value The bytes for str07 to set.
        * @return This builder for chaining.
@@ -1793,7 +1782,7 @@ public final class VersionCompMsg {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000008;
         str07_ = value;
         onChanged();
         return this;
@@ -1805,7 +1794,7 @@ public final class VersionCompMsg {
        * @return Whether the str08 field is set.
        */
       public boolean hasStr08() {
-        return ((bitField0_ & 0x00000020) != 0);
+        return ((bitField0_ & 0x00000010) != 0);
       }
       /**
        * <code>optional string str08 = 8;</code>
@@ -1850,7 +1839,7 @@ public final class VersionCompMsg {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000020;
+  bitField0_ |= 0x00000010;
         str08_ = value;
         onChanged();
         return this;
@@ -1860,7 +1849,7 @@ public final class VersionCompMsg {
        * @return This builder for chaining.
        */
       public Builder clearStr08() {
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000010);
         str08_ = getDefaultInstance().getStr08();
         onChanged();
         return this;
@@ -1876,7 +1865,7 @@ public final class VersionCompMsg {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000010;
         str08_ = value;
         onChanged();
         return this;
@@ -1888,7 +1877,7 @@ public final class VersionCompMsg {
        * @return Whether the str09 field is set.
        */
       public boolean hasStr09() {
-        return ((bitField0_ & 0x00000040) != 0);
+        return ((bitField0_ & 0x00000020) != 0);
       }
       /**
        * <code>optional string str09 = 9;</code>
@@ -1933,7 +1922,7 @@ public final class VersionCompMsg {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000040;
+  bitField0_ |= 0x00000020;
         str09_ = value;
         onChanged();
         return this;
@@ -1943,7 +1932,7 @@ public final class VersionCompMsg {
        * @return This builder for chaining.
        */
       public Builder clearStr09() {
-        bitField0_ = (bitField0_ & ~0x00000040);
+        bitField0_ = (bitField0_ & ~0x00000020);
         str09_ = getDefaultInstance().getStr09();
         onChanged();
         return this;
@@ -1959,8 +1948,115 @@ public final class VersionCompMsg {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-        bitField0_ |= 0x00000040;
+        bitField0_ |= 0x00000020;
         str09_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object str10_ = "";
+      /**
+       * <pre>
+       * 新增个字段测试
+       * </pre>
+       *
+       * <code>optional string str10 = 10;</code>
+       * @return Whether the str10 field is set.
+       */
+      public boolean hasStr10() {
+        return ((bitField0_ & 0x00000040) != 0);
+      }
+      /**
+       * <pre>
+       * 新增个字段测试
+       * </pre>
+       *
+       * <code>optional string str10 = 10;</code>
+       * @return The str10.
+       */
+      public java.lang.String getStr10() {
+        java.lang.Object ref = str10_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          str10_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 新增个字段测试
+       * </pre>
+       *
+       * <code>optional string str10 = 10;</code>
+       * @return The bytes for str10.
+       */
+      public com.google.protobuf.ByteString
+          getStr10Bytes() {
+        java.lang.Object ref = str10_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          str10_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 新增个字段测试
+       * </pre>
+       *
+       * <code>optional string str10 = 10;</code>
+       * @param value The str10 to set.
+       * @return This builder for chaining.
+       */
+      public Builder setStr10(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000040;
+        str10_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 新增个字段测试
+       * </pre>
+       *
+       * <code>optional string str10 = 10;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearStr10() {
+        bitField0_ = (bitField0_ & ~0x00000040);
+        str10_ = getDefaultInstance().getStr10();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 新增个字段测试
+       * </pre>
+       *
+       * <code>optional string str10 = 10;</code>
+       * @param value The bytes for str10 to set.
+       * @return This builder for chaining.
+       */
+      public Builder setStr10Bytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        bitField0_ |= 0x00000040;
+        str10_ = value;
         onChanged();
         return this;
       }
@@ -2117,11 +2213,11 @@ public final class VersionCompMsg {
       "\n\032proto/VersionCompMsg.proto\"\223\002\n\007CompMsg" +
       "\022\n\n\002id\030\001 \001(\r\022\014\n\004name\030\002 \001(\t\022\022\n\005str03\030\003 \001(" +
       "\tH\000\210\001\001\022\022\n\005str04\030\004 \001(\tH\001\210\001\001\022\022\n\005str05\030\005 \001(" +
-      "\tH\002\210\001\001\022\022\n\005str06\030\006 \001(\tH\003\210\001\001\022\022\n\005str07\030\007 \001(" +
-      "\tH\004\210\001\001\022\022\n\005str08\030\010 \001(\tH\005\210\001\001\022\022\n\005str09\030\t \001(" +
+      "\tH\002\210\001\001\022\022\n\005str07\030\007 \001(\tH\003\210\001\001\022\022\n\005str08\030\010 \001(" +
+      "\tH\004\210\001\001\022\022\n\005str09\030\t \001(\tH\005\210\001\001\022\022\n\005str10\030\n \001(" +
       "\tH\006\210\001\001\022\022\n\005str99\030c \001(\tH\007\210\001\001B\010\n\006_str03B\010\n\006" +
-      "_str04B\010\n\006_str05B\010\n\006_str06B\010\n\006_str07B\010\n\006" +
-      "_str08B\010\n\006_str09B\010\n\006_str99B\035\n\013test.simpl" +
+      "_str04B\010\n\006_str05B\010\n\006_str07B\010\n\006_str08B\010\n\006" +
+      "_str09B\010\n\006_str10B\010\n\006_str99B\035\n\013test.simpl" +
       "eB\016VersionCompMsgb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
@@ -2133,7 +2229,7 @@ public final class VersionCompMsg {
     internal_static_CompMsg_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_CompMsg_descriptor,
-        new java.lang.String[] { "Id", "Name", "Str03", "Str04", "Str05", "Str06", "Str07", "Str08", "Str09", "Str99", "Str03", "Str04", "Str05", "Str06", "Str07", "Str08", "Str09", "Str99", });
+        new java.lang.String[] { "Id", "Name", "Str03", "Str04", "Str05", "Str07", "Str08", "Str09", "Str10", "Str99", "Str03", "Str04", "Str05", "Str07", "Str08", "Str09", "Str10", "Str99", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

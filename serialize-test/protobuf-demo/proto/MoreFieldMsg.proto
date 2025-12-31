@@ -24,7 +24,7 @@ option java_outer_classname = "MoreFieldMsg"; // 建议 Java 以 Proto 结尾，
 
 
 // [开始 消息定义]
-message MoreFMsg { // 不要与上面的 java_outer_classname 一致
+message MoreFMsg {// 不要与上面的 java_outer_classname 一致
   uint32 id = 1;
   string name = 2;
   optional string str03 = 3;

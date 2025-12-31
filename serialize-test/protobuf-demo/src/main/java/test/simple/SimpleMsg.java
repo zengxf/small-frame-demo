@@ -77,6 +77,26 @@ public final class SimpleMsg {
      * @return The status.
      */
     int getStatus();
+
+    /**
+     * <pre>
+     * 时间
+     * </pre>
+     *
+     * <code>string timeStr = 5;</code>
+     * @return The timeStr.
+     */
+    java.lang.String getTimeStr();
+    /**
+     * <pre>
+     * 时间
+     * </pre>
+     *
+     * <code>string timeStr = 5;</code>
+     * @return The bytes for timeStr.
+     */
+    com.google.protobuf.ByteString
+        getTimeStrBytes();
   }
   /**
    * <pre>
@@ -97,6 +117,7 @@ public final class SimpleMsg {
     private Msg() {
       content_ = "";
       userName_ = "";
+      timeStr_ = "";
     }
 
     @java.lang.Override
@@ -149,6 +170,12 @@ public final class SimpleMsg {
             case 32: {
 
               status_ = input.readUInt32();
+              break;
+            }
+            case 42: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              timeStr_ = s;
               break;
             }
             default: {
@@ -307,6 +334,52 @@ public final class SimpleMsg {
       return status_;
     }
 
+    public static final int TIMESTR_FIELD_NUMBER = 5;
+    private volatile java.lang.Object timeStr_;
+    /**
+     * <pre>
+     * 时间
+     * </pre>
+     *
+     * <code>string timeStr = 5;</code>
+     * @return The timeStr.
+     */
+    @java.lang.Override
+    public java.lang.String getTimeStr() {
+      java.lang.Object ref = timeStr_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        timeStr_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * 时间
+     * </pre>
+     *
+     * <code>string timeStr = 5;</code>
+     * @return The bytes for timeStr.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getTimeStrBytes() {
+      java.lang.Object ref = timeStr_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        timeStr_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -333,6 +406,9 @@ public final class SimpleMsg {
       if (status_ != 0) {
         output.writeUInt32(4, status_);
       }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(timeStr_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, timeStr_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -355,6 +431,9 @@ public final class SimpleMsg {
       if (status_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(4, status_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(timeStr_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, timeStr_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -379,6 +458,8 @@ public final class SimpleMsg {
           .equals(other.getUserName())) return false;
       if (getStatus()
           != other.getStatus()) return false;
+      if (!getTimeStr()
+          .equals(other.getTimeStr())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -398,6 +479,8 @@ public final class SimpleMsg {
       hash = (53 * hash) + getUserName().hashCode();
       hash = (37 * hash) + STATUS_FIELD_NUMBER;
       hash = (53 * hash) + getStatus();
+      hash = (37 * hash) + TIMESTR_FIELD_NUMBER;
+      hash = (53 * hash) + getTimeStr().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -543,6 +626,8 @@ public final class SimpleMsg {
 
         status_ = 0;
 
+        timeStr_ = "";
+
         return this;
       }
 
@@ -573,6 +658,7 @@ public final class SimpleMsg {
         result.content_ = content_;
         result.userName_ = userName_;
         result.status_ = status_;
+        result.timeStr_ = timeStr_;
         onBuilt();
         return result;
       }
@@ -634,6 +720,10 @@ public final class SimpleMsg {
         }
         if (other.getStatus() != 0) {
           setStatus(other.getStatus());
+        }
+        if (!other.getTimeStr().isEmpty()) {
+          timeStr_ = other.timeStr_;
+          onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -941,6 +1031,102 @@ public final class SimpleMsg {
         onChanged();
         return this;
       }
+
+      private java.lang.Object timeStr_ = "";
+      /**
+       * <pre>
+       * 时间
+       * </pre>
+       *
+       * <code>string timeStr = 5;</code>
+       * @return The timeStr.
+       */
+      public java.lang.String getTimeStr() {
+        java.lang.Object ref = timeStr_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          timeStr_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 时间
+       * </pre>
+       *
+       * <code>string timeStr = 5;</code>
+       * @return The bytes for timeStr.
+       */
+      public com.google.protobuf.ByteString
+          getTimeStrBytes() {
+        java.lang.Object ref = timeStr_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          timeStr_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 时间
+       * </pre>
+       *
+       * <code>string timeStr = 5;</code>
+       * @param value The timeStr to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTimeStr(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        timeStr_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 时间
+       * </pre>
+       *
+       * <code>string timeStr = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTimeStr() {
+        
+        timeStr_ = getDefaultInstance().getTimeStr();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 时间
+       * </pre>
+       *
+       * <code>string timeStr = 5;</code>
+       * @param value The bytes for timeStr to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTimeStrBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        timeStr_ = value;
+        onChanged();
+        return this;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -1008,10 +1194,10 @@ public final class SimpleMsg {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\025proto/SimpleMsg.proto\022\013test.simple\"E\n\003" +
+      "\n\025proto/SimpleMsg.proto\022\013test.simple\"V\n\003" +
       "Msg\022\n\n\002id\030\001 \001(\r\022\017\n\007content\030\002 \001(\t\022\021\n\tuser" +
-      "_name\030\003 \001(\t\022\016\n\006status\030\004 \001(\rB\030\n\013test.simp" +
-      "leB\tSimpleMsgb\006proto3"
+      "_name\030\003 \001(\t\022\016\n\006status\030\004 \001(\r\022\017\n\007timeStr\030\005" +
+      " \001(\tB\030\n\013test.simpleB\tSimpleMsgb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -1022,7 +1208,7 @@ public final class SimpleMsg {
     internal_static_test_simple_Msg_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_test_simple_Msg_descriptor,
-        new java.lang.String[] { "Id", "Content", "UserName", "Status", });
+        new java.lang.String[] { "Id", "Content", "UserName", "Status", "TimeStr", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

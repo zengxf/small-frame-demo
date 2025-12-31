@@ -18,17 +18,19 @@ option java_outer_classname = "VersionCompMsg"; // 建议 Java 以 Proto 结尾�
 
 
 // [开始 消息定义]
-message CompMsg { // 不要与上面的 java_outer_classname 一致
+message CompMsg {// 不要与上面的 java_outer_classname 一致
   uint32 id = 1;
   string name = 2;
 
   optional string str03 = 3;
   optional string str04 = 4;
   optional string str05 = 5;
-  optional string str06 = 6;
+  // optional string str06 = 6; // 删除个字段测试
   optional string str07 = 7;
   optional string str08 = 8;
   optional string str09 = 9;
+
+  optional string str10 = 10; // 新增个字段测试
 
   optional string str99 = 99;
 }

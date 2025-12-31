@@ -1,3 +1,7 @@
+/**
+ * 字段后面的注释会添加到 get 方法上
+ */
+
 // 生成 java 命令：[ protoc --java_out=./src/main/java/ ./proto/SimpleMsg.proto ]
 
 // [开始声明]
@@ -14,10 +18,10 @@ option java_outer_classname = "SimpleMsg"; // 建议 Java 以 Proto 结尾，如
 
 // [开始 消息定义]
 message Msg {
-  // 字段后面的注释会添加到 get 方法上
   uint32 id = 1; // 消息 ID
   string content = 2; // 消息内容
   string user_name = 3; // 用户名
   uint32 status = 4; // 状态
+  string timeStr = 5; // 时间
 }
 // [结束 消息定义]
