@@ -1,0 +1,19 @@
+/**
+ * 主协议测试
+ */
+
+// 生成 java 命令：[ protoc --java_out=./src/main/java/ ./proto/ProtocolMain.proto ]
+
+// [开始声明]
+syntax = "proto3";
+// package test.simple;  // 定义 protobuf 的包名称空间 (可不定义)
+// [结束声明]
+
+option java_package = "test.simple";
+option java_outer_classname = "ProtocolMain"; // 建议 Java 以 Proto 结尾，如 XxProto
+
+// 主消息定义，只为获取具体消息类型
+message Msg {// 不要与上面的 java_outer_classname 一致
+  string type = 1; // 相当于具体的消息类型
+  optional string sign = 2; // 标识
+}

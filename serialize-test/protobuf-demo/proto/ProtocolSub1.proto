@@ -1,0 +1,22 @@
+/**
+ * 子协议 1 测试
+ */
+
+// 生成 java 命令：[ protoc --java_out=./src/main/java/ ./proto/ProtocolSub1.proto ]
+
+// [开始声明]
+syntax = "proto3";
+// package test.simple;  // 定义 protobuf 的包名称空间 (可不定义)
+// [结束声明]
+
+option java_package = "test.simple";
+option java_outer_classname = "ProtocolSub1"; // 建议 Java 以 Proto 结尾，如 XxProto
+
+// 具体类型的消息定义
+message Msg {// 不要与上面的 java_outer_classname 一致
+  string type = 1; // 相当于具体的消息类型，字段与主的保持一致
+  optional string sign = 2; // 标识，与主的保持一致
+
+  optional string name = 3;
+  optional int32  age = 4;
+}
