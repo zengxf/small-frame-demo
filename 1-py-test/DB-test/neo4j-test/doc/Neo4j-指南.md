@@ -25,3 +25,28 @@
 | 限制条数     | `LIMIT 5`                                       | `LIMIT 5`                                   |
 | 连接（JOIN） | `FROM Person p JOIN Movie m ON p.movie_id=m.id` | `MATCH (p:Person)-[:ACTED_IN]->(m:Movie)`   |
 
+
+## Cypher 语法
+- https://chatglm.cn/main/alltoolsdetail?lang=zh&cid=695e392bfc159c9685898834
+
+### Cypher 查询结构
+```mermaid
+flowchart TD
+    A[Cypher 查询结构] --> B[MATCH<br>模式匹配与筛选]
+    A --> C[WHERE<br>添加过滤条件]
+    A --> D[WITH<br>处理与传递数据]
+    A --> E[RETURN<br>返回结果]
+    A --> F[CREATE<br>创建节点与关系]
+    A --> G[MERGE<br>匹配或创建]
+    A --> H[SET/REMOVE<br>更新属性]
+    A --> I[DELETE/DETACH DELETE<br>删除节点与关系]
+    
+    B --> J[核心查询与过滤]
+    C --> J
+    D --> K[中间数据处理]
+    E --> L[结果输出]
+    F --> M[数据写入]
+    G --> M
+    H --> N[数据更新]
+    I --> O[数据删除]
+```
