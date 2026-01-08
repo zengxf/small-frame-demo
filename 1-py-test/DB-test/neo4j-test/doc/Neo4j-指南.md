@@ -62,9 +62,10 @@ CREATE (:Company {name: 'TechCorp', industry: '科技'});
 // 3. 创建人员节点
 CREATE (:Person {id: 1, name: 'Alice', age: 29, city: '北京'});
 
-// 4. 创建技能节点和 HAS_SKILL 关系
+// 4. 创建技能节点
 CREATE (:Skill {name: 'Python'});
-// 创建人员与技能的关系
+
+// 5. 创建人员与技能的关系
 MATCH (p:Person {id: 1}), (s:Skill {name: 'Rust'}) 
 CREATE (p)-[:HAS_SKILL {level: '中级'}]->(s);
 

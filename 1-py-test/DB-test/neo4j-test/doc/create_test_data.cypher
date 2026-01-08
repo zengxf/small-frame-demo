@@ -328,9 +328,9 @@ ORDER BY num_people DESC
 // 查询 6: 查找共同兴趣的人员对
 MATCH (p1:Person)-[:HAS_INTEREST]->(i:Interest)<-[:HAS_INTEREST]-(p2:Person)
 WHERE p1.name < p2.name  // 避免重复
-WITH p1, p2, count(i) AS common_interests
+WITH p1, p2, collect(i.name) AS interest_names, count(i) AS common_interests
 WHERE common_interests >= 2
-RETURN p1.name, p2.name, common_interests
+RETURN p1.name, p2.name, common_interests, interest_names
 ORDER BY common_interests DESC
 ;
 
@@ -343,8 +343,8 @@ ORDER BY mutual_friends DESC
 
 // 查询 8: 查找拥有特定技能组合的人员
 MATCH (p:Person)-[:HAS_SKILL]->(s1:Skill {name: 'Python'})
-MATCH (p)-[:HAS_SKILL]->(s2:Skill {name: 'Java'})
-RETURN p.name, p.city
+MATCH (p)-[:HAS_SKILL]->(s2:Skill {name: 'Cypher'})
+RETURN p.name, p.city, s1.name, s2.name
 ;
 
 // 查询 9: 使用 MERGE 确保数据存在
