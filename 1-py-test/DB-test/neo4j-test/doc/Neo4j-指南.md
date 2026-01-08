@@ -50,3 +50,34 @@ flowchart TD
     H --> N[数据更新]
     I --> O[数据删除]
 ```
+
+### 示例
+```cypher
+// 1. 清理现有数据（可选）
+MATCH (n) DETACH DELETE n;
+
+// 2. 创建公司节点
+CREATE (:Company {name: 'TechCorp', industry: '科技'});
+
+// 3. 创建人员节点
+CREATE (:Person {id: 1, name: 'Alice', age: 29, city: '北京'});
+
+// 4. 创建技能节点和 HAS_SKILL 关系
+CREATE (:Skill {name: 'Python'});
+// 创建人员与技能的关系
+MATCH (p:Person {id: 1}), (s:Skill {name: 'Rust'}) 
+CREATE (p)-[:HAS_SKILL {level: '中级'}]->(s);
+
+// 6. 创建 WORKS_AT 关系
+MATCH (p:Person {id: 1}), (c:Company {name: 'TechCorp'}) 
+CREATE (p)-[:WORKS_AT {position: '工程师', since: '2023-09-01'}]->(c);
+
+// 7. 创建 FRIEND 关系
+// 添加相互的朋友关系（双向关系）
+MATCH (a:Person {id: 1}), (b:Person {id: 19}) 
+CREATE (a)-[:FRIEND {since: '2019-11-01'}]->(b), 
+       (b)-[:FRIEND {since: '2019-11-01'}]->(a);
+
+// 8. 创建索引和约束（提升查询性能）
+CREATE INDEX person_name_idx IF NOT EXISTS FOR (p:Person) ON (p.name);
+```

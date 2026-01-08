@@ -20,6 +20,9 @@
     - 最终：https://github.com/protocolbuffers/protobuf/releases/download/v33.0/protoc-33.0-win64.zip
   - 解压 & 添加到 Path
 
+- `3.14.x` 版本
+  - https://github.com/protocolbuffers/protobuf/releases/tag/v3.14.0
+
 
 ### 命令
 ```shell
