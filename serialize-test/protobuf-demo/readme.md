@@ -23,6 +23,12 @@
 - `3.14.x` 版本
   - https://github.com/protocolbuffers/protobuf/releases/tag/v3.14.0
   - 旧的项目使用，如果用新的 (如 `3.21.x`) 生成，编译没问题，转数组会报错
+  - 不支持 `optional` 语法
+
+- `3.15.x` 版本
+  - https://github.com/protocolbuffers/protobuf/releases/tag/v3.15.5
+  - 旧的项目使用，如果用新的 (如 `3.21.x`) 生成，编译没问题，转数组会报错
+  - 支持 `optional` 语法
 
 
 ### 命令
