@@ -284,9 +284,9 @@ CREATE INDEX company_name_idx IF NOT EXISTS FOR (c:Company) ON (c.name);
 CREATE INDEX skill_name_idx IF NOT EXISTS FOR (s:Skill) ON (s.name);
 CREATE INDEX interest_name_idx IF NOT EXISTS FOR (i:Interest) ON (i.name);
 
-// 唯一性约束
-//CREATE CONSTRAINT person_id_unique IF NOT EXISTS FOR (p:Person) REQUIRE p.id IS UNIQUE;
-//CREATE CONSTRAINT person_email_unique IF NOT EXISTS FOR (p:Person) REQUIRE p.email IS UNIQUE;
+// 9. 唯一性约束
+CREATE CONSTRAINT person_id_unique IF NOT EXISTS FOR (p:Person) REQUIRE p.id IS UNIQUE;
+CREATE CONSTRAINT person_email_unique IF NOT EXISTS FOR (p:Person) REQUIRE p.email IS UNIQUE;
 //CREATE CONSTRAINT company_name_unique IF NOT EXISTS FOR (c:Company) REQUIRE c.name IS UNIQUE;
 //CREATE CONSTRAINT skill_name_unique IF NOT EXISTS FOR (s:Skill) REQUIRE s.name IS UNIQUE;
 //CREATE CONSTRAINT interest_name_unique IF NOT EXISTS FOR (i:Interest) REQUIRE i.name IS UNIQUE;
@@ -326,9 +326,9 @@ ORDER BY num_people DESC
 ;
 
 // 查询 6: 查找共同兴趣的人员对
-MATCH (p1:Person)-[:HAS_INTEREST]->(i:Interest)<-[:HAS_INTEREST]-(p2:Person)
+MATCH (p1:Person) - [:HAS_INTEREST] -> (i:Interest) <- [:HAS_INTEREST] - (p2:Person)
 WHERE p1.name < p2.name  // 避免重复
-WITH p1, p2, collect(i.name) AS interest_names, count(i) AS common_interests
+WITH p1, p2, count(i) AS common_interests, collect(i.name) AS interest_names
 WHERE common_interests >= 2
 RETURN p1.name, p2.name, common_interests, interest_names
 ORDER BY common_interests DESC
@@ -349,8 +349,8 @@ RETURN p.name, p.city, s1.name, s2.name
 
 // 查询 9: 使用 MERGE 确保数据存在
 MERGE (p:Person {name: 'NewUser'})
-ON CREATE SET p.age = 28, p.city = '北京', p.email = 'newuser@example.com'
-ON MATCH SET p.last_seen = timestamp()
+ON CREATE SET p.age = 28, p.city = '北京', p.email = 'newuser@example.com' // 没有就创建
+ON MATCH SET p.last_seen = timestamp(), p.version = 2 // 有就修改 (追加字段)
 RETURN p
 ;
 

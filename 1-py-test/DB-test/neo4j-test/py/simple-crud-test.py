@@ -250,7 +250,8 @@ def main():
 
         # 清空现有数据（可选）
         logger.info("清空现有数据...")
-        manager.execute_query("MATCH (n) DETACH DELETE n")
+        # 不清空数据
+        # manager.execute_query("MATCH (n) DETACH DELETE n")
 
         # 创建人员节点
         logger.info("创建人员节点...")
