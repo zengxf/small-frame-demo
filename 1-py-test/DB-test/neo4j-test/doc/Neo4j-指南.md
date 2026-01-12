@@ -263,14 +263,252 @@ RETURN
 ;
 ```
 
-#### Cypher - xx
+#### Cypher - with 语法 & 基础示例
+- https://chatglm.cn/main/alltoolsdetail?cid=6960dbad8d9878b41be1768a
+- WITH 子句在 Cypher 查询中主要扮演两个核心角色：
+- **数据流水线 (Piping Results)**：它**将前一个查询阶段的结果传递给下一个阶段**，就像管道一样连接不同的查询操作。这**允许你将一个复杂查询拆解为多个逻辑步骤**，使代码更清晰、更易于理解和维护。
+- **中间数据处理与转换**：在传递结果之前，你可以使用 WITH **对结果集进行各种操作，例如过滤、排序、聚合、计算新变量、限制结果数量等**。这意味着你**不必一次性处理所有数据**，而是在每个阶段只关注和操作所需的数据 。
+- **基本语法**
+```sql
+WITH [expressions] [AS alias]
+    [WHERE conditions] 
+    [ORDER BY ...]
+    [SKIP ...] [LIMIT ...]
+```
+- **基础示例**
 ```cypher
+// 查找所有 Person 节点，按年龄降序排列，取前 5 人，返回姓名和年龄
+MATCH (p:Person)
+WITH p // 传递变量
+  WHERE p.age > 30 // 过滤数据
+  ORDER BY p.age DESC // 排序
+  LIMIT 5 // 限制 5 条
+RETURN p.name, p.age
+;
 ```
 
-#### Cypher - xx
+#### Cypher - with 聚合数据
+- (COUNT, SUM, COLLECT 等)
 ```cypher
+// 计算每个人拥有的技能数量
+MATCH (p:Person)-[:HAS_SKILL]->(s:Skill)
+WITH p, COUNT(s) AS skill_count // 聚合统计
+RETURN p.name, skill_count
+;
 ```
 
-#### Cypher - xx
+#### Cypher - with 多次使用 (分步骤处理)
 ```cypher
+// 1. 找出技能数至少 3 个的人
+// 2. 从这些人中，再筛选出年龄大于 35 岁的人
+// 3. 返回他们的姓名和参演电影数
+MATCH (p:Person)-[:HAS_SKILL]->(s:Skill)
+WITH p, COUNT(s) AS skill_count
+  WHERE skill_count >= 3
+WITH p, skill_count
+  WHERE p.age > 35
+RETURN p.name, skill_count
+;
+```
+
+#### Cypher - with 过滤后再匹配 & 设置
+```cypher
+// 1. 找出年龄大于 45 岁的人
+// 2. 然后找出这些人中认识的所有朋友
+// 3. 返回这个人和他朋友的名字
+MATCH (p:Person)
+WITH p
+  WHERE p.age > 45
+MATCH (p)- [:FRIEND] - >(f:Person)
+RETURN p.name, p.age, f.name
+;
+
+// 为年龄大于 50 岁的人创建一个“VIP”标签
+MATCH (p:Person)
+WITH p
+  WHERE p.age > 50
+SET p:VIP
+RETURN p.name
+;
+```
+
+#### Cypher - remove 与 set 使用
+- https://chatglm.cn/main/alltoolsdetail?cid=6960dbad8d9878b41be1768a
+```cypher
+// 创建测试数据
+MERGE (p:Person {name: 'Tom Hanks'})
+ON CREATE SET p.age = 28, p.city = '北京' // 没有就创建
+RETURN p;
+
+// set 测试
+MATCH (p:Person {name: 'Tom Hanks'}) SET p.age = 66;
+MATCH (p:Person {name: 'Tom Hanks'}) SET p.age = 66, p.nationality = 'American';
+MATCH (p:Person {name: 'Tom Hanks'}) SET p += {height: 183, profession: 'Actor'};
+MATCH (p:Person {name: 'Tom Hanks'}) SET p = {name: 'Tom Hanks', age: 66};
+MATCH (p:Person {name: 'Tom Hanks'}) SET p:Actor;
+
+// remove 测试
+MATCH (p:Person {name: 'Tom Hanks'}) REMOVE p.age;
+MATCH (p:Person {name: 'Tom Hanks'}) REMOVE p.age, p.nationality;
+MATCH (p:Person {name: 'Tom Hanks'}) REMOVE p:Actor;
+
+MERGE (p:Person {name: 'Tom Hanks'}) RETURN p;
+MATCH (p:Person) WHERE p.nationality IS NULL RETURN p;
+```
+1. **SET 子句的用法与示例**
+- `SET` 非常灵活，既可以直接赋值，也可以用 `+=` 操作符合并更新。
+
+| 操作场景 | 语法 | 示例 | 说明 |
+| :-- | :-- | :-- | :-- |
+| **设置/更新节点属性** | `SET node.property = value` | `MATCH (p:Person {name: 'Tom Hanks'}) SET p.age = 66` | 将匹配到的节点的 `age` 属性更新为 `66`。 |
+| **同时设置多个属性** | `SET node.prop1 = val1, node.prop2 = val2` | `MATCH (p:Person {name: 'Tom Hanks'}) SET p.age = 66, p.nationality = 'American'` | 一次性更新 `age` 和 `nationality` 两个属性。 |
+| **合并更新 (+=)** | `SET node += {prop1: val1, prop2: val2}` | `MATCH (p:Person {name: 'Tom Hanks'}) SET p += {height: 183, profession: 'Actor'}` | **只会更新** `height` 和 `profession`，**不会影响**节点已有的其他属性（如 `name`, `age`）。这是**更新**而非**替换**【turn0search8】【turn0search11】。 |
+| **直接替换所有属性** | `SET node = {prop1: val1, prop2: val2}` | `MATCH (p:Person {name: 'Tom Hanks'}) SET p = {name: 'Tom Hanks', age: 66}` | **会覆盖**节点原有的所有属性，只保留 `name` 和 `age`。原有其他属性（如 `nationality`）会被**全部删除**【turn0search5】【turn0search11】。 |
+| **添加节点标签** | `SET node:Label` | `MATCH (p:Person {name: 'Tom Hanks'}) SET p:Actor` | 给匹配到的节点添加 `Actor` 标签。节点可以拥有多个标签。 |
+| **设置关系属性** | `SET relationship.property = value` | `MATCH (:Person {name: 'Tom Hanks'})-[r:ACTED_IN]->(:Movie {title: 'Forrest Gump'}) SET r.award = 'Best Actor'` | 为关系添加 `award` 属性。 |
+
+2. **REMOVE 子句的用法与示例**
+- `REMOVE` 专注于清理，可以精准移除属性或标签。
+
+| 操作场景 | 语法 | 示例 | 说明 |
+| :-- | :-- | :-- | :-- |
+| **删除节点属性** | `REMOVE node.property` | `MATCH (p:Person {name: 'Tom Hanks'}) REMOVE p.age` | 从匹配到的节点中删除 `age` 属性。 |
+| **删除多个属性** | `REMOVE node.prop1, node.prop2` | `MATCH (p:Person {name: 'Tom Hanks'}) REMOVE p.age, p.nationality` | 一次性删除 `age` 和 `nationality` 两个属性。 |
+| **删除节点标签** | `REMOVE node:Label` | `MATCH (p:Person {name: 'Tom Hanks'}) REMOVE p:Actor` | 从匹配到的节点中移除 `Actor` 标签。 |
+| **删除关系的属性** | `REMOVE relationship.property` | `MATCH (a:Person {name: 'Alice'})-[r:KNOWS]->(b:Person {name: 'Bob'}) REMOVE r.since` | 删除 `KNOWS` 关系上的 `since` 属性。 |
+
+#### Cypher - match 语法 🔍
+- https://chatglm.cn/main/alltoolsdetail?lang=zh&cid=696462129cf93d77b9c35c10
+- 查询模式：
+*   **节点 (Nodes)**：用小括号 `()` 表示，代表实体（如人、公司）。
+*   **关系 (Relationships)**：用中括号 `[]` 表示，代表节点之间的连接（如 `KNOWS`, `WORKS_AT`）。
+*   **路径 (Paths)**：由节点和关系组成的序列。
+- **基础语法与元素**
+```cypher
+MATCH (a:Label1)-[r:RELATIONSHIP]->(b:Label2)
+WHERE condition1 AND condition2
+RETURN a, b, r
+```
+1.  **匹配带有特定属性的节点**
+    ```cypher
+    MATCH (person:Person {name: 'Keanu Reeves'}) RETURN person
+    ```
+    这会精确匹配名为 'Keanu Reeves' 的 `Person` 节点。
+2.  **匹配节点及其关系**
+    ```cypher
+    MATCH (p:Person)-[r:ACTED_IN]->(m:Movie) RETURN p.name, m.title, r.role
+    ```
+    这会找出所有参演了电影的演员，并返回演员名、电影名和角色名。
+
+#### Cypher - match 可变长度关系（路径） 🔄
+- https://chatglm.cn/main/alltoolsdetail?lang=zh&cid=696462129cf93d77b9c35c10
+- **不需要知道确切的关系数量，可以匹配一个范围内的跳数**。
+```cypher
+// 查找 Alice 和 Bob 之间 1 到 3 层认识的关系
+MATCH (a:Person {name: 'Alice'})-[f:FRIEND*1..3]->(b:Person {name: 'Bob'}) RETURN a, f, b;
+// 最大 2 层关系
+MATCH (a:Person {name: 'Alice'})-[f:FRIEND*..2]->(b:Person {name: 'Bob'}) RETURN a, f, b;
+// 固定长度关系
+MATCH (a:Person {name: 'Alice'})-[f:FRIEND*2]->(b:Person {name: 'Bob'}) RETURN a, f, b;
+// 查找所有与 Alice 认识的人（不限跳数）
+// `*` 此语法会数据爆炸 (产生大量结果，非死循环)
+MATCH (a:Person {name: 'Alice'})-[:FRIEND*]->(friend) RETURN friend;
+// `*M..` 此语法会数据爆炸 (产生大量结果，非死循环)
+// MATCH (a:Person {name: 'Alice'})-[f:FRIEND*2..]->(b:Person {name: 'Bob'}) RETURN a, f, b;
+```
+*   `*` 后面可以跟 `..N`（最大`N`跳）、`M..`（至少`M`跳）、`M..N`（`M`到`N`跳）。
+
+#### Cypher - match 路径变量 🛣️
+- https://chatglm.cn/main/alltoolsdetail?lang=zh&cid=696462129cf93d77b9c35c10
+- 可以将匹配到的整个路径赋值给一个变量，然后返回它
+```cypher
+MATCH sp = shortestPath((a:Person {name: 'Alice'})-[*]-(b:Person {name: 'Bob'}))
+RETURN sp;
+
+MATCH asp = allShortestPaths((a:Person {name: 'Alice'})-[:FRIEND*]->(b:Person {name: 'Bob'}))
+RETURN asp;
+```
+- `shortestPath()` 函数**会自动计算最短路径**
+- `allShortestPaths()` 函数**返回所有等长的最短路径**。
+
+#### Cypher - match 无方向关系
+- https://chatglm.cn/main/alltoolsdetail?lang=zh&cid=69646a067cc83323da1762b0
+- 在模式中使用 `- -` 代替 `- ->` 或 `<- -` 可以匹配任一方向的关系。
+```cypher
+// 查找“Bob”的所有“FRIEND”关系，不区分方向
+MATCH (a:Person {name: 'Bob'})-[r:FRIEND]-(person)
+RETURN r, person;
+```
+
+#### Cypher - match 综合示例与最佳实践
+- https://chatglm.cn/main/alltoolsdetail?lang=zh&cid=69646a067cc83323da1762b0
+- 假设我们有一个社交网络图：`(:Person)-[:FRIEND]->(:Person)`。我们想：
+  - 找出“David”的朋友的朋友（2 跳）。
+  - 过滤出这些“朋友的朋友”的粉丝数大于 10 的。
+  - 返回这些用户及其到“David”的路径。
+```cypher
+// 1. 找出“David”的朋友的朋友（2跳）
+MATCH (david:Person {name: 'David'})-[:FRIEND*2]-(friendOfFriend)
+
+// 2. 统计这些用户的粉丝数并过滤
+OPTIONAL MATCH (follower:Person)-[:FRIEND]->(friendOfFriend)
+WITH friendOfFriend, count(follower) AS followerCount
+WHERE followerCount > 10
+
+// 3. 返回用户信息及其到“David”的路径
+OPTIONAL MATCH p = (david)-[:FRIEND*1..2]->(friendOfFriend)
+RETURN 
+  friendOfFriend.name, 
+  followerCount, 
+  [n IN nodes(p) | n.name] AS pathNames
+ORDER BY followerCount DESC;
+
+// 第 3 部分详解
+// ① OPTIONAL MATCH p = (...)
+//   这里定义了一个变量 p，表示一条路径（Path）。
+//   匹配结果是一条 路径对象，存进 p。
+//     类比 SQL：p = (...) 就像 JOIN 时把整条路径保存为一个“列”，里面包含所有节点和关系。
+// ② nodes(p)
+//   nodes(p) 是 Cypher 的内置函数，返回路径中所有节点的列表。
+//   例如，如果 p 是路径：
+//     (David)-[:FRIEND]->(Alice)-[:FRIEND]->(Bob)
+//   那 nodes(p) 就是：
+//     [David, Alice, Bob]
+// ③ [n IN nodes(p) | n.name]
+//   这是 列表推导式 (List Comprehension)，语法类似 Python：
+//     [变量 IN 列表 | 映射表达式]
+//   意思是：
+//     遍历 nodes(p) 这个节点列表；
+//     对每个节点 n，取出它的 name 属性；
+//     最终返回一个名字数组。
+//   例子：
+//     ["David", "Alice", "Bob"]
+```
+
+#### Cypher - optional match 说明及示例
+- `OPTIONAL MATCH` 类似于 SQL 里的 `LEFT JOIN`，未匹配到的部分为 `NULL`
+- `MATCH` 类似于 SQL 里的 `INNER JOIN`，未匹配到的部分不返回
+```cypher
+MATCH (p:Person)
+  OPTIONAL MATCH (p:Person)-[:HAS_SKILL]->(skill:Skill)
+RETURN p.name, collect(skill.name) AS skills;
+```
+
+#### Cypher - match 和 merge 的区别
+- https://chatglm.cn/main/alltoolsdetail?lang=zh&cid=696462129cf93d77b9c35c10
+- 它们是 Cypher 中用于操作图数据的**两个基础但用途不同的子句**
+- **核心概念对比**
+
+| 特性 | MATCH | MERGE |
+| :-- | :-- | :-- |
+| **核心功能** | **仅匹配**现有图中的模式 | **匹配或创建**模式（"确保存在"） |
+| **行为模式** | 如果模式不存在，**不返回任何结果** | 如果模式不存在，**创建新节点/关系** |
+| **重复执行** | 每次执行都尝试匹配 | **幂等操作**：重复执行多次效果与执行一次相同（不会创建重复数据） |
+| **类似概念** | SQL 中的 `SELECT` | SQL 中的 `INSERT ... ON DUPLICATE KEY UPDATE` 或 `UPSERT` |
+| **主要用途** | 查询、检索数据 | **数据同步、初始化、确保数据唯一存在** |
+
+```cypher
+// 都可用于查找返回
+MERGE (p:Person {name: 'Tom Hanks'}) RETURN p; // merge -> return
+MATCH (p:Person {name: 'Tom Hanks'}) RETURN p;
 ```
