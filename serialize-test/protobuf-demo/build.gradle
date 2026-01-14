@@ -13,14 +13,22 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    v = [
+            protobuf: "3.21.2",
+            slf4j   : "1.7.32",
+    ]
+}
+
 dependencies {
     // ProtoBuf
-    implementation group: 'com.google.protobuf', name: 'protobuf-java', version: '3.21.2'
+    implementation group: "com.google.protobuf", name: "protobuf-java", version: "${v.protobuf}"
+    implementation group: "com.google.protobuf", name: "protobuf-java-util", version: "${v.protobuf}"
     // Lombok
-    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
+    compileOnly group: "org.projectlombok", name: "lombok", version: "1.18.22"
     // Slf4j
-    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.32'
-    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.32'
+    implementation group: "org.slf4j", name: "slf4j-api", version: "${v.slf4j}"
+    implementation group: "org.slf4j", name: "slf4j-simple", version: "${v.slf4j}"
     // JUnit4
-    testImplementation group: 'junit', name: 'junit', version: '4.13.2'
+    testImplementation group: "junit", name: "junit", version: "4.13.2"
 }

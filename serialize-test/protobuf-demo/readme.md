@@ -1,4 +1,10 @@
-# ProtoBuf 测试
+# ProtoBuf (3.21.x) 测试
+
+
+## 环境
+- Gradle 8.8
+- JDK 17
+
 
 ## 问题
 - proto 编码报错 IDEA 设置：https://www.cnblogs.com/wxw310415/p/13553727.html

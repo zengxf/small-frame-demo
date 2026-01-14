@@ -1,5 +1,7 @@
 package test.simple;
 
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.util.JsonFormat;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -20,8 +22,7 @@ public class SimpleMsgTest {
         builder.setContent("中-11111");
         builder.setStatus(1);
         builder.setUserName("顺为");
-        SimpleMsg.Msg message = builder.build();
-        return message;
+        return builder.build();
     }
 
 
@@ -74,6 +75,33 @@ public class SimpleMsgTest {
         // 从二进流, 反序列化成 Protobuf 对象
         SimpleMsg.Msg inMsg = SimpleMsg.Msg.parseDelimitedFrom(inputStream);
         printMsgInfo(inMsg);
+    }
+
+    @Test
+    public void jsonTest() throws InvalidProtocolBufferException {
+        // 1️⃣ 创建一个 protobuf 对象
+        SimpleMsg.Msg msg1 = buildMsg();
+
+        // 2️⃣ Protobuf -> JSON
+        String json = JsonFormat.printer()
+                .includingDefaultValueFields()  // 包含默认值
+                .omittingInsignificantWhitespace() // 去掉多余空格
+                .print(msg1);
+        System.out.println("\n➡️ Protobuf 转 JSON：");
+        System.out.println(json);
+
+        // 3️⃣ JSON -> Protobuf
+        String inputJson = "{\"id\":68,\"content\":\"中-22222\",\"userName\":\"顺为-88888\",\"status\":1,\"timeStr\":\"\"}";
+        SimpleMsg.Msg.Builder builder = SimpleMsg.Msg.newBuilder();
+        JsonFormat.parser().merge(inputJson, builder); /// 重点
+        SimpleMsg.Msg msg2 = builder.build();
+
+        System.out.println("\n⬅️ JSON 转 Protobuf：");
+        System.out.println(msg2);
+        System.out.println("msg2.content: " + msg2.getContent());
+        System.out.println("msg2.userName: " + msg2.getUserName());
+
+        System.out.println();
     }
 
 }
