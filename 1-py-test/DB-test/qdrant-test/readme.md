@@ -6,3 +6,8 @@
 
 ## 基础环境
 - Python 3.14.0
+
+## 安装依赖
+```shell
+uv pip install -r requirements.txt
+```
