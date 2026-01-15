@@ -1,4 +1,4 @@
-coll_name = "my_collection_3"
+coll_name = "quick_setup"
 
 from pymilvus import MilvusClient, DataType
 
