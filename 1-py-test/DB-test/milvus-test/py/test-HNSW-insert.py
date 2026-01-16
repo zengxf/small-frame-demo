@@ -1,7 +1,11 @@
+coll_name = "hnsw_example"
+
 from pymilvus import MilvusClient
 
-client = MilvusClient(uri="http://localhost:19530", token="root:Milvus")
+# client = MilvusClient(uri="http://localhost:19530", token="root:Milvus")
+client = MilvusClient(uri="http://localhost:19530", token="root:Milvus", db_name="test1")
 
+# --------- 插入数据 ---------
 data = [
     {"my_id": 0, "my_vector": [0.35803, -0.60234, 0.18414, -0.26286, 0.90294], "my_varchar": "pink_8682"},
     {"my_id": 1, "my_vector": [0.19886, 0.06023, 0.69769, 0.26144, 0.83872], "my_varchar": "red_7025"},
@@ -15,6 +19,6 @@ data = [
     {"my_id": 9, "my_vector": [0.57182, 0.24070, -0.3737, -0.0672, -0.6980], "my_varchar": "purple_4976"}
 ]
 
-res = client.insert(collection_name="quick_setup", data=data)
+res = client.insert(collection_name=coll_name, data=data)
 
 print(res)
