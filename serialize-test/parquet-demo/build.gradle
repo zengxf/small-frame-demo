@@ -1,0 +1,58 @@
+// JDK: 25, Gradle: 9.2
+
+plugins {
+    id "java"
+    id "io.freefair.lombok" version "9.2.0"
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+repositories {
+    mavenLocal()
+    maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
+    mavenCentral()
+}
+
+ext {
+    slf4jV = "2.0.17"
+    junit5V = "6.0.0"
+}
+
+dependencies {
+    // Parquet
+    // Parquet start --------------------
+    // 🔹 Parquet 核心库（读写 Parquet 文件的核心 API）
+    implementation group: "org.apache.parquet", name: "parquet", version: "1.17.0"
+    // 🔹 Parquet Hadoop 支持（包含 ParquetReader / ParquetWriter 实现）
+    implementation group: "org.apache.parquet", name: "parquet-hadoop", version: "1.17.0"
+    // 🔹 Parquet 通用基础类（必要）
+    implementation group: "org.apache.parquet", name: "parquet-common", version: "1.17.0"
+    // 🔹 Parquet Avro 集成（基于 Avro Schema 读写）
+    implementation group: "org.apache.parquet", name: "parquet-avro", version: "1.17.0"
+    // 🔹 可选：Parquet Jackson 支持（JSON 映射辅助）
+    implementation group: "org.apache.parquet", name: "parquet-jackson", version: "1.17.0"
+    // Parquet 对 Hadoop Common 的基础依赖 (通常需要，即使是本地)
+    implementation group: 'org.apache.hadoop', name: 'hadoop-common', version: '3.4.2'
+    implementation group: 'org.apache.hadoop', name: 'hadoop-client', version: '3.4.2'
+    // Parquet end --------------------
+
+    // Slf4j
+    implementation group: "org.slf4j", name: "slf4j-api", version: "${slf4jV}"
+    implementation group: "org.slf4j", name: "slf4j-simple", version: "${slf4jV}"
+
+    // JUnit Platform Launcher（必须）
+    testImplementation group: 'org.junit.platform', name: 'junit-platform-launcher', version: "${junit5V}"
+    // JUnit-5 (兼容 4)
+    testImplementation group: "org.junit.vintage", name: "junit-vintage-engine", version: "${junit5V}"
+    // JUnit-5
+    testImplementation group: "org.junit.jupiter", name: "junit-jupiter-engine", version: "${junit5V}"
+}
+
+// 启用 JUnit 5
+test {
+    useJUnitPlatform()
+}

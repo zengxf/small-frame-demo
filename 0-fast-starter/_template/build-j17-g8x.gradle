@@ -1,0 +1,46 @@
+// JDK: 17, Gradle: 8.8
+
+plugins {
+	id "java"
+	id "io.freefair.lombok" version "8.10"
+}
+
+sourceCompatibility = 17
+
+repositories {
+    mavenLocal()
+    maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
+    mavenCentral()
+}
+
+ext {
+    slf4jV = "2.0.16"
+    junit5V = "5.11.0"
+}
+
+dependencies {
+    // xx
+
+    // Lombok
+    //compileOnly group: "org.projectlombok", name: "lombok", version: "1.18.22"
+    //annotationProcessor group: "org.projectlombok", name: "lombok", version: "1.18.22"
+    //testCompileOnly  group: "org.projectlombok", name: "lombok", version: "1.18.22"
+    //testAnnotationProcessor  group: "org.projectlombok", name: "lombok", version: "1.18.22"
+	
+    // Slf4j
+    implementation group: "org.slf4j", name: "slf4j-api", version: "${slf4jV}"
+    implementation group: "org.slf4j", name: "slf4j-simple", version: "${slf4jV}"
+	
+    // JUnit-4
+    // testImplementation group: "junit", name: "junit", version: "4.13.2"
+	// JUnit-5 (兼容 4)
+	testImplementation group: "org.junit.vintage", name: "junit-vintage-engine", version: "${junit5V}"
+	// JUnit-5
+	testImplementation group: "org.junit.jupiter", name: "junit-jupiter-engine", version: "${junit5V}"
+
+}
+
+// 启用 JUnit 5
+test {
+    useJUnitPlatform()
+}
