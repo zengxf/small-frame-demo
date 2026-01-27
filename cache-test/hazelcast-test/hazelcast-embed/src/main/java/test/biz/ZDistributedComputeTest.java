@@ -60,7 +60,7 @@ public class ZDistributedComputeTest implements Constant {
     static class MyTask1 implements Callable<String>, Serializable {
         @Override
         public String call() {
-            String msg = "Hello from " + System.getProperty("hazelcast.instance.name");
+            String msg = "Hello from " + System.getProperty(INSTANCE_NAME_KEY);
             log.info(msg); // 这个日志会在 EmbeddedServer1/2/3 中输出
             return msg;
         }

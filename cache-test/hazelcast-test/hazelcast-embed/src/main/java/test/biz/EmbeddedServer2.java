@@ -19,7 +19,7 @@ public class EmbeddedServer2 implements Constant {
                 .setClusterName(CLUSTER_NAME)   // def: dev
                 .setInstanceName("ser-222");
         cfg.getJetConfig().setEnabled(true);
-        System.setProperty(INSTANCE_KEY, "ser-2222");
+        System.setProperty(INSTANCE_NAME_KEY, "ser-2222");
 
         // 启动一个 Hazelcast 节点
         HazelcastInstance hz = Hazelcast.newHazelcastInstance(cfg);

@@ -18,7 +18,7 @@ public class EmbeddedServer1 implements Constant {
                 .setClusterName(CLUSTER_NAME)   // def: dev
                 .setInstanceName("ser-111");
         cfg.getJetConfig().setEnabled(true);
-        System.setProperty(INSTANCE_KEY, "ser-1111");
+        System.setProperty(INSTANCE_NAME_KEY, "ser-1111");
 
         // 启动一个 Hazelcast 节点
         HazelcastInstance hz = Hazelcast.newHazelcastInstance(cfg);
