@@ -15,11 +15,14 @@ public class EmbeddedServer1 implements Constant {
 
     public static void main(String[] args) {
         Config cfg = new Config()
-                .setClusterName(CLUSTER_NAME); // def: dev
+                .setClusterName(CLUSTER_NAME)   // def: dev
+                .setInstanceName("ser-111");
         cfg.getJetConfig().setEnabled(true);
+        System.setProperty(INSTANCE_KEY, "ser-1111");
 
         // 启动一个 Hazelcast 节点
         HazelcastInstance hz = Hazelcast.newHazelcastInstance(cfg);
+        log.info("hz-name: [{}]", hz.getName()); // 如果上面不指定 InstanceName，则会随机返回
 
         // 获取或创建一个分布式 Map (类似 Java 的 HashMap，但数据同步到整个集群)
         IMap<String, String> map = hz.getMap(MAP_NAME);

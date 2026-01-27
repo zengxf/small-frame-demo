@@ -11,15 +11,15 @@ import lombok.extern.slf4j.Slf4j;
  * Created by ZXFeng on 2026/1/27
  */
 @Slf4j
-public class EmbeddedServer2 implements Constant {
+public class EmbeddedServer3 implements Constant {
 
     public static void main(String[] args) {
         Config cfg = new Config()
                 // .setClusterName("zxf_dev1"); // 集群名不一样，不会自动组成集群
                 .setClusterName(CLUSTER_NAME)   // def: dev
-                .setInstanceName("ser-222");
+                .setInstanceName("ser-333");
         cfg.getJetConfig().setEnabled(true);
-        System.setProperty(INSTANCE_KEY, "ser-2222");
+        System.setProperty(INSTANCE_KEY, "ser-3333");
 
         // 启动一个 Hazelcast 节点
         HazelcastInstance hz = Hazelcast.newHazelcastInstance(cfg);
@@ -29,14 +29,14 @@ public class EmbeddedServer2 implements Constant {
         IMap<String, String> map = hz.getMap(MAP_NAME);
 
         // 存入数据
-        map.put("key2", "Hello 2026 from server 2");
+        map.put("key3", "Hello 2026 from server 3");
 
         // 读取数据
-        log.info("数据内容: {}", map.get("key2"));
+        log.info("数据内容: {}", map.get("key3"));
         log.info("集群中的 Map 大小: {}", map.size());
 
         // 保持运行以观察集群发现
-        log.info("Server 2 运行中...");
+        log.info("Server 3 运行中...");
     }
 
 }
