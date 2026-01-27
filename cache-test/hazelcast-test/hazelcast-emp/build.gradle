@@ -24,8 +24,8 @@ ext {
 }
 
 dependencies {
-    // xx
-    
+    // Hazelcast
+    implementation group: "com.hazelcast", name: "hazelcast", version: "5.6.0"
 
     // Log: Slf4j + Log4j2
     implementation group: "org.slf4j", name: "slf4j-api", version: "${slf4jV}"

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <!-- 定义全局属性 -->
+    <Properties>
+        <Property name="Colorless">
+            <!-- %throwable{5} 只输出前 5 行堆栈 -->
+            [%d{HH:mm:ss.SSS}] [%-5p] %c - %m%n%throwable{5}
+        </Property>
+        <Property name="LOG_COLOR_1">
+            <!-- 颜色: FATAL=bright red, DEBUG=cyan, TRACE=bright black -->
+            <![CDATA[
+            %highlight{[%d{HH:mm:ss.SSS}] [%t] %-5level %c{1.} - %msg%n%throwable}{
+                ERROR=red,
+                WARN=yellow,
+                INFO=green,
+            }
+            ]]>
+        </Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <!-- <PatternLayout pattern="${Colorless}"/> -->
+            <PatternLayout pattern="${LOG_COLOR_1}"/>
+        </Console>
+    </Appenders>
+
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>
