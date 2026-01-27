@@ -1,0 +1,8 @@
+// 设置名称，默认是项目目录名
+rootProject.name = 'hazelcast-test'
+
+include "hazelcast-embed"
+include "hazelcast-alone-community"
+
+// CP 测试成功
+include "hazelcast-alone-enterprise"

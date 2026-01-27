@@ -1,0 +1,47 @@
+// JDK: 25, Gradle: 9.2
+
+plugins {
+    id "java"
+    id "io.freefair.lombok" version "9.2.0"
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+repositories {
+    mavenLocal()
+    maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
+    mavenCentral()
+}
+
+ext {
+    hazelcastV = "5.6.0"
+    slf4jV = "2.0.17"
+    log4j2V = "2.25.3"
+    junit5V = "6.0.0"
+}
+
+dependencies {
+    // Hazelcast
+    implementation group: "com.hazelcast", name: "hazelcast", version: "${hazelcastV}"
+
+    // Log: Slf4j + Log4j2
+    implementation group: "org.slf4j", name: "slf4j-api", version: "${slf4jV}"
+    // implementation group: "org.slf4j", name: "slf4j-simple", version: "${slf4jV}" // Slf4j 简单实现
+    implementation "org.apache.logging.log4j:log4j-core:${log4j2V}" // Log4j2 核心模块
+    implementation "org.apache.logging.log4j:log4j-api:${log4j2V}" //  Log4j2 API
+    implementation "org.apache.logging.log4j:log4j-slf4j2-impl:${log4j2V}" // 让 Slf4j 调用映射到 Log4j2
+
+    // JUnit-5
+    testImplementation "org.junit.platform:junit-platform-launcher:${junit5V}" // Launcher（必须）
+    testImplementation group: "org.junit.vintage", name: "junit-vintage-engine", version: "${junit5V}" // 兼容 JUnit-4
+    testImplementation group: "org.junit.jupiter", name: "junit-jupiter-engine", version: "${junit5V}" // JUnit-5 API
+}
+
+// 启用 JUnit 5
+test {
+    useJUnitPlatform()
+}

@@ -10,4 +10,6 @@
 
 ## 模块说明
 
-- hazelcast-emp 嵌入测试
+- hazelcast-embed 嵌入测试
+- hazelcast-alone-community 社区版独立服务测试
+- hazelcast-alone-enterprise 企业版独立服务测试
