@@ -6,6 +6,9 @@ import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
 import com.hazelcast.sql.SqlResult;
 import com.hazelcast.sql.SqlRow;
+import lombok.extern.slf4j.Slf4j;
+import test.common.Constant;
+import test.common.Person;
 
 /**
  * 服务端需要放同名类 test.biz.Person
@@ -13,6 +16,7 @@ import com.hazelcast.sql.SqlRow;
  * Created by ZXFeng on 2026/1/27
  */
 @Deprecated(since = "服务端需要放同名类，麻烦")
+@Slf4j
 public class SqlTest implements Constant {
 
     static void main() {
@@ -48,7 +52,9 @@ public class SqlTest implements Constant {
         // 查询
         try (SqlResult result = client.getSql().execute("SELECT name, age FROM people WHERE age > 30")) {
             for (SqlRow row : result) {
-                System.out.printf("%s (%d)%n", row.getObject("name"), row.getObject("age"));
+                Object name = row.getObject("name");
+                Object age = row.getObject("age");
+                log.info("用户 => name: [{}], age: [{}]", name, age);
             }
         }
 

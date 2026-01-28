@@ -1,6 +1,8 @@
 // 设置名称，默认是项目目录名
 rootProject.name = 'hazelcast-test'
 
+include "commons"
+
 include "hazelcast-embed"
 include "hazelcast-alone-community"
 

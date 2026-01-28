@@ -8,8 +8,9 @@ import com.hazelcast.core.HazelcastInstanceAware;
 import com.hazelcast.core.IExecutorService;
 import com.hazelcast.map.IMap;
 import lombok.extern.slf4j.Slf4j;
+import test.common.Constant;
+import test.common.SimpleTask;
 
-import java.io.Serializable;
 import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
@@ -37,7 +38,7 @@ public class ZDistributedComputeTest implements Constant {
 
         { // test 1
             // 分发任务到所有成员执行
-            Map<Member, Future<String>> results = executor.submitToAllMembers(new MyTask1());
+            Map<Member, Future<String>> results = executor.submitToAllMembers(new SimpleTask());
             // 收集结果
             for (Map.Entry<Member, Future<String>> entry : results.entrySet()) {
                 log.info("{} -> {}", entry.getKey(), entry.getValue().get());
@@ -56,18 +57,8 @@ public class ZDistributedComputeTest implements Constant {
         hz.shutdown();
     }
 
-    /*** 简单执行示例 */
-    static class MyTask1 implements Callable<String>, Serializable {
-        @Override
-        public String call() {
-            String msg = "Hello from " + System.getProperty(INSTANCE_NAME_KEY);
-            log.info(msg); // 这个日志会在 EmbeddedServer1/2/3 中输出
-            return msg;
-        }
-    }
-
     /*** 获取自身 map 示例 */
-    static class MyTask2 implements Callable<String>, HazelcastInstanceAware, Serializable {
+    static class MyTask2 implements Callable<String>, HazelcastInstanceAware { // 可不用实现 Serializable
         private transient HazelcastInstance hz; // 自动注入
 
         /*** 会在 EmbeddedServer1/2/3 中调用 2 次 */
@@ -84,7 +75,6 @@ public class ZDistributedComputeTest implements Constant {
             log.info(msg); // 这个日志会在 EmbeddedServer1/2/3 中输出
             return msg;
         }
-
     }
 
 }

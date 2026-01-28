@@ -1,0 +1,27 @@
+// JDK: 25, Gradle: 9.2
+
+plugins {
+    id "java"
+    id "io.freefair.lombok" version "9.2.0"
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+repositories {
+    mavenLocal()
+    maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
+    mavenCentral()
+}
+
+ext {
+    slf4jV = "2.0.17"
+}
+
+dependencies {
+    // Log: Slf4j
+    implementation group: "org.slf4j", name: "slf4j-api", version: "${slf4jV}"
+}

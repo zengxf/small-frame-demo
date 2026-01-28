@@ -7,6 +7,8 @@ import com.hazelcast.map.IMap;
 import com.hazelcast.sql.SqlResult;
 import com.hazelcast.sql.SqlRow;
 import lombok.extern.slf4j.Slf4j;
+import test.common.Constant;
+import test.common.Person;
 
 /**
  * <p/>

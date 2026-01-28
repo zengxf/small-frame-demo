@@ -25,6 +25,9 @@ ext {
 }
 
 dependencies {
+    // 依赖 commons 模块
+    implementation project(':commons')
+
     // Hazelcast
     implementation group: "com.hazelcast", name: "hazelcast", version: "${hazelcastV}"
 
