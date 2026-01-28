@@ -10,6 +10,7 @@
 
 ## 模块说明
 
+- commons 公共类定义模块
 - hazelcast-embed 嵌入测试
 - hazelcast-alone-community 社区版独立服务测试
 - hazelcast-alone-enterprise 企业版独立服务测试
