@@ -1,5 +1,5 @@
 """
-测试 ReLU 函数
+测试 PyTorch ReLU 函数
 """
 
 import torch

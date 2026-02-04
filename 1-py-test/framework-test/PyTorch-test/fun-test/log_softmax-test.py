@@ -1,5 +1,5 @@
 """
-log_softmax 测试
+测试 PyTorch log_softmax 函数
 """
 
 import torch
