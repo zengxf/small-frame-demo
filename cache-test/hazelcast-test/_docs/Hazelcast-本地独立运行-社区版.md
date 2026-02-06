@@ -38,6 +38,12 @@ set PATH=%JAVA_HOME%\bin;%PATH%
 java -version
 ```
 
+- 也可直接在 `common.bat` 加
+
+```bash
+set JAVA_HOME=D:\Install\Java\JDK\jdk-25
+```
+
 ## 运行
 
 ```bash
