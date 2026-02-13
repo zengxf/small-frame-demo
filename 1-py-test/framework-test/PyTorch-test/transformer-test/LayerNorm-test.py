@@ -17,7 +17,8 @@ print("*" * 40)
 
 # -------------- forward --------------
 
-x = torch.arange(1, 21).view(1, 4, 5).float()  # 最后一个维度为 features
+x = torch.arange(1, 21).view(2, 4, 5).float()  # 最后一个维度为 features
+# x = torch.arange(1, 41).view(2, 4, 5).float()  # 最后一个维度为 features
 print("x", x)  # (1, 4, 5)
 
 # 在统计每个样本所有维度的值，求均值和方差
