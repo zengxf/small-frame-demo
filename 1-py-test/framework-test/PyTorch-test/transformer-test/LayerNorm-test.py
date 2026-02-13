@@ -1,3 +1,7 @@
+"""
+层-标准化
+"""
+
 import torch
 from torch import nn
 
@@ -13,14 +17,15 @@ print("*" * 40)
 
 # -------------- forward --------------
 
-x = torch.arange(1, 21).view(4, 5).float()  # 最后一个维度为 features
-print("x", x)
+x = torch.arange(1, 21).view(1, 4, 5).float()  # 最后一个维度为 features
+print("x", x)  # (1, 4, 5)
 
 # 在统计每个样本所有维度的值，求均值和方差
-mean = x.mean(-1, keepdim=True)  # mean: [bsz, max_len, 1]
-std = x.std(-1, keepdim=True)  # std: [bsz, max_len, 1]
+mean = x.mean(-1, keepdim=True)  # mean: [bsz, max_len, 1]  (1, 4, 1)
+std = x.std(-1, keepdim=True)  # std: [bsz, max_len, 1]  (1, 4, 1)
+
 # 注意这里也在最后一个维度发生了广播
-norm_simple = (x - mean) / std  # 标准简单版
+norm_simple = (x - mean) / std  # 标准简单版 (1, 4, 5)
 norm = a_2 * (x - mean) / (std + eps) + b_2
 
 print("mean", mean)
