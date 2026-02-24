@@ -8,14 +8,14 @@ import torch.nn.functional as F
 
 # 模拟一个 batch_size 为 3，类别为 5 的分类问题
 logits = torch.tensor([
-    [2.0, 1.0, 0.1, 0.5, 0.3],  # 样本1的 logits
-    [0.2, 3.0, 1.5, 0.8, 1.0],  # 样本2的 logits
-    [1.0, 0.5, 2.5, 3.0, 0.1]  # 样本3的 logits
+    [2.0, 1.0, 0.1, 0.5, 0.3],  # 样本 1 的 logits
+    [0.2, 3.0, 1.5, 0.8, 1.0],  # 样本 2 的 logits
+    [1.0, 0.5, 2.5, 3.0, 0.1]  # 样本 3 的 logits
 ])
 
 # 真实标签：每个样本对应一个类别索引（0, 1, 2, 3, 4）
-targets = torch.tensor([0, 1, 3])  # 样本 0 结果为类别 0；样本 1 结果为类别 1；样本 2 结果为类别 3。loss: 0.57002
-# targets = torch.tensor([0, 0, 0])  # loss: 2.17002
+targets = torch.tensor([0, 1, 3])  # 样本 0 结果为类别 0；样本 1 结果为类别 1；样本 2 结果为类别 3。=> loss: 0.57002
+# targets = torch.tensor([0, 0, 0])  # => loss: 2.17002
 
 # 计算交叉熵损失
 loss = F.cross_entropy(logits, targets)
@@ -29,17 +29,6 @@ print("*" * 50)
 # ------------------
 # ------------------
 
-
-# 模拟一个 batch_size=3, 5 个类别的分类任务
-logits = torch.tensor([
-    [2.0, 1.0, 0.1, 0.5, 0.3],  # 样本1的 logits
-    [0.2, 3.0, 1.5, 0.8, 1.0],  # 样本2的 logits
-    [1.0, 0.5, 2.5, 3.0, 0.1]  # 样本3的 logits
-])
-
-# 真实标签（每个样本对应一个类别索引）
-targets = torch.tensor([0, 1, 3])  # 类别索引从 0 开始
-
 # 创建损失函数
 criterion = nn.CrossEntropyLoss()
 
@@ -48,6 +37,7 @@ loss = criterion(logits, targets)
 print(f"损失值: {loss.item():.4f}")
 
 # 验证：手动计算 softmax + NLLLoss
+# NLLLoss：Negative Log Likelihood Loss，负对数似然损失函数。
 softmax = nn.Softmax(dim=1)
 probs = softmax(logits)
 
