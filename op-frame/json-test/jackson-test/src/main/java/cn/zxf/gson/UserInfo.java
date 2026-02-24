@@ -1,4 +1,4 @@
-package cn.zxf.test;
+package cn.zxf.gson;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -14,10 +14,10 @@ import lombok.NoArgsConstructor;
 @Builder
 public class UserInfo {
 
-    @JsonProperty("user-name")
-    private String name;
+    @JsonProperty( "user-name" )
+    private String  name;
     @JsonIgnore
     private Integer age;
-    private String sex;
+    private String  sex;
 
 }

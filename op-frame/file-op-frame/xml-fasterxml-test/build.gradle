@@ -1,23 +1,47 @@
-apply plugin: 'java'
-apply plugin: 'eclipse'
+// JDK: 25, Gradle: 9.2
 
-sourceCompatibility = 11
+plugins {
+    id "java"
+    id "io.freefair.lombok" version "9.2.0"
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
 
 repositories {
-    maven {
-        url "http://maven.aliyun.com/nexus/content/groups/public/"
-    }
-    mavenCentral()
     mavenLocal()
+    maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
+    mavenCentral()
+}
+
+ext {
+    slf4jV = "2.0.17"
+    log4j2V = "2.25.3"
+    junit5V = "6.0.0"
 }
 
 dependencies {
 	// faster-xml
-	compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.9.9'
+	// compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.9.9'
+	implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.21.1'
 
-	// lombok
-	compile group: 'org.projectlombok', name: 'lombok', version: '1.18.6'
-	compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
-	compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
-	compile group: 'ch.qos.logback', name: 'logback-core', version: '1.2.3'
+    // Log: Slf4j + Log4j2
+    implementation group: "org.slf4j", name: "slf4j-api", version: "${slf4jV}"
+    // implementation group: "org.slf4j", name: "slf4j-simple", version: "${slf4jV}" // Slf4j 简单实现
+    implementation "org.apache.logging.log4j:log4j-core:${log4j2V}" // Log4j2 核心模块
+    implementation "org.apache.logging.log4j:log4j-api:${log4j2V}" //  Log4j2 API
+    implementation "org.apache.logging.log4j:log4j-slf4j2-impl:${log4j2V}" // 让 Slf4j 调用映射到 Log4j2
+
+    // JUnit-5
+    testImplementation "org.junit.platform:junit-platform-launcher:${junit5V}" // Launcher（必须）
+    testImplementation group: "org.junit.vintage", name: "junit-vintage-engine", version: "${junit5V}" // 兼容 JUnit-4
+    testImplementation group: "org.junit.jupiter", name: "junit-jupiter-engine", version: "${junit5V}" // JUnit-5 API
+}
+
+// 启用 JUnit 5
+test {
+    useJUnitPlatform()
 }
