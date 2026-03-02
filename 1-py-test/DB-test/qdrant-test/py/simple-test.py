@@ -86,6 +86,14 @@ search_result = client.query_points(
     ),
     with_payload=True,
     limit=3,
-).points
+)
 
 print(f'{coll_name} Filter search_result:', search_result)
+
+for hit in search_result.points:
+    result = {
+        "id": hit.id,
+        "score": hit.score,
+        "metadata": hit.payload or {}
+    }
+    print("result: ", result)
